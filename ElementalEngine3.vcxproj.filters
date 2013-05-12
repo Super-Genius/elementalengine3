@@ -78,9 +78,6 @@
     <ClInclude Include="src\tree.h">
       <Filter>Hierarchy</Filter>
     </ClInclude>
-    <ClInclude Include="src\MathManager.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="src\CCameraManager.h">
       <Filter>Renderer\Managers</Filter>
     </ClInclude>
@@ -244,6 +241,42 @@
     <ClInclude Include="src\Platform\Win32\CFindFiles.h">
       <Filter>Platform</Filter>
     </ClInclude>
+    <ClInclude Include="src\Math\DefaultMathUtilImpl.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultMatrix3x3Impl.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultMatrix4x4Impl.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultPlaneImpl.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultQuaternionImpl.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultRandomImpl.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultRayImplementation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultVec3Implementation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultVec4Implementation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\MathManager.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultAABBImplementation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\DefaultEulerImplementation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CEntity.cpp">
@@ -281,9 +314,6 @@
     </ClCompile>
     <ClCompile Include="src\CWorld.cpp">
       <Filter>Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MathManager.cpp">
-      <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="src\CCameraManager.cpp">
       <Filter>Renderer\Managers</Filter>
@@ -430,6 +460,45 @@
     </ClCompile>
     <ClCompile Include="src\Platform\Win32\CPluginLoader.cpp">
       <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultMathUtilImpl.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultMatrix3x3Impl.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultMatrix4x4Impl.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultPlaneImpl.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultQuaternionImpl.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultRandomImpl.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultRayImplementation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultVec3Implementation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultVec4Implementation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\MathManager.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultAABBImplementation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultEulerImplementation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\DefaultMathImplemenation.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

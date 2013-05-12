@@ -171,6 +171,18 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
+	RECT winRect;
+	int windowWidth, windowHeight, bitsPerPixel;
+
+	::GetClientRect(hWnd, &winRect);
+	windowWidth = winRect.right - winRect.left;
+	windowHeight = winRect.bottom - winRect.top;
+	HDC hdc = GetDC(NULL);
+	bitsPerPixel = GetDeviceCaps(hdc, BITSPIXEL);
+	ReleaseDC(NULL, hdc);
+
+	gRenderer->Initialize(hWnd, false, windowWidth, windowHeight, 24, bitsPerPixel);
+
 	return TRUE;
 }
 
@@ -187,8 +199,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int wmId, wmEvent;
-	PAINTSTRUCT ps;
-	HDC hdc;
 
 	switch (message)
 	{
@@ -202,10 +212,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			break;
 		case IDM_EXIT:
-			if (DX9DLL != NULL)
-			{
-				FreeLibrary(DX9DLL);
-			}
+			gToolBox->UnloadPlugins(gDLLPMap);
 			DestroyWindow(hWnd);
 			break;
 		default:
@@ -213,9 +220,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-		// TODO: Add any drawing code here...
-		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);

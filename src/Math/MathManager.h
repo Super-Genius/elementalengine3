@@ -22,6 +22,9 @@
 
 #include "CManager.h"
 
+namespace ElementalEngine
+{
+
 class CMathManager : public CManager
 {
 private:
@@ -64,4 +67,5 @@ private:
 	DLLPRIORITYMAP m_DLLPriorityMap;
 };
 
+}
 #endif

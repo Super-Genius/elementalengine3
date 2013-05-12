@@ -29,6 +29,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+namespace ElementalEngine
+{
+extern void	InitDefaultMathImplementation();
+
 REGISTER_COMPONENT_SINGLETON( CMathManager );
 REGISTER_MESSAGE_HANDLER(GetActiveMathImplementation, OnGetActiveMathImplementation, CMathManager);
 REGISTER_MESSAGE_HANDLER(RegisterMathImplementation, OnRegisterMathImplementation, CMathManager);
@@ -113,5 +117,10 @@ void CMathManager::LoadDLMs()
 	m_ToolBox->LoadPlugins(_T(".\\Plugins\\*.dlm"), m_DLLPriorityMap);
 	m_ToolBox->InitPlugins(m_DLLPriorityMap);
 #endif
+	if (m_DLLPriorityMap.size() == 0)
+	{
+		InitDefaultMathImplementation();
+	}
 }
 
+}
