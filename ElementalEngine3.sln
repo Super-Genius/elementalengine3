@@ -1,0 +1,56 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ElementalEngine3", "ElementalEngine3.vcxproj", "{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EESDK", "EESDKLib\EE-SDK.vcxproj", "{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Profile|Win32 = Profile|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Debug|Win32.Build.0 = Debug|Win32
+		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Profile|Win32.ActiveCfg = Profile|Win32
+		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Profile|Win32.Build.0 = Profile|Win32
+		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Release|Win32.ActiveCfg = Release|Win32
+		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Release|Win32.Build.0 = Release|Win32
+		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}.Debug|Win32.Build.0 = Debug|Win32
+		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}.Profile|Win32.ActiveCfg = Profile|Win32
+		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}.Profile|Win32.Build.0 = Profile|Win32
+		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}.Release|Win32.ActiveCfg = Release|Win32
+		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 4
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		CanCheckoutShared = true
+		SccProjectUniqueName1 = EESDKLib\\EE-SDK.vcproj
+		SccLocalPath1 = .
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection1 = EESDKLib\\
+		SccProjectUniqueName2 = ElementalEngine.vcproj
+		SccLocalPath2 = .
+		CanCheckoutShared = true
+		SccProjectUniqueName3 = unitTest\\unitTest.vcproj
+		SccLocalPath3 = .
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection3 = unitTest\\
+	EndGlobalSection
+EndGlobal

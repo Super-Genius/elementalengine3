@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}</ProjectGuid>
+    <RootNamespace>ElementalEngine</RootNamespace>
+    <Keyword>CustomAppWizProj</Keyword>
+    <ProjectName>ElementalEngine3</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SDK\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">src\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SDK\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">src\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">SDK\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">src\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>SDK\include;EESDKLib;LoadSaveManager;..\ThirdParty\LibXML++\;Platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;EE_EXPORTING;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>LibXML++.lib;EESDK.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\ThirdParty\LibXML++\lib\$(Platform)\Release;SDK\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AddModuleNamesToAssembly>%(AddModuleNamesToAssembly)</AddModuleNamesToAssembly>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>false</OptimizeReferences>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>SDK/lib/$(Platform)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <DelayLoadDLLs>LibXML++.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>SDK\include;EESDKLib;LoadSaveManager;..\ThirdParty\LibXML++\;Platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;EE_EXPORTING;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>LibXML++.lib;EESDK.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>..\ThirdParty\LibXML++\lib\$(Platform)\$(Configuration);SDK\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>SDK/lib/$(Platform)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <DelayLoadDLLs>LibXML++.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>SDK\include;EESDKLib;LoadSaveManager;..\ThirdParty\LibXML++\;Platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;EE_EXPORTING;_PROFILE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>LibXML++.lib;EESDK.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\ThirdParty\LibXML++\lib\$(Platform)\Release;SDK\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>SDK/lib/$(Platform)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <DelayLoadDLLs>LibXML++.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\base64.h" />
+    <ClInclude Include="src\CEntity.h" />
+    <ClInclude Include="src\CEntityManager.h" />
+    <ClInclude Include="src\CEntityVisitor.h" />
+    <ClInclude Include="src\CTransform.h" />
+    <ClInclude Include="src\CArchive.h" />
+    <ClInclude Include="src\CArchiveFactory.hpp" />
+    <ClInclude Include="src\CFileStream.h" />
+    <ClInclude Include="src\CMemStream.h" />
+    <ClInclude Include="src\CXMLArchive.h" />
+    <ClInclude Include="src\Platform\Win32\CFindFiles.h" />
+    <ClInclude Include="src\Platform\Win32\CPluginLoader.h" />
+    <ClInclude Include="src\StreamFactory.hpp" />
+    <ClInclude Include="src\CHierarchyManager.hpp" />
+    <ClInclude Include="src\CSceneObjectManager.h" />
+    <ClInclude Include="src\CWorld.h" />
+    <ClInclude Include="src\tree.h" />
+    <ClInclude Include="src\MathManager.h" />
+    <ClInclude Include="src\CCameraManager.h" />
+    <ClInclude Include="src\CFontManager.h" />
+    <ClInclude Include="src\CIndexBufferManager.h" />
+    <ClInclude Include="src\CLightManager.h" />
+    <ClInclude Include="src\CParticleManager.h" />
+    <ClInclude Include="src\CRenderManager.h" />
+    <ClInclude Include="src\CSceneVisibilityManager.h" />
+    <ClInclude Include="src\CShaderManager.h" />
+    <ClInclude Include="src\CShaderVarFuncs.h" />
+    <ClInclude Include="src\CSpriteManager.h" />
+    <ClInclude Include="src\CTextureManager.h" />
+    <ClInclude Include="src\CVertexBufferManager.h" />
+    <ClInclude Include="src\CAnimatedTexture.h" />
+    <ClInclude Include="src\CBatchGeometry.h" />
+    <ClInclude Include="src\CCamera.h" />
+    <ClInclude Include="src\CController.h" />
+    <ClInclude Include="src\CEffect.h" />
+    <ClInclude Include="src\CGeometry.h" />
+    <ClInclude Include="src\CLightObject.h" />
+    <ClInclude Include="src\CMaterial.h" />
+    <ClInclude Include="src\CMaterialOverride.h" />
+    <ClInclude Include="src\CMaterialTemplate.h" />
+    <ClInclude Include="src\CMeshObject.h" />
+    <ClInclude Include="src\CObjectSceneSettings.h" />
+    <ClInclude Include="src\CParticleBatchRenderObject.h" />
+    <ClInclude Include="src\CParticleEmitter.h" />
+    <ClInclude Include="src\CParticleEmitterObject.h" />
+    <ClInclude Include="src\CParticleEmitterType.h" />
+    <ClInclude Include="src\CParticleLineRenderObject.h" />
+    <ClInclude Include="src\CParticleLineType.h" />
+    <ClInclude Include="src\CParticleRenderObject.h" />
+    <ClInclude Include="src\CParticleRibbonRenderObject.h" />
+    <ClInclude Include="src\CParticleRibbonType.h" />
+    <ClInclude Include="src\CParticleSystemObject.h" />
+    <ClInclude Include="src\CParticleType.h" />
+    <CustomBuildStep Include="src\CShaderDefines.h" />
+    <ClInclude Include="src\CShaderPath.h" />
+    <ClInclude Include="src\CStreamObject.h" />
+    <ClInclude Include="src\CTextureCompositer.h" />
+    <ClInclude Include="src\CVertexFormat.h" />
+    <ClInclude Include="src\CNetConnection.h" />
+    <ClInclude Include="src\CNetManager.h" />
+    <ClInclude Include="src\CInputManager.h" />
+    <ClInclude Include="Sdk\include\JoystickKeyDefs.h" />
+    <ClInclude Include="src\JoystickManager.h" />
+    <ClInclude Include="Sdk\include\KeyDefs.h" />
+    <ClInclude Include="src\CSoundManager.h" />
+    <ClInclude Include="src\C2DLine.h" />
+    <ClInclude Include="src\CDelayedDeleteListener.h" />
+    <ClInclude Include="Sdk\include\CHashString.hpp" />
+    <ClInclude Include="src\CListenerFactory.h" />
+    <ClInclude Include="src\CMemoryAllocator.h" />
+    <ClInclude Include="src\CObjectFactory.h" />
+    <ClInclude Include="src\Config.h" />
+    <ClInclude Include="src\CPerfTimer.h" />
+    <ClInclude Include="src\CTimer.h" />
+    <ClInclude Include="src\CToolBox.h" />
+    <ClInclude Include="src\DefaultLogger.hpp" />
+    <ClInclude Include="SDK\include\LoadSaverBase.hpp" />
+    <ClInclude Include="src\PerformanceProfilerHandler.h" />
+    <ClInclude Include="src\ProxyManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\StaticLibSymbols.h" />
+    <ClInclude Include="src\StdAfx.h" />
+    <ClInclude Include="src\Typedef.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\base64.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\CEntity.cpp" />
+    <ClCompile Include="src\CEntityManager.cpp" />
+    <ClCompile Include="src\CTransform.cpp" />
+    <ClCompile Include="src\CArchive.cpp" />
+    <ClCompile Include="src\CArchiveFactory.cpp" />
+    <ClCompile Include="src\CFileStream.cpp" />
+    <ClCompile Include="src\CMemStream.cpp" />
+    <ClCompile Include="src\CXMLArchive.cpp" />
+    <ClCompile Include="src\Platform\Win32\CFindFiles.cpp" />
+    <ClCompile Include="src\Platform\Win32\CPluginLoader.cpp" />
+    <ClCompile Include="src\StreamFactory.cpp" />
+    <ClCompile Include="src\CHierarchyManager.cpp" />
+    <ClCompile Include="src\CSceneObjectManager.cpp" />
+    <ClCompile Include="src\CWorld.cpp" />
+    <ClCompile Include="src\MathManager.cpp" />
+    <ClCompile Include="src\CCameraManager.cpp" />
+    <ClCompile Include="src\CFontManager.cpp" />
+    <ClCompile Include="src\CIndexBufferManager.cpp" />
+    <ClCompile Include="src\CLightManager.cpp" />
+    <ClCompile Include="src\CParticleManager.cpp" />
+    <ClCompile Include="src\CRenderManager.cpp" />
+    <ClCompile Include="src\CSceneVisibilityManager.cpp" />
+    <ClCompile Include="src\CShaderManager.cpp" />
+    <ClCompile Include="src\CSpriteManager.cpp" />
+    <ClCompile Include="src\CTextureManager.cpp" />
+    <ClCompile Include="src\CVertexBufferManager.cpp" />
+    <ClCompile Include="src\CAnimatedTexture.cpp" />
+    <ClCompile Include="src\CBatchGeometry.cpp" />
+    <ClCompile Include="src\CCamera.cpp" />
+    <ClCompile Include="src\CEffect.cpp" />
+    <ClCompile Include="src\CGeometry.cpp" />
+    <ClCompile Include="src\CLightObject.cpp" />
+    <ClCompile Include="src\CMaterial.cpp" />
+    <ClCompile Include="src\CMaterialOverride.cpp" />
+    <ClCompile Include="src\CMaterialTemplate.cpp" />
+    <ClCompile Include="src\CMeshObject.cpp" />
+    <ClCompile Include="src\CObjectSceneSettings.cpp" />
+    <ClCompile Include="src\CParticleBatchRenderObject.cpp" />
+    <ClCompile Include="src\CParticleEmitter.cpp" />
+    <ClCompile Include="src\CParticleEmitterObject.cpp" />
+    <ClCompile Include="src\CParticleEmitterType.cpp" />
+    <ClCompile Include="src\CParticleLineRenderObject.cpp" />
+    <ClCompile Include="src\CParticleLineType.cpp" />
+    <ClCompile Include="src\CParticleRenderObject.cpp" />
+    <ClCompile Include="src\CParticleRibbonRenderObject.cpp" />
+    <ClCompile Include="src\CParticleRibbonType.cpp" />
+    <ClCompile Include="src\CParticleSystemObject.cpp" />
+    <ClCompile Include="src\CParticleType.cpp" />
+    <ClCompile Include="src\CShaderDefines.cpp" />
+    <ClCompile Include="src\CShaderPath.cpp" />
+    <ClCompile Include="src\CTextureCompositer.cpp" />
+    <ClCompile Include="src\CVertexFormat.cpp" />
+    <ClCompile Include="src\CNetConnection.cpp" />
+    <ClCompile Include="src\CNetManager.cpp" />
+    <ClCompile Include="src\CInputManager.cpp" />
+    <ClCompile Include="src\JoystickManager.cpp" />
+    <ClCompile Include="src\CSoundManager.cpp" />
+    <ClCompile Include="src\C2DLine.cpp" />
+    <ClCompile Include="src\CDelayedDeleteListener.cpp" />
+    <ClCompile Include="src\CListenerFactory.cpp" />
+    <ClCompile Include="src\CMemoryAllocator.cpp" />
+    <ClCompile Include="src\CObjectFactory.cpp" />
+    <ClCompile Include="src\CPerfTimer.cpp" />
+    <ClCompile Include="src\CTimer.cpp" />
+    <ClCompile Include="src\CToolBox.cpp" />
+    <ClCompile Include="src\DefaultLogger.cpp" />
+    <ClCompile Include="src\PerformanceProfilerHandler.cpp" />
+    <ClCompile Include="src\ProxyManager.cpp" />
+    <ClCompile Include="src\StaticLibSymbols.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ElementalEngine.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
+    <CustomBuild Include="src\StaticLibSymbols.gen">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating Static Lib Symbols for $(ProjectName)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"../ThirdParty/Python/python.exe" "../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Generating Static Lib Symbols for $(ProjectName)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">"../ThirdParty/Python/python.exe" "../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating Static Lib Symbols for $(ProjectName)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"../ThirdParty/Python/python.exe" "../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="EESDKLib\EE-SDK.vcxproj">
+      <Project>{c87a3ee8-d7c5-4970-9b62-1d04bb28ca13}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,27 @@
+EESDKLib/Wii/Debug
+EESDKLib/Wii/Profile
+EESDKLib/Wii/Release
+EESDKLib/Win32/Debug
+EESDKLib/Win32/Profile
+EESDKLib/Win32/Release
+EESDKLib/Xbox 360/Debug
+Plugins2/Bin
+Plugins2/ElementalEngine/DX9Renderer/Win32/Debug/
+Plugins2/ElementalEngine/DX9Renderer/Win32/Profile/
+Plugins2/ElementalEngine/DX9Renderer/Win32/Release/
+Plugins2\ElementalEngine\DX9Renderer\ipch/
+UnitTest/Win32/Debug/
+UnitTest/Win32/Profile/
+UnitTest/Win32/Release/
+UnitTest/bin/win32/debug/Plugins/
+UnitTest\bin/
+src/Wii/Debug/
+src/Wii/Profile/
+src/Wii/Release/
+src/Win32/Debug/
+src/Win32/Profile/
+src/Win32/Release/
+ipch/
+TestEERender/TestEERender/Debug/
+TestEERender/Debug/
+SDK\bin/
