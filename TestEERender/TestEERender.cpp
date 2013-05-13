@@ -24,6 +24,7 @@ DLLPRIORITYMAP		gDLLPMap;			// the plugin DLL loaded by priority
 static CHashString getRI(_T("GetRendererInterface"));
 HINSTANCE DX9DLL;
 IRenderer *gRenderer;
+IRenderContext *gRenderContext;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
@@ -181,7 +182,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	bitsPerPixel = GetDeviceCaps(hdc, BITSPIXEL);
 	ReleaseDC(NULL, hdc);
 
+	// this initializes the screen
 	gRenderer->Initialize(hWnd, false, windowWidth, windowHeight, 24, bitsPerPixel);
+	gRenderContext = gRenderer->CreateNewContext(hWnd, windowWidth, windowHeight, 24, bitsPerPixel);
+
+	gRenderer->SetBackgroundColor(255, 0, 0);
+
+	gRenderer->ClearScreen(true, true);
+
+	gRenderer->Present(gRenderContext);
 
 	return TRUE;
 }
@@ -220,6 +229,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_PAINT:
+		gRenderer->ClearScreen(true, true);
+		gRenderer->Present(gRenderContext);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);

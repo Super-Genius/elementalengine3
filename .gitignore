@@ -25,3 +25,5 @@ ipch/
 TestEERender/TestEERender/Debug/
 TestEERender/Debug/
 SDK\bin/
+SDK\lib/
+BuildLog/
