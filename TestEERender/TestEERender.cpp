@@ -186,11 +186,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	gRenderer->Initialize(hWnd, false, windowWidth, windowHeight, 24, bitsPerPixel);
 	gRenderContext = gRenderer->CreateNewContext(hWnd, windowWidth, windowHeight, 24, bitsPerPixel);
 
-	gRenderer->SetBackgroundColor(255, 0, 0);
+	//gRenderer->SetBackgroundColor(255, 0, 0);
 
-	gRenderer->ClearScreen(true, true);
+	//gRenderer->ClearScreen(true, true);
 
-	gRenderer->Present(gRenderContext);
+	//gRenderer->Present(gRenderContext);
 
 	return TRUE;
 }
@@ -221,7 +221,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			break;
 		case IDM_EXIT:
-			gToolBox->UnloadPlugins(gDLLPMap);
 			DestroyWindow(hWnd);
 			break;
 		default:
@@ -229,10 +228,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_PAINT:
+		gRenderer->SetBackgroundColor(255, 255, 255, 0);
 		gRenderer->ClearScreen(true, true);
+		gRenderer->RenderToContext(gRenderContext);
+		gRenderer->BeginScene(true);
+		gRenderer->Draw2DQuad(.25f, .25f, .75f, .75f, NULL, 0x00ff);
+		gRenderer->EndScene();
 		gRenderer->Present(gRenderContext);
 		break;
 	case WM_DESTROY:
+		gRenderContext->DestroyContext();
+		delete gRenderContext;
 		PostQuitMessage(0);
 		break;
 	default:
