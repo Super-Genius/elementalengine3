@@ -232,7 +232,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		gRenderer->ClearScreen(true, true);
 		gRenderer->RenderToContext(gRenderContext);
 		gRenderer->BeginScene(true);
-		gRenderer->Draw2DQuad(.25f, .25f, .75f, .75f, NULL, 0x00ff);
+		gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
+		gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, NULL, 0x400000ff);
 		gRenderer->EndScene();
 		gRenderer->Present(gRenderContext);
 		break;
