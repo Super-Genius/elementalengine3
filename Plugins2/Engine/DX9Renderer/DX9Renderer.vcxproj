@@ -90,6 +90,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)DX9Renderer.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
     <CustomBuildStep>
       <Command>copy $(OutDir)$(TargetFileName) ../../../TestEERender/Debug/Plugins</Command>
@@ -110,7 +111,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ElementalEngine2.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
+      <AdditionalDependencies>ElementalEngine3.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)DX9Renderer.dlo</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\SDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -137,7 +138,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ElementalEngine2.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
+      <AdditionalDependencies>ElementalEngine3.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)DX9Renderer.dlo</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\SDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>

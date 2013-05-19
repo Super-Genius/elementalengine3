@@ -27,3 +27,10 @@ TestEERender/Debug/
 SDK\bin/
 SDK\lib/
 BuildLog/
+Plugins2\Engine\DX9Renderer\Win32/
+Plugins2\Engine\LoadSaveManager\Win32/
+Plugins2\LoadSavers\TextureLoader\Win32/
+SDK/bin/Win32/Debug/ElementalEngine3.bsc
+TestEERender\Bin\Win32/
+TestEERender/Profile/CL.read.1.tlog
+TestEERender/Release/
