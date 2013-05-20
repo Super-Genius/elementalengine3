@@ -3,6 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestEERender", "TestEERender.vcxproj", "{9411DB2E-5F7F-4E97-A097-17232FF239A5}"
 	ProjectSection(ProjectDependencies) = postProject
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39} = {D0F92E94-8B0A-4990-B59A-F21831F0EA39}
 		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE} = {A51E8CB3-3995-48B7-9D44-96F04A31DCDE}
 		{D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9} = {D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9}
 		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13} = {C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}
@@ -15,10 +16,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ElementalEngine3", "..\Elem
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EESDK", "..\EESDKLib\EE-SDK.vcxproj", "{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DX9Renderer", "..\Plugins2\ElementalEngine\DX9Renderer\DX9Renderer.vcxproj", "{D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DX9Renderer", "..\Plugins2\Engine\DX9Renderer\DX9Renderer.vcxproj", "{D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE} = {A51E8CB3-3995-48B7-9D44-96F04A31DCDE}
 		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13} = {C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextureLoader", "..\Plugins2\LoadSavers\TextureLoader\TextureLoader.vcxproj", "{71823875-B8A3-4E11-B8E8-DE95A1CCC458}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoadSaveManager", "..\Plugins2\Engine\LoadSaveManager\LoadSaveManager.vcxproj", "{D0F92E94-8B0A-4990-B59A-F21831F0EA39}"
+	ProjectSection(ProjectDependencies) = postProject
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458} = {71823875-B8A3-4E11-B8E8-DE95A1CCC458}
 	EndProjectSection
 EndProject
 Global
@@ -30,8 +38,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Debug|Win32.ActiveCfg = Debug|Win32
 		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Debug|Win32.Build.0 = Debug|Win32
-		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Profile|Win32.ActiveCfg = Release|Win32
-		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Profile|Win32.Build.0 = Release|Win32
+		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Profile|Win32.ActiveCfg = Profile|Win32
+		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Profile|Win32.Build.0 = Profile|Win32
 		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Release|Win32.ActiveCfg = Release|Win32
 		{9411DB2E-5F7F-4E97-A097-17232FF239A5}.Release|Win32.Build.0 = Release|Win32
 		{A51E8CB3-3995-48B7-9D44-96F04A31DCDE}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -52,6 +60,18 @@ Global
 		{D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9}.Profile|Win32.Build.0 = Profile|Win32
 		{D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9}.Release|Win32.ActiveCfg = Release|Win32
 		{D3D9D3D9-D3D9-D3D9-D3D9-D3D9D3D9D3D9}.Release|Win32.Build.0 = Release|Win32
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458}.Debug|Win32.ActiveCfg = Debug|Win32
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458}.Debug|Win32.Build.0 = Debug|Win32
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458}.Profile|Win32.ActiveCfg = Profile|Win32
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458}.Profile|Win32.Build.0 = Profile|Win32
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458}.Release|Win32.ActiveCfg = Release|Win32
+		{71823875-B8A3-4E11-B8E8-DE95A1CCC458}.Release|Win32.Build.0 = Release|Win32
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Debug|Win32.Build.0 = Debug|Win32
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Profile|Win32.ActiveCfg = Profile|Win32
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Profile|Win32.Build.0 = Profile|Win32
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Release|Win32.ActiveCfg = Release|Win32
+		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

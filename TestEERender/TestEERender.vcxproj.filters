@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{96700e46-5df8-4808-b3f6-18abde7d3647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Debug">
+      <UniqueIdentifier>{815b84fe-1d35-42ba-a856-d7a0b0657b86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Profile">
+      <UniqueIdentifier>{b13bec7f-ada3-4dcd-860c-3dcf1266b7c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Release">
+      <UniqueIdentifier>{6020b96a-3362-44f0-aa19-6cd757f40490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins">
+      <UniqueIdentifier>{f458bbab-0b64-48ff-a27d-7920f19bc026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\Debug">
+      <UniqueIdentifier>{7878d22a-adb9-4ab4-b8bf-9f02b2fe92be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\Release">
+      <UniqueIdentifier>{03aed33c-c0d2-471a-b6ab-7080c314a561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\Profile">
+      <UniqueIdentifier>{00fcc6bb-ae43-4b56-91cb-64288d5be8f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -49,5 +73,88 @@
     <ResourceCompile Include="TestEERender.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\LoadSaveManager.dlo">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\TextureLoader.dls">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\DX9Renderer.dlo">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\LoadSaveManager.dlo">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\TextureLoader.dls">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\DX9Renderer.dlo">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\LoadSaveManager.dlo">
+      <Filter>Plugins\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\DX9Renderer.dlo">
+      <Filter>Plugins\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\TextureLoader.dls">
+      <Filter>Plugins\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\Release\ElementalEngine3.dll">
+      <Filter>Dependencies\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\Profile\ElementalEngine3.dll">
+      <Filter>Dependencies\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicRelease\DevIL.dll">
+      <Filter>Dependencies\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicRelease\ILU.dll">
+      <Filter>Dependencies\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\DevIL.dll">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\ilu.pdb">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\devil.pdb">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\debug\ElementalEngine3.dll">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\debug\elementalengine3.pdb">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\ILU.dll">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\Profile\elementalengine3.pdb">
+      <Filter>Dependencies\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\TextureLoader.pdb">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\LoadSaveManager.pdb">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\DX9Renderer.pdb">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\TextureLoader.pdb">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\LoadSaveManager.pdb">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\DX9Renderer.pdb">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Forest_grass.dds">
+      <Filter>Dependencies</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

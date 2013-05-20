@@ -5,6 +5,10 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -27,6 +31,12 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -36,12 +46,24 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <OutDir>$(SolutionDir)\Bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <OutDir>$(SolutionDir)\Bin\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <OutDir>$(SolutionDir)\Bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -58,12 +80,12 @@
       <AdditionalDependencies>ElementalEngine3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy ..\SDK\bin\$(Platform)\$(Configuration)\ElementalEngine3.dll $(TargetDir)
-copy ..\Plugins2\bin\$(Platform)\$(Configuration)\DX9Renderer.dlo $(TargetDir)Plugins</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <PostBuildEvent>
-      <Message>Copy needed DLL Files...</Message>
+      <Message>
+      </Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,6 +100,35 @@ copy ..\Plugins2\bin\$(Platform)\$(Configuration)\DX9Renderer.dlo $(TargetDir)Pl
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\SDK\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ElementalEngine3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;PROFILE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Platform;..\SDK\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -85,15 +136,437 @@ copy ..\Plugins2\bin\$(Platform)\$(Configuration)\DX9Renderer.dlo $(TargetDir)Pl
       <AdditionalDependencies>ElementalEngine3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy ..\SDK\bin\$(Platform)\$(Configuration)\ElementalEngine3.dll $(TargetDir)
-copy ..\Plugins2\bin\$(Platform)\$(Configuration)\DX9Renderer.dlo $(TargetDir)Plugins</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <PostBuildEvent>
-      <Message>Copy needed DLL Files...</Message>
+      <Message>
+      </Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\DX9Renderer.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\LoadSaveManager.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\TextureLoader.dls">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\debug\ElementalEngine3.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\DX9Renderer.dlo">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\LoadSaveManager.dlo">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\TextureLoader.dls">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\Profile\ElementalEngine3.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\DX9Renderer.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\LoadSaveManager.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\TextureLoader.dls">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\Release\ElementalEngine3.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\DevIL.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\ILU.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicRelease\DevIL.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicRelease\ILU.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\devil.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\ilu.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\debug\elementalengine3.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\DX9Renderer.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\LoadSaveManager.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\TextureLoader.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\DX9Renderer.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\LoadSaveManager.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\TextureLoader.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\SDK\bin\win32\Profile\elementalengine3.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Forest_grass.dds">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Textures\." mkdir "$(TargetDir)Textures"
+copy %(Identity) $(TargetDir)Textures</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Textures\." mkdir "$(TargetDir)Textures"
+copy %(Identity) $(TargetDir)Textures</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Textures\." mkdir "$(TargetDir)Textures"
+copy %(Identity) $(TargetDir)Textures</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Textures</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Textures</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Textures</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Textures\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Textures\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Textures\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
     <None Include="ReadMe.txt" />
     <None Include="small.ico" />
     <None Include="TestEERender.ico" />
@@ -108,6 +581,7 @@ copy ..\Plugins2\bin\$(Platform)\$(Configuration)\DX9Renderer.dlo $(TargetDir)Pl
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TestEERender.cpp" />
   </ItemGroup>

@@ -25,6 +25,7 @@ static CHashString getRI(_T("GetRendererInterface"));
 HINSTANCE DX9DLL;
 IRenderer *gRenderer;
 IRenderContext *gRenderContext;
+ITextureObject *gTestTexture;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
@@ -130,6 +131,29 @@ std::string GetLastErrorStdStr()
   return std::string();
 }
 
+/// Load a texture from a file
+/// param: filename - const TCHAR pointer to filename
+/// returns: ITextureObject
+ITextureObject *LoadTexture(const TCHAR *filename)
+{
+	if (!filename || !filename[0])
+		return NULL;
+
+	CHashString szName(filename);
+	TEXTUREOBJECTPARAMS tobj;
+	tobj.bLoad = true;
+	tobj.Name = &szName;
+	tobj.TextureObjectInterface = NULL;
+	// AddTexture message loads and adds texture to texture Manager...
+	static DWORD msgHash_AddTexture = CHashString(_T("AddTexture")).GetUniqueID();
+	if( EngineGetToolBox()->SendMessage(msgHash_AddTexture, sizeof(tobj), &tobj ) == MSG_HANDLED)
+	{
+		return (ITextureObject *)tobj.TextureObjectInterface;
+	}
+
+	return NULL;
+}
+
 //
 //   FUNCTION: InitInstance(HINSTANCE, int)
 //
@@ -186,11 +210,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	gRenderer->Initialize(hWnd, false, windowWidth, windowHeight, 24, bitsPerPixel);
 	gRenderContext = gRenderer->CreateNewContext(hWnd, windowWidth, windowHeight, 24, bitsPerPixel);
 
-	//gRenderer->SetBackgroundColor(255, 0, 0);
-
-	//gRenderer->ClearScreen(true, true);
-
-	//gRenderer->Present(gRenderContext);
+	gTestTexture = LoadTexture(_T("Textures\\Forest_grass.dds"));
 
 	return TRUE;
 }
@@ -233,7 +253,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		gRenderer->RenderToContext(gRenderContext);
 		gRenderer->BeginScene(true);
 		gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
-		gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, NULL, 0x400000ff);
+		// basic texture modulate
+		gRenderer->SetMaterial(0, NULL);
+		gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
 		gRenderer->EndScene();
 		gRenderer->Present(gRenderContext);
 		break;
