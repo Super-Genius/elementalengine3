@@ -201,15 +201,15 @@
   <ItemGroup>
     <CustomBuild Include="StaticLibSymbols.gen">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating Static Lib Symbols for $(ProjectName)</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"../../../../ThirdParty/Python/python.exe" "../../../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"../../../../Tools/Python/python.exe" "../../../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).cpp;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Generating Static Lib Symbols for $(ProjectName)</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">"../../../../ThirdParty/Python/python.exe" "../../../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">"../../../../Tools/Python/python.exe" "../../../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).cpp;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating Static Lib Symbols for $(ProjectName)</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"../../../../ThirdParty/Python/python.exe" "../../../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"../../../../Tools/Python/python.exe" "../../../GenerateStaticLibSymbols/GenerateStaticLibSymbols.py" "%(RootDir)%(Directory)\" "%(Filename)"
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)%(Filename).h;%(RootDir)%(Directory)%(Filename).cpp;%(Outputs)</Outputs>
     </CustomBuild>
