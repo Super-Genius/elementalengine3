@@ -193,9 +193,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	gToolBox->SendMessage(getRI.GetUniqueID(), sizeof(IRenderer *), &gRenderer);
 
-	ShowWindow(hWnd, nCmdShow);
-	UpdateWindow(hWnd);
-
 	RECT winRect;
 	int windowWidth, windowHeight, bitsPerPixel;
 
@@ -212,6 +209,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	gTestTexture = LoadTexture(_T("Textures\\Forest_grass.dds"));
 
+	ShowWindow(hWnd, nCmdShow);
+	UpdateWindow(hWnd);
 	return TRUE;
 }
 
