@@ -765,7 +765,7 @@ int CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &dllPMap)
 	    }
 	}
 
-	if (hFile != INVALID_HANDLE_VALUE)
+	if (hFile == INVALID_HANDLE_VALUE)
 	{
 		if (!FindClose(hFile))
 		{
