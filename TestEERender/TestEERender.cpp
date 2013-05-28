@@ -21,11 +21,10 @@ INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 IToolBox			*gToolBox;
 DLLPRIORITYMAP		gDLLPMap;			// the plugin DLL loaded by priority
 
-static CHashString getRI(_T("GetRendererInterface"));
 HINSTANCE DX9DLL;
 IRenderer *gRenderer;
 IRenderContext *gRenderContext;
-ITextureObject *gTestTexture;
+IBaseTextureObject *gTestTexture;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
@@ -131,29 +130,6 @@ std::string GetLastErrorStdStr()
   return std::string();
 }
 
-/// Load a texture from a file
-/// param: filename - const TCHAR pointer to filename
-/// returns: ITextureObject
-ITextureObject *LoadTexture(const TCHAR *filename)
-{
-	if (!filename || !filename[0])
-		return NULL;
-
-	CHashString szName(filename);
-	TEXTUREOBJECTPARAMS tobj;
-	tobj.bLoad = true;
-	tobj.Name = &szName;
-	tobj.TextureObjectInterface = NULL;
-	// AddTexture message loads and adds texture to texture Manager...
-	static DWORD msgHash_AddTexture = CHashString(_T("AddTexture")).GetUniqueID();
-	if( EngineGetToolBox()->SendMessage(msgHash_AddTexture, sizeof(tobj), &tobj ) == MSG_HANDLED)
-	{
-		return (ITextureObject *)tobj.TextureObjectInterface;
-	}
-
-	return NULL;
-}
-
 //
 //   FUNCTION: InitInstance(HINSTANCE, int)
 //
@@ -191,7 +167,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 	}
 
-	gToolBox->SendMessage(getRI.GetUniqueID(), sizeof(IRenderer *), &gRenderer);
+	gRenderer = GetRendererInterface();
 
 	RECT winRect;
 	int windowWidth, windowHeight, bitsPerPixel;

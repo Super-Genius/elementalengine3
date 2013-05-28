@@ -89,3 +89,5 @@ using namespace std;
 #include "IPluginLoader.h"
 
 using namespace ElementalEngine;
+
+#include "EESDK.h"

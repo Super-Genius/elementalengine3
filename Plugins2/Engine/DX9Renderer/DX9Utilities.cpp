@@ -14,6 +14,7 @@
 ///============================================================================
 
 #include "stdafx.h"
+#include "EnumHashStringMap.h"
 
 #ifdef WIN32
 D3DFORMAT EEDX9FormatFromColorBits( UINT &colorbits, bool bTiled )
@@ -94,28 +95,78 @@ bool EEDX9IsCompressedFormat( D3DFORMAT format )
 }
 #endif//WIN32
 
-#ifdef WIN32
+const EnumHashStringMap<D3DFORMAT> textureTypes = EnumHashStringMap<D3DFORMAT>
+	( CHashString(_T("DXT1")).GetUniqueID(), D3DFMT_DXT1 )
+	( CHashString(_T("DXT2")).GetUniqueID(), D3DFMT_DXT2 )
+	( CHashString(_T("DXT3")).GetUniqueID(), D3DFMT_DXT3 )
+	( CHashString(_T("DXT4")).GetUniqueID(), D3DFMT_DXT4 )
+	( CHashString(_T("DXT5")).GetUniqueID(), D3DFMT_DXT5 )
+	( CHashString(_T("R8G8B8")).GetUniqueID(), D3DFMT_A32B32G32R32F )
+	( CHashString(_T("A8R8G8B8")).GetUniqueID(), D3DFMT_A8R8G8B8 )
+	( CHashString(_T("X8R8G8B8")).GetUniqueID(), D3DFMT_X8R8G8B8 )
+	( CHashString(_T("R5G6B5")).GetUniqueID(), D3DFMT_R5G6B5 )
+	( CHashString(_T("X1R5G5B5")).GetUniqueID(), D3DFMT_X1R5G5B5 )
+	( CHashString(_T("A1R5G5B5")).GetUniqueID(), D3DFMT_A1R5G5B5 )
+	( CHashString(_T("A4R4G4B4")).GetUniqueID(), D3DFMT_A4R4G4B4 )
+	( CHashString(_T("R3G3B2")).GetUniqueID(), D3DFMT_R3G3B2 )
+	( CHashString(_T("A8")).GetUniqueID(), D3DFMT_A8 )
+	( CHashString(_T("A8R3G3B2")).GetUniqueID(), D3DFMT_A8R3G3B2 )
+	( CHashString(_T("X4R4G4B4")).GetUniqueID(), D3DFMT_X4R4G4B4 )
+	( CHashString(_T("A2B10G10R10")).GetUniqueID(), D3DFMT_A2B10G10R10 )
+	( CHashString(_T("A8B8G8R8")).GetUniqueID(), D3DFMT_A8B8G8R8 )
+	( CHashString(_T("X8B8G8R8")).GetUniqueID(), D3DFMT_X8B8G8R8 )
+	( CHashString(_T("G16R16")).GetUniqueID(), D3DFMT_G16R16 )
+	( CHashString(_T("A2R10G10B10")).GetUniqueID(), D3DFMT_A2R10G10B10 )
+	( CHashString(_T("A16B16G16R16")).GetUniqueID(), D3DFMT_A16B16G16R16 )
+	( CHashString(_T("A8P8")).GetUniqueID(), D3DFMT_A8P8 )
+	( CHashString(_T("P8")).GetUniqueID(), D3DFMT_P8 )
+	( CHashString(_T("L8")).GetUniqueID(), D3DFMT_L8 )
+	( CHashString(_T("A8L8")).GetUniqueID(), D3DFMT_A8L8 )
+	( CHashString(_T("A4L4")).GetUniqueID(), D3DFMT_A4L4 )
+	( CHashString(_T("V8U8")).GetUniqueID(), D3DFMT_V8U8 )
+	( CHashString(_T("L6V5U5")).GetUniqueID(), D3DFMT_L6V5U5 )
+	( CHashString(_T("X8L8V8U8")).GetUniqueID(), D3DFMT_X8L8V8U8 )
+	( CHashString(_T("Q8W8V8U8")).GetUniqueID(), D3DFMT_Q8W8V8U8 )
+	( CHashString(_T("V16U16")).GetUniqueID(), D3DFMT_V16U16 )
+	( CHashString(_T("A2W10V10U10")).GetUniqueID(), D3DFMT_A2W10V10U10 )
+	( CHashString(_T("UYVY")).GetUniqueID(), D3DFMT_UYVY )
+	( CHashString(_T("R8G8_B8G8")).GetUniqueID(), D3DFMT_R8G8_B8G8 )
+	( CHashString(_T("YUY2")).GetUniqueID(), D3DFMT_YUY2 )
+	( CHashString(_T("D16_LOCKABLE")).GetUniqueID(), D3DFMT_D16_LOCKABLE )
+	( CHashString(_T("D32")).GetUniqueID(), D3DFMT_D32 )
+	( CHashString(_T("D15S1")).GetUniqueID(), D3DFMT_D15S1 )
+	( CHashString(_T("D24S8")).GetUniqueID(), D3DFMT_D24S8 )
+	( CHashString(_T("D24X8")).GetUniqueID(), D3DFMT_D24X8 )
+	( CHashString(_T("D24X4S4")).GetUniqueID(), D3DFMT_D24X4S4 )
+	( CHashString(_T("D16")).GetUniqueID(), D3DFMT_D16 )
+	( CHashString(_T("D32F_LOCKABLE")).GetUniqueID(), D3DFMT_D32F_LOCKABLE )
+	( CHashString(_T("D24FS8")).GetUniqueID(), D3DFMT_D24FS8 )
+	( CHashString(_T("D32_LOCKABLE")).GetUniqueID(), D3DFMT_D32_LOCKABLE )
+	( CHashString(_T("S8_LOCKABLE")).GetUniqueID(), D3DFMT_S8_LOCKABLE )
+	( CHashString(_T("L16")).GetUniqueID(), D3DFMT_L16 )
+	( CHashString(_T("Q16W16V16U16")).GetUniqueID(), D3DFMT_Q16W16V16U16 )
+	( CHashString(_T("MULTI2_ARGB8")).GetUniqueID(), D3DFMT_MULTI2_ARGB8 )
+	( CHashString(_T("R16F")).GetUniqueID(), D3DFMT_R16F )
+	( CHashString(_T("G16R16F")).GetUniqueID(), D3DFMT_G16R16F )
+	( CHashString(_T("A16B16G16R16F")).GetUniqueID(), D3DFMT_A16B16G16R16F )
+	( CHashString(_T("R32F")).GetUniqueID(), D3DFMT_R32F )
+	( CHashString(_T("G32R32F")).GetUniqueID(), D3DFMT_G32R32F )
+	( CHashString(_T("A32B32G32R32F")).GetUniqueID(), D3DFMT_A32B32G32R32F )
+	( CHashString(_T("CxV8U8")).GetUniqueID(), D3DFMT_CxV8U8 )
+	( CHashString(_T("A1")).GetUniqueID(), D3DFMT_A1 )
+	( CHashString(_T("A2B10G10R10_XR_BIAS")).GetUniqueID(), D3DFMT_A2B10G10R10_XR_BIAS )
+ ;
+
 D3DFORMAT EEDX9FormatFromString( IHashString *hszFormat )
 {
-	static CHashString dxt1(_T("DXT1"));
-	static CHashString dxt2(_T("DXT2"));
-	static CHashString dxt3(_T("DXT3"));
-	static CHashString dxt4(_T("DXT4"));
-	static CHashString dxt5(_T("DXT5"));
-	static CHashString a32b32g32r32f(_T("A32B32G32R32F"));
 	D3DFORMAT format = D3DFMT_UNKNOWN;
-	if( hszFormat )
+	EnumHashStringMap<D3DFORMAT>::const_iterator ehsmIter = textureTypes.find(hszFormat->GetUniqueID());
+	if (ehsmIter != textureTypes.end())
 	{
-		if( dxt1.GetUniqueID() == hszFormat->GetUniqueID() ){ format = D3DFMT_DXT1; }
-		else if( dxt2.GetUniqueID() == hszFormat->GetUniqueID() ){ format = D3DFMT_DXT2; }
-		else if( dxt3.GetUniqueID() == hszFormat->GetUniqueID() ){ format = D3DFMT_DXT3; }
-		else if( dxt4.GetUniqueID() == hszFormat->GetUniqueID() ){ format = D3DFMT_DXT4; }
-		else if( dxt5.GetUniqueID() == hszFormat->GetUniqueID() ){ format = D3DFMT_DXT5; }
-		else if( a32b32g32r32f.GetUniqueID() == hszFormat->GetUniqueID() ){ format = D3DFMT_A32B32G32R32F; }
+		format = ehsmIter->second;
 	}
 	return format;
 }
-#endif//WIN32
 
 UINT EEDX9FormatPitch( D3DFORMAT format, UINT width, UINT bitdepth )
 {

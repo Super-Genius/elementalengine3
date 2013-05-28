@@ -16,11 +16,7 @@
 #ifndef LOADSAVEMANAGER_STDAFX_H
 #define LOADSAVEMANAGER_STDAFX_H
 
-#include "Platform.h"
-
 #include "ElementalEngine.hpp"
-#include "EESDK.h"
-#include "EEDefines.h"
 #include "Register.h"
 #include "LoadSaveMessages.hpp"
 

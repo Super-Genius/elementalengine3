@@ -140,6 +140,7 @@
     <ClCompile Include="ExceptionHandler.cpp" />
     <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="HelperFuncs.cpp" />
     <ClCompile Include="MathUtils.cpp" />
     <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="Matrix4x4.cpp" />
@@ -178,6 +179,8 @@
     <ClInclude Include="..\Sdk\include\EEDefines.h" />
     <ClInclude Include="..\Sdk\include\EEErrorCodes.hpp" />
     <ClInclude Include="..\Sdk\include\ElementalEngine.hpp" />
+    <ClInclude Include="..\SDK\include\EnumHashStringMap.h" />
+    <ClInclude Include="..\SDK\include\HelperFuncs.h" />
     <ClInclude Include="..\Sdk\include\IAABBImplementation.h" />
     <ClInclude Include="..\Sdk\include\IActionHandler.h" />
     <ClInclude Include="..\Sdk\include\IAnimatedTexture.h" />

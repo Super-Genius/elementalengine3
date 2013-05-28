@@ -34,27 +34,11 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <stack>
-#include "rgbe.h"
 #include "ElementalEngine.hpp"
-#include "EESDK.h"
-#include "CRenderObject.h"
-#include "mathutils.h"
-#include "EEDefines.h"
-#include "CHashString.hpp"
 #include "Register.h"
-#include "BaseMessages.h"
-#include "CObjectTemplate.hpp"
-#include "IRenderObject.h"
-#include "Config.h"
 #include "ShaderConstants.h"
-#include "Plane.h"
-#include "Vec3.h"
-#include "Matrix4x4.h"
-#include "matrix3x3.h"
-#include "Vec3.h"
-#include "Vec4.h"
-#include "Quaternion.h"
-#include "IMoviePlayer.h"
+#include "Config.h"
+#include "rgbe.h"
 #include "CDX9VertexBufferObject.h"
 #include "CDX9ShaderCommon.h"
 #include "CDX9PixelShader.h"
@@ -64,5 +48,3 @@
 #include "CDX9Renderer.h"
 #include "CDX9RenderContext.h"
 #include "DX9Platform.h"
-
-// TODO: reference additional headers your program requires here

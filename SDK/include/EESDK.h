@@ -46,5 +46,6 @@
 #include "FilePath.h"
 #include "IMeshObject.h"
 #include "CMeshDescriptors.h"
+#include "HelperFuncs.h"
 
 #endif

@@ -17,6 +17,11 @@
 #include "Stdafx.h"
 #include "CTextureManager.h"
 
+#include <sstream>
+
+#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
+            ( std::ostringstream() << std::dec << x ) ).str()
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -326,50 +331,61 @@ DWORD CTextureManager::OnCreateTexture(DWORD size, void *params)
 {
 	//get the param structure
 	CREATETEXTUREPARAMS *texObjParams;
-	ITextureObject * currentTexture;
+	ITextureObject * currentTexture = NULL;
 	bool bResult;
 	TEXTURENAMEMAP::iterator cur;
+	CHashString tempTextHashStr;
 	
 	texObjParams = (CREATETEXTUREPARAMS *)params;
 	VERIFY_MESSAGE_SIZE(sizeof(CREATETEXTUREPARAMS), size);
 	texObjParams->TextureObjectInterface = NULL;
-	//look for it
-	if( texObjParams->Name != NULL )
+	if ( texObjParams->Name == NULL)
+	{
+		static DWORD uniqueID = 1;
+		StdString tmpTexName("TempTexture_");
+		tmpTexName += SSTR(uniqueID);
+		uniqueID++;
+		tempTextHashStr = tmpTexName.c_str();
+		texObjParams->Name = &tempTextHashStr;
+	}
+	else
 	{
 		currentTexture = dynamic_cast< ITextureObject* >(GetTexture( texObjParams->Name ));
-		if (!currentTexture)
-		{
-			//new texture
-			CHashString hszComponentType("CDX9TextureObject");
-			currentTexture = dynamic_cast< ITextureObject* >(CreateTextureObject( texObjParams->Name, &hszComponentType ));
-			// add to internal list
-			m_TextureNameMap[texObjParams->Name->GetUniqueID()] = currentTexture;
-		}
-
-		if( texObjParams->bRenderTargetTexture == RENDER_TARGET_NONE )
-		{
-			bResult = currentTexture->MakeBlankTexture( texObjParams->sizeX, texObjParams->sizeY, 
-				texObjParams->bitDepth, texObjParams->Format, texObjParams->numMips );
-		}		
-		else 
-		{			
-			bResult = currentTexture->MakeRenderTarget( texObjParams->sizeX, texObjParams->sizeY, 
-				texObjParams->bitDepth, texObjParams->bRenderTargetTexture, texObjParams->bAutoGenMipMaps );
-		}
-
-		if (bResult)
-		{
-			currentTexture->SetTextureName( texObjParams->Name );
-			// success, set the return value
-			texObjParams->TextureObjectInterface = currentTexture;		
-		}
-		else
-		{
-			m_TextureNameMap.erase( texObjParams->Name->GetUniqueID() );
-			// creation failure
-			DeleteTextureObject( currentTexture );
-		}
 	}
+
+	if (!currentTexture)
+	{
+		//new texture
+		CHashString hszComponentType(_T("CDX9TextureObject"));
+		currentTexture = dynamic_cast< ITextureObject* >(CreateTextureObject( texObjParams->Name, &hszComponentType ));
+		// add to internal list
+		m_TextureNameMap[texObjParams->Name->GetUniqueID()] = currentTexture;
+	}
+
+	if( texObjParams->bRenderTargetTexture == RENDER_TARGET_NONE )
+	{
+		bResult = currentTexture->MakeBlankTexture( texObjParams->sizeX, texObjParams->sizeY, 
+			texObjParams->bitDepth, texObjParams->Format, texObjParams->numMips );
+	}		
+	else 
+	{			
+		bResult = currentTexture->MakeRenderTarget( texObjParams->sizeX, texObjParams->sizeY, 
+			texObjParams->bitDepth, texObjParams->bRenderTargetTexture, texObjParams->bAutoGenMipMaps );
+	}
+
+	if (bResult)
+	{
+		currentTexture->SetTextureName( texObjParams->Name );
+		// success, set the return value
+		texObjParams->TextureObjectInterface = currentTexture;		
+	}
+	else
+	{
+		m_TextureNameMap.erase( texObjParams->Name->GetUniqueID() );
+		// creation failure
+		DeleteTextureObject( currentTexture );
+	}
+
 	return MSG_HANDLED_PROCEED;
 }
 

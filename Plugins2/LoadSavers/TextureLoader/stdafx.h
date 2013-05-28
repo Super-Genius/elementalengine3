@@ -16,10 +16,7 @@
 #ifndef TEXTURELOADER_STDAFX_H
 #define TEXTURELOADER_STDAFX_H
 
-#include "Platform.h"
 #include "ElementalEngine.hpp"
-#include "EESDK.h"
-#include "EEDefines.h"
 #include "Register.h"
 #include "LoadSaveMessages.hpp"
 #include "il\il.h"

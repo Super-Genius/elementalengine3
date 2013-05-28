@@ -17,8 +17,4 @@
 #include <memory.h>
 #include <tchar.h>
 
-
-#include "Platform.h"
 #include "ElementalEngine.hpp"
-#include "CHashString.hpp"
-#include "IRenderer.h"
