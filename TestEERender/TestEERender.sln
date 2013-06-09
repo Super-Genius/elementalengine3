@@ -35,6 +35,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoadSaveManager", "..\Plugi
 		{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13} = {C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoundLoader", "..\Plugins2\LoadSavers\SoundLoader\SoundLoader.vcxproj", "{2F3AC751-7649-4408-8389-1C9FA141D868}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenAL", "..\Plugins2\Engine\OpenAL\OpenAL.vcxproj", "{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -78,6 +82,18 @@ Global
 		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Profile|Win32.Build.0 = Profile|Win32
 		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Release|Win32.ActiveCfg = Release|Win32
 		{D0F92E94-8B0A-4990-B59A-F21831F0EA39}.Release|Win32.Build.0 = Release|Win32
+		{2F3AC751-7649-4408-8389-1C9FA141D868}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2F3AC751-7649-4408-8389-1C9FA141D868}.Debug|Win32.Build.0 = Debug|Win32
+		{2F3AC751-7649-4408-8389-1C9FA141D868}.Profile|Win32.ActiveCfg = Profile|Win32
+		{2F3AC751-7649-4408-8389-1C9FA141D868}.Profile|Win32.Build.0 = Profile|Win32
+		{2F3AC751-7649-4408-8389-1C9FA141D868}.Release|Win32.ActiveCfg = Release|Win32
+		{2F3AC751-7649-4408-8389-1C9FA141D868}.Release|Win32.Build.0 = Release|Win32
+		{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}.Debug|Win32.Build.0 = Debug|Win32
+		{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}.Profile|Win32.ActiveCfg = Profile|Win32
+		{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}.Profile|Win32.Build.0 = Profile|Win32
+		{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}.Release|Win32.ActiveCfg = Release|Win32
+		{ED8D15E6-4387-4965-9CAD-B491BCE8F36C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
