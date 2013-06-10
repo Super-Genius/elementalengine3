@@ -42,6 +42,17 @@ extern "C" {
 	/// returns: IBaseTextureObject of loaded texture or NULL for error
 	IBaseTextureObject *LoadTexture(const TCHAR *filename);
 
+	/// Load a sound into object (how do we make this streaming or not?)
+	/// param: fileName = the filename to load into object
+	/// returns: bool - true if success, false otherwide
+	bool LoadSound(const TCHAR *fileName);
+
+	/// Play a sound from disk, must be .wav file for now
+	/// param: fileName = the filename to load and start streaming
+	/// param: looping = to loop the sound or not, probalby should be count
+	/// param: autoRemove = unloads/removes from system on finished playing
+	/// returns: bool - true if success, false otherwide
+	bool PlaySound(const TCHAR *fileName, bool looping, bool autoRemove);
 }
 
 

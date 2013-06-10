@@ -54,4 +54,84 @@ IBaseTextureObject *LoadTexture(const TCHAR *filename)
 	return NULL;
 }
 
+bool LoadSound(const TCHAR *fileName)
+{
+	LOADFILEEXTPARAMS lfep;
+	lfep.fileName = (TCHAR *)fileName;
+	lfep.bInternalLoad = true;
+	static DWORD msgHash_LoadFileByExtension = CHashString(_T("LoadFileByExtension")).GetUniqueID();
+	if (EngineGetToolBox()->SendMessage(msgHash_LoadFileByExtension, sizeof(LOADFILEEXTPARAMS), &lfep) == MSG_HANDLED)
+	{
+			return true;
+	}
+
+	return false;
+}
+
+// this plays a streaming sound
+bool PlaySound(const TCHAR *fileName, bool looping, bool autoRemove)
+{
+	PLAYSOUNDPARAMS psParams;
+	CHashString szName(fileName);
+
+	psParams.fileName = &szName;
+	psParams.autoRemove = autoRemove;
+	psParams.looping = looping;
+
+	// PlaySound message auto preps streaming sound and plays it.
+	static DWORD msgHash_PlaySound = CHashString(_T("PlaySound")).GetUniqueID();
+	static CHashString smHS(_T("CSoundManager"));
+	if ( EngineGetToolBox()->SendMessage(msgHash_PlaySound, sizeof(psParams), &psParams, NULL, &smHS ) == MSG_HANDLED)
+	{
+		return true;
+	}
+
+	return false;
+
+}	
+
+/*
+// this plays a streaming sound
+ISoundObject *LoadSound(const TCHAR *fileName)
+{
+	LOADFILEEXTPARAMS lfep;
+	lfep.fileName = (TCHAR *)fileName;
+	lfep.bInternalLoad = true;
+	static DWORD msgHash_LoadFileByExtension = CHashString(_T("LoadFileByExtension")).GetUniqueID();
+	if (EngineGetToolBox()->SendMessage(msgHash_LoadFileByExtension, sizeof(LOADFILEEXTPARAMS), &lfep) == MSG_HANDLED)
+	{
+		// now find the sound object if loaded
+		IDTOOBJECTMAP *objMap = GetObjectMap(&hsSoundObjTypeName);
+		DWORD findKey = stopName->GetUniqueID();
+
+		if (objMap != NULL)
+		{
+			IDTOOBJECTMAP::iterator mapIter = objMap->find(findKey);
+			return true;
+	}
+
+	return false;
+}
+
+bool PlaySound(const TCHAR *fileName)
+{
+	PLAYSOUNDPARAMS psParams;
+	CHashString szName(fileName);
+
+	psParams.fileName = &szName;
+	psParams.autoRemove = autoRemove;
+	psParams.looping = looping;
+
+	// PlaySound message auto preps streaming sound and plays it.
+	static DWORD msgHash_PlaySound = CHashString(_T("PlaySound")).GetUniqueID();
+	static CHashString smHS(_T("CSoundManager"));
+	if ( EngineGetToolBox()->SendMessage(msgHash_PlaySound, sizeof(psParams), &psParams, NULL, &smHS ) == MSG_HANDLED)
+	{
+		return true;
+	}
+
+	return false;
+}
+*/
+
 }

@@ -440,16 +440,14 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
 copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
@@ -457,16 +455,14 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
 copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
@@ -474,67 +470,56 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
 copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\DX9Renderer.pdb">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\LoadSaveManager.pdb">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\TextureLoader.pdb">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
-copy %(Identity) $(TargetDir)Plugins</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
@@ -566,6 +551,308 @@ copy %(Identity) $(TargetDir)Textures</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Textures\%(Filename)%(Extension)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Textures\%(Filename)%(Extension)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Textures\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\OpenAL.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\SoundLoader.dls">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\OpenAL.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\SoundLoader.dls">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\OpenAL.dlo">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\SoundLoader.dls">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\OpenAL.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\SoundLoader.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\OpenAL.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\SoundLoader.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\%(Filename)%(Extension)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\alut.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\alut.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\OpenAL32.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\OpenAL32.pdb">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Plugins\." mkdir "$(TargetDir)Plugins"
+copy %(Identity) $(TargetDir)Plugins</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Plugins</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Release\alut.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Release\OpenAL32.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
+    </CustomBuild>
+    <CustomBuild Include="cheering.wav">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
+copy %(Identity) $(TargetDir)Sounds</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Sounds\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Sounds\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Sounds\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Sounds</Message>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Sounds</Message>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Sounds</Message>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
+copy %(Identity) $(TargetDir)Sounds</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
+copy %(Identity) $(TargetDir)Sounds</Command>
+    </CustomBuild>
+    <CustomBuild Include="Mists_of_Time-4T.ogg">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
+copy %(Identity) $(TargetDir)Sounds</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Sounds\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Sounds\%(Filename)%(Extension)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Sounds\%(Filename)%(Extension)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)Sounds</Message>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Copying %(Identity) to $(TargetDir)Sounds</Message>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Identity) to $(TargetDir)Sounds</Message>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
+copy %(Identity) $(TargetDir)Sounds</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
+copy %(Identity) $(TargetDir)Sounds</Command>
     </CustomBuild>
     <None Include="ReadMe.txt" />
     <None Include="small.ico" />

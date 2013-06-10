@@ -97,7 +97,7 @@ DWORD CSoundLoader::OnLoadFile(DWORD size, void *params)
 	
 	StdString fileName = pFileName;
 
-	fileName.tolower();
+	//fileName.tolower();
 
 	DWORD retval = MSG_HANDLED_STOP;
 	CHashString hszFileName(fileName);

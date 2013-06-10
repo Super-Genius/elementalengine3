@@ -156,5 +156,59 @@
     <CustomBuild Include="Forest_grass.dds">
       <Filter>Dependencies</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\SoundLoader.dls">
+      <Filter>Plugins\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Release\OpenAL.dlo">
+      <Filter>Plugins\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\SoundLoader.dls">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\OpenAL.dlo">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\SoundLoader.dls">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\OpenAL.dlo">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\SoundLoader.pdb">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\OpenAL.pdb">
+      <Filter>Plugins\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\SoundLoader.pdb">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\Plugins2\Bin\Win32\Debug\OpenAL.pdb">
+      <Filter>Plugins\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Mists_of_Time-4T.ogg">
+      <Filter>Dependencies</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cheering.wav">
+      <Filter>Dependencies</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\OpenAL32.pdb">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\OpenAL32.dll">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\alut.pdb">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Debug\alut.dll">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Release\alut.dll">
+      <Filter>Dependencies\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Release\OpenAL32.dll">
+      <Filter>Dependencies\Release</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

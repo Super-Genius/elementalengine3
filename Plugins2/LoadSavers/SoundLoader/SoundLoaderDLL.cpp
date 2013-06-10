@@ -24,7 +24,11 @@
 
 #define LOADERSAVER_PRIORITY 15451
 
+#ifdef _LIB
 #define DLL_API static
+#else
+#define DLL_API extern "C" __declspec(dllexport)
+#endif
 
 DLL_API void InitDLL()
 {

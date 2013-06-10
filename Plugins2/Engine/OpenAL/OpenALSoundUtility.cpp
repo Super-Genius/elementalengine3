@@ -677,18 +677,20 @@ ISoundBufferStream* COpenALSoundUtility::CreateBufferStream(DWORD key)
 	if (key)
 	{
 		SOUNDKEYMAP::iterator soundIter = m_SoundMap.find(key);
-		if (soundIter == m_SoundMap.end())
-		{
-			m_ToolBox->Log(LOGWARNING, _T("Sound manager: no file loaded for key %s; could not get buffer stream\n"),
-				m_ToolBox->GetHashString(key));
-			return NULL;
-		}
-
 		static CHashString hsWav(_T("wav"));
 		static CHashString hsOgg(_T("ogg"));
 
 		StdString current, extension, stdFileName;
-		stdFileName = m_ToolBox->GetHashString((soundIter->second).dwFileName);
+		bool bCached = false;
+		DWORD hashID = key;
+
+		if (soundIter != m_SoundMap.end())
+		{
+			bCached = (soundIter->second).bCachedUncompressed;
+			hashID = (soundIter->second).dwFileName;
+		}
+
+		stdFileName = m_ToolBox->GetHashString(hashID);
 
 		CHashString hsFileName(stdFileName);
 
@@ -699,7 +701,6 @@ ISoundBufferStream* COpenALSoundUtility::CreateBufferStream(DWORD key)
 			stdFileName.GetToken(_T("."), current);
 		}
 
-		bool bCached = (soundIter->second).bCachedUncompressed;
 
 		CHashString hsExt(extension);
 		if ((hsExt.GetUniqueID() == hsWav.GetUniqueID()) || (bCached))

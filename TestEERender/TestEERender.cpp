@@ -7,6 +7,8 @@
 
 #define MAX_LOADSTRING 100
 
+#define IDT_TIMER1 0xBADDCAFE
+
 // Global Variables:
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
@@ -185,11 +187,49 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	gTestTexture = LoadTexture(_T("Textures\\Forest_grass.dds"));
 
+	if (!LoadSound(_T("Sounds\\Mists_of_Time-4T.ogg")))
+	{
+		MessageBox(hWnd, _T("Unable to load ogg file for playback, check log file"), _T("Error!"), MB_OK);
+	}
+
+	if (!PlaySound(_T("Sounds\\Mists_of_Time-4T.ogg"), true, false))
+	{
+		MessageBox(hWnd, _T("Unable to play ogg file for playback, check log file"), _T("Error!"), MB_OK);
+	}
+
+	// setup a time of 60 fps to process ogg vorbis sound queue/streaming sounds
+	SetTimer(hWnd, IDT_TIMER1, 1000/60, (TIMERPROC) NULL);
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 	return TRUE;
 }
 
+void Update()
+{
+
+	gRenderer->SetBackgroundColor(255, 255, 255, 0);
+	gRenderer->ClearScreen(true, true);
+	gRenderer->RenderToContext(gRenderContext);
+	gRenderer->BeginScene(true);
+	gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
+	// basic texture modulate
+	gRenderer->SetMaterial(0, NULL);
+	gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
+	gRenderer->EndScene();
+	gRenderer->Present(gRenderContext);
+
+	static DWORD iPreviousTickCount = GetTickCount();
+	DWORD iCurrentTickCount = GetTickCount();
+	DWORD iDeltaTickCount = iCurrentTickCount - iPreviousTickCount;
+	iPreviousTickCount = iCurrentTickCount;
+
+	GLOBALTICKPARAMS gtp;
+	gtp.tickCount = iDeltaTickCount;
+	static DWORD msgGlobalUpdateTick = CHashString( _T("GlobalUpdateTick") ).GetUniqueID();
+	gToolBox->SendMessage(msgGlobalUpdateTick, sizeof(GLOBALTICKPARAMS), &gtp, NULL, NULL);
+
+
+}
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -222,23 +262,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
 		break;
-	case WM_PAINT:
-		gRenderer->SetBackgroundColor(255, 255, 255, 0);
-		gRenderer->ClearScreen(true, true);
-		gRenderer->RenderToContext(gRenderContext);
-		gRenderer->BeginScene(true);
-		gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
-		// basic texture modulate
-		gRenderer->SetMaterial(0, NULL);
-		gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
-		gRenderer->EndScene();
-		gRenderer->Present(gRenderContext);
-		break;
 	case WM_DESTROY:
+		KillTimer(hWnd, IDT_TIMER1);
 		gRenderContext->DestroyContext();
 		delete gRenderContext;
 		PostQuitMessage(0);
 		break;
+	//case WM_PAINT:
+	case WM_TIMER:
+		switch (wParam) 
+		{ 
+			case IDT_TIMER1:
+			{
+				Update();
+			}
+			break; 
+		}
+		break;
+ 
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
