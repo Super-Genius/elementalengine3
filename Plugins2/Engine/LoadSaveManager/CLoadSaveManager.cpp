@@ -56,7 +56,7 @@ IComponent *CLoadSaveManager::Create(int nArgs, va_list argptr)
 	return SINGLETONINSTANCE( CLoadSaveManager );
 }
 
-DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isInternal)
+DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isInternal, IObject **retObject)
 {
 	IHashString *componentName;
 	DWORD retVal;
@@ -146,8 +146,11 @@ DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isI
 	{
 		// Load/Create new resource
 		static DWORD msgHash_LoadFile = CHashString(_T("LoadFile")).GetUniqueID();
+		LOADFILEPARAMS lfp;
 		PERFORMANCE_PROFILER_TYPE_START(filePathName, _T("File Loader"));
-		retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(LPTSTR), const_cast<LPTSTR>(filePathName), NULL, componentName);
+		lfp.fileName = const_cast<LPTSTR>(filePathName);
+		lfp.retObject = retObject;
+		retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(LOADFILEPARAMS), &lfp, NULL, componentName);
 		PERFORMANCE_PROFILER_TYPE_STOP(filePathName, _T("File Loader"));
 		if (retVal != MSG_HANDLED)
 		{
@@ -265,7 +268,7 @@ DWORD CLoadSaveManager::OnLoadFile(DWORD size, void *params)
 
 	VERIFY_MESSAGE_SIZE(size, sizeof(LOADFILEEXTPARAMS));
 	lfep =(LOADFILEEXTPARAMS *)params;
-	return LoadSaveFile(lfep->fileName, true, lfep->bInternalLoad);
+	return LoadSaveFile(lfep->fileName, true, lfep->bInternalLoad, lfep->retObject);
 }
 
 DWORD CLoadSaveManager::OnSaveFile(DWORD size, void *params)

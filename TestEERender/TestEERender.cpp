@@ -187,12 +187,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	gTestTexture = LoadTexture(_T("Textures\\Forest_grass.dds"));
 
-	if (!LoadSound(_T("Sounds\\Mists_of_Time-4T.ogg")))
+	if (!LoadSound(_T("Sounds\\TreehouseMusic.wav")))
 	{
 		MessageBox(hWnd, _T("Unable to load ogg file for playback, check log file"), _T("Error!"), MB_OK);
 	}
 
-	if (!PlaySound(_T("Sounds\\Mists_of_Time-4T.ogg"), true, false))
+	if (!PlaySound(_T("Sounds\\TreehouseMusic.wav"), true, false))
 	{
 		MessageBox(hWnd, _T("Unable to play ogg file for playback, check log file"), _T("Error!"), MB_OK);
 	}

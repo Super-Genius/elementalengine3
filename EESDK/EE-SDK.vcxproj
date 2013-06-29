@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>EESDK</ProjectName>
+    <ProjectGuid>{C87A3EE8-D7C5-4970-9B62-1D04BB28CA13}</ProjectGuid>
+    <RootNamespace>EESDKLib</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\SDK\lib\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\SDK\lib\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">..\SDK\lib\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\SDK\include;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;EE_SDK_EXPORTS;EE_EXPORTING;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\src;..\SDK\include;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;EE_SDK_EXPORTS;EE_EXPORTING;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>..\..\3rd Party\LibXML++\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\src;..\SDK\include;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;EE_SDK_EXPORTS;EE_EXPORTING;_PROFILE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>..\..\3rd Party\LibXML++\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AABB.cpp" />
+    <ClCompile Include="CJoystick.cpp" />
+    <ClCompile Include="CJoystickAxis.cpp" />
+    <ClCompile Include="CJoystickHandler.cpp" />
+    <ClCompile Include="CKeyFrame.cpp" />
+    <ClCompile Include="CManager.cpp" />
+    <ClCompile Include="CManagerListener.cpp" />
+    <ClCompile Include="CMeshDescriptors.cpp" />
+    <ClCompile Include="dlmalloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="EEMath.cpp" />
+    <ClCompile Include="EEStdStreamBufProxy.cpp" />
+    <ClCompile Include="EEStdStreamProxy.cpp" />
+    <ClCompile Include="EulerAngle.cpp" />
+    <ClCompile Include="ExceptionHandler.cpp" />
+    <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="HelperFuncs.cpp" />
+    <ClCompile Include="MathUtils.cpp" />
+    <ClCompile Include="Matrix3x3.cpp" />
+    <ClCompile Include="Matrix4x4.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="ProxyObject.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Vec3.cpp" />
+    <ClCompile Include="Vec4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Platform\Platform.h" />
+    <ClInclude Include="..\Platform\PlatformWin32.h" />
+    <ClInclude Include="..\Platform\TCharPlatform.h" />
+    <ClInclude Include="..\Sdk\include\AABB.h" />
+    <ClInclude Include="..\Sdk\include\BaseMessages.h" />
+    <ClInclude Include="..\SDK\include\CJoystick.h" />
+    <ClInclude Include="..\SDK\include\CJoystickAxis.h" />
+    <ClInclude Include="..\SDK\include\CJoystickHandler.h" />
+    <ClInclude Include="..\Sdk\include\CKeyFrame.h" />
+    <ClInclude Include="..\Sdk\include\CManager.h" />
+    <ClInclude Include="..\Sdk\include\CManagerListener.h" />
+    <ClInclude Include="..\SDK\include\CMeshDescriptors.h" />
+    <ClInclude Include="..\Sdk\include\CObjectTemplate.hpp" />
+    <ClInclude Include="..\SDK\include\CParticleObject.h" />
+    <ClInclude Include="..\Sdk\include\CPoolAllocator.h" />
+    <ClInclude Include="..\Sdk\include\CRenderObject.h" />
+    <ClInclude Include="..\Sdk\include\CSceneObject.h" />
+    <ClInclude Include="..\Sdk\include\DLLVersion.h" />
+    <ClInclude Include="..\Sdk\include\EEDefines.h" />
+    <ClInclude Include="..\Sdk\include\EEErrorCodes.hpp" />
+    <ClInclude Include="..\Sdk\include\ElementalEngine.hpp" />
+    <ClInclude Include="..\SDK\include\EnumHashStringMap.h" />
+    <ClInclude Include="..\SDK\include\HelperFuncs.h" />
+    <ClInclude Include="..\Sdk\include\IAABBImplementation.h" />
+    <ClInclude Include="..\Sdk\include\IActionHandler.h" />
+    <ClInclude Include="..\Sdk\include\IAnimatedTexture.h" />
+    <ClInclude Include="..\Sdk\include\IArchive.hpp" />
+    <ClInclude Include="..\SDK\include\IAttributeObject.h" />
+    <ClInclude Include="..\Sdk\include\ICamera.h" />
+    <ClInclude Include="..\Sdk\include\IComponent.hpp" />
+    <ClInclude Include="..\Sdk\include\IConfig.h" />
+    <ClInclude Include="..\Sdk\include\IController.h" />
+    <ClInclude Include="..\Sdk\include\IEEStream.h" />
+    <ClInclude Include="..\Sdk\include\IEffect.h" />
+    <ClInclude Include="..\Sdk\include\IEulerImplementation.h" />
+    <ClInclude Include="..\SDK\include\IFindFiles.h" />
+    <ClInclude Include="..\Sdk\include\IFont.h" />
+    <ClInclude Include="..\Sdk\include\IGeometry.h" />
+    <ClInclude Include="..\Sdk\include\IGUIElement.h" />
+    <ClInclude Include="..\Sdk\include\IGUIReference.h" />
+    <ClInclude Include="..\Sdk\include\IHashString.hpp" />
+    <ClInclude Include="..\Sdk\include\IIndexBuffer.h" />
+    <ClInclude Include="..\SDK\include\IInputHandler.h" />
+    <ClInclude Include="..\SDK\include\IJoystick.h" />
+    <ClInclude Include="..\SDK\include\IJoystickHandler.h" />
+    <ClInclude Include="..\Sdk\include\ILightObject.h" />
+    <ClInclude Include="..\Sdk\include\IListener.h" />
+    <ClInclude Include="..\Sdk\include\IListenerFactory.h" />
+    <ClInclude Include="..\Sdk\include\ILoadSave.hpp" />
+    <ClInclude Include="..\Sdk\include\IManager.h" />
+    <ClInclude Include="..\Sdk\include\IMaterial.h" />
+    <ClInclude Include="..\Sdk\include\IMaterialOverride.h" />
+    <ClInclude Include="..\Sdk\include\IMaterialTemplate.h" />
+    <ClInclude Include="..\Sdk\include\IMathUtilImplementation.h" />
+    <ClInclude Include="..\Sdk\include\IMatrix3x3Implementation.h" />
+    <ClInclude Include="..\Sdk\include\IMatrix4x4Implementation.h" />
+    <ClInclude Include="..\Sdk\include\IMeshObject.h" />
+    <ClInclude Include="..\Sdk\include\IObject.h" />
+    <ClInclude Include="..\Sdk\include\IParticle.h" />
+    <ClInclude Include="..\Sdk\include\IParticleEmitter.h" />
+    <ClInclude Include="..\SDK\include\IParticleObject.h" />
+    <ClInclude Include="..\Sdk\include\IPhysObject.h" />
+    <ClInclude Include="..\Sdk\include\IPlaneImplementation.h" />
+    <ClInclude Include="..\SDK\include\IPluginLoader.h" />
+    <ClInclude Include="..\Sdk\include\IQuaternionImplementation.h" />
+    <ClInclude Include="..\Sdk\include\IRandomImplementation.h" />
+    <ClInclude Include="..\Sdk\include\IRayImplementation.h" />
+    <ClInclude Include="..\Sdk\include\IRenderContext.h" />
+    <ClInclude Include="..\Sdk\include\IRenderer.h" />
+    <ClInclude Include="..\Sdk\include\IRenderObject.h" />
+    <ClInclude Include="..\SDK\include\IScene.h" />
+    <ClInclude Include="..\SDK\include\ISceneNode.h" />
+    <ClInclude Include="..\Sdk\include\ISceneObject.h" />
+    <ClInclude Include="..\Sdk\include\ISceneSettings.h" />
+    <ClInclude Include="..\Sdk\include\IShader.h" />
+    <ClInclude Include="..\Sdk\include\IShaderPath.h" />
+    <ClInclude Include="..\Sdk\include\ISoundObject.hpp" />
+    <ClInclude Include="..\Sdk\include\IStreamObject.h" />
+    <ClInclude Include="..\Sdk\include\ITextureManager.h" />
+    <ClInclude Include="..\Sdk\include\ITextureObject.h" />
+    <ClInclude Include="..\SDK\include\ITimer.h" />
+    <ClInclude Include="..\Sdk\include\IToolBox.h" />
+    <ClInclude Include="..\Sdk\include\IVec3Implementation.h" />
+    <ClInclude Include="..\Sdk\include\IVec4Implementation.h" />
+    <ClInclude Include="..\Sdk\include\IVertexBufferObject.h" />
+    <ClInclude Include="..\Sdk\include\IVertexFormat.h" />
+    <ClInclude Include="..\Sdk\include\IVisitor.h" />
+    <ClInclude Include="..\Sdk\include\IXMLArchive.h" />
+    <ClInclude Include="..\Sdk\include\MessageError.hpp" />
+    <ClInclude Include="..\SDK\include\NetworkMessages.h" />
+    <ClInclude Include="..\Sdk\include\Register.h" />
+    <ClInclude Include="..\Sdk\include\RenderFlags.h" />
+    <ClInclude Include="..\SDK\include\RenderStructs.h" />
+    <ClInclude Include="..\Sdk\include\ShaderConstants.h" />
+    <ClInclude Include="..\Sdk\include\Singleton.h" />
+    <ClInclude Include="..\Sdk\include\StdString.h" />
+    <ClInclude Include="dlmalloc.h" />
+    <ClInclude Include="..\Sdk\include\EESDK.h" />
+    <ClInclude Include="..\Sdk\include\EEMemory.h" />
+    <ClInclude Include="EEStdStreamBufProxy.h" />
+    <ClInclude Include="..\Sdk\include\EEStdStreamProxy.h" />
+    <ClInclude Include="..\Sdk\include\EulerAngle.h" />
+    <ClInclude Include="..\Sdk\include\ExceptionHandler.h" />
+    <ClInclude Include="..\SDK\include\FilePath.h" />
+    <ClInclude Include="..\SDK\include\Frustum.h" />
+    <ClInclude Include="..\Sdk\include\MathUtils.h" />
+    <ClInclude Include="..\Sdk\include\Matrix3x3.h" />
+    <ClInclude Include="..\Sdk\include\Matrix4x4.h" />
+    <ClInclude Include="..\Sdk\include\PerformanceProfiler.h" />
+    <ClInclude Include="..\Sdk\include\Plane.h" />
+    <ClInclude Include="..\Sdk\include\ProxyObject.h" />
+    <ClInclude Include="..\Sdk\include\Quaternion.h" />
+    <ClInclude Include="..\Sdk\include\Random.h" />
+    <ClInclude Include="..\Sdk\include\Ray.h" />
+    <CustomBuildStep Include="stdafx.h" />
+    <ClInclude Include="..\Sdk\include\Vec3.h" />
+    <ClInclude Include="..\Sdk\include\Vec4.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -39,8 +39,9 @@ private:
 	/// \param filePathName = full path/filename of file to load/save
 	/// \param isLoad = boolean whether loading or not
 	/// \param isInternal = is the load/save internal?
+	/// \param retObject = Pointer to pointer to IObject to return, if NULL, not filled in
 	/// \return MSG_XXX return value
-	DWORD LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isInternal = true);
+	DWORD LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isInternal = true, IObject **retObject = NULL);
 	/// UnLoads a file by extension
 	/// \param filePathName = full path/filename of file to load/save
 	/// \return MSG_XXX return value

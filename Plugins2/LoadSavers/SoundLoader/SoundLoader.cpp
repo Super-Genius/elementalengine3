@@ -92,10 +92,10 @@ bool CSoundLoader::IsKindOf(IHashString *compType)
 
 DWORD CSoundLoader::OnLoadFile(DWORD size, void *params)
 {
-	VERIFY_MESSAGE_SIZE(size, sizeof(TCHAR *));
-	TCHAR *pFileName = (TCHAR *)params;
+	VERIFY_MESSAGE_SIZE(size, sizeof(LOADFILEPARAMS));
+	LOADFILEPARAMS *lfp = (LOADFILEPARAMS *)params; 
 	
-	StdString fileName = pFileName;
+	StdString fileName = lfp->fileName;
 
 	//fileName.tolower();
 
@@ -130,7 +130,7 @@ DWORD CSoundLoader::OnLoadFile(DWORD size, void *params)
 		(extID == hszOgg.GetUniqueID()) ||
 		(extID == hszMP3.GetUniqueID()))
 	{
-		bool success = LoadSoundFile(fileName, &hszExt);
+		bool success = LoadSoundFile(fileName, &hszExt, lfp->retObject);
 		if (!success)
 		{
 			m_ToolBox->Log(LOGWARNING, _T("Failed to load sound %s\n"), (const TCHAR*)fileName);
@@ -169,7 +169,7 @@ DWORD CSoundLoader::OnSaveFile(DWORD size, void *params)
 	return retval;
 }
 
-bool CSoundLoader::LoadSoundFile(const TCHAR* fileName, IHashString *extension)
+bool CSoundLoader::LoadSoundFile(const TCHAR* fileName, IHashString *extension, IObject **retObject)
 {
 	bool ret = false;
 
