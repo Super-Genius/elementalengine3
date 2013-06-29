@@ -92,12 +92,10 @@ bool CSoundLoader::IsKindOf(IHashString *compType)
 
 DWORD CSoundLoader::OnLoadFile(DWORD size, void *params)
 {
-	VERIFY_MESSAGE_SIZE(size, sizeof(LOADFILEPARAMS));
-	LOADFILEPARAMS *lfp = (LOADFILEPARAMS *)params; 
+	VERIFY_MESSAGE_SIZE(size, sizeof(LOADFILEEXTPARAMS));
+	LOADFILEEXTPARAMS *lfp = (LOADFILEEXTPARAMS *)params; 
 	
 	StdString fileName = lfp->fileName;
-
-	//fileName.tolower();
 
 	DWORD retval = MSG_HANDLED_STOP;
 	CHashString hszFileName(fileName);

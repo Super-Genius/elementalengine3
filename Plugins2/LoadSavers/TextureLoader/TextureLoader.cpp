@@ -177,8 +177,10 @@ DWORD CTextureLoader::OnSetSaveAsFormat( DWORD size, void * params )
 // load a file if we recognize the type.
 DWORD CTextureLoader::OnLoadTextureFile(DWORD size, void *params)
 {
-	VERIFY_MESSAGE_SIZE(size, sizeof(TCHAR *));
-	TCHAR *pFileName = (TCHAR *)params;
+	VERIFY_MESSAGE_SIZE(size, sizeof(LOADFILEEXTPARAMS));
+	LOADFILEEXTPARAMS *lfep = (LOADFILEEXTPARAMS *)params;
+
+	TCHAR *pFileName = lfep->fileName;
 
 	StdString szFileName(pFileName);
 	szFileName.MakeSafeFileName();
@@ -194,6 +196,10 @@ DWORD CTextureLoader::OnLoadTextureFile(DWORD size, void *params)
 		if (pTexture && pTexture->IsDataLoaded())
 		{
 			pTexture->IncrementRefCount();
+			if (lfep->retObject != NULL)
+			{
+				*(lfep->retObject) = pTexture;
+			}
 			return MSG_HANDLED_STOP;
 		}
 	}
@@ -373,6 +379,14 @@ DWORD CTextureLoader::OnLoadTextureFile(DWORD size, void *params)
 	if( !bCompressedTexture )
 	{
 		SAFE_DELETE_ARRAY( pImageData );
+	}
+
+	if (msgRetVal == MSG_HANDLED_STOP)
+	{
+		if (lfep->retObject != NULL)
+		{
+			*(lfep->retObject) = pTexture;
+		}
 	}
 
 	return msgRetVal;

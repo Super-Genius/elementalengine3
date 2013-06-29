@@ -238,9 +238,6 @@
     <ClInclude Include="src\Platform\Win32\CPluginLoader.h">
       <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Win32\CFindFiles.h">
-      <Filter>Platform</Filter>
-    </ClInclude>
     <ClInclude Include="src\Math\DefaultMathUtilImpl.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -276,6 +273,9 @@
     </ClInclude>
     <ClInclude Include="src\Math\DefaultEulerImplementation.h">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Win32\CFindFiles.h">
+      <Filter>Platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +455,6 @@
     <ClCompile Include="src\StaticLibSymbols.cpp" />
     <ClCompile Include="src\StdAfx.cpp" />
     <ClCompile Include="src\base64.cpp" />
-    <ClCompile Include="src\Platform\Win32\CFindFiles.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\Win32\CPluginLoader.cpp">
       <Filter>Platform</Filter>
     </ClCompile>
@@ -499,6 +496,9 @@
     </ClCompile>
     <ClCompile Include="src\Math\DefaultMathImplemenation.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Win32\CFindFiles.cpp">
+      <Filter>Platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

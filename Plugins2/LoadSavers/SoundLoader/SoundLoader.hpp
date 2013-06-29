@@ -45,7 +45,7 @@ public:
 	/// standard static component create function
 	static IComponent *Create(int nArgs, va_list argptr);
 
-	bool LoadSoundFile(const TCHAR* fileName, IHashString *extension);
+	bool LoadSoundFile(const TCHAR* fileName, IHashString *extension, IObject **retObject);
 
 	bool LoadPlaylistFile(const TCHAR* fileName);
 	bool SavePlaylistFile(const TCHAR* fileName);

@@ -47,5 +47,6 @@
 #include "IMeshObject.h"
 #include "CMeshDescriptors.h"
 #include "HelperFuncs.h"
+#include "IFindFiles.h"
 
 #endif

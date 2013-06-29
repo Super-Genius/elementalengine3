@@ -65,7 +65,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\include;..\..\..\SDK\include;..\..\..\EESDKLib;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\EESDK\include;..\..\..\EESDK\include\Win32;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;WIN32;_DEBUG;_WINDOWS;_USRDLL;DX9RENDERER_EXPORTS;TOLUA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -81,7 +81,7 @@
     <Link>
       <AdditionalDependencies>ElementalEngine3.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)DX9Renderer.dlo</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\SDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\EESDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)DX9Renderer.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -101,7 +101,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\include;..\..\..\SDK\include;..\..\..\EESDKLib;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\EESDK\include;..\..\..\EESDK\include\Win32;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;_USRDLL;DX9RENDERER_EXPORTS;TOLUA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -113,7 +113,7 @@
     <Link>
       <AdditionalDependencies>ElementalEngine3.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)DX9Renderer.dlo</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\SDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\EESDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\include;..\..\..\SDK\include;..\..\..\EESDKLib;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\EESDK\include;..\..\..\EESDK\include\Win32;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;_USRDLL;DX9RENDERER_EXPORTS;_PROFILE;TOLUA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -140,7 +140,7 @@
     <Link>
       <AdditionalDependencies>ElementalEngine3.lib;EESDK.lib;freetype2411MT.lib;d3dxof.lib;dxguid.lib;d3d9.lib;d3dx9.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)DX9Renderer.dlo</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\SDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\EESDK\lib\$(Platform)\$(Configuration);..\..\..\..\ThirdParty\FreeType\objs\$(Platform)\vc2010;..\..\..\..\ThirdParty\Microsoft\DirectXSDK\lib\$(ProcessorArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

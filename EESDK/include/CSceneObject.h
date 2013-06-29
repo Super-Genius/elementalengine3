@@ -123,10 +123,6 @@ public:
 		position.Set( 0,0,0 );
 		radius = 0;
 	}
-    
-    virtual OBJECTSORTTYPES GetSceneSortID() const { return ENTITY; }
-
-    virtual IHashString GetParentName() { return m_ParentName; }
 
 protected:
 	virtual void SetAttachmentObjectsDirty()
@@ -155,8 +151,6 @@ private:
 	IScene *m_pScene;
 	ISceneNode *m_pSceneNode;
 	DWORD m_iSceneSortID;
-    IToolBox *m_ToolBox;
-    IHashString *m_ParentName;
 };
 
 template<class baseClass>
@@ -170,7 +164,6 @@ CSceneObject<baseClass>::CSceneObject(const TCHAR *theManager, const TCHAR *clas
 	m_bTransformIsDirty = true;
     
     m_ToolBox = EngineGetToolBox();
-    m_ParentName = parentName;
 
 	ISceneObject *pObject = this;
 	static DWORD msgHash_AddChildObject = CHashString(_T("AddChildObject")).GetUniqueID();

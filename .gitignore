@@ -34,3 +34,13 @@ SDK/bin/Win32/Debug/ElementalEngine3.bsc
 TestEERender\Bin\Win32/
 TestEERender/Profile/CL.read.1.tlog
 TestEERender/Release/
+Plugins2/Engine/OpenAL/Win32/
+Plugins2/LoadSavers/SoundLoader/Win32/
+EESDK/Wii/
+EESDK/Win32/
+EESDK/Xbox 360/Debug/BuildLog.htm
+EESDK/bin/win32/Profile/ElementalEngine3.bsc
+EESDK/bin/win32/debug/ElementalEngine3.bsc
+EESDK/bin/win32/debug/elementalengine3.idb
+EESDK/build/
+EESDK/lib/

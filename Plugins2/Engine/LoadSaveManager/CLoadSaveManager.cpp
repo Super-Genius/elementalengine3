@@ -146,11 +146,12 @@ DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isI
 	{
 		// Load/Create new resource
 		static DWORD msgHash_LoadFile = CHashString(_T("LoadFile")).GetUniqueID();
-		LOADFILEPARAMS lfp;
+		LOADFILEEXTPARAMS lfp;
 		PERFORMANCE_PROFILER_TYPE_START(filePathName, _T("File Loader"));
 		lfp.fileName = const_cast<LPTSTR>(filePathName);
+		lfp.bInternalLoad = false;
 		lfp.retObject = retObject;
-		retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(LOADFILEPARAMS), &lfp, NULL, componentName);
+		retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(LOADFILEEXTPARAMS), &lfp, NULL, componentName);
 		PERFORMANCE_PROFILER_TYPE_STOP(filePathName, _T("File Loader"));
 		if (retVal != MSG_HANDLED)
 		{

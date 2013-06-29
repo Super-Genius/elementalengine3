@@ -27,13 +27,18 @@
 
 typedef WIN32_FIND_DATA FIND_DATA;
 
+#define EE_ENDIANSWAP32( i ) (i)
+#define EE_ENDIANSWAP32F( f ) (f)
+#define EE_ENDIANSWAP16( i ) (i)
+
 // has to be used because of hash_map is in stdext namespace
-#ifdef _CPLUSPLUS
+#ifdef __cplusplus
 #ifdef _MSC_VER
 namespace stdext{}
 using namespace stdext; 
+#include <hash_map>
 #endif
 #endif
 
-#endif // PLATFORMWIN32_H__
+#endif // PLATFORM_WIN32_H__
 

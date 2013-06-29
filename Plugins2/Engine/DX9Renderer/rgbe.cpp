@@ -31,7 +31,7 @@
  based on code written by Greg Ward
 */
 
-#ifdef _CPLUSPLUS
+#ifdef __cplusplus
 /* define if your compiler understands inline commands */
 #define INLINE inline
 #else

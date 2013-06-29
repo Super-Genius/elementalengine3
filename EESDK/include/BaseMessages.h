@@ -1485,17 +1485,6 @@ typedef struct LOADFILEEXTPARAMS
 	}
 } LOADFILEEXTPARAMS;
 
-typedef struct LOADFILEPARAMS
-{
-	TCHAR *fileName;		// name of file to load
-	IObject **retObject;	// pointer to return object pointer or NULL for don't return
-	LOADFILEPARAMS()
-	{
-		fileName = NULL;
-		retObject = NULL;
-	}
-} LOADFILEPARAMS;
-
 struct ISENTITYOFTYPEPARAMS
 {
 	IHashString *entityType;

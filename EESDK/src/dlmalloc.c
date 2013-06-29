@@ -451,12 +451,12 @@ DEFAULT_MMAP_THRESHOLD       default: 256K
 //#endif  /* WIN32 */
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
-#include "Platform.h"
 #define HAVE_MMAP 1
 #else
-#include "Platform.h"
 #define HAVE_MMAP 0
 #endif
+
+#include "Platform.h"
 
 #define HAVE_MORECORE 0
 #define LACKS_UNISTD_H
