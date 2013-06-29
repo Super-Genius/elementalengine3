@@ -163,11 +163,11 @@ CSceneObject<baseClass>::CSceneObject(const TCHAR *theManager, const TCHAR *clas
 	m_iSceneSortID = 0;
 	m_bTransformIsDirty = true;
     
-    m_ToolBox = EngineGetToolBox();
+    this->m_ToolBox = EngineGetToolBox();
 
 	ISceneObject *pObject = this;
 	static DWORD msgHash_AddChildObject = CHashString(_T("AddChildObject")).GetUniqueID();
-	m_ToolBox->SendMessage(msgHash_AddChildObject, sizeof(ISceneObject*), &pObject, GetParentName());
+	this->m_ToolBox->SendMessage(msgHash_AddChildObject, sizeof(ISceneObject*), &pObject, this->GetParentName());
 
 	m_hsObjectGroup = _T("CSceneObject");
 	m_hsManagerName = _T("CSceneObjectManager");
@@ -194,7 +194,7 @@ CSceneObject<baseClass>::~CSceneObject()
 
 	ISceneObject *pObject = this;
 	static DWORD msgHash_RemoveChildObject = CHashString(_T("RemoveChildObject")).GetUniqueID();
-	EngineGetToolBox()->SendMessage(msgHash_RemoveChildObject, sizeof(ISceneObject*), &pObject, GetParentName());
+	this->m_ToolBox->SendMessage(msgHash_RemoveChildObject, sizeof(ISceneObject*), &pObject, this->GetParentName());
 
 	// Remove from SceneObjectManager
 	IComponent *managerComponent = EngineGetToolBox()->CreateComponent(&m_hsManagerName, 0);
@@ -225,10 +225,10 @@ void CSceneObject<baseClass>::UpdateGlobalObject()
 		// object is not yet in a scene so add it
 		SCENEOBJECTPARAMS params;
 		params.pObject = this;
-		params.sortID = GetSceneSortID();
+		params.sortID = this->GetSceneSortID();
 		params.bBoundedObject = false;
 		static DWORD msgHash_UpdateBoundingBox = CHashString("UpdateBoundingBox").GetUniqueID();
-		m_ToolBox->SendMessage(msgHash_UpdateBoundingBox, sizeof( SCENEOBJECTPARAMS), &params );
+		this->m_ToolBox->SendMessage(msgHash_UpdateBoundingBox, sizeof( SCENEOBJECTPARAMS), &params );
 	}
 }
 
@@ -243,7 +243,7 @@ void CSceneObject<baseClass>::UpdateBoundingObject()
 	}
 	else
 	{
-		m_iSceneSortID = GetSceneSortID();
+		m_iSceneSortID = this->GetSceneSortID();
 
 		// object is not yet in a scene so add it
 		SCENEOBJECTPARAMS params;
@@ -251,7 +251,7 @@ void CSceneObject<baseClass>::UpdateBoundingObject()
 		params.sortID = m_iSceneSortID;
 		params.bBoundedObject = true;
 		static DWORD msgHash_UpdateBoundingBox = CHashString("UpdateBoundingBox").GetUniqueID();
-		m_ToolBox->SendMessage(msgHash_UpdateBoundingBox, sizeof( SCENEOBJECTPARAMS), &params );
+		this->m_ToolBox->SendMessage(msgHash_UpdateBoundingBox, sizeof( SCENEOBJECTPARAMS), &params );
 	}
 }
 

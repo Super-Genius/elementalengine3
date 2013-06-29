@@ -52,6 +52,9 @@ typedef std::map<int, BUTTONSTATE> BUTTONSTATEMAP;
 class IJoystick
 {
 public:
+    /// make sure you have a virtual destructor to call derived classes
+    virtual ~IJoystick() { }
+    
 	/// Updates axis positions and buttons being pressed
 	/// \param fTime = Delta time
 	virtual void UpdateInputStates( float fTime ) = 0;

@@ -70,6 +70,7 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #endif
 
 #define HMODULE DWORD
+#define HANDLE DWORD
 #define HWND  DWORD
 #define HINSTANCE DWORD
 #define CONST const
@@ -82,6 +83,15 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #define _MAX_EXT 256
 #define _MAX_PATH MAX_PATH
 
+
+typedef struct _FIND_DATA
+{
+    
+} FIND_DATA;
+
+#define EE_ENDIANSWAP32( i ) (i)
+#define EE_ENDIANSWAP32F( f ) (f)
+#define EE_ENDIANSWAP16( i ) (i)
 
 //
 // This is a replacement for QueryPerformanceFrequency / QueryPerformanceCounter
