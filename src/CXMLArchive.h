@@ -21,8 +21,8 @@
 #define	CXMLARCHIVE_H
 
 #include "IXMLArchive.h"
-#include "LibXML++\LibXML++.h"
-#include "LibXML++\io\istreamparserinputbuffer.h"
+#include "LibXML++/LibXML++.h"
+#include "LibXML++/io/istreamparserinputbuffer.h"
 
 using namespace xmlpp;
 

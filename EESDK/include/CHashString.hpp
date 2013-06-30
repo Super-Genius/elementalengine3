@@ -98,7 +98,7 @@ public:
 		m_UniqueID = src->GetUniqueID();
 	}
 
-	~CHashString()
+	virtual ~CHashString()
 	{
 		//printf("We are going away now!\n");
 	}

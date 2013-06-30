@@ -29,9 +29,12 @@ class MathUtil;
 /// \class	IMathUtilImplementation
 /// \brief	
 ///==========================================================================
-class __declspec(novtable) IMathUtilImplementation
+class IMathUtilImplementation
 {
 public:
+    /// public virtual destructor
+    virtual ~IMathUtilImplementation() {}
+    
 	/// Find the log base 2 of a number
 	virtual float Log2(float x) = 0;
 	// Find the log with an arbitrary base of x

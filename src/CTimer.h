@@ -105,8 +105,10 @@ private:
 	__forceinline void InitGameTime()
 	{
 		// We need to know how often the clock is updated
-		if( !QueryPerformanceFrequency((LARGE_INTEGER *)&_ticksPerSecond) )
+		if( !QueryPerformanceFrequency((LARGE_INTEGER *)&_ticksPerSecond))
+		{
 			_ticksPerSecond = 1000000;
+		}
 
 		// If timeAtGameStart is 0 then we get the time since
 		// the start of the computer when we call GetGameTime()
@@ -151,7 +153,7 @@ private:
 	}
 
 	float  _timeAtGameStart;
-	UINT64 _ticksPerSecond;
+	INT64 _ticksPerSecond;
 
 	// Global variables for measuring fps
 	float _lastUpdate;

@@ -65,6 +65,24 @@ static char THIS_FILE[] = __FILE__;
 
 IAABBImplementation *CDefaultAABBImplementation::s_instance = NULL;
 
+IAABBImplementation* CDefaultAABBImplementation::Instance( void )
+{
+    if ( s_instance == NULL )
+    {
+        s_instance = new CDefaultAABBImplementation();
+    }
+    return s_instance;
+}
+
+void CDefaultAABBImplementation::Destroy( void )
+{
+    if ( s_instance != NULL )
+    {
+        delete s_instance;
+    }
+    s_instance = NULL;
+}
+
 void CDefaultAABBImplementation::Init( void )
 {
 }

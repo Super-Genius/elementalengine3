@@ -279,10 +279,18 @@ public:
 				sprintf(retStr, "%.200lu", m_Param.ulParam);
 				return retStr;
 			case PARAM_LONGLONG:
+#ifdef _MSC_VER
 				sprintf(retStr, "%.200I64i", m_Param.llParam);
+#else
+				sprintf(retStr, "%.200lli", m_Param.llParam);
+#endif
 				return retStr;
 			case PARAM_ULONGLONG:
+#ifdef _MSC_VER
 				sprintf(retStr, "%.200I64u", m_Param.ullParam);
+#else
+				sprintf(retStr, "%.200llu", m_Param.ullParam);
+#endif
 				return retStr;
 			case PARAM_STRING:
 				return m_Param.strParam;

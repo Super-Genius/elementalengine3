@@ -29,9 +29,12 @@ class Random;
 /// \class	IRandomImplementation
 /// \brief	Interface for different Random math implementations
 ///==========================================================================
-class __declspec(novtable) IRandomImplementation
+class IRandomImplementation
 {
 public:
+    /// public virtual destructor
+    virtual ~IRandomImplementation() {}
+    
 	/// Set the seed for the Random number generator to use
 	/// \param seed - the seed
 	virtual void SetSeed(unsigned long seed) = 0;

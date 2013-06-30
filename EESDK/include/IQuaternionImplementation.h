@@ -32,9 +32,12 @@ class EulerAngle;
 /// \class	IQuaternionImplementation
 /// \brief	
 ///==========================================================================
-class __declspec(novtable) IQuaternionImplementation
+class IQuaternionImplementation
 {
 public:
+    /// public virtual destructor
+    virtual ~IQuaternionImplementation() {}
+    
 	/// Return true if two Quaternions are equal
 	/// \param a - The first Quaternion to test
 	/// \param b - The second Quaternion to test

@@ -32,9 +32,12 @@ class Vec4;
 ///			interface using MMX and SSE instructions while another
 ///			implementation could use 3DNOW! or wrap another math library.
 ///==========================================================================
-class __declspec(novtable) IVec4Implementation
+class IVec4Implementation
 {
 public:
+    /// public virtual destructor
+    virtual ~IVec4Implementation() {}
+    
 	/// Return true if two Vec4 are equal
 	/// \param a - The first Vec4 to test
 	/// \param b - The second Vec4 to test

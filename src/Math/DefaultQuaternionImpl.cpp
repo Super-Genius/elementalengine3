@@ -211,7 +211,7 @@ Quaternion CDefaultQuaternionImplementation::Slerp(Quaternion a, Quaternion b, f
 		a.w = -a.w;
 		angle = -angle;
 	}
-	if (abs(angle) >= 1.0f)
+	if (fabsf(angle) >= 1.0f)
 		return a;
 
 	float theta = acos(angle);
@@ -219,14 +219,14 @@ Quaternion CDefaultQuaternionImplementation::Slerp(Quaternion a, Quaternion b, f
 	Quaternion temp;
 	float sinTheta = sin(theta);
 	// if theta * 2 = 180 degrees then result is undefined
-	if (abs(sinTheta) < 0.01){
+	if (fabsf(sinTheta) < 0.01){
 		temp = (a * 0.5) + (b * 0.5);
 		return temp;
 	}
 	float scale = sin(theta * (1.0f-time)) / sinTheta;
 	float invscale = sin(theta * time) / sinTheta;
  
-	//calculate Quaternion.
+	//calculfate Quaternion.
 	temp = (a * scale) + (b * invscale);
 	return temp;
 }

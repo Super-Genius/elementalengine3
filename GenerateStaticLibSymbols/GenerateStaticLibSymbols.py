@@ -48,7 +48,7 @@ else:
         
 def ParseFolder(dirname, filelist):
     if not os.path.isdir(dirname):
-        print 'DIR INPUT: ' + dirname + ' IS EPIC FAIL!!!'
+        print 'DIR INPUT: ' + dirname + ' isDir EPIC FAIL!!!'
         return
     filelist = []
     for fname in os.listdir(dirname):
@@ -100,7 +100,7 @@ def ParseComponentLine(line):
 
 def ParseFileForComponents(filepath, parsedcomponents):
     if not os.path.isfile(filepath):
-        print 'FILE INPUT: ' + filepath + ' IS EPIC FAIL!!!'
+        print 'FILE INPUT: ' + filepath + ' isFile EPIC FAIL!!!'
         return
     F = open(filepath)
     FLines = F.readlines()
@@ -129,7 +129,7 @@ def ParseSingletonLine(line):
 
 def ParseFileForSingletons(filepath, parsedsingletons):
     if not os.path.isfile(filepath):
-        print 'FILE INPUT: ' + filepath + ' IS EPIC FAIL!!!'
+        print 'FILE INPUT: ' + filepath + ' isfile EPIC FAIL!!!'
         return
     F = open(filepath)
     FLines = F.readlines()
@@ -189,33 +189,33 @@ if ValidCall == True:
     for SourceFile in SourceFiles:
         #Do not Parse Output File.
         if not SourceFile == OutputFileCPP:
-            ParseFileForComponents(SourceDirectory + "\\" + SourceFile, ParsedComponents)
+            ParseFileForComponents(SourceDirectory + os.sep + SourceFile, ParsedComponents)
 
     #ParseForMessages
     ParsedMessages = []
     for SourceFile in SourceFiles:
         #Do not Parse Output File.
         if not SourceFile == OutputFileCPP:
-            ParseFileForMessages(SourceDirectory + "\\" + SourceFile, ParsedMessages)
+            ParseFileForMessages(SourceDirectory + os.sep + SourceFile, ParsedMessages)
 
     #ParseForSingletons
     ParsedSingletons = []
     for SourceFile in SourceFiles:
         #Do not Parse Output File.
         if not SourceFile == OutputFileCPP:
-            ParseFileForSingletons(SourceDirectory + "\\" + SourceFile, ParsedSingletons)
+            ParseFileForSingletons(SourceDirectory + os.sep + SourceFile, ParsedSingletons)
     
     #ParseForDLLInitInfo
     ParsedDLLInitInfo = []
     for SourceFile in SourceFiles:
         #Do not Parse Output File.
         if not SourceFile == OutputFileCPP:
-            ParseFileForDLLInfo(SourceDirectory + "\\" + SourceFile, ParsedDLLInitInfo)
+            ParseFileForDLLInfo(SourceDirectory + os.sep + SourceFile, ParsedDLLInitInfo)
             
     #Format Output
     PrintLines = []
     
-    PrintLines.append("\n#include \".\\" + OutputFileH + "\"\n")
+    PrintLines.append("\n#include \"./" + OutputFileH + "\"\n")
     
     PrintLines.append("#ifdef _LIB\n\n")
     PrintLines.append("\nvoid *" + ParsedDLLInitInfo[0] + "_LIBEXTERNS[] = {\n")
@@ -238,7 +238,7 @@ if ValidCall == True:
     PrintLines.append("\t(void *)0\n};\n\n")
     	
     PrintLines.append("#endif\t//#ifdef _LIB\n\n")
-    WriteFile(SourceDirectory + "\\" + OutputFileCPP, PrintLines)
+    WriteFile(SourceDirectory + os.sep + OutputFileCPP, PrintLines)
     
     PrintLines = []
     
@@ -272,5 +272,5 @@ if ValidCall == True:
 
     PrintLines.append("\n#endif\t//#ifdef _LIB\n")
     
-    WriteFile(SourceDirectory + "\\" + OutputFileH, PrintLines)
+    WriteFile(SourceDirectory + os.sep + OutputFileH, PrintLines)
 

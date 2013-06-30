@@ -110,7 +110,7 @@ IComponent *CCamera::Create(int nArgs, va_list argptr)
 {
 	IHashString *name;
 	IHashString *parentName;
-	IObject *self;
+	IObject *self = NULL;
 	bool bAddToHier;
 
 	name = va_arg(argptr, IHashString *);
@@ -123,7 +123,7 @@ IComponent *CCamera::Create(int nArgs, va_list argptr)
 		{
 			self = new CCamera(parentName, name, true);
 		}
-		else if (nArgs == 3)
+		else if (nArgs >= 3)
 		{	
 			bAddToHier = va_arg(argptr, bool);
 			self = new CCamera(parentName, name, bAddToHier);

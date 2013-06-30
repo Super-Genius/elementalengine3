@@ -66,7 +66,6 @@ public:
 		if( surf )
 		{
 			//find the child first
-			bool found = false;
 			if( m_Children.size() > 0 )
 			{
 				list< IController*>::iterator iter = m_Children.begin();

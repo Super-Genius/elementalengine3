@@ -75,9 +75,6 @@
     <ClInclude Include="src\CWorld.h">
       <Filter>Hierarchy</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree.h">
-      <Filter>Hierarchy</Filter>
-    </ClInclude>
     <ClInclude Include="src\CCameraManager.h">
       <Filter>Renderer\Managers</Filter>
     </ClInclude>
@@ -235,9 +232,6 @@
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\Typedef.h" />
     <ClInclude Include="src\base64.h" />
-    <ClInclude Include="src\Platform\Win32\CPluginLoader.h">
-      <Filter>Platform</Filter>
-    </ClInclude>
     <ClInclude Include="src\Math\DefaultMathUtilImpl.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -274,8 +268,14 @@
     <ClInclude Include="src\Math\DefaultEulerImplementation.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Win32\CFindFiles.h">
+    <ClInclude Include="src\Platform\CFindFiles.h">
       <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\CPluginLoader.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\treegems.h">
+      <Filter>Hierarchy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

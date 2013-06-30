@@ -28,7 +28,7 @@ namespace ElementalEngine
 /// structure to register components automagically
 typedef struct COMPONENTREGISTERINFO
 {
-	TCHAR *m_Name;						/// the name of the class
+	const TCHAR *m_Name;				/// the name of the class
 	COMPONENTCREATEFUNC *m_CreateFunc;	/// the creation function
 } COMPONENTREGISTERINFO;
 
@@ -69,7 +69,7 @@ public:
 /// how to automatically register the object inside the .exe, .dll
 ///
 #define REGISTER_COMPONENT(className)								\
-	static TCHAR *className##_Name = _T(#className);				\
+	static const TCHAR *className##_Name = reinterpret_cast<const TCHAR*>(&_T(#className));		\
 	static COMPONENTREGISTERINFO									\
 					className##ComponentRegisterInfo =				\
 	{																\
@@ -82,7 +82,7 @@ public:
 /// how to automatically register the object inside the .exe, .dll
 ///
 #define REGISTER_COMPONENT_SINGLETON(className)						\
-	static TCHAR * className##_Name =_T(#className);				\
+	static const TCHAR * className##_Name = reinterpret_cast<const TCHAR*>(&_T(#className));      \
 	static COMPONENTREGISTERINFO									\
 					className##ComponentRegisterInfo =				\
 	{																\
@@ -97,7 +97,7 @@ public:
 /// and masquerade as another object
 ///
 #define REGISTER_COMPONENT_AS(className, baseClassName)				\
-	static TCHAR *className##_Name = _T(#baseClassName);				\
+	static const TCHAR *className##_Name = reinterpret_cast<const TCHAR*>(&_T(#baseClassName));	\
 	static COMPONENTREGISTERINFO									\
 					className##ComponentRegisterInfo =				\
 	{																\
@@ -111,7 +111,7 @@ public:
 /// as a singleton and masquerade as another singleton
 ///
 #define REGISTER_COMPONENT_SINGLETON_AS(className, baseClassName)	\
-	static TCHAR * className##_Name =_T(#baseClassName);				\
+	static const TCHAR * className##_Name = reinterpret_cast<const TCHAR*>(&_T(#baseClassName));	\
 	static COMPONENTREGISTERINFO									\
 					className##ComponentRegisterInfo =				\
 	{																\
@@ -139,7 +139,7 @@ class CRegisterMessage
 	CHashString m_ClassHashName;
 	DWORD m_MsgID;
 public:
-	CRegisterMessage(TCHAR *className, MESSAGEHANDLERINFO *msgInfo)
+	CRegisterMessage(const TCHAR *className, MESSAGEHANDLERINFO *msgInfo)
 	{
 		IToolBox *toolBox;
 

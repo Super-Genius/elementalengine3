@@ -6,13 +6,19 @@
 #include <mach/mach_time.h>
 #include <string.h>
 #include <errno.h>
+#include <wchar.h>
+#include <errno.h>
+#include <syslog.h>
+
 #ifdef __cplusplus
 #include <ext/hash_map>
 using namespace __gnu_cxx;
 #endif
-#include <wchar.h>
 
-//Missing typedef for MAC
+
+#define HAVE_STDINT_H
+
+//Missing typedefs for MAC
 typedef char TCHAR;
 typedef unsigned int UINT;
 typedef int INT;
@@ -22,12 +28,19 @@ typedef __int64_t LONGLONG;
 typedef uint64_t ULONGLONG;
 typedef int BOOL;
 typedef uint64_t UINT64;
+typedef int64_t INT64;
 typedef LONGLONG LARGE_INTEGER;
 typedef unsigned char BYTE;
 typedef unsigned short WORD;
 typedef long HRESULT;
 typedef uint64_t ULONG_PTR;
 typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
+
+#ifdef DEBUG
+#ifndef DEBUG_NEW
+#define DEBUG_NEW new
+#endif
+#endif
 
 #define LOWORD(l)           ((WORD)((DWORD_PTR)(l) & 0xffff))
 #define HIWORD(l)           ((WORD)((DWORD_PTR)(l) >> 16))
@@ -42,6 +55,7 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #define _tcscpy  strcpy
 #define _tcsstr  strstr
 #define _tcscat  strcat
+#define _tcsdup  strdup
 #define _tsplitpath _splitpath
 #define _tcsclen strlen
 #define GetTickCount mach_absolute_time
@@ -57,11 +71,23 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #define _tstoi atoi
 #define _ttoi atoi
 #define	_stscanf sscanf
+#define _vsnprintf vsnprintf
+#define _snprintf snprintf
+#define _tcsncicmp strncasecmp
+#define _tcsnicmp strncasecmp
+#define _tcsicmp strcasecmp
+
+#define INVALID_HANDLE_VALUE -1
+
 //GCC have no support for novtable
-#define __declspec(novtable)
 #define PEXCEPTION_POINTERS void*
 #define __cdecl
 
+typedef struct stat STATSTRUCT;
+
+#define CDECL __attribute__((cdecl))
+
+#define OutputDebugString(fmt, ...) syslog(LOG_DEBUG, fmt, ##__VA_ARGS__)
 
 #define _finite(n) finite(n)
 #define _isnan(n) isnan(n)
@@ -75,7 +101,8 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #define HINSTANCE DWORD
 #define CONST const
 #define __forceinline __inline
-#define QueryPerformanceFrequency GetTimeInNsSinceCPUStart
+#define QueryPerformanceFrequency GetMachineFrequencyTPS
+#define QueryPerformanceCounter GetTimeInNsSinceCPUStart
 #define MAX_PATH 260
 #define _MAX_DRIVE 3
 #define _MAX_DIR 256
@@ -86,8 +113,11 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 
 typedef struct _FIND_DATA
 {
-    
+    TCHAR cFileName[MAX_PATH];
 } FIND_DATA;
+
+#define ERROR_SUCCESS 0
+#define GetLastError() errno
 
 #define EE_ENDIANSWAP32( i ) (i)
 #define EE_ENDIANSWAP32F( f ) (f)
@@ -97,7 +127,18 @@ typedef struct _FIND_DATA
 // This is a replacement for QueryPerformanceFrequency / QueryPerformanceCounter
 // returns nanoseconds since system start
 //
-UINT64 GetTimeInNsSinceCPUStart()
+inline BOOL GetMachineFrequencyTPS(LARGE_INTEGER *ticksPerSecond)
+{
+    if (ticksPerSecond != NULL)
+    {
+        *ticksPerSecond = 1000000000;
+        return TRUE;
+    }
+    
+    return FALSE;
+}
+
+inline BOOL GetTimeInNsSinceCPUStart(LARGE_INTEGER *ticksPerSecond)
 {
 	double time;
 
@@ -108,7 +149,13 @@ UINT64 GetTimeInNsSinceCPUStart()
     mach_timebase_info(&info);
     double nano = ( (double) info.numer) / ((double) info.denom);
 
-	return (UINT64) nano * time / 1000000000.0;
+    if (ticksPerSecond != NULL)
+    {
+        *ticksPerSecond = (UINT64) nano * time / 1000000000.0;
+        return TRUE;
+    }
+    
+    return FALSE;
 }
 
 
@@ -127,7 +174,7 @@ UINT64 GetTimeInNsSinceCPUStart()
 * RETURNS
 *  Nothing.
 */
-void _splitpath(const char* inpath, char * drv, char * dir,
+inline void _splitpath(const char* inpath, char * drv, char * dir,
                          char* fname, char * ext )
 {
      const char *p, *end;

@@ -1,14 +1,14 @@
 /*-----------------------------------------------------------------------------
 
-	tree.h
+	treegems.h
 
 	STL-like tree
 
 -----------------------------------------------------------------------------*/
 
 
-#ifndef _TREE_H
-#define _TREE_H
+#ifndef _TREEGEMS_H
+#define _TREEGEMS_H
 
 #include <memory>
 #include <iterator>
@@ -22,10 +22,10 @@ namespace TREEGEMS
 //-----------------------------------------------------------------------------
 
 template <class T, class Alloc = std::allocator<T> >
-class tree
+class treegems
 {
 public:
-	typedef tree<T, Alloc> TreeT;
+	typedef treegems<T, Alloc> TreeT;
 
 	typedef TreeT value_type;
 	typedef TreeT* pointer;
@@ -47,19 +47,19 @@ public:
 	class child_iterator;
 	class const_child_iterator;
 
-	tree() { init(); }
+	treegems() { init(); }
 
-	tree(const T& t) : value(t) { init(); }
+	treegems(const T& t) : value(t) { init(); }
 
-	tree(const TreeT& copy) : value(copy.value)
+	treegems(const TreeT& copy) : value(copy.value)
 	{
 		init();
 		copy_children(copy);
 	}
 
-	~tree() { clear(); }
+	~treegems() { clear(); }
 
-	const tree& operator=(const TreeT& rhs)
+	const treegems& operator=(const TreeT& rhs)
 	{
 		TreeT temp(rhs);
 		swap(temp);
@@ -92,7 +92,7 @@ public:
 		TreeT* _root;
 
 		iterator(TreeT* ptr, TreeT* root) : _ptr(ptr), _root(root) {}
-		friend class tree<T, Alloc>;
+		friend class treegems<T, Alloc>;
 		friend class const_iterator;
 		friend class child_iterator;
 		friend class const_child_iterator;
@@ -120,7 +120,7 @@ public:
 		const TreeT* _root;
 
 		const_iterator(const TreeT* ptr, const TreeT* root) : _ptr(ptr), _root(root) {}
-		friend class tree<T, Alloc>;
+		friend class treegems<T, Alloc>;
 		friend class const_child_iterator;
 	};
 
@@ -147,7 +147,7 @@ public:
 		TreeT* _root;
 
 		child_iterator(TreeT* ptr, TreeT* root) : _ptr(ptr), _root(root) {}
-		friend class tree<T, Alloc>;
+		friend class treegems<T, Alloc>;
 		friend class const_child_iterator;
 	};
 
@@ -176,7 +176,7 @@ public:
 		const TreeT* _root;
 
 		const_child_iterator(const TreeT* ptr, const TreeT* root) : _ptr(ptr), _root(root) {}
-		friend class tree<T, Alloc>;
+		friend class treegems<T, Alloc>;
 	};
 
 	typedef std::reverse_iterator<iterator> reverse_iterator;
@@ -570,14 +570,14 @@ private:
 	}
 
 
-};	// class tree<T, Alloc>
+};	// class treegemss<T, Alloc>
 
 template <class T, class Alloc>
-typename tree<T, Alloc>::allocator_type tree<T, Alloc>::_alloc;
+typename treegems<T, Alloc>::allocator_type treegems<T, Alloc>::_alloc;
 
 //-----------------------------------------------------------------------------
 
-} // namespace TREEGAMES
+} // namespace TREEGEMS
 
-#endif	// _TREE_H
+#endif	// _TREEGEMS_H
 

@@ -19,8 +19,8 @@
 
 #include "StdAfx.h"
 
-#include "CFileStream.h"
-#include <sys\stat.h> 
+#include "CFileStream.h" 
+#include <sys/stat.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 // read/write mode table
-TCHAR* modes[] = {
+const TCHAR *modes[] = {
 	NULL, 
 	_T("r"),
 	_T("w"),
@@ -91,9 +91,6 @@ CFileStream::CFileStream( TCHAR *fileName, int mode, int iFlags )
 		// open file with appropriate mode
 		StdString szPath(fileName);
 		szPath.MakeSafeFileName();
-#ifdef XBOX
-		szPath = SetPathDrive( szPath, EngineGetToolBox()->GetDrive() );
-#endif
 
 		m_fpFile = fopen( szPath, modes[mode] );
 		if( m_fpFile == NULL )

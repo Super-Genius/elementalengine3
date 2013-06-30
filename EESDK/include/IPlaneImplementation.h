@@ -36,9 +36,12 @@ enum PLANECOLLISION { PLANECOLLISION_INTERSECT,
 /// \class	IPlaneImplementation
 /// \brief	
 ///==========================================================================
-class __declspec(novtable) IPlaneImplementation
+class IPlaneImplementation
 {
 public:
+    /// public virtual destructor
+    virtual ~IPlaneImplementation() {}
+    
 	/// Takes 3 points and creates the plane
 	/// normal is determined by v1-v2 X v1-v3
 	/// \param PointA = first point

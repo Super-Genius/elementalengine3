@@ -132,16 +132,14 @@ void CFontManager::Update(  DWORD tickCount  )
 		IFontObject * pObject;
 		for( objIter = m_FontObjectList.begin();objIter != m_FontObjectList.end(); )
 		{
+            set<IFontObject *>::iterator currentIter = objIter++;
 			pObject = (*objIter);
 			if( !pObject->Update() )
 			{
-				objIter = m_FontObjectList.erase( objIter );
-			}
-			else
-			{
-				++objIter;
+				m_FontObjectList.erase( currentIter );
 			}
 		}
+        
 		//reloop through available systems and lock for render later on
 		if( m_Dynamic2DVertexBuffer )
 		{

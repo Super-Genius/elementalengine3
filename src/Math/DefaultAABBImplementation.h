@@ -42,22 +42,8 @@ private:
 	}
 
 public:
-	static IAABBImplementation* Instance( void )
-	{
-		if ( s_instance == NULL )
-		{
-			s_instance = new CDefaultAABBImplementation();
-		}
-		return s_instance;
-	}
-	static void Destroy( void )
-	{
-		if ( s_instance != NULL )
-		{
-			delete s_instance;
-		}
-		s_instance = NULL;
-	}
+	static IAABBImplementation* Instance( void );    
+	static void Destroy( void );
 	
 	virtual bool IntersectRay( AABB &bb, const Ray &r, float &t0, float &t1);
 	virtual bool IntersectTri( AABB &bb, Vec3& a_V0, Vec3& a_V1, Vec3& a_V2 );

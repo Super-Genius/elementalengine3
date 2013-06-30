@@ -22,10 +22,13 @@ namespace ElementalEngine
 
 class Ray;
 
-class __declspec(novtable) IRayImplementation
+class IRayImplementation
 {
 public:
 
+    /// public virtual destructor
+    virtual ~IRayImplementation() {}
+    
 	/// Return true if this ray intersects a triangle
 	/// \param ray - the ray to compare with
 	/// \param vert0, vert1, vert2 - the 3 vertices of the triangle

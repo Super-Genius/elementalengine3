@@ -24,11 +24,11 @@
 #define _CHIERARCHYMANAGER_HPP_
 
 #include "CManager.h"
-#include "tree.h"
+#include "treegems.h"
 
 using namespace TREEGEMS;
 
-typedef tree<IObject *> OBJECTHIERARCHY;
+typedef treegems<IObject *> OBJECTHIERARCHY;
 typedef map< DWORD, OBJECTHIERARCHY *> NAMESUBTREEMAP;
 
 class ElementalEngine::IVisitor;

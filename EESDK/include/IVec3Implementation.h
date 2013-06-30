@@ -34,9 +34,12 @@ class Matrix3x3;
 ///			interface using MMX and SSE instructions while another
 ///			implementation could use 3DNOW! or wrap another math library.
 ///==========================================================================
-class __declspec(novtable) IVec3Implementation
+class IVec3Implementation
 {
 public:
+    /// public virtual destructor
+    virtual ~IVec3Implementation() {};
+    
 	/// Return true if two Vec3 are equal
 	/// \param a - The first Vec3 to test
 	/// \param b - The second Vec3 to test

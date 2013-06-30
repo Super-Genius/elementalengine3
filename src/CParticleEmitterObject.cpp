@@ -166,7 +166,7 @@ IComponent *CParticleEmitterObject::Create(int nArgs, va_list argptr)
 {
 	IHashString *name;
 	IHashString *parentName;
-	IObject *self;
+	IObject *self = NULL;
 	bool bAddToHier;
 
 	name = va_arg(argptr, IHashString *);
@@ -239,7 +239,7 @@ void CParticleEmitterObject::Serialize(IArchive &ar)
 
 	if ( &ar == NULL )
 	{
-		m_ToolBox->Log(LOGERROR, _T("(%s)ParticleEmitterObject::Serialize - Archive NULL! \"%s\"\n"), this->GetName()->GetString(),	version);
+		m_ToolBox->Log(LOGERROR, _T("(%s)ParticleEmitterObject::Serialize - Archive NULL! \"%s\"\n"), this->GetName()->GetString(),	version.c_str());
 		return;
 	}
 	if (ar.IsReading())
@@ -248,7 +248,7 @@ void CParticleEmitterObject::Serialize(IArchive &ar)
 		ar.Read( version );
 		if ( version != _T("1.0")) // || whatever versions are to follow...
 		{
-			m_ToolBox->Log(LOGERROR, _T("(%s)ParticleEmitterObject::Serialize - Invalid Object Version! \"%s\"\n"), this->GetName()->GetString(),	version);
+			m_ToolBox->Log(LOGERROR, _T("(%s)ParticleEmitterObject::Serialize - Invalid Object Version! \"%s\"\n"), this->GetName()->GetString(), version.c_str());
 			ar.Close();
 			return;
 		}

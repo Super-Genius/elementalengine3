@@ -1,0 +1,134 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		8C46B266177F8170006FF2DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8C46B25B177F8147006FF2DB;
+			remoteInfo = ElementalEngine3;
+		};
+		8CC13B7E177F8306000C2A56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CA43833177E845C00E60641;
+			remoteInfo = EESDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElementalEngine3.xcodeproj; path = ../ElementalEngine3.xcodeproj; sourceTree = "<group>"; };
+		8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EESDK.xcodeproj; path = ../EESDK/EESDK.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		8C46B263177F8170006FF2DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CA43823177E83F900E60641 = {
+			isa = PBXGroup;
+			children = (
+				8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */,
+				8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		8CC13B7B177F8305000C2A56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CC13B7F177F8306000C2A56 /* libEESDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		8CA43824177E83F900E60641 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = 8CA43827177E83F900E60641 /* Build configuration list for PBXProject "TestEERender" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8CA43823177E83F900E60641;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8CC13B7B177F8305000C2A56 /* Products */;
+					ProjectRef = 8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */;
+				},
+				{
+					ProductGroup = 8C46B263177F8170006FF2DB /* Products */;
+					ProjectRef = 8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libElementalEngine3.dylib;
+			remoteRef = 8C46B266177F8170006FF2DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CC13B7F177F8306000C2A56 /* libEESDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEESDK.a;
+			remoteRef = 8CC13B7E177F8306000C2A56 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin XCBuildConfiguration section */
+		8CA43828177E83F900E60641 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		8CA43829177E83F900E60641 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8CA43827177E83F900E60641 /* Build configuration list for PBXProject "TestEERender" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CA43828177E83F900E60641 /* Debug */,
+				8CA43829177E83F900E60641 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8CA43824177E83F900E60641 /* Project object */;
+}

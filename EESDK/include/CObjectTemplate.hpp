@@ -93,7 +93,7 @@ public:
 
 		if (m_Name.GetString() != NULL)
 		{
-			static DWORD msgHash_RemoveObject = CHashString(_T("RemoveObject")).GetUniqueID();
+			DWORD msgHash_RemoveObject = CHashString(_T("RemoveObject")).GetUniqueID();
 			m_ToolBox->SendMessage(msgHash_RemoveObject, sizeof(IHashString*), &m_Name, NULL, NULL);
 		}
 	}

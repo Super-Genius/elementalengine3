@@ -282,14 +282,13 @@ void CToolBox::UnRegisterMessageHandler(DWORD msg, IHashString *msgClass)
 		while (mpmIter != msgPriorityMap->end())
 		{
 			mhTemp = &(mpmIter->second);
+            MSGPRIORITYMAP::iterator curMpmIter = mpmIter++;
 			if (mhTemp->m_ClassName->GetUniqueID() == msgClass->GetUniqueID())
 			{
 				className = mhTemp->m_ClassName;
-				mpmIter = msgPriorityMap->erase(mpmIter);
+				msgPriorityMap->erase(curMpmIter);
 				delete className;
 			}
-			else
-				++mpmIter;
 		}
 	}
 }
@@ -759,7 +758,7 @@ int CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &dllPMap)
 			dllPMap.insert(std::pair<DWORD, HINSTANCE>(priority, dllInstance));
 		}
 
-	    if (!FindNextFile(hFile, &fData))
+	    if (!m_FindFile->FindNextFile(hFile, &fData))
 		{
 	        done = TRUE;
 	    }
@@ -767,7 +766,7 @@ int CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &dllPMap)
 
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
-		if (!FindClose(hFile))
+		if (!m_FindFile->FindClose(hFile))
 		{
 			return GetLastError();
 		}

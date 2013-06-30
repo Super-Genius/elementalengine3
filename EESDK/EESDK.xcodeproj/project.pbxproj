@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C46B21C177E8F45006FF2DB /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C46B21B177E8F45006FF2DB /* Platform.h */; };
 		8CA43854177E871400E60641 /* IEffect.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4384A177E871400E60641 /* IEffect.h */; };
 		8CA43855177E871400E60641 /* IMaterial.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4384B177E871400E60641 /* IMaterial.h */; };
 		8CA43856177E871400E60641 /* IMaterialOverride.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4384C177E871400E60641 /* IMaterialOverride.h */; };
@@ -156,10 +155,10 @@
 		8CA43973177E88AE00E60641 /* TCharPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43945177E88AE00E60641 /* TCharPlatform.h */; };
 		8CA43974177E88AE00E60641 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43946177E88AE00E60641 /* Vec3.h */; };
 		8CA43975177E88AE00E60641 /* Vec4.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43947177E88AE00E60641 /* Vec4.h */; };
+		8CC13D4F177F8B17000C2A56 /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13D4E177F8B17000C2A56 /* Platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8C46B21B177E8F45006FF2DB /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = include/Mac/Platform.h; sourceTree = "<group>"; };
 		8CA43833177E845C00E60641 /* libEESDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEESDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA4384A177E871400E60641 /* IEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IEffect.h; path = include/IEffect.h; sourceTree = "<group>"; };
 		8CA4384B177E871400E60641 /* IMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMaterial.h; path = include/IMaterial.h; sourceTree = "<group>"; };
@@ -309,6 +308,7 @@
 		8CA43945177E88AE00E60641 /* TCharPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCharPlatform.h; path = include/TCharPlatform.h; sourceTree = "<group>"; };
 		8CA43946177E88AE00E60641 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec3.h; path = include/Vec3.h; sourceTree = "<group>"; };
 		8CA43947177E88AE00E60641 /* Vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec4.h; path = include/Vec4.h; sourceTree = "<group>"; };
+		8CC13D4E177F8B17000C2A56 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = include/OSX/Platform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,7 +414,7 @@
 		8CA43847177E868800E60641 /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
-				8C46B21B177E8F45006FF2DB /* Platform.h */,
+				8CC13D4E177F8B17000C2A56 /* Platform.h */,
 				8CA438EB177E880400E60641 /* EEStdStreamBufProxy.h */,
 				8CA4391A177E88AE00E60641 /* dlmalloc.h */,
 				8CA4391B177E88AE00E60641 /* stdafx.h */,
@@ -645,7 +645,7 @@
 				8CA43973177E88AE00E60641 /* TCharPlatform.h in Headers */,
 				8CA43974177E88AE00E60641 /* Vec3.h in Headers */,
 				8CA43975177E88AE00E60641 /* Vec4.h in Headers */,
-				8C46B21C177E8F45006FF2DB /* Platform.h in Headers */,
+				8CC13D4F177F8B17000C2A56 /* Platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +750,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -759,7 +760,7 @@
 					_LIB,
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -788,6 +789,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EE_SDK_EXPORTS,
 					EE_EXPORTING,
@@ -795,6 +797,7 @@
 					_LIB,
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -810,10 +813,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = include/Mac;
+				HEADER_SEARCH_PATHS = include/OSX;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ./lib/OSX/;
 			};
 			name = Debug;
@@ -822,10 +828,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = include/Mac;
+				HEADER_SEARCH_PATHS = include/OSX;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ./lib/OSX/;
 			};
 			name = Release;

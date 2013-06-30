@@ -192,7 +192,7 @@ public:
 		params.renderObjects = &m_ShadowCasterRenderObjects;
 		static CHashString hszLightManager = CHashString( _T("CLightManager") );
 		static DWORD msg_GenerateLightPerspectiveMaps = CHashString( _T("GenerateLightPerspectiveMap") ).GetUniqueID();
-		DWORD retval = EngineGetToolBox()->SendMessage( msg_GenerateLightPerspectiveMaps, sizeof(GENERATELIGHTPERSPECTIVEMAPPARAMS), &params, NULL, &hszLightManager );
+		EngineGetToolBox()->SendMessage( msg_GenerateLightPerspectiveMaps, sizeof(GENERATELIGHTPERSPECTIVEMAPPARAMS), &params, NULL, &hszLightManager );
 
 		// reset object scene shader flags
 		iter = m_ShadowCasterRenderObjects.begin();
@@ -463,7 +463,7 @@ private:
 
 	IBaseTextureObject * GetValidShadowMap( size_t index )
 	{
-		if( index >= 0 && index < m_ShadowMaps.size() )
+		if (index < m_ShadowMaps.size() )
 		{
 			return m_ShadowMaps[ index ].texture;
 		}

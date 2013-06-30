@@ -37,6 +37,7 @@ static char THIS_FILE[] = __FILE__;
 #ifndef _LPCBYTE_DEFINED
 #define _LPCBYTE_DEFINED
 typedef const BYTE *LPCBYTE;
+typedef BYTE *LPBYTE;
 #endif
 
 using namespace xmlpp;

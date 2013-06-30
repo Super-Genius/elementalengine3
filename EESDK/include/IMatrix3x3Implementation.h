@@ -30,9 +30,13 @@ class Matrix3x3;
 /// \class	IMatrix3x3Implementation
 /// \brief	
 ///==========================================================================
-class __declspec(novtable) IMatrix3x3Implementation
+class IMatrix3x3Implementation
 {
 public:
+    
+    /// public virtual destructor
+    virtual ~IMatrix3x3Implementation() {}
+    
 	/// Set the Matrix3x3 with individual values
 	virtual void Set( Matrix3x3& matrix,
 					  float m00, float m01, float m02, 

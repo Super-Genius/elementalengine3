@@ -23,9 +23,12 @@ namespace ElementalEngine
 class AABB;
 
 /// IAABBImplementation
-class __declspec(novtable) IAABBImplementation
+class IAABBImplementation
 {	
 public:
+    /// public virtual destructor
+    virtual ~IAABBImplementation() { }
+    
 	/// Intersects a ray with an AABB
 	/// \param bb - AABB Bounding Box
 	/// \param Ray - ray to use for colliding

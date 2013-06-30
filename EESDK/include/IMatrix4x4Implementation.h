@@ -28,9 +28,13 @@ namespace ElementalEngine
 /// \class	IMatrix4x4Implementation
 /// \brief	
 ///==========================================================================
-class __declspec(novtable) IMatrix4x4Implementation
+class IMatrix4x4Implementation
 {
 public:
+    
+    /// public virtual destructor
+    virtual ~IMatrix4x4Implementation() { }
+
 	virtual void Set( Matrix4x4& matrix, float m00, float m01, float m02, float m03,
 										 float m10, float m11, float m12, float m23,
 										 float m20, float m21, float m22, float m13,

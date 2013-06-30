@@ -101,7 +101,7 @@ public:
 	/// \brief Gets the base sort class which implements IRenderObject::IsLessThan()
 	/// child classes must not re-implement IsLessThan() if they return the BaseSortClass hash!!
 	/// typically, each render object has a IsLessThan() and returns a unique BaseSortClass
-	virtual IHashString * GetBaseSortClass(){ return GetComponentType(); }
+	virtual IHashString * GetBaseSortClass(){ return this->GetComponentType(); }
 
 	/// \brief finds out if this object has alpha
 	/// and needs to be put in the alpha queue
@@ -123,7 +123,7 @@ public:
 	/// this should be called by the children to check if it's of this type
 	virtual bool IsKindOf( IHashString * compType )
 	{
-		return (compType->GetUniqueID() == GetComponentType()->GetUniqueID());
+		return (compType->GetUniqueID() == this->GetComponentType()->GetUniqueID());
 	}
 
 	/// \brief GetBoundingBox default implementation
@@ -153,7 +153,7 @@ template<class baseClass>
 CRenderObject<baseClass>::~CRenderObject()
 {
 	//remove from quad tree or any other manager that uses updateboundingbox params
-	RemoveBoundingObject();
+	this->RemoveBoundingObject();
 
 	DeInit();
 }

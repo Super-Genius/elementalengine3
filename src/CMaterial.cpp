@@ -163,7 +163,7 @@ void CMaterial::SetTextures( UINT pass, float timeDelta )
 void CMaterial::SetRenderStates( UINT pass )
 {
 	//Set texture stage states and render states
-	if( pass >= 0 && pass < m_SamplerStates.size() )
+	if(pass < m_SamplerStates.size() )
 	{
 		UINT i = 0;
 		for( ; i < m_SamplerStates[ pass ].size(); i++ )
@@ -740,17 +740,17 @@ void CMaterial::VerifyMaterialWithEffect( void )
 		::ShaderVariable &ref = iter->second;
 		CHashString hashName( m_ToolBox->GetHashString( ref.uid ) );
 		bool pixelshader;
+        ::SHADERVAR_MAP::iterator currentIter = iter++;
 		if( m_pEffect->GetConstantInformation( &hashName, ref.uregister, ref.type, pixelshader ) != false )
 		{
 			ref.shaderType = (pixelshader) ? PIXEL_SHADER_TYPE : VERTEX_SHADER_TYPE;
 			GetShaderCallback( ref.uid );
-			++iter;
 		}
 		else
 		{
 			// variable doesn't have a valid register, remove it from the var map
 			m_ToolBox->Log( LOGWARNING, _T("Material contained old constant NOT in the Effect: %s in %s\n"), hashName.GetString(), GetName()->GetString() );
-			iter = m_VarMap.erase(iter);
+			m_VarMap.erase(currentIter);
 		}
 	}
 
@@ -790,17 +790,17 @@ void CMaterial::VerifyMaterialWithTemplate( void )
 		::ShaderVariable &ref = iter->second;
 		CHashString hashName( m_ToolBox->GetHashString( ref.uid ) );
 		bool pixelshader;
+        ::SHADERVAR_MAP::iterator currentIter = iter++;
 		if( m_pMatTemplate->GetConstantInformation( &hashName, ref.uregister, ref.type, pixelshader ) != false )
 		{
 			ref.shaderType = (pixelshader) ? PIXEL_SHADER_TYPE : VERTEX_SHADER_TYPE;
 			GetShaderCallback( ref.uid );
-			++iter;
 		}
 		else
 		{
 			// variable doesn't have a valid register, remove it from the var map
 			m_ToolBox->Log( LOGWARNING, _T("Material contained old constant NOT in the MaterialTemplate: %s in %s\n"), hashName.GetString(), GetName()->GetString());
-			iter = m_VarMap.erase(iter);
+			m_VarMap.erase(currentIter);
 		}
 	}
 

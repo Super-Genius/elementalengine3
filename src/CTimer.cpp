@@ -73,7 +73,7 @@ float CTimer::GetRealTime()
 		ticks = (UINT64)GetTickCount();
 
 	// Divide by frequency to get the time in seconds
-	time = (float)(INT64)ticks/(float)(INT64)_ticksPerSecond;
+	time = (float)(UINT64)ticks/(float)(INT64)_ticksPerSecond;
 	return time;
 }
 
