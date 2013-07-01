@@ -8,6 +8,9 @@
 
 #include "CPluginLoader.h"
 
+#include <mach-o/dyld.h>
+#include <dlfcn.h>
+
 namespace ElementalEngine
 {
 
@@ -18,43 +21,53 @@ IPluginLoader *GetPluginLoader()
 
 int CPluginLoader::LoadPlugin(TCHAR *pathName, HINSTANCE *outInstance, DWORD *priority)
 {
-#if 0
+    
 	if ((pathName == NULL) || (outInstance == NULL) || (priority == NULL))
 	{
 		return ERROR_INVALID_PARAMETER;
 	}
 
-
 	GETDLLVERSION GetDLLVersion;
 	GETPRIORITY GetPriority;
 	DWORD version;
 	TCHAR Mess[2048];
-	HINSTANCE dllHandle;
+	void *dllHandle;
+    
+    // should be converted to TCHAR
+    TCHAR *exePath = NULL;
+    uint32_t bufSize = 0;
+    
+    _NSGetExecutablePath(exePath, &bufSize);
 
+    exePath = (char *)malloc((bufSize + _tcsclen(pathName) + 2) * sizeof(TCHAR));
+    
+    if (_NSGetExecutablePath(exePath, &bufSize) != 0)
+    {
+        _stprintf( Mess, _T("Error Loading DLL:%s\nCannot get executable path\n"), pathName);
+		EngineGetToolBox()->Log( LOGERROR, Mess );
+    }
+
+    _tcscat(exePath, "/");
+    // conversion of buffer if TCHAR = wchar_t type should be done here.
+    _tcscat(exePath, pathName);
+    
 	// try loading the dll
-	dllHandle = LoadLibrary(pathName);
+	dllHandle = dlopen(exePath, RTLD_LAZY);
 	if (dllHandle == NULL)
 	{
-		LPVOID lpMsgBuf = _T("");
-		DWORD lastErr = GetLastError();
-
-		FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | 
-				FORMAT_MESSAGE_IGNORE_INSERTS, NULL, lastErr, 
-				MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-				(LPTSTR) &lpMsgBuf, 0, NULL);
-		_stprintf( Mess, _T("Error Loading DLL:%s\n%s\n"), pathName, lpMsgBuf);
+		_stprintf( Mess, _T("Error Loading DLL:%s\n%s\n"), pathName, dlerror());
 		EngineGetToolBox()->Log( LOGERROR, Mess );
-		return lastErr;
+		return ERROR_INVALID_FUNCTION;
 	}
 
 	// get version function
-	GetDLLVersion = (GETDLLVERSION)GetProcAddress(dllHandle, _T("GetDLLVersion"));
+	GetDLLVersion = (GETDLLVERSION)dlsym(dllHandle, _T("GetDLLVersion"));
 	if (GetDLLVersion == NULL)
 	{
 		_stprintf( Mess, _T("Unable to load %s\n"
 			"Unable to locate version function.\n"), pathName);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
-		FreeLibrary(dllHandle);
+		dlclose(dllHandle);
 		*outInstance = NULL;
 		return ERROR_INVALID_FUNCTION;
 	}
@@ -65,21 +78,21 @@ int CPluginLoader::LoadPlugin(TCHAR *pathName, HINSTANCE *outInstance, DWORD *pr
 	if (version != (INTERFACEDLLVERSION & ~1))
 	{
 		_stprintf( Mess, _T("Unable to load %s\n"
-			"version %x doesn't match expected %x.\n"), pathName, version, INTERFACEDLLVERSION);
+			"version %x doesn't match expected %x.\n"), pathName, (unsigned int)version, INTERFACEDLLVERSION);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
-		FreeLibrary(dllHandle);
+		dlclose(dllHandle);
 		*outInstance = NULL;
 		return ERROR_INVALID_FUNCTION;
 	}
 
 	// get the priority function
-	GetPriority = (GETPRIORITY)GetProcAddress(dllHandle, _T("GetPriority"));
+	GetPriority = (GETPRIORITY)dlsym(dllHandle, _T("GetPriority"));
 	if (GetPriority == NULL)
 	{
 		_stprintf( Mess, _T("Unable to load %s\n"
 				"GetPriority routine failed.\n"), pathName);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
-		FreeLibrary(dllHandle);
+		dlclose(dllHandle);
 		*outInstance = NULL;
 		return ERROR_INVALID_FUNCTION;
 	}
@@ -87,30 +100,26 @@ int CPluginLoader::LoadPlugin(TCHAR *pathName, HINSTANCE *outInstance, DWORD *pr
 	*outInstance = dllHandle;
 	*priority = (*GetPriority)();
 
-#endif
-
 	return ERROR_SUCCESS;
 }
 
 int CPluginLoader::UnloadPlugin(HINSTANCE instance)
 {
-#if 0
 	TCHAR Mess[2048];
 
 	// get the DeInit function
-	DEINITDLL DeinitDLL = (DEINITDLL)GetProcAddress(instance, _T("DeinitDLL"));
+	DEINITDLL DeinitDLL = (DEINITDLL)dlsym(instance, _T("DeinitDLL"));
 	if (DeinitDLL == NULL)
 	{
 		_stprintf( Mess, _T("Unable to deinit DLL for handle %d\n"
-			"DEinitDLL routine failed.\n"), instance);
+			"DEinitDLL routine failed.\n"), (int)instance);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
-		return ERROR_INVALID_FUNCTION;	
+		return ERROR_INVALID_FUNCTION;
 	}
 
 	(*DeinitDLL)();
 
-	FreeLibrary(instance);
-#endif
+	dlclose(instance);
 
 	return ERROR_SUCCESS;
 
@@ -118,21 +127,20 @@ int CPluginLoader::UnloadPlugin(HINSTANCE instance)
 
 int CPluginLoader::InitPlugin(HINSTANCE instance)
 {
-#if 0
+
 	TCHAR Mess[2048];
 
 	// get the init function
-	INITDLL initDLL = (INITDLL)GetProcAddress(instance, _T("InitDLL"));
+	INITDLL initDLL = (INITDLL)dlsym(instance, _T("InitDLL"));
 	if (initDLL == NULL)
 	{
 		_stprintf( Mess, _T("Unable to init DLL for handle %d\n"
-			"InitDLL routine failed.\n"), instance);
+			"InitDLL routine failed.\n"), (int)instance);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
 		return ERROR_INVALID_FUNCTION;	
 	}
 
 	(*initDLL)();
-#endif
     
 	return ERROR_SUCCESS;
 }

@@ -709,7 +709,7 @@ void CToolBox::SetErrorValue(DWORD value)
 // Get the system wide error value in string form
 const TCHAR *CToolBox::GetErrorString(DWORD value)
 {
-	static TCHAR *unKnownStr = _T("Unknown");
+	static const TCHAR *unKnownStr = _T("Unknown");
 	return unKnownStr;
 }
 
@@ -741,8 +741,9 @@ int CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &dllPMap)
 
 	hFile = m_FindFile->FindFirstFile(searchPath, &fData);
 	done = (hFile == INVALID_HANDLE_VALUE);
+    
+    int retVal = ERROR_SUCCESS;
 
-	int libraryCount = 0;
 	while (!done)
 	{ 
 		TCHAR dllName[MAX_PATH];
@@ -753,18 +754,22 @@ int CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &dllPMap)
 #ifdef _DEBUG
 		Log(LOGINFORMATION, _T("Loading %s plugin...\n"), dllName);
 #endif
-		if (!LoadPlugin(dllName, &dllInstance, &priority))
+        retVal = LoadPlugin(dllName, &dllInstance, &priority);
+		if (!retVal)
 		{
 			dllPMap.insert(std::pair<DWORD, HINSTANCE>(priority, dllInstance));
-		}
-
-	    if (!m_FindFile->FindNextFile(hFile, &fData))
-		{
-	        done = TRUE;
-	    }
+            if (!m_FindFile->FindNextFile(hFile, &fData))
+            {
+                done = TRUE;
+            }
+        }
+        else
+        {
+            done = TRUE;
+        }
 	}
 
-	if (hFile == INVALID_HANDLE_VALUE)
+	if (hFile != INVALID_HANDLE_VALUE)
 	{
 		if (!m_FindFile->FindClose(hFile))
 		{
@@ -772,7 +777,7 @@ int CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &dllPMap)
 		}
 	}
 
-	return ERROR_SUCCESS;
+	return retVal;
 }
 
 int CToolBox::InitPlugins(DLLPRIORITYMAP &dllPMap)

@@ -249,14 +249,6 @@ public:
 	virtual ITimer* GetTimer() = 0;
 };
 
-#ifndef _LIB
-#ifdef EE_EXPORTING
-   #define ELEMENTAL_DECLSPEC __declspec(dllexport)
-#else
-   #define ELEMENTAL_DECLSPEC __declspec(dllimport)
-#endif
-#endif
-
 /// Get the global toolbox that houses singletons and interfaces
 #ifdef _LIB
 IToolBox *EngineGetToolBox();

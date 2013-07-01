@@ -738,7 +738,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -760,16 +760,17 @@
 					_LIB,
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYMROOT = ../SDK/lib/OSX/;
+				SYMROOT = ../SDK/lib/OSX32;
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
@@ -777,7 +778,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -797,45 +798,49 @@
 					_LIB,
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYMROOT = ../SDK/lib/OSX/;
+				SYMROOT = ../SDK/lib/OSX32;
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};
 		8CA43838177E845C00E60641 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = include/OSX;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SYMROOT = ./lib/OSX/;
+				SYMROOT = ./lib/OSX32;
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
 		8CA43839177E845C00E60641 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = include/OSX;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SYMROOT = ./lib/OSX/;
+				SYMROOT = ./lib/OSX32;
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};

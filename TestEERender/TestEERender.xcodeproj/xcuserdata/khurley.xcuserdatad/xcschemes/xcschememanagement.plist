@@ -4,15 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ElementalEngine3.xcscheme</key>
+		<key>TestEERender.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8C46B25A177F8147006FF2DB</key>
+		<key>8CB502D71780C9D7006F3E6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8CB503091780ED47006F3E6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

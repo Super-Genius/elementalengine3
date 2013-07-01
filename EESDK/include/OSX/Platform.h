@@ -15,6 +15,9 @@
 using namespace __gnu_cxx;
 #endif
 
+#define ELEMENTAL_DECLSPEC
+#define ELEMENTAL_DECLSPEC_IMPORT
+#define ELEMENTAL_DECLSPEC_EXPORT
 
 #define HAVE_STDINT_H
 
@@ -77,7 +80,7 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #define _tcsnicmp strncasecmp
 #define _tcsicmp strcasecmp
 
-#define INVALID_HANDLE_VALUE -1
+#define INVALID_HANDLE_VALUE (NULL)
 
 //GCC have no support for novtable
 #define PEXCEPTION_POINTERS void*
@@ -95,28 +98,30 @@ typedef struct stat STATSTRUCT;
 #define FALSE  0
 #endif
 
-#define HMODULE DWORD
-#define HANDLE DWORD
-#define HWND  DWORD
-#define HINSTANCE DWORD
+typedef void * HMODULE;
+typedef void * HANDLE;
+typedef void * HWND;
+typedef void * HINSTANCE;
 #define CONST const
 #define __forceinline __inline
 #define QueryPerformanceFrequency GetMachineFrequencyTPS
 #define QueryPerformanceCounter GetTimeInNsSinceCPUStart
-#define MAX_PATH 260
+#define MAX_PATH 4096
 #define _MAX_DRIVE 3
-#define _MAX_DIR 256
-#define _MAX_FNAME 256
-#define _MAX_EXT 256
+#define _MAX_DIR MAX_PATH
+#define _MAX_FNAME MAX_PATH
+#define _MAX_EXT MAX_PATH
 #define _MAX_PATH MAX_PATH
-
 
 typedef struct _FIND_DATA
 {
-    TCHAR cFileName[MAX_PATH];
+    TCHAR cFileName[MAX_PATH+1];
 } FIND_DATA;
 
 #define ERROR_SUCCESS 0
+#define ERROR_INVALID_FUNCTION -1
+#define ERROR_INVALID_PARAMETER -2
+
 #define GetLastError() errno
 
 #define EE_ENDIANSWAP32( i ) (i)

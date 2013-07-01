@@ -38,9 +38,9 @@ typedef void (*DEINITDLL)();
 #endif // #ifndef _DLLVERSION_H_
 
 #ifdef DLLIMPORTING
-extern "C" __declspec(dllimport) DWORD CDECL GetDLLVersion();
+extern "C" ELEMENTAL_DECLSPEC_IMPORT DWORD CDECL GetDLLVersion();
 #else
-extern "C" __declspec(dllexport) DWORD CDECL GetDLLVersion();
+extern "C" ELEMENTAL_DECLSPEC_EXPORT DWORD CDECL GetDLLVersion();
 #endif
 
 

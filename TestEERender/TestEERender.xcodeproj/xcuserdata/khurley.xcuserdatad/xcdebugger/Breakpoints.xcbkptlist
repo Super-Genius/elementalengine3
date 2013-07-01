@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "1.0">
+   <FileBreakpoints>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.c"
+         timestampString = "394329839.443891"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "127"
+         endingLineNumber = "127"
+         landmarkName = "main()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394347201.52918"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../src/CToolBox.cpp"
+         timestampString = "394350417.097128"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "742"
+         endingLineNumber = "742"
+         landmarkName = "CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &amp;dllPMap)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../src/Platform/OSX/CPluginLoader.cpp"
+         timestampString = "394351131.16066"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "CPluginLoader::LoadPlugin(TCHAR *pathName, HINSTANCE *outInstance, DWORD *priority)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../src/Platform/OSX/CPluginLoader.cpp"
+         timestampString = "394351484.123599"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
+         landmarkName = "CPluginLoader::LoadPlugin(TCHAR *pathName, HINSTANCE *outInstance, DWORD *priority)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../src/CToolBox.cpp"
+         timestampString = "394352048.641837"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "758"
+         endingLineNumber = "758"
+         landmarkName = "CToolBox::LoadPlugins(const TCHAR *searchPath, DLLPRIORITYMAP &amp;dllPMap)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394352570.939538"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+   </FileBreakpoints>
+</Bucket>

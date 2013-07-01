@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C6515E6178109280056F798 /* treegems.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6515E5178109280056F798 /* treegems.h */; };
 		8C7D18C3177FEE4300D97CAE /* StaticLibSymbols.gen in Sources */ = {isa = PBXBuildFile; fileRef = 8CC13D50177FE448000C2A56 /* StaticLibSymbols.gen */; };
 		8CC13BDB177F842D000C2A56 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CC13B8C177F842C000C2A56 /* base64.cpp */; };
 		8CC13BDC177F842D000C2A56 /* C2DLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CC13B8D177F842C000C2A56 /* C2DLine.cpp */; };
@@ -181,7 +182,6 @@
 		8CC13D39177F8503000C2A56 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13CBD177F8503000C2A56 /* StaticLibSymbols.h */; };
 		8CC13D3A177F8503000C2A56 /* StdAfx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13CBE177F8503000C2A56 /* StdAfx.h */; };
 		8CC13D3B177F8503000C2A56 /* StreamFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13CBF177F8503000C2A56 /* StreamFactory.hpp */; };
-		8CC13D3C177F8503000C2A56 /* tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13CC0177F8503000C2A56 /* tree.h */; };
 		8CC13D3D177F8503000C2A56 /* Typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13CC1177F8503000C2A56 /* Typedef.h */; };
 		8CC13D46177F85BA000C2A56 /* CFindFiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CC13D44177F85BA000C2A56 /* CFindFiles.cpp */; };
 		8CC13D47177F85BA000C2A56 /* CPluginLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CC13D45177F85BA000C2A56 /* CPluginLoader.cpp */; };
@@ -207,6 +207,7 @@
 
 /* Begin PBXFileReference section */
 		8C46B25B177F8147006FF2DB /* libElementalEngine3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libElementalEngine3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C6515E5178109280056F798 /* treegems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = treegems.h; path = src/treegems.h; sourceTree = "<group>"; };
 		8CC13B8C177F842C000C2A56 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = base64.cpp; path = src/base64.cpp; sourceTree = "<group>"; };
 		8CC13B8D177F842C000C2A56 /* C2DLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = C2DLine.cpp; path = src/C2DLine.cpp; sourceTree = "<group>"; };
 		8CC13B8E177F842C000C2A56 /* CAnimatedTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CAnimatedTexture.cpp; path = src/CAnimatedTexture.cpp; sourceTree = "<group>"; };
@@ -380,7 +381,6 @@
 		8CC13CBD177F8503000C2A56 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticLibSymbols.h; path = src/StaticLibSymbols.h; sourceTree = "<group>"; };
 		8CC13CBE177F8503000C2A56 /* StdAfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdAfx.h; path = src/StdAfx.h; sourceTree = "<group>"; };
 		8CC13CBF177F8503000C2A56 /* StreamFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StreamFactory.hpp; path = src/StreamFactory.hpp; sourceTree = "<group>"; };
-		8CC13CC0177F8503000C2A56 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = src/tree.h; sourceTree = "<group>"; };
 		8CC13CC1177F8503000C2A56 /* Typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Typedef.h; path = src/Typedef.h; sourceTree = "<group>"; };
 		8CC13D44177F85BA000C2A56 /* CFindFiles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFindFiles.cpp; path = src/Platform/OSX/CFindFiles.cpp; sourceTree = "<group>"; };
 		8CC13D45177F85BA000C2A56 /* CPluginLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CPluginLoader.cpp; path = src/Platform/OSX/CPluginLoader.cpp; sourceTree = "<group>"; };
@@ -504,6 +504,7 @@
 		8CC13B8B177F83BB000C2A56 /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
+				8C6515E5178109280056F798 /* treegems.h */,
 				8CC13D48177F86A8000C2A56 /* CFindFiles.h */,
 				8CC13D49177F86A8000C2A56 /* CPluginLoader.h */,
 				8CC13C45177F8503000C2A56 /* base64.h */,
@@ -584,7 +585,6 @@
 				8CC13CBD177F8503000C2A56 /* StaticLibSymbols.h */,
 				8CC13CBE177F8503000C2A56 /* StdAfx.h */,
 				8CC13CBF177F8503000C2A56 /* StreamFactory.hpp */,
-				8CC13CC0177F8503000C2A56 /* tree.h */,
 				8CC13CC1177F8503000C2A56 /* Typedef.h */,
 			);
 			name = "Header Files";
@@ -736,10 +736,10 @@
 				8CC13D39177F8503000C2A56 /* StaticLibSymbols.h in Headers */,
 				8CC13D3A177F8503000C2A56 /* StdAfx.h in Headers */,
 				8CC13D3B177F8503000C2A56 /* StreamFactory.hpp in Headers */,
-				8CC13D3C177F8503000C2A56 /* tree.h in Headers */,
 				8CC13D3D177F8503000C2A56 /* Typedef.h in Headers */,
 				8CC13D4A177F86A8000C2A56 /* CFindFiles.h in Headers */,
 				8CC13D4B177F86A8000C2A56 /* CPluginLoader.h in Headers */,
+				8C6515E6178109280056F798 /* treegems.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,7 +891,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -903,6 +903,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -924,10 +925,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYMROOT = EESDK/Lib/OSX;
+				SYMROOT = EESDK/Lib/OSX32;
 			};
 			name = Debug;
 		};
@@ -935,7 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -947,6 +948,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					EE_EXPORTING,
@@ -964,9 +966,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYMROOT = EESDK/Lib/OSX;
+				SYMROOT = EESDK/Lib/OSX32;
 			};
 			name = Release;
 		};
@@ -974,15 +977,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = ./;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EESDK/lib/OSX/$(CONFIGURATION)\"",
-					"../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)",
 				);
-				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)/LibXML++.dylib";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)/LibXML++.dylib";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = EESDK/Lib/OSX32;
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
@@ -990,15 +996,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = ./;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EESDK/lib/OSX/$(CONFIGURATION)\"",
-					"../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)",
 				);
-				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)/LibXML++.dylib";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)/LibXML++.dylib";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = EESDK/Lib/OSX32;
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};

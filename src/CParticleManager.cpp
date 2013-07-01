@@ -893,7 +893,7 @@ DWORD CParticleManager::OnReloadAllParticles( DWORD size, void *params)
 	static CHashString hszParticleRenderObject(_T("CParticleRenderObject"));
 	IDTOOBJECTMAP * objMap = GetObjectMap(&hszParticleRenderObject);
 	IDTOOBJECTMAP::iterator ntomIter;
-	for (ntomIter = objMap->begin(); ntomIter != objMap->end(); ++ntomIter);
+	for (ntomIter = objMap->begin(); ntomIter != objMap->end(); ++ntomIter)
 	{
 		IObject *particleObj;
 		particleObj = ntomIter->second;

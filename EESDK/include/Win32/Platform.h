@@ -11,6 +11,17 @@
 #include <assert.h>
 #include <direct.h>
 
+#ifndef _LIB
+#define ELEMENTAL_DECLSPEC_IMPORT __declspec(dllimport)
+#define ELEMENTAL_DECLSPEC_EXPORT __declspec(dllexport)
+#ifdef EE_EXPORTING
+   #define ELEMENTAL_DECLSPEC __declspec(dllexport)
+#else
+   #define ELEMENTAL_DECLSPEC __declspec(dllimport)
+#endif
+
+#endif
+
 #ifdef _DEBUG
 // This define must occur before any headers are included.
 #include <crtdbg.h>

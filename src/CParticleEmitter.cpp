@@ -73,7 +73,7 @@ IComponent *CParticleEmitter::Create(int nArgs, va_list argptr)
 {
 	IHashString *name;
 	IHashString *parentName;
-	IObject *self;
+	IObject *self = NULL;
 	bool bAddToHier;
 
 	name = va_arg(argptr, IHashString *);
