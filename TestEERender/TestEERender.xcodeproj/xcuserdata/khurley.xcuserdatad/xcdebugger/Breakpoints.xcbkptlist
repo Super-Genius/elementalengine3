@@ -20,19 +20,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "TestEERenderOSX.cpp"
-         timestampString = "394347201.52918"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
-         landmarkName = "main( int argc, char * argv[] )"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../src/CToolBox.cpp"
          timestampString = "394350417.097128"
          startingColumnNumber = "9223372036854775807"
@@ -69,7 +56,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../src/CToolBox.cpp"
@@ -82,17 +69,108 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394784878.125132"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "173"
+         endingLineNumber = "173"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394784878.125132"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestEERenderOSX.cpp"
-         timestampString = "394352570.939538"
+         timestampString = "394784461.271905"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "main( int argc, char * argv[] )"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394784509.750792"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394784548.809072"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394784816.59264"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
+         landmarkName = "CGLRenderer::OnGetRendererInterface( DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../EESDK/include/Register.h"
+         timestampString = "394784927.734845"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "146"
+         endingLineNumber = "146"
+         landmarkName = "CRegisterMessage(const TCHAR *className, MESSAGEHANDLERINFO *msgInfo)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394785479.811059"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
+         landmarkName = "REGISTER_MESSAGE_HANDLER(GetRendererInterface, OnGetRendererInterface, CGLRenderer)"
+         landmarkType = "6">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

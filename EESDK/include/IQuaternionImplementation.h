@@ -4,7 +4,7 @@
 /// \date	3\16\2005
 /// \author	Kyle Swaim
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -13,8 +13,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///==========================================================================
 
 #ifndef	IQUATERNIONIMPL_H__
@@ -88,7 +88,7 @@ public:
 	virtual float DotProduct(const Quaternion& a, const Quaternion& b) const = 0;
 	/// Normalize a given Quaternion.
 	/// \param quat - Quaternion to normalize
-	virtual void Normalize(Quaternion& quat) = 0;
+	virtual Quaternion& Normalize(Quaternion& quat) = 0;
 	/// Convert a Quaternion to a Matrix4x4
 	/// \param	quat - Quaternion to convert
 	/// \return The converted Matrix4x4

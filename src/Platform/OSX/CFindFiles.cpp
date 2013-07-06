@@ -110,7 +110,7 @@ HANDLE CFindFiles::FindFirstFile(const TCHAR *filename, FIND_DATA *FindFileData)
     
     if (handle != NULL)
     {
-        if (!FindNextFile(handle, FindFileData))
+        if (FindNextFile(handle, FindFileData))
         {
             return handle;
         }
@@ -123,7 +123,7 @@ HANDLE CFindFiles::FindFirstFile(const TCHAR *filename, FIND_DATA *FindFileData)
 
 BOOL CFindFiles::FindNextFile(HANDLE hFindFile, FIND_DATA *FindFileData)
 {
-	BOOL ok = TRUE;
+	BOOL ok = true;
     //struct dirent *findData;
 	
 	while (ok)
@@ -138,11 +138,11 @@ BOOL CFindFiles::FindNextFile(HANDLE hFindFile, FIND_DATA *FindFileData)
 			//STATSTRUCT Stat;
             unsigned int maxCopy = min(strlen(DirEntry->d_name) + 1, PATH_MAX);
 			strncpy((char *)FindFileData->cFileName, DirEntry->d_name, maxCopy);
-            return FALSE;
+            return true;
 		}
 	}
     
-	return TRUE;
+	return false;
 }
 
 BOOL CFindFiles::FindClose(HANDLE hFindFile)

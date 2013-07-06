@@ -35,6 +35,20 @@ unsigned int GetDisplayHeight()
 	return (unsigned int)CGDisplayPixelsHigh( kCGDirectMainDisplay );
 }
 
+unsigned int GetDisplayBPP()
+{
+    unsigned int bpp;
+    CFDictionaryRef desktopVideoMode = CGDisplayCurrentMode( kCGDirectMainDisplay );
+    if( !CFNumberGetValue( (CFNumberRef)CFDictionaryGetValue( desktopVideoMode, kCGDisplayBitsPerPixel ),
+                         kCFNumberIntType,
+                         &bpp ) )
+    {
+        return 32;
+    }
+    
+    return bpp;
+}
+
 void HideMouseCursor()
 {
 	CGDisplayHideCursor( kCGNullDirectDisplay );
@@ -152,6 +166,10 @@ int main( int argc, char * argv[] )
         SelectWindow( mainWindow );
     }
 
+    gRenderer = GetRendererInterface();
+    
+    gRenderer->Initialize(mainWindow, false, DisplayWidth, DisplayHeight, 24, GetDisplayBPP());
+    
     RunApplicationEventLoop();
     
     DisposeWindow( (WindowPtr) mainWindow );

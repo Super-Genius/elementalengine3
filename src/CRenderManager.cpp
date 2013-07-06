@@ -274,8 +274,8 @@ DWORD CRenderManager::OnCreateRenderContext(DWORD size, void *params)
 {
 	if( !m_IRenderer )
 	{
-		static CHashString DX9RendererName("CDX9Renderer");
-		m_IRenderer = dynamic_cast< IRenderer* > ( m_ToolBox->CreateComponent( &DX9RendererName, 0) );
+		static CHashString GLRendererName("CGLRenderer");
+		m_IRenderer = dynamic_cast< IRenderer* > ( m_ToolBox->CreateComponent( &GLRendererName, 0) );
 		assert( m_IRenderer );
 	}
 

@@ -52,7 +52,7 @@ int CPluginLoader::LoadPlugin(TCHAR *pathName, HINSTANCE *outInstance, DWORD *pr
     _tcscat(exePath, pathName);
     
 	// try loading the dll
-	dllHandle = dlopen(exePath, RTLD_LAZY);
+	dllHandle = dlopen(exePath, RTLD_NOW);
 	if (dllHandle == NULL)
 	{
 		_stprintf( Mess, _T("Error Loading DLL:%s\n%s\n"), pathName, dlerror());

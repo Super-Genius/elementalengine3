@@ -981,7 +981,7 @@
 				INSTALL_PATH = ./;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/EESDK/lib/OSX/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/EESDK/lib/OSX32/$(CONFIGURATION)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)/LibXML++.dylib";
@@ -1000,7 +1000,7 @@
 				INSTALL_PATH = ./;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/EESDK/lib/OSX/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/EESDK/lib/OSX32/$(CONFIGURATION)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)/LibXML++.dylib";

@@ -19,6 +19,9 @@ using namespace __gnu_cxx;
 #define ELEMENTAL_DECLSPEC_IMPORT
 #define ELEMENTAL_DECLSPEC_EXPORT
 
+
+#define APIENTRY __stdcall
+
 #define HAVE_STDINT_H
 
 //Missing typedefs for MAC

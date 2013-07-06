@@ -4,7 +4,7 @@
 /// \date	08/02/2006
 /// \author	Kyle Swaim
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -13,8 +13,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///==========================================================================
 
 #ifndef MATRIX4X4_H__

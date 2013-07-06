@@ -3,7 +3,7 @@
 /// \brief	
 /// \date	08/10/2005
 /// \author	Brian Bazyk
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -12,8 +12,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 
 ///==========================================================================
 
@@ -185,7 +185,7 @@ float CDefaultVec4Implementation::Dot(const Vec4& a, const Vec4& b) const
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w));
 }
 
-void CDefaultVec4Implementation::Normalize(Vec4 &v) const
+Vec4& CDefaultVec4Implementation::Normalize(Vec4 &v) const
 {
 	float length = Length(v);
 	if( length != 0.0f )
@@ -196,4 +196,6 @@ void CDefaultVec4Implementation::Normalize(Vec4 &v) const
 		v.z *= length;
 		v.w *= length;
 	}
+    
+    return v;
 }

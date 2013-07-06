@@ -1,7 +1,7 @@
 ///============================================================================
 /// \file	CTextureManager.cpp
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -10,8 +10,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================
 
 #include "Stdafx.h"
@@ -226,7 +226,7 @@ DWORD CTextureManager::OnAddTexture(DWORD size, void *params)
 					//check extension
 					if( _tcsstr( hashFile.GetString(), ".hdr" )!= NULL ) 
 					{
-						static CHashString texName(_T("CDX9TextureObject"));
+						static CHashString texName(_T("CGLTextureObject"));
 						currentTexture = (ITextureObject*)CreateTextureObject( &hashFile,  &texName);
 						assert( currentTexture );
 						currentTexture->SetTextureName( &hashFile );
@@ -248,8 +248,8 @@ DWORD CTextureManager::OnAddTexture(DWORD size, void *params)
 				// and gets around the bug in DevIL on small mip levels of textures
 				if( !currentTexture )
 				{
-					static CHashString DX9TexObj(_T("CDX9TextureObject"));
-					currentTexture = CreateTextureObject( &hashFile, &DX9TexObj);
+					static CHashString GLTexObj(_T("CGLTextureObject"));
+					currentTexture = CreateTextureObject( &hashFile, &GLTexObj);
 					currentTexture->SetTextureName( &hashFile );
 					if (!currentTexture->LoadFromFile( hashFile.GetString() ))
 					{
@@ -306,7 +306,7 @@ DWORD CTextureManager::OnCreateCubeTexture( DWORD size, void * params )
 	//look for it
 	if( texObjParams->Name != NULL )
 	{		
-		static CHashString DXCubeTexObj(_T("CDX9CubeTextureObject")); 
+		static CHashString DXCubeTexObj(_T("CGLCubeTextureObject")); 
 		currentTexture = dynamic_cast< ICubeTextureObject* >(CreateTextureObject( texObjParams->Name, &DXCubeTexObj));
 		assert( currentTexture );
 		currentTexture->SetTextureName( texObjParams->Name );
@@ -356,7 +356,7 @@ DWORD CTextureManager::OnCreateTexture(DWORD size, void *params)
 	if (!currentTexture)
 	{
 		//new texture
-		CHashString hszComponentType(_T("CDX9TextureObject"));
+		CHashString hszComponentType(_T("CGLTextureObject"));
 		currentTexture = dynamic_cast< ITextureObject* >(CreateTextureObject( texObjParams->Name, &hszComponentType ));
 		// add to internal list
 		m_TextureNameMap[texObjParams->Name->GetUniqueID()] = currentTexture;
@@ -513,8 +513,8 @@ IBaseTextureObject * CTextureManager::LoadCubeDDSTexture( IHashString* name )
 		FileArchive->Close();
 		if( IsDDSCubeMap( header ) )
 		{
-			static CHashString DX9CubeTexObj(_T("CDX9CubeTextureObject")); 
-			pTexture = CreateTextureObject( name, &DX9CubeTexObj);
+			static CHashString GLCubeTexObj(_T("CGLCubeTextureObject")); 
+			pTexture = CreateTextureObject( name, &GLCubeTexObj);
 			pTexture->LoadFromFile( name->GetString() );
 		}
 	}

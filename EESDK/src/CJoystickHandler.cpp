@@ -3,7 +3,7 @@
 /// \brief		Implementation file for Generic Joystick class
 /// \date		04-01-2008
 /// \author		Richard Nguyen
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -12,8 +12,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================
 
 #include "stdafx.h"
@@ -193,7 +193,7 @@ void CJoystickHandler::RunKeyBinding( int iDeviceID, int iKeyID, float fValue, i
 					{
 						if( iEvent == KEYBIND_PRESSED )
 						{
-							keybind.tickCount = GetTickCount();
+							keybind.tickCount = (DWORD)GetTickCount();
 						}
 						else if( iEvent == KEYBIND_RELEASED )
 						{
@@ -218,7 +218,7 @@ void CJoystickHandler::RunRepeatKeyBinding( int iDeviceID, int iKeyID, float fVa
 			if( itrKeyBind != itrDeviceKeyBinds->second.end() )
 			{
 				JOYSTICKKEYBIND &keybind = itrKeyBind->second;
-				DWORD tickCount = GetTickCount();
+				DWORD tickCount = (DWORD)GetTickCount();
 
 				if( (keybind.bRepeat == true) && ( KEYREPEAT_FREQUENCY < (tickCount - keybind.tickCount) ) )
 				{

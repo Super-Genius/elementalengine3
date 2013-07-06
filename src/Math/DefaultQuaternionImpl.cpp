@@ -3,7 +3,7 @@
 /// \brief	
 /// \date	08/03/2006
 /// \author	Kyle Swaim & Joshua Dudley
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -12,8 +12,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 
 ///==========================================================================
 
@@ -137,18 +137,20 @@ float CDefaultQuaternionImplementation::DotProduct(const Quaternion& a, const Qu
 	return ( (a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w) );
 }
 
-void CDefaultQuaternionImplementation::Normalize(Quaternion& quat)
+Quaternion& CDefaultQuaternionImplementation::Normalize(Quaternion& quat)
 {
 	float n = quat.x*quat.x + quat.y*quat.y + quat.z*quat.z + quat.w*quat.w;
 		
 	if (n == 1)
-		return; 
+		return quat;
 
 	n = 1.0f / sqrtf(n);
 	quat.x *= n;
 	quat.y *= n;
 	quat.z *= n;
 	quat.w *= n;
+    
+    return quat;
 }
 
 void CDefaultQuaternionImplementation::GetMatrix(const Quaternion& quat, Matrix4x4& out) const

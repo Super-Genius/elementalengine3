@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C236E61178605A4008EA1C7 /* CGLCubeTextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E43178605A4008EA1C7 /* CGLCubeTextureObject.h */; };
+		8C236E66178605A4008EA1C7 /* CGLPixelShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E48178605A4008EA1C7 /* CGLPixelShader.cpp */; };
+		8C236E67178605A4008EA1C7 /* CGLPixelShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E49178605A4008EA1C7 /* CGLPixelShader.h */; };
+		8C236E69178605A4008EA1C7 /* CGLIndexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E4B178605A4008EA1C7 /* CGLIndexBuffer.h */; };
+		8C236E6D178605A4008EA1C7 /* CGLRenderContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E4F178605A4008EA1C7 /* CGLRenderContext.h */; };
+		8C236E6F178605A4008EA1C7 /* CGLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E51178605A4008EA1C7 /* CGLRenderer.h */; };
+		8C236E72178605A4008EA1C7 /* CGLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E54178605A4008EA1C7 /* CGLShader.cpp */; };
+		8C236E73178605A4008EA1C7 /* CGLShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E55178605A4008EA1C7 /* CGLShader.h */; };
+		8C236E74178605A4008EA1C7 /* CGLShaderCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E56178605A4008EA1C7 /* CGLShaderCommon.cpp */; };
+		8C236E75178605A4008EA1C7 /* CGLShaderCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E57178605A4008EA1C7 /* CGLShaderCommon.h */; };
+		8C236E76178605A4008EA1C7 /* CGLTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E58178605A4008EA1C7 /* CGLTextureObject.cpp */; };
+		8C236E77178605A4008EA1C7 /* CGLTextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E59178605A4008EA1C7 /* CGLTextureObject.h */; };
+		8C236E78178605A4008EA1C7 /* CGLVertexBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E5A178605A4008EA1C7 /* CGLVertexBufferObject.cpp */; };
+		8C236E79178605A4008EA1C7 /* CGLVertexBufferObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E5B178605A4008EA1C7 /* CGLVertexBufferObject.h */; };
+		8C236E7A178605A4008EA1C7 /* CGLVertexShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E5C178605A4008EA1C7 /* CGLVertexShader.cpp */; };
+		8C236E7B178605A4008EA1C7 /* CGLVertexShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E5D178605A4008EA1C7 /* CGLVertexShader.h */; };
+		8C236E861786089B008EA1C7 /* GLUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E801786089B008EA1C7 /* GLUtilities.cpp */; };
+		8C236E871786089B008EA1C7 /* GLRendererDLL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E811786089B008EA1C7 /* GLRendererDLL.cpp */; };
+		8C236E8A1786089B008EA1C7 /* StaticLibSymbols.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E841786089B008EA1C7 /* StaticLibSymbols.cpp */; };
+		8C236E8B1786089B008EA1C7 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C236E851786089B008EA1C7 /* stdafx.cpp */; };
+		8C236E92178608B1008EA1C7 /* GLPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E8C178608B1008EA1C7 /* GLPlatform.h */; };
+		8C236E96178608B1008EA1C7 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E90178608B1008EA1C7 /* StaticLibSymbols.h */; };
+		8C236E97178608B1008EA1C7 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E91178608B1008EA1C7 /* stdafx.h */; };
+		8CDD7CE517877BB4006219B7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD7CE417877BB4006219B7 /* OpenGL.framework */; };
+		8CDD7CE717877BE2006219B7 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD7CE617877BE2006219B7 /* libEESDK.a */; };
+		8CDD7CE917877CC5006219B7 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */; };
+		8CDD7CEC17877D22006219B7 /* CGLRenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD7CEA17877D22006219B7 /* CGLRenderContext.cpp */; };
+		8CDD7CED17877D22006219B7 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDD7CEB17877D22006219B7 /* Config.h */; };
+		8CDD7CEF17877DAB006219B7 /* CGLIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD7CEE17877DAB006219B7 /* CGLIndexBuffer.cpp */; };
+		8CDD7CF117879441006219B7 /* CGLCubeTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD7CF017879441006219B7 /* CGLCubeTextureObject.cpp */; };
+		8CDD7CF31787991C006219B7 /* CGLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD7CF21787991C006219B7 /* CGLRenderer.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		8C236EA017861616008EA1C7 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.gen";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"${INPUT_FILE_DIR}/StaticLibSymbols.cpp",
+				"${INPUT_FILE_DIR}/StaticLibSymbols.h",
+			);
+			script = "/usr/bin/python \"./GenerateStaticLibSymbols/GenerateStaticLibSymbols.py\" ${INPUT_FILE_DIR} ${INPUT_FILE_BASE}";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		8C236E351785F6B4008EA1C7 /* GLRenderer.dlo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = GLRenderer.dlo; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C236E43178605A4008EA1C7 /* CGLCubeTextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLCubeTextureObject.h; sourceTree = "<group>"; };
+		8C236E48178605A4008EA1C7 /* CGLPixelShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLPixelShader.cpp; sourceTree = "<group>"; };
+		8C236E49178605A4008EA1C7 /* CGLPixelShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLPixelShader.h; sourceTree = "<group>"; };
+		8C236E4B178605A4008EA1C7 /* CGLIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLIndexBuffer.h; sourceTree = "<group>"; };
+		8C236E4F178605A4008EA1C7 /* CGLRenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLRenderContext.h; sourceTree = "<group>"; };
+		8C236E51178605A4008EA1C7 /* CGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLRenderer.h; sourceTree = "<group>"; };
+		8C236E54178605A4008EA1C7 /* CGLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLShader.cpp; sourceTree = "<group>"; };
+		8C236E55178605A4008EA1C7 /* CGLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLShader.h; sourceTree = "<group>"; };
+		8C236E56178605A4008EA1C7 /* CGLShaderCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLShaderCommon.cpp; sourceTree = "<group>"; };
+		8C236E57178605A4008EA1C7 /* CGLShaderCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLShaderCommon.h; sourceTree = "<group>"; };
+		8C236E58178605A4008EA1C7 /* CGLTextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLTextureObject.cpp; sourceTree = "<group>"; };
+		8C236E59178605A4008EA1C7 /* CGLTextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLTextureObject.h; sourceTree = "<group>"; };
+		8C236E5A178605A4008EA1C7 /* CGLVertexBufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLVertexBufferObject.cpp; sourceTree = "<group>"; };
+		8C236E5B178605A4008EA1C7 /* CGLVertexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLVertexBufferObject.h; sourceTree = "<group>"; };
+		8C236E5C178605A4008EA1C7 /* CGLVertexShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLVertexShader.cpp; sourceTree = "<group>"; };
+		8C236E5D178605A4008EA1C7 /* CGLVertexShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLVertexShader.h; sourceTree = "<group>"; };
+		8C236E801786089B008EA1C7 /* GLUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLUtilities.cpp; sourceTree = "<group>"; };
+		8C236E811786089B008EA1C7 /* GLRendererDLL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRendererDLL.cpp; sourceTree = "<group>"; };
+		8C236E841786089B008EA1C7 /* StaticLibSymbols.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticLibSymbols.cpp; sourceTree = "<group>"; };
+		8C236E851786089B008EA1C7 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		8C236E8C178608B1008EA1C7 /* GLPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLPlatform.h; sourceTree = "<group>"; };
+		8C236E90178608B1008EA1C7 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibSymbols.h; sourceTree = "<group>"; };
+		8C236E91178608B1008EA1C7 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		8C236E9B178614E2008EA1C7 /* StaticLibSymbols.gen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StaticLibSymbols.gen; sourceTree = "<group>"; };
+		8CDD7CE417877BB4006219B7 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		8CDD7CE617877BE2006219B7 /* libEESDK.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libEESDK.a; path = ../../../EESDK/./lib/OSX32/Release/libEESDK.a; sourceTree = "<group>"; };
+		8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX32/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
+		8CDD7CEA17877D22006219B7 /* CGLRenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLRenderContext.cpp; sourceTree = "<group>"; };
+		8CDD7CEB17877D22006219B7 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		8CDD7CEE17877DAB006219B7 /* CGLIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLIndexBuffer.cpp; sourceTree = "<group>"; };
+		8CDD7CF017879441006219B7 /* CGLCubeTextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLCubeTextureObject.cpp; sourceTree = "<group>"; };
+		8CDD7CF21787991C006219B7 /* CGLRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLRenderer.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C236E321785F6B4008EA1C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDD7CE917877CC5006219B7 /* libElementalEngine3.dylib in Frameworks */,
+				8CDD7CE717877BE2006219B7 /* libEESDK.a in Frameworks */,
+				8CDD7CE517877BB4006219B7 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C236E2C1785F6B4008EA1C7 = {
+			isa = PBXGroup;
+			children = (
+				8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */,
+				8CDD7CE617877BE2006219B7 /* libEESDK.a */,
+				8CDD7CE417877BB4006219B7 /* OpenGL.framework */,
+				8C236E7F178605BD008EA1C7 /* Header */,
+				8C236E7E178605A8008EA1C7 /* Source */,
+				8C236E361785F6B4008EA1C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C236E361785F6B4008EA1C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C236E351785F6B4008EA1C7 /* GLRenderer.dlo */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C236E7E178605A8008EA1C7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8CDD7CF21787991C006219B7 /* CGLRenderer.cpp */,
+				8CDD7CF017879441006219B7 /* CGLCubeTextureObject.cpp */,
+				8CDD7CEE17877DAB006219B7 /* CGLIndexBuffer.cpp */,
+				8CDD7CEA17877D22006219B7 /* CGLRenderContext.cpp */,
+				8C236E9B178614E2008EA1C7 /* StaticLibSymbols.gen */,
+				8C236E801786089B008EA1C7 /* GLUtilities.cpp */,
+				8C236E811786089B008EA1C7 /* GLRendererDLL.cpp */,
+				8C236E841786089B008EA1C7 /* StaticLibSymbols.cpp */,
+				8C236E851786089B008EA1C7 /* stdafx.cpp */,
+				8C236E48178605A4008EA1C7 /* CGLPixelShader.cpp */,
+				8C236E54178605A4008EA1C7 /* CGLShader.cpp */,
+				8C236E56178605A4008EA1C7 /* CGLShaderCommon.cpp */,
+				8C236E58178605A4008EA1C7 /* CGLTextureObject.cpp */,
+				8C236E5A178605A4008EA1C7 /* CGLVertexBufferObject.cpp */,
+				8C236E5C178605A4008EA1C7 /* CGLVertexShader.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		8C236E7F178605BD008EA1C7 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				8CDD7CEB17877D22006219B7 /* Config.h */,
+				8C236E8C178608B1008EA1C7 /* GLPlatform.h */,
+				8C236E90178608B1008EA1C7 /* StaticLibSymbols.h */,
+				8C236E91178608B1008EA1C7 /* stdafx.h */,
+				8C236E43178605A4008EA1C7 /* CGLCubeTextureObject.h */,
+				8C236E49178605A4008EA1C7 /* CGLPixelShader.h */,
+				8C236E4B178605A4008EA1C7 /* CGLIndexBuffer.h */,
+				8C236E4F178605A4008EA1C7 /* CGLRenderContext.h */,
+				8C236E51178605A4008EA1C7 /* CGLRenderer.h */,
+				8C236E55178605A4008EA1C7 /* CGLShader.h */,
+				8C236E57178605A4008EA1C7 /* CGLShaderCommon.h */,
+				8C236E59178605A4008EA1C7 /* CGLTextureObject.h */,
+				8C236E5B178605A4008EA1C7 /* CGLVertexBufferObject.h */,
+				8C236E5D178605A4008EA1C7 /* CGLVertexShader.h */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8C236E331785F6B4008EA1C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C236E61178605A4008EA1C7 /* CGLCubeTextureObject.h in Headers */,
+				8C236E67178605A4008EA1C7 /* CGLPixelShader.h in Headers */,
+				8C236E69178605A4008EA1C7 /* CGLIndexBuffer.h in Headers */,
+				8C236E6D178605A4008EA1C7 /* CGLRenderContext.h in Headers */,
+				8C236E6F178605A4008EA1C7 /* CGLRenderer.h in Headers */,
+				8C236E73178605A4008EA1C7 /* CGLShader.h in Headers */,
+				8C236E75178605A4008EA1C7 /* CGLShaderCommon.h in Headers */,
+				8C236E77178605A4008EA1C7 /* CGLTextureObject.h in Headers */,
+				8C236E79178605A4008EA1C7 /* CGLVertexBufferObject.h in Headers */,
+				8C236E7B178605A4008EA1C7 /* CGLVertexShader.h in Headers */,
+				8C236E92178608B1008EA1C7 /* GLPlatform.h in Headers */,
+				8C236E96178608B1008EA1C7 /* StaticLibSymbols.h in Headers */,
+				8C236E97178608B1008EA1C7 /* stdafx.h in Headers */,
+				8CDD7CED17877D22006219B7 /* Config.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8C236E341785F6B4008EA1C7 /* GLRenderer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C236E391785F6B4008EA1C7 /* Build configuration list for PBXNativeTarget "GLRenderer" */;
+			buildPhases = (
+				8C236E311785F6B4008EA1C7 /* Sources */,
+				8C236E321785F6B4008EA1C7 /* Frameworks */,
+				8C236E331785F6B4008EA1C7 /* Headers */,
+			);
+			buildRules = (
+				8C236EA017861616008EA1C7 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = GLRenderer;
+			productName = GLRenderer;
+			productReference = 8C236E351785F6B4008EA1C7 /* GLRenderer.dlo */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C236E2D1785F6B4008EA1C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Social Systems Technology";
+			};
+			buildConfigurationList = 8C236E301785F6B4008EA1C7 /* Build configuration list for PBXProject "GLRenderer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8C236E2C1785F6B4008EA1C7;
+			productRefGroup = 8C236E361785F6B4008EA1C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C236E341785F6B4008EA1C7 /* GLRenderer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C236E311785F6B4008EA1C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C236E66178605A4008EA1C7 /* CGLPixelShader.cpp in Sources */,
+				8C236E72178605A4008EA1C7 /* CGLShader.cpp in Sources */,
+				8C236E74178605A4008EA1C7 /* CGLShaderCommon.cpp in Sources */,
+				8C236E76178605A4008EA1C7 /* CGLTextureObject.cpp in Sources */,
+				8C236E78178605A4008EA1C7 /* CGLVertexBufferObject.cpp in Sources */,
+				8C236E7A178605A4008EA1C7 /* CGLVertexShader.cpp in Sources */,
+				8C236E861786089B008EA1C7 /* GLUtilities.cpp in Sources */,
+				8C236E871786089B008EA1C7 /* GLRendererDLL.cpp in Sources */,
+				8C236E8A1786089B008EA1C7 /* StaticLibSymbols.cpp in Sources */,
+				8C236E8B1786089B008EA1C7 /* stdafx.cpp in Sources */,
+				8CDD7CEC17877D22006219B7 /* CGLRenderContext.cpp in Sources */,
+				8CDD7CEF17877DAB006219B7 /* CGLIndexBuffer.cpp in Sources */,
+				8CDD7CF117879441006219B7 /* CGLCubeTextureObject.cpp in Sources */,
+				8CDD7CF31787991C006219B7 /* CGLRenderer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8C236E371785F6B4008EA1C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8C236E381785F6B4008EA1C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8C236E3A1785F6B4008EA1C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				EXECUTABLE_EXTENSION = dlo;
+				EXECUTABLE_PREFIX = "";
+				HEADER_SEARCH_PATHS = (
+					../../include,
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+				);
+				INSTALL_PATH = ./;
+				LIBRARY_SEARCH_PATHS = (
+					"../../../EESDK/Lib/OSX32/$(CONFIGURATION)",
+					"\"$(SRCROOT)/../../../EESDK/Lib/OSX32/Debug\"",
+				);
+				OBJROOT = build;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYMROOT = ../../bin/OSX32;
+				VALID_ARCHS = i386;
+			};
+			name = Debug;
+		};
+		8C236E3B1785F6B4008EA1C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				EXECUTABLE_EXTENSION = dlo;
+				EXECUTABLE_PREFIX = "";
+				HEADER_SEARCH_PATHS = (
+					../../include,
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+				);
+				INSTALL_PATH = ./;
+				LIBRARY_SEARCH_PATHS = (
+					"../../../EESDK/Lib/OSX32/$(CONFIGURATION)",
+					"\"$(SRCROOT)/../../../EESDK/Lib/OSX32/Debug\"",
+				);
+				OBJROOT = build;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYMROOT = ../../bin/OSX32;
+				VALID_ARCHS = i386;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C236E301785F6B4008EA1C7 /* Build configuration list for PBXProject "GLRenderer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C236E371785F6B4008EA1C7 /* Debug */,
+				8C236E381785F6B4008EA1C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C236E391785F6B4008EA1C7 /* Build configuration list for PBXNativeTarget "GLRenderer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C236E3A1785F6B4008EA1C7 /* Debug */,
+				8C236E3B1785F6B4008EA1C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C236E2D1785F6B4008EA1C7 /* Project object */;
+}

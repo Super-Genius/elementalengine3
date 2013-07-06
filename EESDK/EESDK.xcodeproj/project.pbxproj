@@ -130,7 +130,6 @@
 		8CA43959177E88AE00E60641 /* EEMemory.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4392B177E88AE00E60641 /* EEMemory.h */; };
 		8CA4395A177E88AE00E60641 /* EESDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4392C177E88AE00E60641 /* EESDK.h */; };
 		8CA4395B177E88AE00E60641 /* EEStdStreamProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4392D177E88AE00E60641 /* EEStdStreamProxy.h */; };
-		8CA4395C177E88AE00E60641 /* EnumHashStringMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4392E177E88AE00E60641 /* EnumHashStringMap.h */; };
 		8CA4395D177E88AE00E60641 /* EulerAngle.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA4392F177E88AE00E60641 /* EulerAngle.h */; };
 		8CA4395E177E88AE00E60641 /* ExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43930177E88AE00E60641 /* ExceptionHandler.h */; };
 		8CA4395F177E88AE00E60641 /* FilePath.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43931177E88AE00E60641 /* FilePath.h */; };
@@ -156,6 +155,8 @@
 		8CA43974177E88AE00E60641 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43946177E88AE00E60641 /* Vec3.h */; };
 		8CA43975177E88AE00E60641 /* Vec4.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA43947177E88AE00E60641 /* Vec4.h */; };
 		8CC13D4F177F8B17000C2A56 /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC13D4E177F8B17000C2A56 /* Platform.h */; };
+		8CDD7CE21787778E006219B7 /* EnumMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDD7CE01787778E006219B7 /* EnumMap.h */; };
+		8CDD7CE31787778E006219B7 /* IFindFiles.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDD7CE11787778E006219B7 /* IFindFiles.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -283,7 +284,6 @@
 		8CA4392B177E88AE00E60641 /* EEMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEMemory.h; path = include/EEMemory.h; sourceTree = "<group>"; };
 		8CA4392C177E88AE00E60641 /* EESDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EESDK.h; path = include/EESDK.h; sourceTree = "<group>"; };
 		8CA4392D177E88AE00E60641 /* EEStdStreamProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEStdStreamProxy.h; path = include/EEStdStreamProxy.h; sourceTree = "<group>"; };
-		8CA4392E177E88AE00E60641 /* EnumHashStringMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnumHashStringMap.h; path = include/EnumHashStringMap.h; sourceTree = "<group>"; };
 		8CA4392F177E88AE00E60641 /* EulerAngle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EulerAngle.h; path = include/EulerAngle.h; sourceTree = "<group>"; };
 		8CA43930177E88AE00E60641 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExceptionHandler.h; path = include/ExceptionHandler.h; sourceTree = "<group>"; };
 		8CA43931177E88AE00E60641 /* FilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilePath.h; path = include/FilePath.h; sourceTree = "<group>"; };
@@ -309,6 +309,8 @@
 		8CA43946177E88AE00E60641 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec3.h; path = include/Vec3.h; sourceTree = "<group>"; };
 		8CA43947177E88AE00E60641 /* Vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec4.h; path = include/Vec4.h; sourceTree = "<group>"; };
 		8CC13D4E177F8B17000C2A56 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = include/OSX/Platform.h; sourceTree = "<group>"; };
+		8CDD7CE01787778E006219B7 /* EnumMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnumMap.h; path = include/EnumMap.h; sourceTree = "<group>"; };
+		8CDD7CE11787778E006219B7 /* IFindFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFindFiles.h; path = include/IFindFiles.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 		8CA43846177E868000E60641 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				8CDD7CE11787778E006219B7 /* IFindFiles.h */,
 				8CA4385E177E87B600E60641 /* CObjectTemplate.hpp */,
 				8CA4385F177E87B600E60641 /* CParticleObject.h */,
 				8CA43860177E87B600E60641 /* CSceneObject.h */,
@@ -414,6 +417,7 @@
 		8CA43847177E868800E60641 /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
+				8CDD7CE01787778E006219B7 /* EnumMap.h */,
 				8CC13D4E177F8B17000C2A56 /* Platform.h */,
 				8CA438EB177E880400E60641 /* EEStdStreamBufProxy.h */,
 				8CA4391A177E88AE00E60641 /* dlmalloc.h */,
@@ -436,7 +440,6 @@
 				8CA4392B177E88AE00E60641 /* EEMemory.h */,
 				8CA4392C177E88AE00E60641 /* EESDK.h */,
 				8CA4392D177E88AE00E60641 /* EEStdStreamProxy.h */,
-				8CA4392E177E88AE00E60641 /* EnumHashStringMap.h */,
 				8CA4392F177E88AE00E60641 /* EulerAngle.h */,
 				8CA43930177E88AE00E60641 /* ExceptionHandler.h */,
 				8CA43931177E88AE00E60641 /* FilePath.h */,
@@ -620,7 +623,6 @@
 				8CA43959177E88AE00E60641 /* EEMemory.h in Headers */,
 				8CA4395A177E88AE00E60641 /* EESDK.h in Headers */,
 				8CA4395B177E88AE00E60641 /* EEStdStreamProxy.h in Headers */,
-				8CA4395C177E88AE00E60641 /* EnumHashStringMap.h in Headers */,
 				8CA4395D177E88AE00E60641 /* EulerAngle.h in Headers */,
 				8CA4395E177E88AE00E60641 /* ExceptionHandler.h in Headers */,
 				8CA4395F177E88AE00E60641 /* FilePath.h in Headers */,
@@ -646,6 +648,8 @@
 				8CA43974177E88AE00E60641 /* Vec3.h in Headers */,
 				8CA43975177E88AE00E60641 /* Vec4.h in Headers */,
 				8CC13D4F177F8B17000C2A56 /* Platform.h in Headers */,
+				8CDD7CE21787778E006219B7 /* EnumMap.h in Headers */,
+				8CDD7CE31787778E006219B7 /* IFindFiles.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

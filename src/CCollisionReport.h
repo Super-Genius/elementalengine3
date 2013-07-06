@@ -4,7 +4,7 @@
 ///			Only for use with physics
 /// \date	8-30-2005
 /// \author	Kyle Swaim
-/// \note	Copyright (c) 2005 Signature Devices, Inc.
+/// \note	Copyright (c) 2005 Social Systems Technology, Inc.
 ///============================================================================
 
 #ifndef CCOLLISIONREPORT_H

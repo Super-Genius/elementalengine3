@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */; };
 		8C6515EA178144240056F798 /* libElementalEngine3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
 		8CB503121780ED91006F3E6F /* TestEERenderOSX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */; };
 		8CB503141780F8CF006F3E6F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB503131780F8CF006F3E6F /* Carbon.framework */; };
 		8CB503161780F8D5006F3E6F /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB503151780F8D5006F3E6F /* AGL.framework */; };
 		8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
+		8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC13B7F177F8306000C2A56 /* libEESDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8C236E401785F6B5008EA1C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8C236E351785F6B4008EA1C7;
+			remoteInfo = GLRenderer;
+		};
+		8C236E9817861435008EA1C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C236E341785F6B4008EA1C7;
+			remoteInfo = GLRenderer;
+		};
 		8C46B266177F8170006FF2DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */;
@@ -46,6 +62,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8C236E9E178615D9008EA1C7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Plugins;
+			dstSubfolderSpec = 16;
+			files = (
+				8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CB503081780ED47006F3E6F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -59,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GLRenderer.xcodeproj; path = ../Plugins2/Engine/GLRenderer/GLRenderer.xcodeproj; sourceTree = "<group>"; };
 		8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElementalEngine3.xcodeproj; path = ../ElementalEngine3.xcodeproj; sourceTree = "<group>"; };
 		8CB5030A1780ED47006F3E6F /* TestEERender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEERender; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestEERenderOSX.cpp; sourceTree = "<group>"; };
@@ -72,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */,
 				8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */,
 				8CB503161780F8D5006F3E6F /* AGL.framework in Frameworks */,
 				8CB503141780F8CF006F3E6F /* Carbon.framework in Frameworks */,
@@ -81,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C236E3D1785F6B4008EA1C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8C46B263177F8170006FF2DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +128,7 @@
 		8CA43823177E83F900E60641 = {
 			isa = PBXGroup;
 			children = (
+				8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */,
 				8CB503151780F8D5006F3E6F /* AGL.framework */,
 				8CB503131780F8CF006F3E6F /* Carbon.framework */,
 				8CB503101780ED68006F3E6F /* Header Files */,
@@ -136,10 +173,12 @@
 				8CB503071780ED47006F3E6F /* Frameworks */,
 				8CB503081780ED47006F3E6F /* CopyFiles */,
 				8C6515F717814C820056F798 /* ShellScript */,
+				8C236E9E178615D9008EA1C7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8C236E9917861435008EA1C7 /* PBXTargetDependency */,
 				8CB5031B1781033B006F3E6F /* PBXTargetDependency */,
 				8CB5031D1781033B006F3E6F /* PBXTargetDependency */,
 			);
@@ -175,6 +214,10 @@
 					ProductGroup = 8C46B263177F8170006FF2DB /* Products */;
 					ProjectRef = 8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */;
 				},
+				{
+					ProductGroup = 8C236E3D1785F6B4008EA1C7 /* Products */;
+					ProjectRef = 8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -184,6 +227,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = GLRenderer.dlo;
+			remoteRef = 8C236E401785F6B5008EA1C7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -230,6 +280,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8C236E9917861435008EA1C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GLRenderer;
+			targetProxy = 8C236E9817861435008EA1C7 /* PBXContainerItemProxy */;
+		};
 		8CB5031B1781033B006F3E6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = EESDK;
@@ -293,8 +348,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/Debug\"",
-					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/Release\"",
+					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
@@ -328,8 +382,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/Debug\"",
-					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/Release\"",
+					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;

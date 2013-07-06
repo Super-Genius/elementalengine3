@@ -3,9 +3,9 @@
 /// \brief		Header file for tool box interface 
 /// \date		2-16-2005
 /// \author		Kenneth Hurley
-/// \note		Copyright (c) 2004 Signature Devices, Inc.
+/// \note		Copyright (c) 2004 Social Systems Technology, Inc.
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -14,8 +14,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================
 
 #ifndef ITOOLBOX_H

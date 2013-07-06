@@ -1,7 +1,7 @@
 ///============================================================================
 /// \file	CFontManager.cpp
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -10,8 +10,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================ 
 
 #include "Stdafx.h"
@@ -252,7 +252,7 @@ DWORD CFontManager::OnGetFontPixWidth(DWORD size, void *param)
 {
 	VERIFY_MESSAGE_SIZE(size, sizeof(FONTPIXWIDTHQUERY));
 	FONTPIXWIDTHQUERY *fpwq = (FONTPIXWIDTHQUERY*) param;
-	//TODO: fpwq->iWidth = EE_CDX9Font::GetFontPixWidth(CHashString(fpwq->szFilename), fpwq->iFontsize, fpwq->szText);
+	//TODO: fpwq->iWidth = EE_CGLFont::GetFontPixWidth(CHashString(fpwq->szFilename), fpwq->iFontsize, fpwq->szText);
 	if (m_FontImplementation)
 	{
 		fpwq->iWidth = m_FontImplementation->GetFontPixWidth(fpwq->szFilename, fpwq->iFontsize, fpwq->szText);

@@ -14,7 +14,7 @@
 ///============================================================================
 
 #include "stdafx.h"
-#include "EnumHashStringMap.h"
+#include "EnumMap.h"
 
 #ifdef WIN32
 D3DFORMAT EEDX9FormatFromColorBits( UINT &colorbits, bool bTiled )
@@ -95,7 +95,7 @@ bool EEDX9IsCompressedFormat( D3DFORMAT format )
 }
 #endif//WIN32
 
-const EnumHashStringMap<D3DFORMAT> textureTypes = EnumHashStringMap<D3DFORMAT>
+const EnumMap<D3DFORMAT> textureTypes = EnumMap<D3DFORMAT>
 	( CHashString(_T("DXT1")).GetUniqueID(), D3DFMT_DXT1 )
 	( CHashString(_T("DXT2")).GetUniqueID(), D3DFMT_DXT2 )
 	( CHashString(_T("DXT3")).GetUniqueID(), D3DFMT_DXT3 )
@@ -160,7 +160,7 @@ const EnumHashStringMap<D3DFORMAT> textureTypes = EnumHashStringMap<D3DFORMAT>
 D3DFORMAT EEDX9FormatFromString( IHashString *hszFormat )
 {
 	D3DFORMAT format = D3DFMT_UNKNOWN;
-	EnumHashStringMap<D3DFORMAT>::const_iterator ehsmIter = textureTypes.find(hszFormat->GetUniqueID());
+	EnumMap<D3DFORMAT>::const_iterator ehsmIter = textureTypes.find(hszFormat->GetUniqueID());
 	if (ehsmIter != textureTypes.end())
 	{
 		format = ehsmIter->second;

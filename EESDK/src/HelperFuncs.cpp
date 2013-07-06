@@ -7,7 +7,7 @@ static DWORD getRIID = CHashString(_T("GetRendererInterface")).GetUniqueID();
 
 IRenderer *GetRendererInterface()
 {
-	IRenderer *theRenderer;
+	IRenderer *theRenderer = NULL;
 	EngineGetToolBox()->SendMessage(getRIID, sizeof(IRenderer *), &theRenderer);
 	return theRenderer;
 }

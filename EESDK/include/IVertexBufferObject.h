@@ -1,7 +1,7 @@
 ///============================================================================
 /// \file	IVertexBufferObject.h
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -10,8 +10,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================ 
 
 #ifndef IVERTEXBUFFEROBJECT_H
@@ -31,8 +31,12 @@ struct VertexBufferDescriptor
 	}
 };
 
-#define VBO_LOCK_DISCARD		1
-#define VBO_LOCK_NOOVERWRITE	2
+// enum is not convienent with bit flag settings
+#define VBO_FLAGS_WRITE_ONLY    0
+#define VBO_LOCK_DISCARD        1
+#define VBO_LOCK_NOOVERWRITE    2
+#define VBO_FLAGS_READ_WRITE    4
+#define VBO_FLAGS_READ_ONLY     8
 
 /// IVertexBufferObject
 /// interface for vertex buffers

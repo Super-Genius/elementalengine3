@@ -4,7 +4,7 @@
 /// \date	3\16\2005
 /// \author	Kyle Swaim
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (C) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -13,8 +13,8 @@
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
+///			code; If not, write to Social Systems Technology, Inc.,
+///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///==========================================================================
 
 #ifndef	IVEC3IMPLEMENTATION_H
@@ -150,8 +150,8 @@ public:
 	virtual void Invert(Vec3& vec) = 0;
 	/// Normalize a given vector.
 	/// \param v - vector to normalize
-	/// \return The length of the given vector before normalizing
-	virtual void Normalize(Vec3 &v) const = 0;
+	/// \return The reference to self vector before normalizing
+	virtual Vec3& Normalize(Vec3 &v) const = 0;
 	/// Rotates a vector about the global x axis
 	/// \param v - vector to rotate
 	/// \param degRotation - degrees to rotate	
