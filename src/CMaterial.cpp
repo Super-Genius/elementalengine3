@@ -20,7 +20,7 @@
 
 #define PIXEL_SHADER_TYPE 0
 #define VERTEX_SHADER_TYPE 1
-const TCHAR * DEFAULT_TEXTURE = _T("Textures\\default.dds");
+const TCHAR * DEFAULT_TEXTURE = _T("Textures/default.dds");
 REGISTER_COMPONENT(CMaterial);
 
 /// IMaterial functions

@@ -217,7 +217,7 @@ void Update()
 	gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
 	gRenderer->EndScene();
 	gRenderer->Present(gRenderContext);
-
+	
 	static DWORD iPreviousTickCount = GetTickCount();
 	DWORD iCurrentTickCount = GetTickCount();
 	DWORD iDeltaTickCount = iCurrentTickCount - iPreviousTickCount;

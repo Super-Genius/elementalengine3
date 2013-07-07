@@ -357,7 +357,7 @@ DWORD CTextureManager::OnCreateTexture(DWORD size, void *params)
 		currentTexture = dynamic_cast< ITextureObject* >(GetTexture( texObjParams->Name ));
 	}
 
-	if (!currentTexture)
+	if (currentTexture == NULL)
 	{
 		//new texture
 		CHashString hszComponentType(_T("CTextureObject"));
@@ -366,29 +366,32 @@ DWORD CTextureManager::OnCreateTexture(DWORD size, void *params)
 		m_TextureNameMap[texObjParams->Name->GetUniqueID()] = currentTexture;
 	}
 
-	if( texObjParams->bRenderTargetTexture == RENDER_TARGET_NONE )
-	{
-		bResult = currentTexture->MakeBlankTexture( texObjParams->sizeX, texObjParams->sizeY, 
-			texObjParams->bitDepth, texObjParams->Format, texObjParams->numMips );
-	}		
-	else 
-	{			
-		bResult = currentTexture->MakeRenderTarget( texObjParams->sizeX, texObjParams->sizeY, 
-			texObjParams->bitDepth, texObjParams->bRenderTargetTexture, texObjParams->bAutoGenMipMaps );
-	}
+    if (currentTexture != NULL)
+    {
+        if( texObjParams->bRenderTargetTexture == RENDER_TARGET_NONE )
+        {
+            bResult = currentTexture->MakeBlankTexture( texObjParams->sizeX, texObjParams->sizeY, 
+                texObjParams->bitDepth, texObjParams->Format, texObjParams->numMips );
+        }		
+        else 
+        {			
+            bResult = currentTexture->MakeRenderTarget( texObjParams->sizeX, texObjParams->sizeY, 
+                texObjParams->bitDepth, texObjParams->bRenderTargetTexture, texObjParams->bAutoGenMipMaps );
+        }
 
-	if (bResult)
-	{
-		currentTexture->SetTextureName( texObjParams->Name );
-		// success, set the return value
-		texObjParams->TextureObjectInterface = currentTexture;		
-	}
-	else
-	{
-		m_TextureNameMap.erase( texObjParams->Name->GetUniqueID() );
-		// creation failure
-		DeleteTextureObject( currentTexture );
-	}
+        if (bResult)
+        {
+            currentTexture->SetTextureName( texObjParams->Name );
+            // success, set the return value
+            texObjParams->TextureObjectInterface = currentTexture;		
+        }
+        else
+        {
+            m_TextureNameMap.erase( texObjParams->Name->GetUniqueID() );
+            // creation failure
+            DeleteTextureObject( currentTexture );
+        }
+    }
 
 	return MSG_HANDLED_PROCEED;
 }

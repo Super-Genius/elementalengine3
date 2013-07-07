@@ -110,9 +110,9 @@ DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isI
 
 			// append '\' only once between the two parts of the path
 			// perhaps better check for it exists as well
-			if ( szFilePathName.substr( 0, 1 ) != "\\" )
+			if ( (szFilePathName.substr( 0, 1 ) != "\\" ) || (szFilePathName.substr( 0, 1 ) != "/"))
 			{
-				newPathInDefautRes += "\\";
+				newPathInDefautRes += "/";
 			}
 
 			// append the relative path to the default directory
@@ -219,7 +219,7 @@ DWORD CLoadSaveManager::UnloadFile(LPCTSTR filePathName)
 			return MSG_HANDLED_PROCEED;
 
 	// if some path is present switch to resource directory to handle relative paths
-	pathPresent = (_tcschr(filePathName, '\\') != NULL);
+	pathPresent = ((_tcschr(filePathName, '\\') != NULL) || (_tcschr(filePathName, '/') != NULL));
 	if (pathPresent)
 	{
 		m_ToolBox->GetDirectories(&basePath, &resourcePath);
@@ -412,6 +412,6 @@ DWORD CLoadSaveManager::OnSetFileVersion(DWORD size, void *param)
 
 void CLoadSaveManager::LoadPlugins()
 {
-	m_ToolBox->LoadPlugins(_T(".\\Plugins\\*.dls"), m_DLLPMap);
+	m_ToolBox->LoadPlugins(_T("./Plugins/*.dls"), m_DLLPMap);
 	m_ToolBox->InitPlugins(m_DLLPMap);
 }

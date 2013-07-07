@@ -114,7 +114,7 @@ DWORD CMathManager::OnRegisterMathImplementation(DWORD size, void *in_params)
 void CMathManager::LoadDLMs()
 {
 #ifndef _LIB
-	m_ToolBox->LoadPlugins(_T(".\\Plugins\\*.dlm"), m_DLLPriorityMap);
+	m_ToolBox->LoadPlugins(_T("./Plugins/*.dlm"), m_DLLPriorityMap);
 	m_ToolBox->InitPlugins(m_DLLPriorityMap);
 #endif
 	if (m_DLLPriorityMap.size() == 0)

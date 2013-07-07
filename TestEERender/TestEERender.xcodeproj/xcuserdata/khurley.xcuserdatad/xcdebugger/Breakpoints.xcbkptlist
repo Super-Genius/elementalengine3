@@ -272,5 +272,44 @@
          landmarkName = "CTextureManager::OnAddTexture(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
+         timestampString = "394919932.774599"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "180"
+         endingLineNumber = "180"
+         landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
+         timestampString = "394920148.291817"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "28"
+         endingLineNumber = "28"
+         landmarkName = "REGISTER_COMPONENT_SINGLETON(CTextureLoader)"
+         landmarkType = "6">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/LoadSaveManager/dllInit.cpp"
+         timestampString = "394920201.336103"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
+         landmarkName = "InitDLL()"
+         landmarkType = "7">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

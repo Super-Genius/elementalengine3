@@ -575,7 +575,7 @@ const TCHAR *CToolBox::GetRelativePath(const TCHAR *srcName)
 	}
 
 	// skip leading \\ for returned pathname
-	if (srcName[sLen] == '\\')
+	if ((srcName[sLen] == '\\') || (srcName[sLen] == '/'))
 		sLen++;
 
 	return srcName + sLen;

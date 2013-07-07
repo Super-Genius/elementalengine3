@@ -55,3 +55,5 @@ Plugins2/Engine/LoadSaveManager/Wii/Debug/
 Plugins2/Engine/LoadSaveManager/Wii/Profile/
 Plugins2/Engine/LoadSaveManager/Wii/Release/
 Plugins2/Engine/LoadSaveManager/Win32/
+Plugins2/LoadSavers/TextureLoader/Wii/
+Plugins2/LoadSavers/TextureLoader/Win32/

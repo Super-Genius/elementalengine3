@@ -49,7 +49,7 @@ REGISTER_MESSAGE_HANDLER(RegisterTextureCallback, OnRegisterTextureCallback, CSh
 REGISTER_MESSAGE_HANDLER(GetCallbackTexture, OnGetCallbackTexture, CShaderManager );
 REGISTER_MESSAGE_HANDLER_PRIORITY( DestroyRenderer, OnDestroyRenderer, CShaderManager, 0x70000000 );
 
-#define TEMPLATE_LIST_FILE "\\templates.mlist"
+#define TEMPLATE_LIST_FILE "/templates.mlist"
 
 DWORD CShaderManager::OnGetShaderInterface( DWORD size, void * params )
 {

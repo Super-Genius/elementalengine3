@@ -127,14 +127,6 @@ bool CXMLArchive::Init( IEEStream *pStream )
 			// Read the contents of the XML file into memory
 			m_XMLReader->read();
 			m_XMLReader->preserve_node();
-			//m_XMLReader->move_to_element();
-			// Set m_Node to the root node
-			//m_Node = m_XMLReader->get_current_node();
-
-
-			//m_Validator = new SchemaValidator();
-			//LoadSchema( _T("C:\\RedPhoenix\\Maps\\Maps_Countryside_Fast\\maps_countryside_fast.xsh") );
-			//bool temp = ValidateNode();
 		}
 		catch ( xmlpp::internal_error err )
 		{
@@ -979,20 +971,6 @@ void CXMLArchive::SetIsWriting( bool bWrite )
 				// Read the contents of the XML file into memory
 				m_XMLReader->read();
 				m_XMLReader->preserve_node();
-				//m_XMLReader->move_to_element();
-				// Set m_Node to the root node
-				//m_Node = m_XMLReader->get_current_node();
-
-
-				//m_Validator = new SchemaValidator();
-				//LoadSchema( _T("C:\\RedPhoenix\\Maps\\Maps_Countryside_Fast\\maps_countryside_fast.xsh") );
-				//bool temp = ValidateNode();
-
-				//if( m_IsValidated )
-				//	MessageBox( NULL, "True!", "Schema Validator Return Value", MB_OK );
-				//else
-				//	MessageBox( NULL, "False!", "Schema Validator Return Value", MB_OK );
-				//MessageBox( NULL, "Schema Validator Disabled", "Schema Validator Return Value", MB_OK );
 
 				// initialize the current node number
 				m_CurrNodeNum = 0;

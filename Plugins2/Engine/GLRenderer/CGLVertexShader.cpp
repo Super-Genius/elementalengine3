@@ -260,7 +260,7 @@ bool CVertexShader::LoadVariant( IShaderDefines *pDefines, bool bCompile )
 		StdString szCompiledFile;
 		szCompiledFile += drive;
 		szCompiledFile += directory;
-		szCompiledFile += _T("Compiled\\");
+		szCompiledFile += _T("Compiled/");
 		szCompiledFile += filename;
 		if (pDefines)
 		{

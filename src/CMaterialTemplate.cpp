@@ -282,7 +282,7 @@ void  CMaterialTemplate::Serialize(IArchive &ar)
 	
 	StdString	BaseDirectory = "";
 	m_ToolBox->GetDirectories( NULL, &BaseDirectory );
-	BaseDirectory += "\\";
+	BaseDirectory += "/";
 
 	//Material serialize function
 	//Reads in similar to an template
@@ -341,7 +341,7 @@ void  CMaterialTemplate::Serialize(IArchive &ar)
 				if(  !cef.m_MatInterface )
 				{
 					//maybe not loaded, try loading it
-					StdString ShaderDirectory = "shaders\\";
+					StdString ShaderDirectory = "shaders/";
 					static DWORD msgHash_GetShaderDirectory = CHashString(_T("GetShaderDirectory")).GetUniqueID();
 					EngineGetToolBox()->SendMessage(msgHash_GetShaderDirectory, sizeof(StdString ), &ShaderDirectory );
 				
