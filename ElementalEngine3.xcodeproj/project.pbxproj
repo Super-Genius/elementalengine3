@@ -928,7 +928,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYMROOT = EESDK/Lib/OSX32;
+				SYMROOT = EESDK/Lib/OSX;
 			};
 			name = Debug;
 		};
@@ -969,45 +969,47 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYMROOT = EESDK/Lib/OSX32;
+				SYMROOT = EESDK/Lib/OSX;
 			};
 			name = Release;
 		};
 		8C46B260177F8147006FF2DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INSTALL_PATH = ./;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/EESDK/lib/OSX32/$(CONFIGURATION)\"",
+					"\"../EESDK/lib/OSX/$(CONFIGURATION)\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)/LibXML++.dylib";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)/LibXML++.dylib";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = EESDK/Lib/OSX32;
-				VALID_ARCHS = i386;
+				SYMROOT = EESDK/Lib/OSX;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
 		8C46B261177F8147006FF2DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INSTALL_PATH = ./;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/EESDK/lib/OSX32/$(CONFIGURATION)\"",
+					"\"../EESDK/lib/OSX/$(CONFIGURATION)\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)/LibXML++.dylib";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)/LibXML++.dylib";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = EESDK/Lib/OSX32;
-				VALID_ARCHS = i386;
+				SYMROOT = EESDK/Lib/OSX;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};

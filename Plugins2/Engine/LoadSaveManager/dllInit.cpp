@@ -14,6 +14,7 @@
 ///============================================================================
 
 #include "StdAfx.h"
+#include "CLoadSaveManager.hpp"
 #include <string>
 using namespace std;
 
@@ -30,27 +31,7 @@ using namespace std;
 #ifdef _LIB
 #define DLL_API static
 #else
-#define DLL_API extern "C" __declspec(dllexport)
-
-static DLLPRIORITYMAP gDLLPMap;
-
-BOOL APIENTRY DllMain( HANDLE hModule, 
-                       DWORD  ul_reason_for_call, 
-                       LPVOID lpReserved
-					 )
-{
-	switch (ul_reason_for_call)
-	{
-		case DLL_PROCESS_ATTACH:
-			break;
-		case DLL_PROCESS_DETACH:
-			EngineGetToolBox()->UnloadPlugins(gDLLPMap);
-			break;
-	}
-
-    return TRUE;
-}
- 
+#define DLL_API extern "C" ELEMENTAL_DECLSPEC_EXPORT 
 #endif
 
 DLL_API void InitDLL()
@@ -59,8 +40,7 @@ DLL_API void InitDLL()
 	// "*.dls" which are dynamic Loader/Saver modules in
 	// dll format.
 #ifndef _LIB
-	EngineGetToolBox()->LoadPlugins(_T(".\\Plugins\\*.dls"), gDLLPMap);
-	EngineGetToolBox()->InitPlugins(gDLLPMap);
+    SINGLETONINSTANCE(CLoadSaveManager)->LoadPlugins();
 #endif
 }
 

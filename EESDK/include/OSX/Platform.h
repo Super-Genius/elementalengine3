@@ -42,6 +42,7 @@ typedef unsigned short WORD;
 typedef long HRESULT;
 typedef uint64_t ULONG_PTR;
 typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
+typedef const TCHAR * LPCTSTR;
 
 #ifdef DEBUG
 #ifndef DEBUG_NEW
@@ -83,6 +84,10 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 #define _tcsncicmp strncasecmp
 #define _tcsnicmp strncasecmp
 #define _tcsicmp strcasecmp
+#define _tcslwr strlwr
+#define _tcsupr strupr
+#define _tcschr strchr
+#define _tcsrchr strrchr
 
 #define INVALID_HANDLE_VALUE (NULL)
 
@@ -243,6 +248,29 @@ inline void _splitpath(const char* inpath, char * drv, char * dir,
      if (ext)
          strcpy( ext, end );
 }
+
+inline char *strlwr (char *text)
+{
+    char *origtext = text;
+    while (*text != '\0')
+    {
+        if ((*text > 64) && (*text < 91)) *text += 32;
+        text++;
+    }
+    return (origtext);
+}
+
+inline char *strupr (char *text)
+{
+    char *origtext = text;
+    while (*text != '\0')
+    {
+        if ((*text > 96) && (*text < 123)) *text -= 32;
+        text++;
+    }
+    return (origtext);
+}
+
 
 #endif
 

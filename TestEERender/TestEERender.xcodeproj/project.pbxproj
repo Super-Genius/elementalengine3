@@ -40,6 +40,13 @@
 			remoteGlobalIDString = 8C46B25B177F8147006FF2DB;
 			remoteInfo = ElementalEngine3;
 		};
+		8CAA93CD1789296F00ECE2F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CAA93C2178928E400ECE2F8;
+			remoteInfo = LoadSaveManager;
+		};
 		8CB5031A1781033B006F3E6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */;
@@ -94,6 +101,7 @@
 		8C02821C1788B1CB00A07848 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GLRenderer.xcodeproj; path = ../Plugins2/Engine/GLRenderer/GLRenderer.xcodeproj; sourceTree = "<group>"; };
 		8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElementalEngine3.xcodeproj; path = ../ElementalEngine3.xcodeproj; sourceTree = "<group>"; };
+		8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoadSaveManager.xcodeproj; path = ../Plugins2/Engine/LoadSaveManager/LoadSaveManager.xcodeproj; sourceTree = "<group>"; };
 		8CB5030A1780ED47006F3E6F /* TestEERender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEERender; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestEERenderOSX.cpp; sourceTree = "<group>"; };
 		8CB503131780F8CF006F3E6F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Carbon.framework; sourceTree = DEVELOPER_DIR; };
@@ -137,6 +145,7 @@
 		8CA43823177E83F900E60641 = {
 			isa = PBXGroup;
 			children = (
+				8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */,
 				8C02821C1788B1CB00A07848 /* IOKit.framework */,
 				8C02821A1788B15C00A07848 /* CoreServices.framework */,
 				8C0282181788B12D00A07848 /* OpenGL.framework */,
@@ -151,6 +160,14 @@
 				8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */,
 				8CB5030A1780ED47006F3E6F /* TestEERender */,
 			);
+			sourceTree = "<group>";
+		};
+		8CAA93CA1789296F00ECE2F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CAA93CE1789296F00ECE2F8 /* libLoadSaveManager.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8CB5030F1780ED60006F3E6F /* Source Files */ = {
@@ -232,6 +249,10 @@
 					ProductGroup = 8C236E3D1785F6B4008EA1C7 /* Products */;
 					ProjectRef = 8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */;
 				},
+				{
+					ProductGroup = 8CAA93CA1789296F00ECE2F8 /* Products */;
+					ProjectRef = 8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -253,6 +274,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libElementalEngine3.dylib;
 			remoteRef = 8C46B266177F8170006FF2DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CAA93CE1789296F00ECE2F8 /* libLoadSaveManager.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libLoadSaveManager.dylib;
+			remoteRef = 8CAA93CD1789296F00ECE2F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8CC13B7F177F8306000C2A56 /* libEESDK.a */ = {
@@ -338,7 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -363,16 +391,16 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
+					"\"../../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)\"",
 					"../../ThirdParty/GLFW/Lib/OSX/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lglfw3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SYMROOT = Bin/OSX32;
+				SYMROOT = Bin/OSX;
 				VALID_ARCHS = i386;
 			};
 			name = Debug;
@@ -381,7 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -400,16 +428,16 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
+					"\"../../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)\"",
 					"../../ThirdParty/GLFW/Lib/OSX/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lglfw3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SYMROOT = Bin/OSX32;
+				SYMROOT = Bin/OSX;
 				VALID_ARCHS = i386;
 			};
 			name = Release;

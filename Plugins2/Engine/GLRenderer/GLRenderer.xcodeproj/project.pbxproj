@@ -82,7 +82,7 @@
 		8C236E91178608B1008EA1C7 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
 		8C236E9B178614E2008EA1C7 /* StaticLibSymbols.gen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StaticLibSymbols.gen; sourceTree = "<group>"; };
 		8CDD7CE417877BB4006219B7 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		8CDD7CE617877BE2006219B7 /* libEESDK.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libEESDK.a; path = ../../../EESDK/./lib/OSX32/Release/libEESDK.a; sourceTree = "<group>"; };
+		8CDD7CE617877BE2006219B7 /* libEESDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEESDK.a; path = ../../../EESDK/./lib/OSX32/Release/libEESDK.a; sourceTree = "<group>"; };
 		8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX32/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
 		8CDD7CEA17877D22006219B7 /* CGLRenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLRenderContext.cpp; sourceTree = "<group>"; };
 		8CDD7CEB17877D22006219B7 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 		8C236E3A1785F6B4008EA1C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				EXECUTABLE_EXTENSION = dlo;
@@ -335,23 +335,20 @@
 					../../../EESDK/include/OSX,
 				);
 				INSTALL_PATH = ./;
-				LIBRARY_SEARCH_PATHS = (
-					"../../../EESDK/Lib/OSX32/$(CONFIGURATION)",
-					"\"$(SRCROOT)/../../../EESDK/Lib/OSX32/Debug\"",
-				);
+				LIBRARY_SEARCH_PATHS = "../../../EESDK/Lib/OSX/$(CONFIGURATION)";
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SYMROOT = ../../bin/OSX32;
-				VALID_ARCHS = i386;
+				SYMROOT = ../../bin/OSX;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
 		8C236E3B1785F6B4008EA1C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				EXECUTABLE_EXTENSION = dlo;
@@ -362,16 +359,13 @@
 					../../../EESDK/include/OSX,
 				);
 				INSTALL_PATH = ./;
-				LIBRARY_SEARCH_PATHS = (
-					"../../../EESDK/Lib/OSX32/$(CONFIGURATION)",
-					"\"$(SRCROOT)/../../../EESDK/Lib/OSX32/Debug\"",
-				);
+				LIBRARY_SEARCH_PATHS = "../../../EESDK/Lib/OSX/$(CONFIGURATION)";
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SYMROOT = ../../bin/OSX32;
-				VALID_ARCHS = i386;
+				SYMROOT = ../../bin/OSX;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};

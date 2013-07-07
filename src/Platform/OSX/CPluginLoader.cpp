@@ -111,8 +111,8 @@ int CPluginLoader::UnloadPlugin(HINSTANCE instance)
 	DEINITDLL DeinitDLL = (DEINITDLL)dlsym(instance, _T("DeinitDLL"));
 	if (DeinitDLL == NULL)
 	{
-		_stprintf( Mess, _T("Unable to deinit DLL for handle %d\n"
-			"DEinitDLL routine failed.\n"), (int)instance);
+		_stprintf( Mess, _T("Unable to deinit DLL for handle %p\n"
+			"DeinitDLL routine failed.\n"), instance);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
 		return ERROR_INVALID_FUNCTION;
 	}
@@ -134,8 +134,8 @@ int CPluginLoader::InitPlugin(HINSTANCE instance)
 	INITDLL initDLL = (INITDLL)dlsym(instance, _T("InitDLL"));
 	if (initDLL == NULL)
 	{
-		_stprintf( Mess, _T("Unable to init DLL for handle %d\n"
-			"InitDLL routine failed.\n"), (int)instance);
+		_stprintf( Mess, _T("Unable to init DLL for handle %p\n"
+			"InitDLL routine failed.\n"), instance);
 		EngineGetToolBox()->Log( LOGERROR, Mess );
 		return ERROR_INVALID_FUNCTION;	
 	}

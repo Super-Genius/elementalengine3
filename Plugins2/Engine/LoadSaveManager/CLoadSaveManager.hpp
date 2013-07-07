@@ -25,10 +25,12 @@
 
 class CLoadSaveManager : public IComponent
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CLoadSaveManager);
 	CLoadSaveManager();
 
+private:
+    
 	/// Searches through registered loaders/savers strings
 	///	to find a match for extension
 	/// \param ext = extension to search for
@@ -86,6 +88,9 @@ public:
 	/// \return MSG_HANDLED_STOP
 	DWORD OnSetFileVersion(DWORD size, void *param);
 
+    // load the plugins for loading and saving
+    void LoadPlugins();
+    
 private:
 	CHashString m_ComponentType;
 	IToolBox *m_ToolBox;
@@ -100,6 +105,8 @@ private:
 
 	/// default resource path - recieved from the environment
 	StdString m_strDefaultResourcePath;
+    
+    DLLPRIORITYMAP m_DLLPMap;
 };
 
 #endif	// #ifndef _CLOADSAVEMANAGER_H_

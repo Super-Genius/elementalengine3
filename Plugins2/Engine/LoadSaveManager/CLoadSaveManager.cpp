@@ -36,7 +36,7 @@ REGISTER_MESSAGE_HANDLER(GetFilterStrings, OnGetFilterStrings, CLoadSaveManager)
 REGISTER_MESSAGE_HANDLER(GetFileVersion, OnGetFileVersion, CLoadSaveManager);
 REGISTER_MESSAGE_HANDLER(SetFileVersion, OnSetFileVersion, CLoadSaveManager);
 
-CLoadSaveManager::CLoadSaveManager() 
+CLoadSaveManager::CLoadSaveManager()
 	: m_ComponentType(_T("CLoadSaveManager"))
 {
 	// save for convenience
@@ -48,6 +48,8 @@ CLoadSaveManager::CLoadSaveManager()
 
 CLoadSaveManager::~CLoadSaveManager( )
 {
+    EngineGetToolBox()->UnloadPlugins(m_DLLPMap);
+
 }
 
 // create function for this world loader
@@ -148,7 +150,7 @@ DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isI
 		static DWORD msgHash_LoadFile = CHashString(_T("LoadFile")).GetUniqueID();
 		LOADFILEEXTPARAMS lfp;
 		PERFORMANCE_PROFILER_TYPE_START(filePathName, _T("File Loader"));
-		lfp.fileName = const_cast<LPTSTR>(filePathName);
+		lfp.fileName = const_cast<TCHAR *>(filePathName);
 		lfp.bInternalLoad = false;
 		lfp.retObject = retObject;
 		retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(LOADFILEEXTPARAMS), &lfp, NULL, componentName);
@@ -170,14 +172,14 @@ DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isI
 			messageName += _tcslwr( splittedFileExt + 1 );
 			// send the message
 			DWORD msgHash_messageName = CHashString(messageName).GetUniqueID();
-			m_ToolBox->SendMessage(msgHash_messageName, sizeof(LPTSTR), const_cast<LPTSTR>(filePathName));
+			m_ToolBox->SendMessage(msgHash_messageName, sizeof(TCHAR *), const_cast<TCHAR *>(filePathName));
 		}
 	}
 	else
 	{
 		// save resource
 		static DWORD msgHash_SaveFile = CHashString(_T("SaveFile")).GetUniqueID();
-		retVal = m_ToolBox->SendMessage(msgHash_SaveFile, sizeof(LPTSTR), const_cast<LPTSTR>(filePathName), NULL, componentName);
+		retVal = m_ToolBox->SendMessage(msgHash_SaveFile, sizeof(TCHAR *), const_cast<TCHAR *>(filePathName), NULL, componentName);
 		if (retVal != MSG_HANDLED)
 		{
 			toolBox->Log(LOGWARNING, _T("File Save error saving %s. Error %d\n"), 
@@ -190,10 +192,11 @@ DWORD CLoadSaveManager::LoadSaveFile(LPCTSTR filePathName, bool isLoad, bool isI
 		messageName = _T("FileSaved_");
 		// HOW COULD IT BE tExt AND tExt + 1 JUST AS FOR LOADING????
 		//messageName += _tcslwr(const_cast<TCHAR*>(tExt));
+        
 		messageName += _tcslwr( splittedFileExt + 1 );
 		// send the message
 		DWORD msgHash_messageName = CHashString(messageName).GetUniqueID();
-		m_ToolBox->SendMessage(msgHash_messageName, sizeof(LPTSTR), const_cast<LPTSTR>(filePathName));
+		m_ToolBox->SendMessage(msgHash_messageName, sizeof(TCHAR *), const_cast<TCHAR *>(filePathName));
 	}
 
 	return MSG_HANDLED_PROCEED;
@@ -239,7 +242,7 @@ DWORD CLoadSaveManager::UnloadFile(LPCTSTR filePathName)
 	// Load/Create new resource
 	static DWORD msgHash_LoadFile = CHashString(_T("UnloadFile")).GetUniqueID();
 	PERFORMANCE_PROFILER_TYPE_START(filePathName, _T("File Loader"));
-	retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(LPTSTR), const_cast<LPTSTR>(filePathName), NULL, componentName);
+	retVal = m_ToolBox->SendMessage(msgHash_LoadFile, sizeof(TCHAR *), const_cast<TCHAR *>(filePathName), NULL, componentName);
 	PERFORMANCE_PROFILER_TYPE_STOP(filePathName, _T("File Loader"));
 	if (retVal != MSG_HANDLED)
 	{
@@ -274,9 +277,9 @@ DWORD CLoadSaveManager::OnLoadFile(DWORD size, void *params)
 
 DWORD CLoadSaveManager::OnSaveFile(DWORD size, void *params)
 {
-	LPTSTR filePathName;
-	VERIFY_MESSAGE_SIZE(size, sizeof(LPTSTR));
-	filePathName =(LPTSTR)params;
+    TCHAR *filePathName;
+	VERIFY_MESSAGE_SIZE(size, sizeof(TCHAR *));
+	filePathName =(TCHAR *)params;
 	return LoadSaveFile(filePathName, false);
 }
 
@@ -405,4 +408,10 @@ DWORD CLoadSaveManager::OnSetFileVersion(DWORD size, void *param)
 	IHashString *inVer = (IHashString*)param;
 	m_hszFileVersion = inVer->GetString();
 	return MSG_HANDLED_STOP;
+}
+
+void CLoadSaveManager::LoadPlugins()
+{
+	m_ToolBox->LoadPlugins(_T(".\\Plugins\\*.dls"), m_DLLPMap);
+	m_ToolBox->InitPlugins(m_DLLPMap);
 }
