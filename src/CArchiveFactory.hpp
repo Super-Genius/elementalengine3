@@ -24,7 +24,7 @@
 
 class CArchiveFactory : public IComponent
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CArchiveFactory);
 	CArchiveFactory();
 public:

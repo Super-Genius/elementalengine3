@@ -61,10 +61,12 @@ typedef map< DWORD, MSGPUMPSET > COMPTYPETOMSGPUMPMAP;
 /// derive off of this class and make it a Singleton
 class CToolBox : public IToolBox
 {
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CToolBox);
 	CToolBox();
-	~CToolBox();
 public:
+	virtual ~CToolBox();
+    
 	/// Register a component in the toolbox, so it can be created
 	/// \param componentName = The string name for the class for CreatebyName
 	/// \param createFunc = Pointer to the IComponent class create function

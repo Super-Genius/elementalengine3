@@ -22,10 +22,10 @@
 
 class CPerformanceProfilerHandler : public IComponent
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE( CPerformanceProfilerHandler );
 
-	/// Private ctor
+	/// protected ctor
 	CPerformanceProfilerHandler();
 public:
 	static IComponent *Create(int nArgs, va_list argptr);

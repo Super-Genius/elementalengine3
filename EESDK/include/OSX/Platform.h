@@ -19,8 +19,9 @@ using namespace __gnu_cxx;
 #define ELEMENTAL_DECLSPEC_IMPORT
 #define ELEMENTAL_DECLSPEC_EXPORT
 
-
-#define APIENTRY __stdcall
+#ifndef APIENTRY
+#define APIENTRY
+#endif
 
 #define HAVE_STDINT_H
 

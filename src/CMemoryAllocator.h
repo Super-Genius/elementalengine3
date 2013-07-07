@@ -27,11 +27,14 @@ namespace ElementalEngine
 
 class CMemoryAllocator : public IMemoryAllocator
 {
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CMemoryAllocator);
+ 	CMemoryAllocator();
+    
 public:
 	static IComponent *Create(int nArgs, va_list argptr);
 
-	CMemoryAllocator();
+
 	~CMemoryAllocator();
 	virtual void Serialize(IArchive &ar);
 	virtual IHashString *GetComponentType();

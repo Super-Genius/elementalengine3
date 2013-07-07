@@ -29,6 +29,11 @@ typedef map<DWORD, ATTACHMENTLIST> BASEATTACHMENTMAP;
 
 class CSceneObjectManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE(CSceneObjectManager);
+	// default ctor
+	CSceneObjectManager();
+
 public:
 	// default dtor
 	virtual ~CSceneObjectManager();
@@ -62,10 +67,6 @@ public:
 	/// \return MSG_HANDLED_STOP
 	DWORD OnDetachSceneObject(DWORD size, void *param);
 
-protected:
-	SINGLETONCONSTRUCTOROVERRIDE(CSceneObjectManager);
-	// default ctor
-	CSceneObjectManager();
 
 private:
 	void RemoveAttachmentFromBaseMap(ISceneObject *attachment, ATTACHMENTLIST *attachList);

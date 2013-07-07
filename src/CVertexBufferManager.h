@@ -42,6 +42,12 @@ typedef std::pair<DWORD, BUFFERALLOCATIONSTRUCT > VERTEXBUFFERMAP_ELEMENT;
 
 class CVertexBufferManager : public CManager
 {
+protected:
+    SINGLETONCONSTRUCTOROVERRIDE( CVertexBufferManager );
+	/// \brief The Default Constructor for CVertexBufferManager
+	/// \return void
+	CVertexBufferManager();
+
 public:
 
 	/// \brief The Default Destructor for CVertexBufferManager
@@ -63,10 +69,6 @@ public:
 	DWORD OnDestroyRenderer( DWORD size, void *param );
 
 private:
-	SINGLETONCONSTRUCTOROVERRIDE( CVertexBufferManager );
-	/// \brief The Default Constructor for CVertexBufferManager
-	/// \return void
-	CVertexBufferManager();
 
 	/// mapping of vertex buffer list to vertex format
 	VERTEXBUFFER_VERTEXFORMAT_MAP	m_VertexBufferMap; 

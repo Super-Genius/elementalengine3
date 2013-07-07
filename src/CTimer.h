@@ -41,7 +41,7 @@ typedef map<DWORD, DELTATIMERSCALE> DELTATIMEMAP;
 ///============================================================================
 class CTimer : public ITimer
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CTimer);
 
 	/// Default Constructor

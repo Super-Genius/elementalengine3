@@ -28,6 +28,11 @@ typedef map<DWORD, IBaseTextureObject*> GLYPHTEXTUREMAP;
 
 class CFontManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CFontManager );
+	/// \brief The Default Constructor for CFontManager
+	/// \return void
+	CFontManager();
 
 public:
 
@@ -68,10 +73,6 @@ public:
 private:
 	void InitFonts();
 	void ClearGlyphTextures();
-	SINGLETONCONSTRUCTOROVERRIDE( CFontManager );
-	/// \brief The Default Constructor for CFontManager
-	/// \return void
-	CFontManager();
 
 	//Particle v buffer
 	IVertexBufferObject *			m_Dynamic2DVertexBuffer;

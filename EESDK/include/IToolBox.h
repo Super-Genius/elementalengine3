@@ -37,6 +37,15 @@ namespace std
 			return (_tcscmp(_Left, _Right) < 0);
 		}
 	};
+    
+	template<>
+	struct equal_to<const TCHAR *> : public binary_function <const TCHAR *, const TCHAR *, bool>
+	{
+		bool operator()(const TCHAR *_Left, const TCHAR *_Right) const
+		{
+			return (_tcscmp(_Left, _Right) == 0);
+		}
+	};
 }
 
 namespace ElementalEngine
@@ -59,7 +68,7 @@ typedef DWORD (IComponent::*MSGPUMPFUNC)(DWORD , void *,
 typedef hash_map<const TCHAR *, DWORD, hash_compare<const TCHAR *,
 	less<const TCHAR *> > > HASHSTRINGMAP;
 #elif defined(__GNUC__)
-    typedef hash_map<const TCHAR *, DWORD, __gnu_cxx::hash<const TCHAR*>, less<const TCHAR*> > HASHSTRINGMAP;
+    typedef hash_map<const TCHAR *, DWORD, __gnu_cxx::hash<const TCHAR*>, equal_to<const TCHAR*> > HASHSTRINGMAP;
 #else
     typedef hash_map<const TCHAR *, DWORD, hash<const TCHAR*>, less<const TCHAR*> > HASHSTRINGMAP;
 #endif

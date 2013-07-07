@@ -199,6 +199,10 @@ struct CompositeTexInfo
 typedef IBaseTextureObject * CompositeTexture;
 class CTextureCompositeManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CTextureCompositeManager );
+	CTextureCompositeManager();
+    
 public:
 	~CTextureCompositeManager();
 
@@ -212,8 +216,6 @@ public:
 	virtual bool DeInit( void );
 
 private:
-	SINGLETONCONSTRUCTOROVERRIDE( CTextureCompositeManager );
-	CTextureCompositeManager();
 
 	map< CompositeTexture, CompositeInfo > m_CompositeInfos;
 	vector< CompositeTexture > m_Textures;

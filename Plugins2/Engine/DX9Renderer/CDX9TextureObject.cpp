@@ -21,7 +21,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-REGISTER_COMPONENT(CDX9TextureObject);
+REGISTER_COMPONENT_AS(CDX9TextureObject, CTextureObject);
 
 ///
 /// Constructor / Destructor

@@ -102,12 +102,6 @@
     <CustomBuild Include="..\Plugins2\Bin\Win32\Release\TextureLoader.dls">
       <Filter>Plugins\Release</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\Release\ElementalEngine3.dll">
-      <Filter>Dependencies\Profile</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\Profile\ElementalEngine3.dll">
-      <Filter>Dependencies\Release</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicRelease\DevIL.dll">
       <Filter>Dependencies\Release</Filter>
     </CustomBuild>
@@ -123,17 +117,8 @@
     <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\devil.pdb">
       <Filter>Dependencies\Debug</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\debug\ElementalEngine3.dll">
-      <Filter>Dependencies\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\debug\elementalengine3.pdb">
-      <Filter>Dependencies\Debug</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\ThirdParty\DevIL\lib\Win32\DynamicDebug\ILU.dll">
       <Filter>Dependencies\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\Profile\elementalengine3.pdb">
-      <Filter>Dependencies\Profile</Filter>
     </CustomBuild>
     <CustomBuild Include="..\Plugins2\Bin\Win32\Profile\TextureLoader.pdb">
       <Filter>Plugins\Profile</Filter>
@@ -208,6 +193,21 @@
       <Filter>Dependencies\Release</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\ThirdParty\OpenAL\libs\Win32\Release\OpenAL32.dll">
+      <Filter>Dependencies\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\EESDK\bin\win32\debug\ElementalEngine3.dll">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\EESDK\bin\win32\debug\elementalengine3.pdb">
+      <Filter>Dependencies\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\EESDK\bin\win32\Release\ElementalEngine3.dll">
+      <Filter>Dependencies\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\EESDK\bin\win32\Profile\elementalengine3.pdb">
+      <Filter>Dependencies\Profile</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\EESDK\bin\win32\Profile\ElementalEngine3.dll">
       <Filter>Dependencies\Release</Filter>
     </CustomBuild>
   </ItemGroup>

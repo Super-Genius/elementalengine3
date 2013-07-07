@@ -66,6 +66,13 @@ struct DDSHeader
 //Should extend off ITextureManager also but need some sort of manager Template for that
 class CTextureManager : public CManager
 {
+protected:
+    SINGLETONCONSTRUCTOROVERRIDE( CTextureManager );
+    
+	/// \brief The Default Constructor for CTextureManager
+	/// \return void
+	CTextureManager();
+
 public:
 	~CTextureManager();
 
@@ -102,11 +109,6 @@ private:
 	IBaseTextureObject * LoadTextureByExtension( IHashString * name );
 	IBaseTextureObject * LoadCubeDDSTexture( IHashString * name );
 	bool IsDDSCubeMap( const DDSHeader & header );
-	SINGLETONCONSTRUCTOROVERRIDE( CTextureManager );
-
-	/// \brief The Default Constructor for CTextureManager
-	/// \return void
-	CTextureManager();
 	bool		m_bInitialized;
 	std::map<DWORD, IBaseTextureObject * > m_TextureNameMap;
 	/// Current area for loading textures.

@@ -27,12 +27,15 @@
 
 class CJoystickManager : public CManager
 {
+protected:
+    SINGLETONCONSTRUCTOROVERRIDE(CJoystickManager);
+	/// Constructor
+	CJoystickManager();
+    
 public:
 	/// Create function
 	static IComponent* Create( int nArgs, va_list argptr );
 
-	/// Constructor
-	CJoystickManager();
 	/// Destructor
 	~CJoystickManager();
 

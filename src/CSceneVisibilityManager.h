@@ -59,6 +59,12 @@ private:
 /// obtained from the QuadTreeManager
 class CSceneVisibilityManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CSceneVisibilityManager );
+	/// \brief The Default Constructor for CRenderManager
+	/// \return void
+	CSceneVisibilityManager();
+
 public:
 
 	/// \brief The Default Destructor for CSceneVisibilityManager
@@ -94,11 +100,6 @@ public:
 	/// Sets the render context of a given scene
 	DWORD OnSetSceneRenderContext(DWORD size, void *params);
 
-private:	
-	SINGLETONCONSTRUCTOROVERRIDE( CSceneVisibilityManager );
-	/// \brief The Default Constructor for CRenderManager
-	/// \return void
-	CSceneVisibilityManager();
 
 private:
 	static CSceneVisibilityManager * m_SingletonInstance;

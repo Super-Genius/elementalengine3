@@ -131,6 +131,10 @@ CDX9Renderer::CDX9Renderer()
 	m_bInitialized = false;
 	m_ExecutableDirectory = "";
 	m_ResourceDirectory = "";
+	m_PSConstants = NULL;
+	m_VSConstants = NULL;
+	m_RenderTarget = NULL;
+
 	Reset();
 	D3DXMatrixIdentity( &m_ModelViewMatrix );
 	D3DXMatrixIdentity( &m_ProjectionMatrix );
@@ -143,9 +147,6 @@ CDX9Renderer::CDX9Renderer()
 	memset( m_CurrentRenderState, -1, sizeof(m_CurrentRenderState) );
 	memset( m_CurrentTextureStageState, -1, sizeof(m_CurrentTextureStageState) );
 	memset( m_CurrentSamplerState, -1, sizeof(m_CurrentSamplerState) );
-
-	m_PSConstants = NULL;
-	m_VSConstants = NULL;
 
 	m_hszPostProcessBufferName.Init( _T("CDX9Renderer_PostProcessBuffer") );
 }

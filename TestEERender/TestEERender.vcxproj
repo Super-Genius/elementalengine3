@@ -196,7 +196,7 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\debug\ElementalEngine3.dll">
+    <CustomBuild Include="..\EESDK\bin\win32\debug\ElementalEngine3.dll">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>
@@ -261,7 +261,7 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)Plugins\%(Filename)%(Extension)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\Profile\ElementalEngine3.dll">
+    <CustomBuild Include="..\EESDK\bin\win32\Profile\ElementalEngine3.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">copy %(Identity) $(TargetDir)</Command>
@@ -326,7 +326,7 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\Release\ElementalEngine3.dll">
+    <CustomBuild Include="..\EESDK\bin\win32\Release\ElementalEngine3.dll">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
@@ -422,7 +422,7 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\debug\elementalengine3.pdb">
+    <CustomBuild Include="..\EESDK\bin\win32\debug\elementalengine3.pdb">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(Identity) $(TargetDir)</Command>
@@ -523,7 +523,7 @@ copy %(Identity) $(TargetDir)Plugins</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="..\SDK\bin\win32\Profile\elementalengine3.pdb">
+    <CustomBuild Include="..\EESDK\bin\win32\Profile\elementalengine3.pdb">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(Identity) $(TargetDir)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Identity) to $(TargetDir)</Message>

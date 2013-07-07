@@ -24,21 +24,43 @@
 // this code is so that object can register themselves with
 // the system.
 //
-template <class T> 
-class CSingleton 
-{ 
 
-public: 
-	static T *Instance() 
-	{ 
-		static T _instance; 
-		return &_instance; 
+template <class T>
+class CSingleton 
+{
+private:
+    static bool isInitialized;
+    static T *_instance;                  // first initialize memory without constructor
+public:
+	static T *Instance()
+	{
+        // start lock for multithreading here
+        if (_instance == NULL)
+        {
+            _instance = new T(_instance);
+        }
+        
+        if (!isInitialized)
+        {
+            isInitialized = true;
+            new (_instance) T();
+        }
+		return _instance;
 	}; 
 
 private: 
 	CSingleton() {}; 
-	~CSingleton() {}; 
-}; 
+	~CSingleton() {};
+    // disable copy & assignment
+    CSingleton( CSingleton const&);
+    CSingleton& operator=( CSingleton const&);
+};
+
+template <class T>
+bool CSingleton<T>::isInitialized = false;
+
+template <class T>
+T *CSingleton<T>::_instance = NULL;
 
 #define SINGLETONINSTANCE(T)						\
 	CSingleton< T >::Instance()
@@ -46,10 +68,13 @@ private:
 #define SINGLETON(T)								\
 	protected:										\
 		friend class CSingleton< T >;				\
-		T(){};
+        T(T *) {}                                   \
+		T(){}
 
 #define SINGLETONCONSTRUCTOROVERRIDE(T)				\
 	protected:										\
-		friend class CSingleton< T >;
+		friend class CSingleton< T >;               \
+        T(T *) {}
+
 
 #endif	// #ifndef SINGLETON_H

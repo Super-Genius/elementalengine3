@@ -122,5 +122,5 @@ void CMathManager::LoadDLMs()
 		InitDefaultMathImplementation();
 	}
 }
-
+    
 }

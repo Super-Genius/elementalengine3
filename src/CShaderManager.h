@@ -27,6 +27,11 @@ typedef map<DWORD,ITextureCallback*> TEXTURECALLBACKMAP;
 
 class CShaderManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CShaderManager );
+	/// \brief The Default Constructor for CShaderManager
+	/// \return void
+	CShaderManager();
 
 public:
 
@@ -76,10 +81,6 @@ private:
 	void LoadShaderPaths(const TCHAR * DirPath);
 	void RegisterMaterialTemplates();
 
-	SINGLETONCONSTRUCTOROVERRIDE( CShaderManager );
-	/// \brief The Default Constructor for CShaderManager
-	/// \return void
-	CShaderManager();
 	//static void __fastcall GenericCallback(Shader_t *shader, float dtime);
 	StdString	m_ShaderDirectory;
 	SCALLBACKMAP m_CallbackMapping;

@@ -31,7 +31,7 @@
 ///==========================================================================
 class CEntityManager : public CManager
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE( CEntityManager );
 
 	/// \brief	Default Destructor

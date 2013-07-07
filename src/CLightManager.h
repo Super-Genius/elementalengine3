@@ -391,6 +391,11 @@ private:
 
 class CLightManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CLightManager );
+	/// \brief The Default Constructor for CLightManager
+	/// \return void
+	CLightManager();
 
 public:
 
@@ -440,12 +445,6 @@ private:
 	void GenerateDirectionalLightPerspectiveTexture( IBaseTextureObject * tex,
 											ILightObject * light,
 											OBJECTLIST * renderList );
-
-
-	SINGLETONCONSTRUCTOROVERRIDE( CLightManager );
-	/// \brief The Default Constructor for CLightManager
-	/// \return void
-	CLightManager();
 
 	//Registered lights
 	float				m_CurrentTick;

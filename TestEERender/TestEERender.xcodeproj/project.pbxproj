@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0282151788B00900A07848 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0282141788B00900A07848 /* CoreFoundation.framework */; };
+		8C0282171788B11300A07848 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0282161788B11300A07848 /* Cocoa.framework */; };
+		8C0282191788B12D00A07848 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0282181788B12D00A07848 /* OpenGL.framework */; };
+		8C02821E1788B20600A07848 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C02821C1788B1CB00A07848 /* IOKit.framework */; };
 		8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */; };
 		8C6515EA178144240056F798 /* libElementalEngine3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
 		8CB503121780ED91006F3E6F /* TestEERenderOSX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */; };
-		8CB503141780F8CF006F3E6F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB503131780F8CF006F3E6F /* Carbon.framework */; };
-		8CB503161780F8D5006F3E6F /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB503151780F8D5006F3E6F /* AGL.framework */; };
 		8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
 		8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC13B7F177F8306000C2A56 /* libEESDK.a */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C0282141788B00900A07848 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		8C0282161788B11300A07848 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		8C0282181788B12D00A07848 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
+		8C02821A1788B15C00A07848 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		8C02821C1788B1CB00A07848 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GLRenderer.xcodeproj; path = ../Plugins2/Engine/GLRenderer/GLRenderer.xcodeproj; sourceTree = "<group>"; };
 		8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElementalEngine3.xcodeproj; path = ../ElementalEngine3.xcodeproj; sourceTree = "<group>"; };
 		8CB5030A1780ED47006F3E6F /* TestEERender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEERender; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,10 +106,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C02821E1788B20600A07848 /* IOKit.framework in Frameworks */,
+				8C0282191788B12D00A07848 /* OpenGL.framework in Frameworks */,
+				8C0282171788B11300A07848 /* Cocoa.framework in Frameworks */,
+				8C0282151788B00900A07848 /* CoreFoundation.framework in Frameworks */,
 				8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */,
 				8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */,
-				8CB503161780F8D5006F3E6F /* AGL.framework in Frameworks */,
-				8CB503141780F8CF006F3E6F /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +137,11 @@
 		8CA43823177E83F900E60641 = {
 			isa = PBXGroup;
 			children = (
+				8C02821C1788B1CB00A07848 /* IOKit.framework */,
+				8C02821A1788B15C00A07848 /* CoreServices.framework */,
+				8C0282181788B12D00A07848 /* OpenGL.framework */,
+				8C0282161788B11300A07848 /* Cocoa.framework */,
+				8C0282141788B00900A07848 /* CoreFoundation.framework */,
 				8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */,
 				8CB503151780F8D5006F3E6F /* AGL.framework */,
 				8CB503131780F8CF006F3E6F /* Carbon.framework */,
@@ -305,7 +319,7 @@
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = YES;
 				SYMROOT = Bin/OSX32;
-				USER_HEADER_SEARCH_PATHS = "../EESDK/include ../EESDK/include/OSX";
+				USER_HEADER_SEARCH_PATHS = "../EESDK/include ../EESDK/include/OSX ../../ThirdParty/GLFW/include";
 			};
 			name = Debug;
 		};
@@ -316,7 +330,7 @@
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = YES;
 				SYMROOT = Bin/OSX32;
-				USER_HEADER_SEARCH_PATHS = "../EESDK/include ../EESDK/include/OSX";
+				USER_HEADER_SEARCH_PATHS = "../EESDK/include ../EESDK/include/OSX ../../ThirdParty/GLFW/include";
 			};
 			name = Release;
 		};
@@ -346,13 +360,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
+					"\"../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
+					"../../ThirdParty/GLFW/Lib/OSX/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lglfw3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYMROOT = Bin/OSX32;
@@ -380,13 +397,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
+					"\"../../ThirdParty/LibXML++/lib/OSX32/$(CONFIGURATION)\"",
+					"../../ThirdParty/GLFW/Lib/OSX/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lglfw3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYMROOT = Bin/OSX32;

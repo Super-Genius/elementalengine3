@@ -49,6 +49,11 @@ typedef map< const CParticleEmitterType*, PARTICLEEMITTERSMAP> PARTICLETYPETOPAR
 
 class CParticleManager : public CManager
 {
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CParticleManager );
+	/// \brief The Default Constructor for CParticleManager
+	/// \return void
+	CParticleManager();
 
 public:
 
@@ -184,11 +189,6 @@ private:
 	/// \return IParticleEmitter* associated with passed Dword, if not found, NULL.
 	IParticleType * GetBrushFromLibrary(DWORD id);
 
-
-	SINGLETONCONSTRUCTOROVERRIDE( CParticleManager );
-	/// \brief The Default Constructor for CParticleManager
-	/// \return void
-	CParticleManager();
 
 	//Particle Types library
 	PARTICLETYPES	m_ParticleTypeLibrary;

@@ -44,7 +44,7 @@ typedef map<DWORD, KEYBINDINGMAP > KEYBINDINGPAGELIST;
 /// Handles input from the keyboard and mouse
 class CInputManager : public CManager
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CInputManager);
 
 	/// Constructor

@@ -65,8 +65,9 @@ typedef WORD D3DCOLORTABLETYPE;
 /// \brief D3D9 Adapter for the IRenderer class
 class CGLRenderer : public IRenderer
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE( CGLRenderer );
+    CGLRenderer();
 
 public:
 	~CGLRenderer();
@@ -453,9 +454,6 @@ private:
 	//For fast state checking if ortho2d screen matrix is set, called by 2Dquad function
 	bool m_Ortho2DScreenSizeSet;
 
-	/// \brief The Default Constructor for CRenderManager
-	/// \return void
-	CGLRenderer();
 
 	UINT m_CurrentRenderState[RENDERSTATE_COUNT];
 	UINT m_CurrentTextureStageState[ MAX_BUFFERED_CHANNELS ][TEXTURESTAGESTATE_COUNT];

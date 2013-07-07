@@ -34,6 +34,11 @@ typedef map<DWORD, DELTATIMERSCALE> DELTATIMEMAP;
 */
 class CPerfTimeManager : public CManager
 {
+protected:
+    SINGLETONCONSTRUCTOROVERRIDE( CPerfTimeManager );
+	/// \brief The Default Constructor for CPerfTimeManager
+	/// \return void
+	CPerfTimeManager();
 
 public:
 
@@ -85,11 +90,6 @@ public:
 	virtual IHashString* GetComponentType();
 	
 private:
-
-	SINGLETONCONSTRUCTOROVERRIDE( CPerfTimeManager );
-	/// \brief The Default Constructor for CPerfTimeManager
-	/// \return void
-	CPerfTimeManager();
 
 	DELTATIMEMAP m_mDeltaTimers;
 

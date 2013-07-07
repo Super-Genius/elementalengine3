@@ -7,14 +7,12 @@
 //
 
 #include <stdio.h>
-#include <OpenGL/OpenGL.h>
-#include <Carbon/Carbon.h>
-#include <CoreServices/CoreServices.h>
-#include <AGL/agl.h>
+#include <CoreFoundation/CoreFoundation.h>
 
+#include "GLFW/glfw3.h"
 #include "ElementalEngine.hpp"
 
-WindowRef       mainWindow;
+GLFWwindow *mainWindow;
 IToolBox        *gToolBox;
 DLLPRIORITYMAP gDLLPMap;
 
@@ -27,89 +25,47 @@ IBaseTextureObject  *gTestTexture;
 
 unsigned int GetDisplayWidth()
 {
-	return (unsigned int)CGDisplayPixelsWide( kCGDirectMainDisplay );
+    const GLFWvidmode *vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	return (unsigned int)vidMode->width;
 }
 
 unsigned int GetDisplayHeight()
 {
-	return (unsigned int)CGDisplayPixelsHigh( kCGDirectMainDisplay );
+    const GLFWvidmode *vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	return (unsigned int)vidMode->height;
 }
 
 unsigned int GetDisplayBPP()
 {
-    unsigned int bpp;
-    CFDictionaryRef desktopVideoMode = CGDisplayCurrentMode( kCGDirectMainDisplay );
-    if( !CFNumberGetValue( (CFNumberRef)CFDictionaryGetValue( desktopVideoMode, kCGDisplayBitsPerPixel ),
-                         kCFNumberIntType,
-                         &bpp ) )
-    {
-        return 32;
-    }
-    
-    return bpp;
+    const GLFWvidmode *vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	return (unsigned int)(vidMode->redBits + vidMode->greenBits + vidMode->blueBits);
 }
 
-void HideMouseCursor()
-{
-	CGDisplayHideCursor( kCGNullDirectDisplay );
-	CGAssociateMouseAndMouseCursorPosition( false );
-	CGDisplayMoveCursorToPoint( kCGDirectMainDisplay, CGPointZero );
-}
 
-void ShowMouseCursor()
-{
-	CGAssociateMouseAndMouseCursorPosition( true );
-	CGDisplayShowCursor( kCGNullDirectDisplay );
-}
 
-WindowRef CreateWindow(unsigned int width, unsigned int height)
+GLFWwindow *CreateWindow(unsigned int width, unsigned int height)
 {
     
-    WindowRef window;
+    GLFWwindow* window;
     
-    unsigned int screenWidth = GetDisplayWidth();
-    unsigned int screenHeight = GetDisplayHeight();
-
-    Rect rect;
-    rect.left = ( screenWidth - width ) / 2;
-    rect.top = ( screenHeight - height ) / 2;
-    rect.right = rect.left + width;
-    rect.bottom = rect.top + height;
-
-    OSErr result = CreateNewWindow( kDocumentWindowClass,
-                                   ( kWindowStandardDocumentAttributes |
-                                    //									  kWindowNoTitleBarAttribute |
-                                    kWindowStandardHandlerAttribute ) &
-                                   ~kWindowResizableAttribute,
-                                   &rect, &window );
-
-    if ( result != noErr )
+    // Initialize the library
+    if (!glfwInit())
         return NULL;
-
-    SetWindowTitleWithCFString( window, CFStringCreateWithCString( 0, "TestEERender", CFStringGetSystemEncoding() ) );
+    
+    // do not show window yet.
+    glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
+    
+    /* Create a windowed mode window and its OpenGL context */
+    window = glfwCreateWindow(width, height, "Hello World", NULL, NULL);
+    if (!window)
+    {
+        glfwTerminate();
+        return NULL;
+    }
     
     return window;
-
-}
-
-pascal OSStatus WindowEvents (EventHandlerCallRef  nextHandler,
-                                   EventRef             theEvent,
-                                   void*                userData)
-{
-
-    UInt32    eventClass;
-    UInt32    eventKind;
-    eventClass = GetEventClass (theEvent);
-    eventKind  = GetEventKind (theEvent);
     
-    switch (eventKind)
-    {
-        case kEventWindowClosed:
-            QuitApplicationEventLoop();
-            return noErr;
-    }
-    
-    return eventNotHandledErr;
+
 }
 
 int main( int argc, char * argv[] )
@@ -129,13 +85,6 @@ int main( int argc, char * argv[] )
 		fprintf( stderr, "Failed to create window!\n" );
 		return 1;
     }
-    
-    EventTypeSpec myEventSpecification = {kEventClassWindow, kEventWindowClosed};
-    
-    EventHandlerUPP handlerUPP;
-    handlerUPP = NewEventHandlerUPP(WindowEvents);
-    
-    InstallWindowEventHandler(mainWindow, handlerUPP, 1, &myEventSpecification, NULL, NULL);
 #endif
     
     // call Init Elemental Engine here.
@@ -144,35 +93,44 @@ int main( int argc, char * argv[] )
     
     if (gToolBox->LoadPlugins(_T("./Plugins/*.dlo"), gDLLPMap) != noErr)
     {
-        DialogRef alertDialog;
-        CreateStandardAlert(kAlertStopAlert, CFSTR("Loading Error!"), CFSTR("Unable to load plugins, check log file."), NULL, &alertDialog);
-        RunStandardAlert (alertDialog, NULL, NULL);
-        
+        CFUserNotificationDisplayNotice(0, kCFUserNotificationNoteAlertLevel,
+                                        NULL, NULL, NULL, CFSTR("Loading Error!"),
+                                        CFSTR("Unable to load plugins, check log file."), NULL);
         return 2;
     }
     
     if (gToolBox->InitPlugins(gDLLPMap) != noErr)
     {
-        DialogRef alertDialog;
-        CreateStandardAlert(kAlertStopAlert, CFSTR("Loading Error!"), CFSTR("Unable to initialize plugins, check log file."), NULL, &alertDialog);
-        RunStandardAlert (alertDialog, NULL, NULL);
-        
+        CFUserNotificationDisplayNotice(0, kCFUserNotificationNoteAlertLevel,
+                                        NULL, NULL, NULL, CFSTR("Initializing Error!"),
+                                        CFSTR("Unable to initialize plugins, check log file."), NULL);
         return 2;
     }
     
     if (mainWindow != NULL)
     {
-        ShowWindow( mainWindow );
-        SelectWindow( mainWindow );
+        glfwShowWindow(mainWindow );
     }
 
     gRenderer = GetRendererInterface();
     
     gRenderer->Initialize(mainWindow, false, DisplayWidth, DisplayHeight, 24, GetDisplayBPP());
     
-    RunApplicationEventLoop();
+    /* Make the window's context current */
+    glfwMakeContextCurrent(mainWindow);
     
-    DisposeWindow( (WindowPtr) mainWindow );
+    /* Loop until the user closes the window */
+    while (!glfwWindowShouldClose(mainWindow))
+    {
+        /* Render here */
+        
+        /* Swap front and back buffers */
+        glfwSwapBuffers(mainWindow);
+        
+        /* Poll for and process events */
+        glfwPollEvents();
+    }
+    
+    glfwTerminate();
     return 0;
-
 }

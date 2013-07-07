@@ -27,7 +27,7 @@ namespace ElementalEngine
 
 class CMathManager : public CManager
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CMathManager);
 	/// Default Constructor
 	CMathManager();

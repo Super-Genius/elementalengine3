@@ -24,15 +24,12 @@
 
 class CObjectFactory : public IComponent
 {
-	// Internal type
-	typedef map<DWORD, IComponent*> ObjectKeyMap_t;
-	typedef set<DWORD> UniqueIDSet_t;
-
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CObjectFactory);
-
-public:
 	/// \brief The Default Constructor
 	CObjectFactory();
+    
+public:
 
 	/// \brief The Default Destructor
 	~CObjectFactory();
@@ -88,6 +85,9 @@ public:
 	DWORD OnFlagDuplicateObjectChecking(DWORD size, void *params);
 
 private:
+	// Internal type
+	typedef map<DWORD, IComponent*> ObjectKeyMap_t;
+	typedef set<DWORD> UniqueIDSet_t;
 
 	// cached toolbox access
 	IToolBox *m_ToolBox;

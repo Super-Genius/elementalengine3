@@ -28,7 +28,7 @@
 ///==========================================================================
 class CNetManager : public CManager
 {
-private:
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE( CNetManager );
 
 	/// \brief	Default Destructor

@@ -24,6 +24,7 @@
 
 class CStreamFactory : 	public IComponent
 {
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CStreamFactory);
 	CStreamFactory();
 public:

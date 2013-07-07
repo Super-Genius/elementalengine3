@@ -226,7 +226,7 @@ DWORD CTextureManager::OnAddTexture(DWORD size, void *params)
 					//check extension
 					if( _tcsstr( hashFile.GetString(), ".hdr" )!= NULL ) 
 					{
-						static CHashString texName(_T("CGLTextureObject"));
+						static CHashString texName(_T("CTextureObject"));
 						currentTexture = (ITextureObject*)CreateTextureObject( &hashFile,  &texName);
 						assert( currentTexture );
 						currentTexture->SetTextureName( &hashFile );
@@ -248,7 +248,7 @@ DWORD CTextureManager::OnAddTexture(DWORD size, void *params)
 				// and gets around the bug in DevIL on small mip levels of textures
 				if( !currentTexture )
 				{
-					static CHashString GLTexObj(_T("CGLTextureObject"));
+					static CHashString GLTexObj(_T("CTextureObject"));
 					currentTexture = CreateTextureObject( &hashFile, &GLTexObj);
 					currentTexture->SetTextureName( &hashFile );
 					if (!currentTexture->LoadFromFile( hashFile.GetString() ))
@@ -356,7 +356,7 @@ DWORD CTextureManager::OnCreateTexture(DWORD size, void *params)
 	if (!currentTexture)
 	{
 		//new texture
-		CHashString hszComponentType(_T("CGLTextureObject"));
+		CHashString hszComponentType(_T("CTextureObject"));
 		currentTexture = dynamic_cast< ITextureObject* >(CreateTextureObject( texObjParams->Name, &hszComponentType ));
 		// add to internal list
 		m_TextureNameMap[texObjParams->Name->GetUniqueID()] = currentTexture;

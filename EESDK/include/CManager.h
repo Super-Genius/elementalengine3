@@ -43,6 +43,9 @@ typedef map<DWORD, IDTOOBJECTMAP *> MAPGROUPLISTS;
 class CManager : public IManager
 {
 protected:
+    // dummy for initializing later, so singleton's derived will work
+    CManager() {}
+    
 	/// constructor that attaches listener and message pump
 	/// \param listenpriority = priority of listener in system, if 0 then NO listener
 	/// \param pumpPriority = priority of pump in system, if 0 then NO messagePump

@@ -49,6 +49,8 @@ CGLRenderer::CGLRenderer()
 	m_BackBufferDepthSurface = NULL;
 	m_SetTextures = NULL;
 	m_SetVertexTextures = NULL;
+	m_PSConstants = NULL;
+	m_VSConstants = NULL;
 
 	m_bInitialized = false;
 	m_ExecutableDirectory = "";
@@ -66,8 +68,6 @@ CGLRenderer::CGLRenderer()
 	memset( m_CurrentTextureStageState, -1, sizeof(m_CurrentTextureStageState) );
 	memset( m_CurrentSamplerState, -1, sizeof(m_CurrentSamplerState) );
 
-	m_PSConstants = NULL;
-	m_VSConstants = NULL;
 
 	m_hszPostProcessBufferName.Init( _T("CGLRenderer_PostProcessBuffer") );
 }

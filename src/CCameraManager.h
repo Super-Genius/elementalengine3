@@ -25,6 +25,12 @@ typedef map< IRenderContext*, ICamera* > CONTEXTCAMERAMAP;
 /// \brief the Render Manager class
 class CCameraManager : public CManager
 {
+protected:
+    SINGLETONCONSTRUCTOROVERRIDE( CCameraManager );
+	/// \brief The Default Constructor for CCameraManager
+	/// \return void
+	CCameraManager();
+
 public:
 
 	/// \brief The Default Destructor for CCameraManager
@@ -80,10 +86,6 @@ public:
 	DWORD OnSetActiveCameraZoom(DWORD size, void *param);
 
 private:
-	SINGLETONCONSTRUCTOROVERRIDE( CCameraManager );
-	/// \brief The Default Constructor for CCameraManager
-	/// \return void
-	CCameraManager();
 
 	/// Initializes the default camera if none is set
 	void InitializeDefaultCamera();

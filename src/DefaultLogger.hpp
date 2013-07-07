@@ -22,6 +22,7 @@
 
 class CDefaultLogger : 	public IComponent
 {
+protected:
 	SINGLETONCONSTRUCTOROVERRIDE(CDefaultLogger);
 	CDefaultLogger();
 public:

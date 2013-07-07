@@ -45,10 +45,14 @@ struct VBFILLINFO
 typedef map< DWORD, VBFILLINFO  > VBVERTTYPEMAPPING;
 class CSpriteManager : public CManager
 {
-public:
-	static void RenderCallBack();
+protected:
+	SINGLETONCONSTRUCTOROVERRIDE( CSpriteManager );
+	/// \brief The Default Constructor for CSpriteManager
+	/// \return void
+	CSpriteManager();
 
 public:
+	static void RenderCallBack();
 
 	/// \brief The Default Destructor for CSpriteManager
 	/// \return void
@@ -70,10 +74,6 @@ public:
 	DWORD OnAddSprite(DWORD size, void *params);
 	
 private:
-	SINGLETONCONSTRUCTOROVERRIDE( CSpriteManager );
-	/// \brief The Default Constructor for CSpriteManager
-	/// \return void
-	CSpriteManager();
 	VBVERTTYPEMAPPING m_VBs; 
 	vector< SPRITEDRAWENTRY > m_DrawEntries;
 	bool	m_bLastFrameRendered;

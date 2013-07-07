@@ -199,6 +199,12 @@ typedef map< IRenderContext*, GEOM_RENDERLIST >  GEOMETRYLISTCONTEXTS;
 /// \brief the Render Manager class
 class CRenderManager : public CManager
 {
+protected:
+    SINGLETONCONSTRUCTOROVERRIDE( CRenderManager );
+	/// \brief The Default Constructor for CRenderManager
+	/// \return void
+	CRenderManager();
+
 public:
 
 	/// \brief The Default Destructor for CRenderManager
@@ -325,10 +331,6 @@ private:
 	/// \return	bool: Success
 	bool AddListObjects( OBJECTLIST &VisibleObjList, DWORD priorityKey,  void (*funcCallback)(), void (*funcPostRenderCallback)(), IRenderContext * context );
 
-	SINGLETONCONSTRUCTOROVERRIDE( CRenderManager );
-	/// \brief The Default Constructor for CRenderManager
-	/// \return void
-	CRenderManager();
 
 
 private:	

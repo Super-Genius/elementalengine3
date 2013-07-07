@@ -24,8 +24,8 @@
 
 class CSoundManager: public CManager
 {
-	SINGLETONCONSTRUCTOROVERRIDE(CSoundManager);
 protected:
+	SINGLETONCONSTRUCTOROVERRIDE(CSoundManager);
 	/// Default ctor
 	CSoundManager();
 public:
