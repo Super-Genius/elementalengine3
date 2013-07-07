@@ -287,8 +287,12 @@ public:
 	/// \return reference to this string
 	__inline StdString& MakeSafeFileName()
 	{
-		tolower();
+		//tolower();
+#ifdef  _WIN32
 		ConformSlashes();
+#else
+        ConformSlashesForward();
+#endif
 		return *this;
 	}
 

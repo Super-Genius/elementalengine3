@@ -4,15 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GLRenderer.xcscheme</key>
+		<key>TextureLoader.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8C236E341785F6B4008EA1C7</key>
+		<key>8CAA93F81789D73D00ECE2F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

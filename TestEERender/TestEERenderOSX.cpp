@@ -68,6 +68,31 @@ GLFWwindow *CreateWindow(unsigned int width, unsigned int height)
 
 }
 
+void RenderScene()
+{
+    gRenderer->SetBackgroundColor(255, 255, 255, 0);
+    gRenderer->ClearScreen(true, true);
+    
+    gRenderer->RenderToContext(gRenderContext);
+    gRenderer->BeginScene(true);
+    gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
+    // basic texture modulate
+    gRenderer->SetMaterial(0, NULL);
+    gRenderer->Draw2DQuad(350.0f, 250.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
+    gRenderer->EndScene();
+    gRenderer->Present(gRenderContext);
+    
+    static UINT64 iPreviousTickCount = GetTickCount();
+    UINT64 iCurrentTickCount = GetTickCount();
+    UINT64 iDeltaTickCount = iCurrentTickCount - iPreviousTickCount;
+    iPreviousTickCount = iCurrentTickCount;
+    
+    GLOBALTICKPARAMS gtp;
+    gtp.tickCount = (DWORD)iDeltaTickCount;
+    static DWORD msgGlobalUpdateTick = CHashString(_T("GlobalUpdateTick")).GetUniqueID();
+    gToolBox->SendMessage(msgGlobalUpdateTick, sizeof(GLOBALTICKPARAMS), &gtp, NULL, NULL);
+    
+}
 int main( int argc, char * argv[] )
 {
     
@@ -114,20 +139,27 @@ int main( int argc, char * argv[] )
 
     gRenderer = GetRendererInterface();
     
-    gRenderer->Initialize(mainWindow, false, DisplayWidth, DisplayHeight, 24, GetDisplayBPP());
+    unsigned int bpp = GetDisplayBPP();
+    gRenderer->Initialize(mainWindow, false, DisplayWidth, DisplayHeight, 24, bpp);
     
-    /* Make the window's context current */
+    gRenderContext = gRenderer->CreateNewContext(0, DisplayWidth, DisplayHeight, 24, bpp);
+    
+    gTestTexture = LoadTexture(_T("Textures/Forest_grass.dds"));
+    
+    // Make the window's context current
     glfwMakeContextCurrent(mainWindow);
     
-    /* Loop until the user closes the window */
+    // Loop until the user closes the window
     while (!glfwWindowShouldClose(mainWindow))
     {
-        /* Render here */
+        // Render here 
         
-        /* Swap front and back buffers */
+        RenderScene();
+        
+        // Swap front and back buffers
         glfwSwapBuffers(mainWindow);
         
-        /* Poll for and process events */
+        // Poll for and process events
         glfwPollEvents();
     }
     

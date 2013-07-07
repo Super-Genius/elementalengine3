@@ -19,9 +19,9 @@
 #include "ElementalEngine.hpp"
 #include "Register.h"
 #include "LoadSaveMessages.hpp"
-#include "il\il.h"
-#include "il\ilu.h"
-#include "il\ilut.h"
+#include "il/il.h"
+#include "il/ilu.h"
+#include "il/ilut.h"
 #include "TextureLoader.hpp"
 
 #endif		//#ifndef TEXTURELOADER_STDAFX_H

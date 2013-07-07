@@ -414,7 +414,7 @@ DWORD CTextureLoader::OnSaveTextureFile(DWORD size, void *params)
 	if (retVal != MSG_HANDLED)
 	{
 		m_ToolBox->SetErrorValue(ERR_NAME_NOT_FOUND);
-		m_ToolBox->Log(LOGERROR, _T("Cannot Find Texture Named %s\n"), fileName);
+		m_ToolBox->Log(LOGERROR, _T("Cannot Find Texture Named %s\n"), fileName.GetString());
 		return MSG_ERROR;
 	}
 
@@ -424,7 +424,7 @@ DWORD CTextureLoader::OnSaveTextureFile(DWORD size, void *params)
 	if (texObj == NULL)
 	{
 		m_ToolBox->SetErrorValue(ERR_NULL_POINTER);
-		m_ToolBox->Log(LOGERROR, _T("Cannot Find Texture Interface for %s\n"), fileName);
+		m_ToolBox->Log(LOGERROR, _T("Cannot Find Texture Interface for %s\n"), fileName.GetString());
 		return MSG_ERROR;
 	}
 

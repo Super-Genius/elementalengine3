@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8CAA93C1178928E400ECE2F8"
-               BuildableName = "LoadSaveManager.dlo"
-               BlueprintName = "LoadSaveManager"
-               ReferencedContainer = "container:LoadSaveManager.xcodeproj">
+               BlueprintIdentifier = "8CAA93F81789D73D00ECE2F8"
+               BuildableName = "TextureLoader.dls"
+               BlueprintName = "TextureLoader"
+               ReferencedContainer = "container:TextureLoader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

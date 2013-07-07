@@ -43,6 +43,8 @@ typedef long HRESULT;
 typedef uint64_t ULONG_PTR;
 typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 typedef const TCHAR * LPCTSTR;
+typedef TCHAR * LPTSTR;
+typedef void * LPVOID;
 
 #ifdef DEBUG
 #ifndef DEBUG_NEW

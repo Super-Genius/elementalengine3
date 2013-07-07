@@ -51,3 +51,7 @@ TestEERender/TestEERender.sdf
 build/
 TestEERender/OpenGL/
 TestEERender/fssimplewindow/
+Plugins2/Engine/LoadSaveManager/Wii/Debug/
+Plugins2/Engine/LoadSaveManager/Wii/Profile/
+Plugins2/Engine/LoadSaveManager/Wii/Release/
+Plugins2/Engine/LoadSaveManager/Win32/

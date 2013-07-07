@@ -1,0 +1,333 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8CAA94131789D7D200ECE2F8 /* StaticLibSymbols.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA940E1789D7D200ECE2F8 /* StaticLibSymbols.cpp */; };
+		8CAA94141789D7D200ECE2F8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA94101789D7D200ECE2F8 /* stdafx.cpp */; };
+		8CAA94151789D7D200ECE2F8 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA94111789D7D200ECE2F8 /* TextureLoader.cpp */; };
+		8CAA94161789D7D200ECE2F8 /* TextureLoaderDLL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA94121789D7D200ECE2F8 /* TextureLoaderDLL.cpp */; };
+		8CAA941A1789D7E900ECE2F8 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA94171789D7E900ECE2F8 /* StaticLibSymbols.h */; };
+		8CAA941B1789D7E900ECE2F8 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA94181789D7E900ECE2F8 /* stdafx.h */; };
+		8CAA941C1789D7E900ECE2F8 /* TextureLoader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA94191789D7E900ECE2F8 /* TextureLoader.hpp */; };
+		8CAA941F1789E5E900ECE2F8 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA941E1789E5E900ECE2F8 /* libElementalEngine3.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		8CAA941D1789D80100ECE2F8 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.gen";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"${INPUT_FILE_DIR}/StaticLibSymbols.cpp",
+				"${INPUT_FILE_DIR}/StaticLibSymbols.h",
+			);
+			script = "/usr/bin/python \"./GenerateStaticLibSymbols/GenerateStaticLibSymbols.py\" ${INPUT_FILE_DIR} ${INPUT_FILE_BASE}";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		8CAA93F91789D73D00ECE2F8 /* TextureLoader.dls */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = TextureLoader.dls; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CAA940E1789D7D200ECE2F8 /* StaticLibSymbols.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticLibSymbols.cpp; sourceTree = "<group>"; };
+		8CAA940F1789D7D200ECE2F8 /* StaticLibSymbols.gen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StaticLibSymbols.gen; sourceTree = "<group>"; };
+		8CAA94101789D7D200ECE2F8 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		8CAA94111789D7D200ECE2F8 /* TextureLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureLoader.cpp; sourceTree = "<group>"; };
+		8CAA94121789D7D200ECE2F8 /* TextureLoaderDLL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureLoaderDLL.cpp; sourceTree = "<group>"; };
+		8CAA94171789D7E900ECE2F8 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibSymbols.h; sourceTree = "<group>"; };
+		8CAA94181789D7E900ECE2F8 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		8CAA94191789D7E900ECE2F8 /* TextureLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureLoader.hpp; sourceTree = "<group>"; };
+		8CAA941E1789E5E900ECE2F8 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8CAA93F61789D73D00ECE2F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CAA941F1789E5E900ECE2F8 /* libElementalEngine3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8CAA93F01789D73D00ECE2F8 = {
+			isa = PBXGroup;
+			children = (
+				8CAA941E1789E5E900ECE2F8 /* libElementalEngine3.dylib */,
+				8CAA940D1789D7B600ECE2F8 /* Header Files */,
+				8CAA940C1789D7AD00ECE2F8 /* Source Files */,
+				8CAA93FA1789D73D00ECE2F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8CAA93FA1789D73D00ECE2F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CAA93F91789D73D00ECE2F8 /* TextureLoader.dls */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CAA940C1789D7AD00ECE2F8 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CAA940E1789D7D200ECE2F8 /* StaticLibSymbols.cpp */,
+				8CAA940F1789D7D200ECE2F8 /* StaticLibSymbols.gen */,
+				8CAA94101789D7D200ECE2F8 /* stdafx.cpp */,
+				8CAA94111789D7D200ECE2F8 /* TextureLoader.cpp */,
+				8CAA94121789D7D200ECE2F8 /* TextureLoaderDLL.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		8CAA940D1789D7B600ECE2F8 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CAA94171789D7E900ECE2F8 /* StaticLibSymbols.h */,
+				8CAA94181789D7E900ECE2F8 /* stdafx.h */,
+				8CAA94191789D7E900ECE2F8 /* TextureLoader.hpp */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8CAA93F71789D73D00ECE2F8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CAA941A1789D7E900ECE2F8 /* StaticLibSymbols.h in Headers */,
+				8CAA941B1789D7E900ECE2F8 /* stdafx.h in Headers */,
+				8CAA941C1789D7E900ECE2F8 /* TextureLoader.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8CAA93F81789D73D00ECE2F8 /* TextureLoader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CAA93FD1789D73D00ECE2F8 /* Build configuration list for PBXNativeTarget "TextureLoader" */;
+			buildPhases = (
+				8CAA93F51789D73D00ECE2F8 /* Sources */,
+				8CAA93F61789D73D00ECE2F8 /* Frameworks */,
+				8CAA93F71789D73D00ECE2F8 /* Headers */,
+			);
+			buildRules = (
+				8CAA941D1789D80100ECE2F8 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = TextureLoader;
+			productName = TextureLoader;
+			productReference = 8CAA93F91789D73D00ECE2F8 /* TextureLoader.dls */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8CAA93F11789D73D00ECE2F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Social Systems Technology";
+			};
+			buildConfigurationList = 8CAA93F41789D73D00ECE2F8 /* Build configuration list for PBXProject "TextureLoader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8CAA93F01789D73D00ECE2F8;
+			productRefGroup = 8CAA93FA1789D73D00ECE2F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8CAA93F81789D73D00ECE2F8 /* TextureLoader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8CAA93F51789D73D00ECE2F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CAA94131789D7D200ECE2F8 /* StaticLibSymbols.cpp in Sources */,
+				8CAA94141789D7D200ECE2F8 /* stdafx.cpp in Sources */,
+				8CAA94151789D7D200ECE2F8 /* TextureLoader.cpp in Sources */,
+				8CAA94161789D7D200ECE2F8 /* TextureLoaderDLL.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8CAA93FB1789D73D00ECE2F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+					../../Engine/LoadSaveManager,
+					../../../../ThirdParty/Devil/include,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8CAA93FC1789D73D00ECE2F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+					../../Engine/LoadSaveManager,
+					../../../../ThirdParty/Devil/include,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8CAA93FE1789D73D00ECE2F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				EXECUTABLE_EXTENSION = dls;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					_DEBUG,
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+					../../Engine/LoadSaveManager,
+					../../../../ThirdParty/DevIL/include,
+				);
+				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_PATH)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
+				);
+				OBJROOT = build;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"../../../../ThirdParty/DevIL/Lib/OSX/$(CONFIGURATION)/DevIL.dylib",
+					"../../../../ThirdParty/DevIL/Lib/OSX/$(CONFIGURATION)/ILU.dylib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../Bin/OSX;
+			};
+			name = Debug;
+		};
+		8CAA93FF1789D73D00ECE2F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				EXECUTABLE_EXTENSION = dls;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				HEADER_SEARCH_PATHS = (
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+					../../Engine/LoadSaveManager,
+					../../../../ThirdParty/DevIL/include,
+				);
+				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_PATH)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
+				);
+				OBJROOT = build;
+				OTHER_LDFLAGS = (
+					"../../../../ThirdParty/DevIL/Lib/OSX/$(CONFIGURATION)/DevIL.dylib",
+					"../../../../ThirdParty/DevIL/Lib/OSX/$(CONFIGURATION)/ILU.dylib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../Bin/OSX;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8CAA93F41789D73D00ECE2F8 /* Build configuration list for PBXProject "TextureLoader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CAA93FB1789D73D00ECE2F8 /* Debug */,
+				8CAA93FC1789D73D00ECE2F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CAA93FD1789D73D00ECE2F8 /* Build configuration list for PBXNativeTarget "TextureLoader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CAA93FE1789D73D00ECE2F8 /* Debug */,
+				8CAA93FF1789D73D00ECE2F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8CAA93F11789D73D00ECE2F8 /* Project object */;
+}

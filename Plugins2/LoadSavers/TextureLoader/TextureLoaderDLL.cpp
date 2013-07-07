@@ -28,7 +28,7 @@
 #ifdef _LIB
 #define DLL_API static
 #else
-#define DLL_API extern "C" __declspec(dllexport)
+#define DLL_API extern "C" ELEMENTAL_DECLSPEC_EXPORT
 #endif
 
 DLL_API void InitDLL()
@@ -59,21 +59,5 @@ INITDLLINFO TEXTURELOADER_INITDLLINFO = {
 	NULL,
 	TEXTURELOADER_LIBEXTERNS
 };
-
-#else
-
-
-BOOL APIENTRY DllMain( HANDLE hModule, 
-                       DWORD  ul_reason_for_call, 
-                       LPVOID lpReserved
-					 )
-{
-	switch (ul_reason_for_call)
-	{
-		case DLL_PROCESS_ATTACH:
-			break;
-	}
-    return TRUE;
-}
 
 #endif

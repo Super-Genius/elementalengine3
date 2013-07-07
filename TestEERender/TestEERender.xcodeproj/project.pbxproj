@@ -13,6 +13,8 @@
 		8C02821E1788B20600A07848 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C02821C1788B1CB00A07848 /* IOKit.framework */; };
 		8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */; };
 		8C6515EA178144240056F798 /* libElementalEngine3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
+		8CAA94211789E61400ECE2F8 /* TextureLoader.dls in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CAA94061789D73F00ECE2F8 /* TextureLoader.dls */; };
+		8CAA94231789E81700ECE2F8 /* LoadSaveManager.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CAA93CE1789296F00ECE2F8 /* LoadSaveManager.dlo */; };
 		8CB503121780ED91006F3E6F /* TestEERenderOSX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */; };
 		8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
 		8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC13B7F177F8306000C2A56 /* libEESDK.a */; };
@@ -47,6 +49,27 @@
 			remoteGlobalIDString = 8CAA93C2178928E400ECE2F8;
 			remoteInfo = LoadSaveManager;
 		};
+		8CAA94051789D73F00ECE2F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CAA93F91789D73D00ECE2F8;
+			remoteInfo = TextureLoader;
+		};
+		8CAA94241789E84400ECE2F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CAA93C1178928E400ECE2F8;
+			remoteInfo = LoadSaveManager;
+		};
+		8CAA94261789E84400ECE2F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CAA93F81789D73D00ECE2F8;
+			remoteInfo = TextureLoader;
+		};
 		8CB5031A1781033B006F3E6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */;
@@ -77,6 +100,8 @@
 			dstPath = Plugins;
 			dstSubfolderSpec = 16;
 			files = (
+				8CAA94231789E81700ECE2F8 /* LoadSaveManager.dlo in CopyFiles */,
+				8CAA94211789E61400ECE2F8 /* TextureLoader.dls in CopyFiles */,
 				8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +127,7 @@
 		8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GLRenderer.xcodeproj; path = ../Plugins2/Engine/GLRenderer/GLRenderer.xcodeproj; sourceTree = "<group>"; };
 		8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElementalEngine3.xcodeproj; path = ../ElementalEngine3.xcodeproj; sourceTree = "<group>"; };
 		8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoadSaveManager.xcodeproj; path = ../Plugins2/Engine/LoadSaveManager/LoadSaveManager.xcodeproj; sourceTree = "<group>"; };
+		8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TextureLoader.xcodeproj; path = ../Plugins2/LoadSavers/TextureLoader/TextureLoader.xcodeproj; sourceTree = "<group>"; };
 		8CB5030A1780ED47006F3E6F /* TestEERender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEERender; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestEERenderOSX.cpp; sourceTree = "<group>"; };
 		8CB503131780F8CF006F3E6F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Carbon.framework; sourceTree = DEVELOPER_DIR; };
@@ -145,6 +171,7 @@
 		8CA43823177E83F900E60641 = {
 			isa = PBXGroup;
 			children = (
+				8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */,
 				8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */,
 				8C02821C1788B1CB00A07848 /* IOKit.framework */,
 				8C02821A1788B15C00A07848 /* CoreServices.framework */,
@@ -165,7 +192,15 @@
 		8CAA93CA1789296F00ECE2F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8CAA93CE1789296F00ECE2F8 /* libLoadSaveManager.dylib */,
+				8CAA93CE1789296F00ECE2F8 /* LoadSaveManager.dlo */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CAA94011789D73E00ECE2F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CAA94061789D73F00ECE2F8 /* TextureLoader.dls */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +244,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				8CAA94251789E84400ECE2F8 /* PBXTargetDependency */,
+				8CAA94271789E84400ECE2F8 /* PBXTargetDependency */,
 				8C236E9917861435008EA1C7 /* PBXTargetDependency */,
 				8CB5031B1781033B006F3E6F /* PBXTargetDependency */,
 				8CB5031D1781033B006F3E6F /* PBXTargetDependency */,
@@ -253,6 +290,10 @@
 					ProductGroup = 8CAA93CA1789296F00ECE2F8 /* Products */;
 					ProjectRef = 8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */;
 				},
+				{
+					ProductGroup = 8CAA94011789D73E00ECE2F8 /* Products */;
+					ProjectRef = 8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -276,11 +317,18 @@
 			remoteRef = 8C46B266177F8170006FF2DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8CAA93CE1789296F00ECE2F8 /* libLoadSaveManager.dylib */ = {
+		8CAA93CE1789296F00ECE2F8 /* LoadSaveManager.dlo */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libLoadSaveManager.dylib;
+			path = LoadSaveManager.dlo;
 			remoteRef = 8CAA93CD1789296F00ECE2F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8CAA94061789D73F00ECE2F8 /* TextureLoader.dls */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = TextureLoader.dls;
+			remoteRef = 8CAA94051789D73F00ECE2F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8CC13B7F177F8306000C2A56 /* libEESDK.a */ = {
@@ -299,14 +347,20 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../../ThirdParty/LibXML++/lib/osx32/$(CONFIGURATION)/LibXML++.dylib",
+				"$(SRCROOT)/../../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)/LibXML++.dylib",
+				"$(SRCROOT)/../../ThirdParty/DevIL/lib/OSX/$(CONFIGURATION)/DevIL.dylib",
+				"$(SRCROOT)/../../ThirdParty/DevIL/lib/OSX/$(CONFIGURATION)/ILU.dylib",
+				"$(SRCROOT)/Forest_grass.dds",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/LibXML++.dylib",
+				"$(BUILT_PRODUCTS_DIR)/DevIL.dylib",
+				"$(BUILT_PRODUCTS_DIR)/ILU.dylib",
+				"$(BUILT_PRODUCTS_DIR)/Textures/Forest_grass.dds",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp ${SCRIPT_INPUT_FILE_0} ${BUILT_PRODUCTS_DIR}";
+			shellScript = "for ((i=0; i < SCRIPT_INPUT_FILE_COUNT ; i++))\ndo\n# XCode doesn't provide the input files as an array.  This ugly eval thing gets the value of the\n# indexed file by creating a new bash variable, eg. SCRIPT_INPUT_FILE_0 and evaluating it.\ninputFile=`eval echo '$SCRIPT_INPUT_FILE_'$i`\noutputFile=`eval echo '$SCRIPT_OUTPUT_FILE_'$i`\n\n    # \"-nt\" means \"newer than.\"  This seems to work even if outputFile doesn't exist.\n    if [ $inputFile -nt $outputFile ]; then\n        echo \"copying $inputFile to $outputFile.\"\n        cp \"${inputFile}\" \"${outputFile}\"\n    fi\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -326,6 +380,16 @@
 			isa = PBXTargetDependency;
 			name = GLRenderer;
 			targetProxy = 8C236E9817861435008EA1C7 /* PBXContainerItemProxy */;
+		};
+		8CAA94251789E84400ECE2F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LoadSaveManager;
+			targetProxy = 8CAA94241789E84400ECE2F8 /* PBXContainerItemProxy */;
+		};
+		8CAA94271789E84400ECE2F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TextureLoader;
+			targetProxy = 8CAA94261789E84400ECE2F8 /* PBXContainerItemProxy */;
 		};
 		8CB5031B1781033B006F3E6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -401,7 +465,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYMROOT = Bin/OSX;
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 X86_64";
 			};
 			name = Debug;
 		};
@@ -438,7 +502,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYMROOT = Bin/OSX;
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 X86_64";
 			};
 			name = Release;
 		};

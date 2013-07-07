@@ -250,12 +250,16 @@ DWORD CTextureManager::OnAddTexture(DWORD size, void *params)
 				{
 					static CHashString GLTexObj(_T("CTextureObject"));
 					currentTexture = CreateTextureObject( &hashFile, &GLTexObj);
-					currentTexture->SetTextureName( &hashFile );
-					if (!currentTexture->LoadFromFile( hashFile.GetString() ))
-					{
-						DeleteTextureObject( currentTexture );
-						currentTexture = NULL;
-					}
+                    // Nobody handled creating this texture object?
+                    if (currentTexture != NULL)
+                    {
+                        currentTexture->SetTextureName( &hashFile );
+                        if (!currentTexture->LoadFromFile( hashFile.GetString() ))
+                        {
+                            DeleteTextureObject( currentTexture );
+                            currentTexture = NULL;
+                        }
+                    }
 				}
 
 				//try loading file by extension
@@ -442,11 +446,14 @@ IBaseTextureObject* CTextureManager::CreateTextureObject( IHashString *pTextureN
 	IBaseTextureObject *pTextureObject = dynamic_cast<IBaseTextureObject*>(m_ToolBox->CreateComponent( 
 		pComponentType, 2, pTextureName, NULL ) );
 
-	OFACTORYADDPARAMS ofap;
-	ofap.component = pTextureObject;
-	ofap.name = pTextureObject->GetName();
-	static DWORD msgHash_AddObjectToFactory = CHashString(_T("AddObjectToFactory")).GetUniqueID();
-	m_ToolBox->SendMessage(msgHash_AddObjectToFactory, sizeof(OFACTORYADDPARAMS), &ofap);
+    if (pTextureObject != NULL)
+    {
+        OFACTORYADDPARAMS ofap;
+        ofap.component = pTextureObject;
+        ofap.name = pTextureObject->GetName();
+        static DWORD msgHash_AddObjectToFactory = CHashString(_T("AddObjectToFactory")).GetUniqueID();
+        m_ToolBox->SendMessage(msgHash_AddObjectToFactory, sizeof(OFACTORYADDPARAMS), &ofap);
+    }
 
 	return pTextureObject;
 }
