@@ -52,6 +52,8 @@ CGLRenderer::CGLRenderer()
 	m_PSConstants = NULL;
 	m_VSConstants = NULL;
 
+    m_RenderTarget = NULL;
+
 	m_bInitialized = false;
 	m_ExecutableDirectory = "";
 	m_ResourceDirectory = "";
@@ -370,18 +372,18 @@ void CGLRenderer::ResizeScreen( const int &width, const int &height )
 void CGLRenderer::ClearScreen( bool clearDepth, bool clearTarget )
 {
 	SetColorMask(true, true, true, true);
-#if 0
-	DWORD clearFlags = 0;
+    
+	GLbitfield clearFlags = 0;
 	if ( clearDepth )
-        clearFlags  |= D3DCLEAR_ZBUFFER;
+        clearFlags  |= GL_DEPTH_BUFFER_BIT;
 	if ( clearTarget )
-        clearFlags |= D3DCLEAR_TARGET;
+        clearFlags |= GL_COLOR_BUFFER_BIT;
+
+    glClearColor((GLfloat)m_ClearColor[1] / 255.0f, (GLfloat)m_ClearColor[2] / 255.0f, (GLfloat)m_ClearColor[3] / 255.0f, (GLfloat)m_ClearColor[0] / 255.0f);
+    glClearDepth(1.0f);
 	// Clear the screen
-	HRESULT hr = m_pDevice->Clear( 0, NULL, clearFlags,
-				D3DCOLOR_ARGB((int)m_ClearColor[0], (int)m_ClearColor[1], (int)m_ClearColor[2], (int)m_ClearColor[3]),
-				1.0f, 0 );
-	assert( SUCCEEDED(hr) );
-#endif
+    glClear(clearFlags);
+    CheckAndLogGLError();
 }
 
 void CGLRenderer::BeginScene( bool defaultBufferRender, ITextureObject *pOverrideRenderTarget )
@@ -1138,8 +1140,9 @@ void CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 	case PROJECTION_MATRIX:
         {
 		m_ProjectionMatrix.SetFrom4x4((float *)pMat);
+        m_ProjectionMatrix.SetTranspose();
         glMatrixMode (GL_PROJECTION);
-        glLoadMatrixf(pMat);
+        glLoadMatrixf(m_ProjectionMatrix.GetMatrix());
         
 		break;
 		}
@@ -1148,6 +1151,7 @@ void CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 		m_ModelViewMatrix.SetFrom4x4((float *)pMat);
         Matrix4x4 glModelViewMat;
         glModelViewMat = m_WorldMatrix * m_ModelViewMatrix;
+        glModelViewMat.SetTranspose();
         glMatrixMode (GL_MODELVIEW);
         glLoadMatrixf(glModelViewMat.GetMatrix());
             
@@ -1158,6 +1162,7 @@ void CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 		m_WorldMatrix.SetFrom4x4((float *)pMat);
         Matrix4x4 glModelViewMat;
         glModelViewMat = m_WorldMatrix * m_ModelViewMatrix;
+        glModelViewMat.SetTranspose();
         glMatrixMode (GL_MODELVIEW);
         glLoadMatrixf(glModelViewMat.GetMatrix());
         
@@ -1741,24 +1746,22 @@ bool CGLRenderer::RenderIndexBuffer( IIndexBuffer * ib, IVertexBufferObject * vb
 
 void CGLRenderer::UnsetTextures()
 {
-#if 0
 	if (m_SetTextures)
 	{
 		for (UINT stage=0; stage < m_iMaxTextures; stage++)
 		{
 			if (m_SetTextures[stage] != NULL)
 			{
-				m_pDevice->SetTexture( stage, NULL );
+                glActiveTexture(GL_TEXTURE0 + stage);
+                glBindTexture(GL_TEXTURE_2D, 0);
 				m_SetTextures[stage] = NULL;
 			}
 		}
 	}
-#endif
 }
 
 bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 {
-#if 0
 	//TODO: check for redundancies here!
 	if (stage >= m_iMaxTextures)
 		return false;
@@ -1767,13 +1770,26 @@ bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 		m_SetTextures[ stage ] = texture;
 		if( texture )
 		{
-       		m_pDevice->SetTexture( stage, ( IDirect3DBaseTexture9 *  )texture->GetAPITexture() );
+            glActiveTexture(GL_TEXTURE0 + stage);
+            GLenum glTextureType = GL_TEXTURE_2D;
+            switch (texture->GetTextureType())
+            {
+                case EE_TEXTUREANIMATED2D:
+                case EE_TEXTURE2D:
+                    glTextureType = GL_TEXTURE_2D;
+                    break;
+                case EE_TEXTURECUBE:
+                    glTextureType = GL_TEXTURE_CUBE_MAP;
+                    break;
+            }
+            void *apiTexture = texture->GetAPITexture();
+            glBindTexture(glTextureType, *((GLuint *)(&apiTexture)));
 		}else
 		{
-			m_pDevice->SetTexture( stage, NULL );
+            glActiveTexture(GL_TEXTURE0 + stage);
+            glBindTexture(GL_TEXTURE_2D, 0);
 		}
 	}
-#endif
 	return true;
 }
 
@@ -2036,9 +2052,73 @@ bool CGLRenderer::DrawFullscreenQuad(float left, float right, float bottom, floa
 	return true;
 }
 
+UINT GetNumVerticesFromPrim(GLenum prim, UINT numprim)
+{
+    UINT retPrim = 0;
+    switch (prim)
+    {
+        case GL_LINE_LOOP:
+        case GL_POINTS:
+            retPrim = numprim;
+            break;
+        case GL_LINES:
+            retPrim = numprim * 2;
+            break;
+        case GL_LINE_STRIP:
+            retPrim = numprim + 1;
+            break;
+        case GL_TRIANGLE_FAN:
+        case GL_TRIANGLE_STRIP:
+            retPrim = numprim + 2;
+            break;
+        case GL_QUADS:
+            retPrim = numprim * 4;
+            break;
+        case GL_QUAD_STRIP:
+            retPrim = (numprim * 2) + 2;
+            break;
+        default:
+        {
+            EngineGetToolBox()->Log(LOGERROR, _T("Unknown primitive type 0x%x"), prim);
+        }
+    }
+    
+    return retPrim;
+}
+
 void CGLRenderer::DrawPrimUp ( GLenum prim, UINT numprim, void * stream, UINT stride )
 {
-	//m_pDevice->DrawPrimitiveUP( prim, numprim, (void*)stream, stride );
+    glBegin(prim);
+    
+    UINT nVerts = GetNumVerticesFromPrim(prim, numprim);
+    
+    for (int i=0; i<nVerts; i++)
+    {
+        if (m_FVFSet & GLFVF_XYZ)
+        {
+            float *fValues = (float *)stream;
+            glVertex3f( *fValues++, *fValues++, *fValues++);
+            stream = (void *)fValues;
+        }
+        
+        if (m_FVFSet & GLFVF_DIFFUSE)
+        {
+            DWORD *dValue = (DWORD *)stream;
+            DWORD diffuseColor = *dValue++;
+            stream = (void *)dValue;
+            glColor4b(((diffuseColor >> 16) & 0xff), ((diffuseColor >> 8) & 0xff), ((diffuseColor >> 0) & 0xff), ((diffuseColor >> 24) & 0xff));
+        }
+        
+        if (m_FVFSet & GLFVF_TEX1)
+        {
+            float *fValues = (float *)stream;
+            glTexCoord2f(*fValues++, *fValues++);
+            stream = (void *)fValues;
+        }
+    }
+    
+    glEnd();
+    
 	//drawprim up kills this internally, must tell renderer that it is now nul
 	m_VertexDeclSet = NULL;
 	SetFVF( 0 );
@@ -2419,6 +2499,7 @@ void CGLRenderer::SetOrtho2DScreenSize(float left, float right, float bottom, fl
 		}
 		mat.m[5] = -mat.m[5];
 		mat.m[14] = 1;
+        mat.SetTranspose();
 		SetMatrix( PROJECTION_MATRIX, (const float *)mat.GetMatrix() );
 		mat.SetIdentity();
 		SetMatrix( VIEW_MATRIX, (const float *)mat.GetMatrix() );

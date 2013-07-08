@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "394784816.59264"
+         timestampString = "394945891.231436"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
          landmarkName = "CGLRenderer::OnGetRendererInterface( DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -238,11 +238,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestEERenderOSX.cpp"
-         timestampString = "394916573.15825"
+         timestampString = "394944549.027845"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "147"
-         endingLineNumber = "147"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "main( int argc, char * argv[] )"
          landmarkType = "7">
       </FileBreakpoint>
@@ -260,7 +260,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../src/CTextureManager.cpp"
@@ -310,6 +310,227 @@
          endingLineNumber = "43"
          landmarkName = "InitDLL()"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLTextureObject.cpp"
+         timestampString = "394936399.282117"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
+         landmarkName = "CGLTextureObject::Create(int nArgs, va_list argptr)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../src/CTextureManager.cpp"
+         timestampString = "394936933.968518"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "371"
+         endingLineNumber = "371"
+         landmarkName = "CTextureManager::OnCreateTexture(DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLTextureObject.cpp"
+         timestampString = "394944549.027845"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "245"
+         endingLineNumber = "245"
+         landmarkName = "CGLTextureObject::MakeBlankTexture( UINT sizex, UINT sizey, UINT colordepth, IHashString * hformat, UINT mips )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
+         timestampString = "394941539.644731"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "279"
+         endingLineNumber = "279"
+         landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
+         timestampString = "394941649.532299"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "321"
+         endingLineNumber = "321"
+         landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLTextureObject.cpp"
+         timestampString = "394942057.031677"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "208"
+         endingLineNumber = "208"
+         landmarkName = "CGLTextureObject::MakeBlankTexture( UINT sizex, UINT sizey, UINT colordepth, IHashString * hformat, UINT mips )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLTextureObject.cpp"
+         timestampString = "394944549.027845"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "463"
+         endingLineNumber = "463"
+         landmarkName = "CGLTextureObject::Write( void *p, int level, IHashString * informat )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLTextureObject.cpp"
+         timestampString = "394942170.982136"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
+         landmarkName = "CGLTextureObject::CGLTextureObject(IHashString *parentName, IHashString *name)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
+         timestampString = "394942364.155082"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "273"
+         endingLineNumber = "273"
+         landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
+         timestampString = "394942493.165128"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "267"
+         endingLineNumber = "267"
+         landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestEERenderOSX.cpp"
+         timestampString = "394944659.624678"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
+         landmarkName = "main( int argc, char * argv[] )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394945891.231436"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "382"
+         endingLineNumber = "382"
+         landmarkName = "CGLRenderer::ClearScreen( bool clearDepth, bool clearTarget )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394951787.522218"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2091"
+         endingLineNumber = "2091"
+         landmarkName = "CGLRenderer::DrawPrimUp ( GLenum prim, UINT numprim, void * stream, UINT stride )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394951787.522218"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1142"
+         endingLineNumber = "1142"
+         landmarkName = "CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394951787.522218"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1151"
+         endingLineNumber = "1151"
+         landmarkName = "CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394951787.522218"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1162"
+         endingLineNumber = "1162"
+         landmarkName = "CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "394951787.522218"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2488"
+         endingLineNumber = "2488"
+         landmarkName = "CGLRenderer::SetOrtho2DScreenSize(float left, float right, float bottom, float top)"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

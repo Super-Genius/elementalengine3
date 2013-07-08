@@ -94,170 +94,15 @@ IComponent *CGLTextureObject::Create(int nArgs, va_list argptr)
 /// \param file = the filename
 bool CGLTextureObject::LoadFromFile( const TCHAR * file )
 {
-	StdString szFilePath(file);
-	szFilePath.MakeSafeFileName();
-
-	DeInit();
-
-	if (!m_Renderer)
-		return false;
-
-#if 0
-
-	D3DXIMAGE_INFO srcInfo;
-	LPDIRECT3DTEXTURE9 pTexture;
-/*
-	if( _tcsstr( file, _T(".hdr" ) )!= NULL )
-	{
-		bool retval = LoadHDRFile( (TCHAR*)file );
-		return retval;
-	}
-*/
-	LPVOID pFileData = NULL;
-	UINT iFileDataSize = 0;
-	if (!LoadFileIntoBuffer( szFilePath, pFileData, iFileDataSize, true ))
-	{
-		m_ToolBox->Log(LOGERROR, _T("Texture Object: %s failed to load\n"), szFilePath.c_str() );
-		return false;
-	}
-
-	D3DFORMAT requestedFormat = EEGLRequestedInternalFormatFromFileInMemory( pFileData, iFileDataSize );
-	HRESULT hr = D3DXCreateTextureFromFileInMemoryEx( pDevice,
-									pFileData, 
-									iFileDataSize, 
-									D3DX_DEFAULT, //width
-									D3DX_DEFAULT, //height
-									D3DX_DEFAULT, //number of mips
-									0,	//usage - 0 unless for render targets
-									requestedFormat,
-									D3DPOOL_MANAGED,
-									D3DX_DEFAULT,	//regular filter
-									D3DX_DEFAULT,	//mip filter
-									0, //color key, opaque black default
-									&srcInfo,	//src info
-									NULL, //palette
-									&pTexture );
-	SAFE_DELETE_ARRAY( pFileData );
-	if( hr != D3D_OK )
-	{
-		m_ToolBox->Log(LOGERROR, _T("Texture Object: %s failed to load\n"), szFilePath.c_str() );
-		return false;
-	}
-
-	D3DSURFACE_DESC textureDesc;
-	pTexture->GetLevelDesc( 0, &textureDesc );
-	m_Width = textureDesc.Width;
-	m_Height = textureDesc.Height;
-	m_Texture = pTexture;
-	m_Filename = file;
-	m_bRenderTarget = false;
-	m_ColorDepth = EEGLColorBitsFromFormat( textureDesc.Format );
-	m_Compressed = EEGLIsCompressedFormat( textureDesc.Format );
-
-	if( m_AutoGenMips )
-	{
-		pTexture->GenerateMipSubLevels();
-	}
-#endif
-	return true;
+    // no internal loading, let the texture loader do it.
+    return false;
 }
 
 bool CGLTextureObject::LoadHDRFile( TCHAR * file )
 {
-#if 0
-	LPDIRECT3DDEVICE9 pDevice;
-	if( !m_Renderer )
-	{
-		return false;
-	}
-	pDevice = (LPDIRECT3DDEVICE9)m_Renderer->GetAPIDevice();
-	if( !pDevice )
-	{
-		return false;
-	}
-	
-	int iWidth;
-	int iHeight;
-	// Read in the HDR light probe.
-	FILE* fp = fopen( file, "rb" );
 
-	if( fp )
-	{
-		rgbe_header_info info;
-		RGBE_ReadHeader( fp, &iWidth, &iHeight, &info );
-
-		// We really don't need this
-		float fExposure = info.exposure;
-		float fGamma  = info.gamma;
-
-		// Create a float array to read in the RGB components
-		float* m_fHDRPixels = new float[3 * iWidth * iHeight];
-		memset( m_fHDRPixels, 0, 3 * iWidth * iHeight * sizeof( float ) );
-
-		RGBE_ReadPixels_RLE( fp, m_fHDRPixels, iWidth, iHeight );
-
-		if( FAILED( D3DXCreateTexture( pDevice, iWidth, iHeight, 1, 0, 
-						D3DFMT_A16B16G16R16F, D3DPOOL_MANAGED, &m_Texture ) ) )
-		{
-			m_ToolBox->Log( LOGERROR, _T("Could not load radience(.hdr) file\n") );
-			return false;
-		}
-
-		// Convert the 32-bit floats into 16-bit floats and include the alpha component
-		D3DXFLOAT16* m_fHDR = new D3DXFLOAT16[4 * iWidth * iHeight];
-
-		int j = 0;
-		for( int i = 0; i < 4 * iWidth * iHeight; i += 4 )
-		{
-			m_fHDR[i] = m_fHDRPixels[i - j];
-			m_fHDR[i + 1] = m_fHDRPixels[i + 1 - j];
-			m_fHDR[i + 2] = m_fHDRPixels[i + 2 - j];
-			m_fHDR[i + 3] = 1.0f;
-			j++;
-		}
-
-		// Lock the texture and copy the pixel data into it
-		D3DLOCKED_RECT lr;
-		if(FAILED( m_Texture->LockRect( 0, &lr, NULL, 0 ) ) )
-		{
-			m_ToolBox->Log( LOGERROR, _T("Could not lock radience(.hdr) file for writing\n") );
-			return false;
-		}
-
-		memcpy( (D3DXFLOAT16*)lr.pBits, m_fHDR, 4 * iWidth * iHeight
-				* sizeof( D3DXFLOAT16 ) );
-
-		if(FAILED( m_Texture->UnlockRect( 0 ) ) )
-		{
-			m_ToolBox->Log( LOGERROR, _T("Could not unlock radience(.hdr) file for writing\n") );
-			return false;
-		}
-
-		delete[] m_fHDRPixels;
-		delete[] m_fHDR;
-
-		fclose( fp );
-
-		if( m_Texture )
-		{
-			m_Texture = m_Texture;
-			m_Filename = file;
-			m_bRenderTarget = false;		
-			D3DSURFACE_DESC tempDesc;
-			m_Texture->GetLevelDesc(0, &tempDesc);
-			if( m_AutoGenMips )
-			{
-				m_Texture->GenerateMipSubLevels();
-			}
-			m_Width = tempDesc.Width;
-			m_Height = tempDesc.Height;
-			m_ColorDepth = 64;
-			return true;
-		}
-	}
 	return false;
-#endif
-    return true;
+
 }
 bool CGLTextureObject::MakeRenderTarget( UINT sizex, UINT sizey, UINT colordepth, DWORD type, bool bAutoGenMipMaps )
 {
@@ -351,60 +196,74 @@ bool CGLTextureObject::MakeRenderTarget( UINT sizex, UINT sizey, UINT colordepth
 
 bool CGLTextureObject::MakeBlankTexture( UINT sizex, UINT sizey, UINT colordepth, IHashString * hformat, UINT mips )
 {
-#if 0
 	DeInit();
 
-	LPDIRECT3DDEVICE9 pDevice;
 	if( !m_Renderer )
 	{
 		return false;
 	}
-	pDevice = (LPDIRECT3DDEVICE9)m_Renderer->GetAPIDevice();
-	if( !pDevice )
-	{
-		return false;
-	}
-	UINT numMips = mips;
-	CGLRenderer * crend = dynamic_cast<CGLRenderer*>(m_Renderer);
-	D3DFORMAT format = D3DFMT_A8R8G8B8;
+
+	m_Levels = mips;
+    
+    glGenTextures(1, &m_Texture);
+    if ((CheckAndLogGLError() != GL_NO_ERROR) || (m_Texture == 0))
+    {
+        m_ToolBox->Log(LOGFATALERROR, _T("Probably no OpenGL context setup as glGenTextures returned 0\n"));
+        return false;
+    }
+
+    m_InternalFormat = GL_RGBA;
 	if( hformat )
 	{
-		format = EEGLFormatFromString( hformat );
-		if( format == D3DFMT_UNKNOWN )
+		m_InternalFormat = EEGLFormatFromString( hformat );
+		if( m_InternalFormat == 0 )
 		{
-			format = D3DFMT_A8R8G8B8;
+			m_InternalFormat = GL_RGBA;
 		}			
-		m_Compressed = EEGLIsCompressedFormat( format );
+		m_Compressed = EEGLIsCompressedFormat( m_InternalFormat );
 	}
 	else
-		format = EEGLFormatFromColorBits( colordepth );
+		m_InternalFormat = EEGLFormatFromColorBits( colordepth );
 
-	//create new texture	
-	LPDIRECT3DTEXTURE9 temptex;
-	//TODO: more control over texture creation?
-	if(FAILED(pDevice->CreateTexture( sizex, //width
-									 sizey, //height
-									numMips, //number of mips
-									0,	//usage - 0 unless for render targets
-									format,
-									D3DPOOL_MANAGED, //TODO: managed vs. Unmanaged! unmanaged you can't lock!								
-									&temptex,
-									NULL)))
-		{
-			return false;
-		}
-		
-	if( !temptex )
-	{
-		return false;
-	}
+    glBindTexture(GL_TEXTURE_2D, m_Texture);
+    if (CheckAndLogGLError() != GL_NO_ERROR)
+    {
+        return false;
+    }
+
+    if (mips > 1)
+    {
+        glTexParameteri(m_Texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(m_Texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    }
+    else
+    {
+        glTexParameteri(m_Texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(m_Texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    }
+    
+    if (m_Compressed)
+    {
+        glCompressedTexImage2D(GL_TEXTURE_2D, 0, m_InternalFormat, sizex, sizey, 0, 0, NULL);
+    }
+    else
+    {
+        // allocate blank texture
+        glTexImage2D(GL_TEXTURE_2D, 0, m_InternalFormat, sizex, sizey, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    }
+    
+    if (CheckAndLogGLError() != GL_NO_ERROR)
+    {
+        glBindTexture(GL_TEXTURE_2D, 0);
+        return false;
+    }
 	
-	m_Texture = temptex;
+    glBindTexture(GL_TEXTURE_2D, 0);
 	m_Height = sizey;
 	m_Width = sizex;
 	m_ColorDepth = colordepth;
 	m_bRenderTarget = false;
-#endif
+
 	return true;
 }
 
@@ -426,7 +285,7 @@ UINT CGLTextureObject::GetColorDepth()
 {
 	ReadyData();
 
-	return m_ColorDepth;
+	return (UINT)m_ColorDepth;
 }
 
 bool CGLTextureObject::IsRenderTarget()
@@ -543,7 +402,7 @@ void* CGLTextureObject::Read( int level, bool bForceUpdateRead )
 				m_Texture->UnlockRect( 0 );
 				return m_pLocalBuffer;
 			}
-		}else//we are render target, need surface
+		}else   //we are render target, need surface
 		{			
 			LPDIRECT3DSURFACE9 RenderSurf = NULL;
 			LPDIRECT3DSURFACE9 OffSurf = NULL;
@@ -601,14 +460,9 @@ void* CGLTextureObject::Read( int level, bool bForceUpdateRead )
 
 bool CGLTextureObject::Write( void *p, int level, IHashString * informat )
 {
-#if 0
 	ReadyData();
 
 	if (!m_Renderer)
-		return false;
-
-	LPDIRECT3DDEVICE9 pDevice = (LPDIRECT3DDEVICE9)m_Renderer->GetAPIDevice();
-	if( !pDevice )
 		return false;
 
 	if (m_Texture && (p || m_pLocalBuffer))
@@ -630,20 +484,32 @@ bool CGLTextureObject::Write( void *p, int level, IHashString * informat )
 			// so just write with our local copy (which we logically must have if we reached this line)
 			pData = m_pLocalBuffer;
 		}
-		D3DFORMAT SrcFormat = EEGLFormatFromString( informat );
-		HRESULT hr = EED3DXLoadSurfaceFromMemory( pDevice, m_Texture, level, p, SrcFormat, m_ColorDepth );
+        
+		GLenum SrcFormat = EEGLFormatFromString( informat );
 
-		if( hr != D3D_OK )
+        // bind the texture before loading
+        glBindTexture(GL_TEXTURE_2D, m_Texture);
+        
+        if (m_Compressed)
+        {
+            GLsizei imageSize = (GLsizei)EEGLFormatPitch(SrcFormat, (UINT)m_Width, (UINT)m_ColorDepth) * (GLsizei)m_Height;
+            glCompressedTexImage2D(GL_TEXTURE_2D,  level,  SrcFormat,  m_Width, m_Height, 0, imageSize, pData);
+        }
+        else
+        {
+            glTexImage2D(GL_TEXTURE_2D, level, SrcFormat, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pData);
+        }
+        
+        if (CheckAndLogGLError() != GL_NO_ERROR)
 		{
 			m_ToolBox->Log( LOGERROR, _T("Could not copy surface for write.\n"));
 			return false;
 		}	
         return true;
 	}
+    
 	m_ToolBox->Log( LOGERROR, _T("Error writing to texture.\n"));				
 	return false;
-#endif
-    return true;
 }
 
 void CGLTextureObject::GenerateMips()
@@ -660,9 +526,9 @@ void CGLTextureObject::GenerateMips()
 
 UINT CGLTextureObject::GetLevelCount()
 {
-	if (m_Texture)
+	if (m_Texture != 0)
     {
-		return 1;   //m_Texture->GetLevelCount();
+        return m_Levels;
     }
 	else
 		return 0;
@@ -707,12 +573,14 @@ void CGLTextureObject::Init()
 {
 	m_Filename = "";
 	m_RefCount = 1;
-	m_Texture = NULL;
+	m_Texture = 0;
 	
+    m_InternalFormat = 0;
 	m_Height = 0;
 	m_Width = 0;
+    m_Levels = 0;
 	m_ColorDepth = 0;
-	m_bRenderTarget =false;
+	m_bRenderTarget = false;
 }
 
 void CGLTextureObject::DeInit()
@@ -733,12 +601,14 @@ void CGLTextureObject::DeInit()
 	m_RefCount = 1;
 	m_pLocalBuffer = NULL;
 	m_iLocalBufferSize = 0;
-	m_Texture = NULL;
+	m_Texture = 0;
+    m_InternalFormat = 0;
 
 	m_Height = 0;
 	m_Width = 0;
+    m_Levels = 0;
 	m_ColorDepth = 0;
-	m_bRenderTarget =false;
+	m_bRenderTarget = false;
 }
 
 unsigned int CGLTextureObject::GetReferenceCount()

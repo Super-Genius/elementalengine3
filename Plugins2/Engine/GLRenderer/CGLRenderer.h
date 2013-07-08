@@ -13,8 +13,8 @@
 ///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================
 
-#ifndef _CGLRenderer_H
-#define _CGLRenderer_H
+#ifndef _CGLRENDERER_H
+#define _CGLRENDERER_H
 #include "IRenderer.h"
 #include "CGLVertexBufferObject.h"
 
@@ -28,7 +28,11 @@ class CGLIndexBuffer;
 class CGLVertexBufferObject;
 class CGLRenderContext;
 
-#define CGLRENDERER_2DVERTEX_FVF 0 //( D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
+#define GLFVF_XYZ       1
+#define GLFVF_DIFFUSE   2
+#define GLFVF_TEX1      4
+    
+#define CGLRENDERER_2DVERTEX_FVF ( GLFVF_XYZ | GLFVF_DIFFUSE | GLFVF_TEX1 )
 
 struct CGLRenderer_VertexRHW
 {
@@ -547,4 +551,4 @@ private:
 };
 
 }//end namespace EE
-#endif //#ifndef _CGLRenderer_H
+#endif //#ifndef _CGLRENDERER_H

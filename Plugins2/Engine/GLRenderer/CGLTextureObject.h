@@ -101,10 +101,13 @@ private:
 	int m_iLocalBufferSize;
 	UINT m_Height;
 	UINT m_Width;
+    UINT m_Levels;
 	DWORD m_ColorDepth;
+    GLenum m_InternalFormat;
 	bool m_bRenderTarget;
 	bool m_Compressed;
 	bool m_AutoGenMips;
+
 	IRenderer * m_Renderer;
 };
 

@@ -96,8 +96,8 @@ void RenderScene()
 int main( int argc, char * argv[] )
 {
     
-    size_t DisplayWidth = 800;
-    size_t DisplayHeight = 600;
+    size_t DisplayWidth = 1424;
+    size_t DisplayHeight = 730;
     
     mainWindow = NULL;
 #ifdef FULLSCREEN
@@ -139,6 +139,9 @@ int main( int argc, char * argv[] )
 
     gRenderer = GetRendererInterface();
     
+    // Make the window's context current
+    glfwMakeContextCurrent(mainWindow);
+    
     unsigned int bpp = GetDisplayBPP();
     gRenderer->Initialize(mainWindow, false, DisplayWidth, DisplayHeight, 24, bpp);
     
@@ -146,8 +149,6 @@ int main( int argc, char * argv[] )
     
     gTestTexture = LoadTexture(_T("Textures/Forest_grass.dds"));
     
-    // Make the window's context current
-    glfwMakeContextCurrent(mainWindow);
     
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(mainWindow))

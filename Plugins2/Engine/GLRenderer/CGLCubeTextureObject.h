@@ -92,7 +92,6 @@ public:
 private:	
 	/// converts the cube map face flag for OpengGL to use from the EE flag
 	GLenum GetGLCubeFaceEnum( EE_CUBEMAPFACE faceindex );
-private:
 	GLuint          m_Texture;
 	void *          m_pLocalBuffer[ NUM_CUBE_FACES ];
 	UINT			m_Size;
