@@ -12,6 +12,7 @@
 		8C0282191788B12D00A07848 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0282181788B12D00A07848 /* OpenGL.framework */; };
 		8C02821E1788B20600A07848 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C02821C1788B1CB00A07848 /* IOKit.framework */; };
 		8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */; };
+		8C4D4F1C179B87D400B16769 /* EEOSXLogWindow.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dylib */; };
 		8C6515EA178144240056F798 /* libElementalEngine3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
 		8CAA94211789E61400ECE2F8 /* TextureLoader.dls in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CAA94061789D73F00ECE2F8 /* TextureLoader.dls */; };
 		8CAA94231789E81700ECE2F8 /* LoadSaveManager.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CAA93CE1789296F00ECE2F8 /* LoadSaveManager.dlo */; };
@@ -41,6 +42,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 8C46B25B177F8147006FF2DB;
 			remoteInfo = ElementalEngine3;
+		};
+		8C4D4F0D179B861900B16769 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8C4D4EF5179B85DB00B16769;
+			remoteInfo = EEOSXLogWindow;
+		};
+		8C4D4F1A179B87CD00B16769 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C4D4EF4179B85DB00B16769;
+			remoteInfo = EEOSXLogWindow;
 		};
 		8CAA93CD1789296F00ECE2F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -100,6 +115,7 @@
 			dstPath = Plugins;
 			dstSubfolderSpec = 16;
 			files = (
+				8C4D4F1C179B87D400B16769 /* EEOSXLogWindow.dylib in CopyFiles */,
 				8CAA94231789E81700ECE2F8 /* LoadSaveManager.dlo in CopyFiles */,
 				8CAA94211789E61400ECE2F8 /* TextureLoader.dls in CopyFiles */,
 				8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */,
@@ -126,6 +142,7 @@
 		8C02821C1788B1CB00A07848 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		8C236E3C1785F6B4008EA1C7 /* GLRenderer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GLRenderer.xcodeproj; path = ../Plugins2/Engine/GLRenderer/GLRenderer.xcodeproj; sourceTree = "<group>"; };
 		8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElementalEngine3.xcodeproj; path = ../ElementalEngine3.xcodeproj; sourceTree = "<group>"; };
+		8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EEOSXLogWindow.xcodeproj; path = ../Plugins2/Platform/EEOSXLogWindow/EEOSXLogWindow.xcodeproj; sourceTree = "<group>"; };
 		8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoadSaveManager.xcodeproj; path = ../Plugins2/Engine/LoadSaveManager/LoadSaveManager.xcodeproj; sourceTree = "<group>"; };
 		8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TextureLoader.xcodeproj; path = ../Plugins2/LoadSavers/TextureLoader/TextureLoader.xcodeproj; sourceTree = "<group>"; };
 		8CB5030A1780ED47006F3E6F /* TestEERender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEERender; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,9 +185,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8C4D4F0A179B861800B16769 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8CA43823177E83F900E60641 = {
 			isa = PBXGroup;
 			children = (
+				8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */,
 				8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */,
 				8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */,
 				8C02821C1788B1CB00A07848 /* IOKit.framework */,
@@ -244,6 +270,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8C4D4F1B179B87CD00B16769 /* PBXTargetDependency */,
 				8CAA94251789E84400ECE2F8 /* PBXTargetDependency */,
 				8CAA94271789E84400ECE2F8 /* PBXTargetDependency */,
 				8C236E9917861435008EA1C7 /* PBXTargetDependency */,
@@ -274,6 +301,10 @@
 			productRefGroup = 8CA43823177E83F900E60641;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 8C4D4F0A179B861800B16769 /* Products */;
+					ProjectRef = 8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */;
+				},
 				{
 					ProductGroup = 8CC13B7B177F8305000C2A56 /* Products */;
 					ProjectRef = 8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */;
@@ -315,6 +346,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libElementalEngine3.dylib;
 			remoteRef = 8C46B266177F8170006FF2DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = EEOSXLogWindow.dylib;
+			remoteRef = 8C4D4F0D179B861900B16769 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8CAA93CE1789296F00ECE2F8 /* LoadSaveManager.dlo */ = {
@@ -381,6 +419,11 @@
 			name = GLRenderer;
 			targetProxy = 8C236E9817861435008EA1C7 /* PBXContainerItemProxy */;
 		};
+		8C4D4F1B179B87CD00B16769 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EEOSXLogWindow;
+			targetProxy = 8C4D4F1A179B87CD00B16769 /* PBXContainerItemProxy */;
+		};
 		8CAA94251789E84400ECE2F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LoadSaveManager;
@@ -407,6 +450,7 @@
 		8CA43828177E83F900E60641 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = YES;
@@ -418,6 +462,7 @@
 		8CA43829177E83F900E60641 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = YES;

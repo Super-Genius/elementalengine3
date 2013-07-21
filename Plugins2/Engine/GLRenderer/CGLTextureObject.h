@@ -106,6 +106,7 @@ private:
     GLenum m_InternalFormat;
 	bool m_bRenderTarget;
 	bool m_Compressed;
+    UINT m_CompressedSize;
 	bool m_AutoGenMips;
 
 	IRenderer * m_Renderer;

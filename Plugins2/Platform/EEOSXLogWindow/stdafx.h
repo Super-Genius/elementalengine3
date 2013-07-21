@@ -5,7 +5,7 @@
 ///         This code is redistributable under the terms of the EE License.
 ///
 ///         This code is distributed without warranty or implied warranty of
-///			merchantability or fitness for a particular purpose. See the 
+///			merchantability or fitness for a particular purpose. See the
 ///			EE License for more details.
 ///
 ///         You should have received a copy of the EE License along with this
@@ -13,15 +13,15 @@
 ///			109 East 17th Street Suite 4210 Cheyenne, WY 82001 USA
 ///============================================================================
 
-#include "CGLTextureObject.h"
+#ifndef _EEOSXLOGWINDOW_STDAFX_H_
+#define _EEOSXLOGWINDOW_STDAFX_H_
 
-GLenum EEGLFormatFromColorBits( UINT &colorbits, bool bTiled=false );
-DWORD EEGLColorBitsFromFormat( GLenum format );
-bool EEGLIsCompressedFormat( GLenum format );
-GLenum EEGLFormatFromString( IHashString *hszFormat );
-UINT EEGLFormatPitch( GLenum format, UINT width, UINT bitdepth );
-UINT EEGLFormatSize( GLenum format, UINT width, UINT height, UINT bitdepth);
-GLenum EEGLRequestedInternalFormatFromFileInMemory( void *pFileData, UINT iFileDataSize );
-HRESULT EEGLPresent(CGLRenderContext *pGLContext, UINT ClearColor[4] );
+#include "Platform.h"
 
-GLenum CheckAndLogGLError();
+#include "ElementalEngine.hpp"
+#include "Register.h"
+
+#include "LogViewerComponent.h"
+
+#endif      //#ifndef _EEOSXLOGWINDOW_STDAFX_H_
+

@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C4D4EF9179B85DB00B16769 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4D4EF8179B85DB00B16769 /* Cocoa.framework */; };
+		8C4D4F13179B868A00B16769 /* EEOSXLogWindowDLL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D4F11179B868A00B16769 /* EEOSXLogWindowDLL.cpp */; };
+		8C4D4F14179B868A00B16769 /* EEOSXLogWindowDLL.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F12179B868A00B16769 /* EEOSXLogWindowDLL.h */; };
+		8C4D4F18179B878200B16769 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F17179B878200B16769 /* StaticLibSymbols.h */; };
+		8C4D4F1E179B88F300B16769 /* LogViewerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F1D179B88F300B16769 /* LogViewerComponent.h */; };
+		8C4D4F20179B88FD00B16769 /* LogViewerComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D4F1F179B88FD00B16769 /* LogViewerComponent.cpp */; };
+		8C4D4F23179B8AC800B16769 /* EEOSXLogWindow-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F22179B8AC800B16769 /* EEOSXLogWindow-Prefix.pch */; };
+		8C4D4F25179B8ACE00B16769 /* EEOSXLogWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D4F24179B8ACE00B16769 /* EEOSXLogWindow.mm */; };
+		8C4D4F27179B8AD200B16769 /* EEOSXLogWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F26179B8AD200B16769 /* EEOSXLogWindow.h */; };
+		8C4D4F29179B9D8B00B16769 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F28179B9D8B00B16769 /* stdafx.h */; };
+		8C4D4F2B179B9D9500B16769 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D4F2A179B9D9500B16769 /* stdafx.cpp */; };
+		8C4D4F2D179B9F1100B16769 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4D4F2C179B9F1100B16769 /* libElementalEngine3.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		8C4D4F19179B87A400B16769 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"${INPUT_FILE_DIR}/StaticLibSymbols.cpp",
+				"${INPUT_FILE_DIR}/StaticLibSymbols.h",
+			);
+			script = "/usr/bin/python \"./GenerateStaticLibSymbols/GenerateStaticLibSymbols.py\" ${INPUT_FILE_DIR} ${INPUT_FILE_BASE}";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		8C4D4EF5179B85DB00B16769 /* EEOSXLogWindow.dlo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = EEOSXLogWindow.dlo; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C4D4EF8179B85DB00B16769 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8C4D4EFB179B85DB00B16769 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		8C4D4EFC179B85DB00B16769 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8C4D4EFD179B85DB00B16769 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8C4D4F11179B868A00B16769 /* EEOSXLogWindowDLL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EEOSXLogWindowDLL.cpp; sourceTree = "<group>"; };
+		8C4D4F12179B868A00B16769 /* EEOSXLogWindowDLL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEOSXLogWindowDLL.h; sourceTree = "<group>"; };
+		8C4D4F15179B877900B16769 /* StaticLibSymbols.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StaticLibSymbols.cpp; sourceTree = "<group>"; };
+		8C4D4F16179B877900B16769 /* StaticLibSymbols.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = StaticLibSymbols.gen; sourceTree = "<group>"; };
+		8C4D4F17179B878200B16769 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibSymbols.h; sourceTree = "<group>"; };
+		8C4D4F1D179B88F300B16769 /* LogViewerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewerComponent.h; sourceTree = "<group>"; };
+		8C4D4F1F179B88FD00B16769 /* LogViewerComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogViewerComponent.cpp; sourceTree = "<group>"; };
+		8C4D4F22179B8AC800B16769 /* EEOSXLogWindow-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EEOSXLogWindow-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		8C4D4F24179B8ACE00B16769 /* EEOSXLogWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EEOSXLogWindow.mm; sourceTree = "<group>"; };
+		8C4D4F26179B8AD200B16769 /* EEOSXLogWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEOSXLogWindow.h; sourceTree = "<group>"; };
+		8C4D4F28179B9D8B00B16769 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		8C4D4F2A179B9D9500B16769 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		8C4D4F2C179B9F1100B16769 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C4D4EF2179B85DB00B16769 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4D4F2D179B9F1100B16769 /* libElementalEngine3.dylib in Frameworks */,
+				8C4D4EF9179B85DB00B16769 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C4D4EEC179B85DB00B16769 = {
+			isa = PBXGroup;
+			children = (
+				8C4D4F2C179B9F1100B16769 /* libElementalEngine3.dylib */,
+				8C4D4F10179B865100B16769 /* Header Files */,
+				8C4D4F0F179B864B00B16769 /* Source Files */,
+				8C4D4EFE179B85DB00B16769 /* EEOSXLogWindow */,
+				8C4D4EF7179B85DB00B16769 /* Frameworks */,
+				8C4D4EF6179B85DB00B16769 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C4D4EF6179B85DB00B16769 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4EF5179B85DB00B16769 /* EEOSXLogWindow.dlo */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C4D4EF7179B85DB00B16769 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4EF8179B85DB00B16769 /* Cocoa.framework */,
+				8C4D4EFA179B85DB00B16769 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C4D4EFA179B85DB00B16769 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4EFB179B85DB00B16769 /* AppKit.framework */,
+				8C4D4EFC179B85DB00B16769 /* CoreData.framework */,
+				8C4D4EFD179B85DB00B16769 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		8C4D4EFE179B85DB00B16769 /* EEOSXLogWindow */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4EFF179B85DB00B16769 /* Supporting Files */,
+			);
+			path = EEOSXLogWindow;
+			sourceTree = "<group>";
+		};
+		8C4D4EFF179B85DB00B16769 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4F22179B8AC800B16769 /* EEOSXLogWindow-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C4D4F0F179B864B00B16769 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4F2A179B9D9500B16769 /* stdafx.cpp */,
+				8C4D4F24179B8ACE00B16769 /* EEOSXLogWindow.mm */,
+				8C4D4F1F179B88FD00B16769 /* LogViewerComponent.cpp */,
+				8C4D4F15179B877900B16769 /* StaticLibSymbols.cpp */,
+				8C4D4F16179B877900B16769 /* StaticLibSymbols.gen */,
+				8C4D4F11179B868A00B16769 /* EEOSXLogWindowDLL.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		8C4D4F10179B865100B16769 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C4D4F28179B9D8B00B16769 /* stdafx.h */,
+				8C4D4F26179B8AD200B16769 /* EEOSXLogWindow.h */,
+				8C4D4F12179B868A00B16769 /* EEOSXLogWindowDLL.h */,
+				8C4D4F1D179B88F300B16769 /* LogViewerComponent.h */,
+				8C4D4F17179B878200B16769 /* StaticLibSymbols.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8C4D4EF3179B85DB00B16769 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4D4F14179B868A00B16769 /* EEOSXLogWindowDLL.h in Headers */,
+				8C4D4F18179B878200B16769 /* StaticLibSymbols.h in Headers */,
+				8C4D4F1E179B88F300B16769 /* LogViewerComponent.h in Headers */,
+				8C4D4F23179B8AC800B16769 /* EEOSXLogWindow-Prefix.pch in Headers */,
+				8C4D4F27179B8AD200B16769 /* EEOSXLogWindow.h in Headers */,
+				8C4D4F29179B9D8B00B16769 /* stdafx.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8C4D4EF4179B85DB00B16769 /* EEOSXLogWindow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C4D4F06179B85DB00B16769 /* Build configuration list for PBXNativeTarget "EEOSXLogWindow" */;
+			buildPhases = (
+				8C4D4EF1179B85DB00B16769 /* Sources */,
+				8C4D4EF2179B85DB00B16769 /* Frameworks */,
+				8C4D4EF3179B85DB00B16769 /* Headers */,
+			);
+			buildRules = (
+				8C4D4F19179B87A400B16769 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = EEOSXLogWindow;
+			productName = EEOSXLogWindow;
+			productReference = 8C4D4EF5179B85DB00B16769 /* EEOSXLogWindow.dlo */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C4D4EED179B85DB00B16769 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Social Systems Technology";
+			};
+			buildConfigurationList = 8C4D4EF0179B85DB00B16769 /* Build configuration list for PBXProject "EEOSXLogWindow" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8C4D4EEC179B85DB00B16769;
+			productRefGroup = 8C4D4EF6179B85DB00B16769 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C4D4EF4179B85DB00B16769 /* EEOSXLogWindow */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C4D4EF1179B85DB00B16769 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4D4F13179B868A00B16769 /* EEOSXLogWindowDLL.cpp in Sources */,
+				8C4D4F20179B88FD00B16769 /* LogViewerComponent.cpp in Sources */,
+				8C4D4F25179B8ACE00B16769 /* EEOSXLogWindow.mm in Sources */,
+				8C4D4F2B179B9D9500B16769 /* stdafx.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8C4D4F04179B85DB00B16769 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8C4D4F05179B85DB00B16769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8C4D4F07179B85DB00B16769 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = dlo;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EEOSXLogWindow-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
+					"\"$(SRCROOT)/../../../EESDK/Lib/OSX/Debug\"",
+				);
+				OBJROOT = build;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../Bin/OSX;
+			};
+			name = Debug;
+		};
+		8C4D4F08179B85DB00B16769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = dlo;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EEOSXLogWindow-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					../../../EESDK/include,
+					../../../EESDK/include/OSX,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
+					"\"$(SRCROOT)/../../../EESDK/Lib/OSX/Debug\"",
+				);
+				OBJROOT = build;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../Bin/OSX;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C4D4EF0179B85DB00B16769 /* Build configuration list for PBXProject "EEOSXLogWindow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C4D4F04179B85DB00B16769 /* Debug */,
+				8C4D4F05179B85DB00B16769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C4D4F06179B85DB00B16769 /* Build configuration list for PBXNativeTarget "EEOSXLogWindow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C4D4F07179B85DB00B16769 /* Debug */,
+				8C4D4F08179B85DB00B16769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C4D4EED179B85DB00B16769 /* Project object */;
+}

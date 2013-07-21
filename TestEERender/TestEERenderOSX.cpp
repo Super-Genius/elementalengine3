@@ -78,7 +78,7 @@ void RenderScene()
     gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
     // basic texture modulate
     gRenderer->SetMaterial(0, NULL);
-    gRenderer->Draw2DQuad(350.0f, 250.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
+    gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, gTestTexture, 0xffffffff);
     gRenderer->EndScene();
     gRenderer->Present(gRenderContext);
     

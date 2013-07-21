@@ -221,10 +221,17 @@ bool CGLTextureObject::MakeBlankTexture( UINT sizex, UINT sizey, UINT colordepth
 			m_InternalFormat = GL_RGBA;
 		}			
 		m_Compressed = EEGLIsCompressedFormat( m_InternalFormat );
+        m_CompressedSize = EEGLFormatSize(m_InternalFormat, sizex, sizey, colordepth);
 	}
 	else
 		m_InternalFormat = EEGLFormatFromColorBits( colordepth );
 
+    glEnable(GL_TEXTURE_2D);
+    if (CheckAndLogGLError() != GL_NO_ERROR)
+    {
+        return false;
+    }
+    
     glBindTexture(GL_TEXTURE_2D, m_Texture);
     if (CheckAndLogGLError() != GL_NO_ERROR)
     {
@@ -233,18 +240,24 @@ bool CGLTextureObject::MakeBlankTexture( UINT sizex, UINT sizey, UINT colordepth
 
     if (mips > 1)
     {
-        glTexParameteri(m_Texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(m_Texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
     }
     else
     {
-        glTexParameteri(m_Texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(m_Texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    }
+
+    if (CheckAndLogGLError() != GL_NO_ERROR)
+    {
+        return false;
     }
     
+#if 0
     if (m_Compressed)
     {
-        glCompressedTexImage2D(GL_TEXTURE_2D, 0, m_InternalFormat, sizex, sizey, 0, 0, NULL);
+        glCompressedTexImage2D(GL_TEXTURE_2D, 0, m_InternalFormat, sizex, sizey, 0, m_CompressedSize, NULL);
     }
     else
     {
@@ -257,7 +270,8 @@ bool CGLTextureObject::MakeBlankTexture( UINT sizex, UINT sizey, UINT colordepth
         glBindTexture(GL_TEXTURE_2D, 0);
         return false;
     }
-	
+#endif
+
     glBindTexture(GL_TEXTURE_2D, 0);
 	m_Height = sizey;
 	m_Width = sizex;
@@ -486,14 +500,44 @@ bool CGLTextureObject::Write( void *p, int level, IHashString * informat )
 		}
         
 		GLenum SrcFormat = EEGLFormatFromString( informat );
-
+        
+        glEnable(GL_TEXTURE_2D);
+        if (CheckAndLogGLError() != GL_NO_ERROR)
+		{
+			m_ToolBox->Log( LOGERROR, _T("Could not copy surface for write.\n"));
+			return false;
+		}
+        
         // bind the texture before loading
         glBindTexture(GL_TEXTURE_2D, m_Texture);
         
+        if (CheckAndLogGLError() != GL_NO_ERROR)
+		{
+			m_ToolBox->Log( LOGERROR, _T("Could not copy surface for write.\n"));
+			return false;
+		}
+        
+        // calculate mip width/height
+        UINT levelWidth = m_Width;
+        UINT levelHeight = m_Height;
+        for (int i=level; i != 0; i--)
+        {
+            levelWidth >>= 1;
+            if (levelWidth == 0)
+            {
+                levelWidth = 1;
+            }
+            levelHeight >>= 1;
+            if (levelHeight == 0)
+            {
+                levelHeight = 1;
+            }
+        }
+        
         if (m_Compressed)
         {
-            GLsizei imageSize = (GLsizei)EEGLFormatPitch(SrcFormat, (UINT)m_Width, (UINT)m_ColorDepth) * (GLsizei)m_Height;
-            glCompressedTexImage2D(GL_TEXTURE_2D,  level,  SrcFormat,  m_Width, m_Height, 0, imageSize, pData);
+            UINT compressedSize = EEGLFormatSize(SrcFormat, levelWidth, levelHeight, (UINT)m_ColorDepth);
+            glCompressedTexImage2D(GL_TEXTURE_2D,  level,  SrcFormat,  levelWidth, levelHeight, 0, compressedSize, pData);
         }
         else
         {

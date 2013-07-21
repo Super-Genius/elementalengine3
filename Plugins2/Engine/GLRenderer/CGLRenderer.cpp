@@ -20,6 +20,7 @@
 #include "CGLShader.h"
 #include "ILightObject.h"
 #include "CGLRenderContext.h"
+#include "EnumMap.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,6 +41,202 @@ REGISTER_MESSAGE_HANDLER(GetRendererInterface, OnGetRendererInterface, CGLRender
 REGISTER_MESSAGE_HANDLER(SetDirectories, OnSetDirectories, CGLRenderer );
 REGISTER_MESSAGE_HANDLER(GetRayFromMouseCoords, OnGetRayFromMouseCoords, CGLRenderer);
 REGISTER_MESSAGE_HANDLER(TransformWorldToScreen, OnTransformWorldToScreen, CGLRenderer);
+
+typedef struct COMBINERSETTING
+{
+    bool m_bIsFloat;
+    GLenum m_PName;
+    union {
+        GLint m_IValues[4];
+        GLfloat m_FValues[4];
+    };
+    
+    COMBINERSETTING(GLenum pname, GLint x, GLint y = 0, GLint z = 0, GLint w = 0)
+    {
+        m_bIsFloat = false;
+        m_PName = pname;
+        m_IValues[0] = x;
+        m_IValues[1] = y;
+        m_IValues[2] = z;
+        m_IValues[3] = w;
+    }
+    
+    COMBINERSETTING(GLenum pname, GLfloat x, GLfloat y = 0.0f, GLfloat z = 0.0f, GLfloat w = 0.0f)
+    {
+        m_bIsFloat = true;
+        m_PName = pname;
+        m_FValues[0] = x;
+        m_FValues[1] = y;
+        m_FValues[2] = z;
+        m_FValues[3] = w;
+    }
+    
+    operator GLint *()
+    {
+        return m_IValues;
+    }
+    
+    operator GLfloat *()
+    {
+        return m_FValues;
+    }
+    
+    bool isFloat()
+    {
+        return m_bIsFloat;
+    }
+
+    
+} COMBINERSETTING;
+
+typedef std::list<COMBINERSETTING> COMBINERSETTINGSLIST;
+
+class CombinerSettings
+{
+public:
+    CombinerSettings(GLenum pname, GLint x, GLint y = 0, GLint z = 0, GLint w = 0)
+    {
+        m_CombinerSettings.push_back(COMBINERSETTING(pname, x, y, z, w));
+    }
+
+    CombinerSettings(GLenum pname, GLfloat x, GLfloat y = 0.0f, GLfloat z = 0.0f, GLfloat w = 0.0f)
+    {
+        m_CombinerSettings.push_back(COMBINERSETTING(pname, x, y, z, w));
+    }
+    
+    CombinerSettings& operator()(GLenum pname, GLint x, GLint y = 0, GLint z = 0, GLint w = 0)
+    {
+        m_CombinerSettings.push_back(COMBINERSETTING(pname, x, y, z, w));
+        return *this;
+    }
+
+    CombinerSettings& operator()(GLenum pname, GLfloat x, GLfloat y = 0, GLfloat z = 0, GLfloat w = 0)
+    {
+        m_CombinerSettings.push_back(COMBINERSETTING(pname, x, y, z, w));
+        return *this;
+    }
+    
+    CombinerSettings() { }
+    CombinerSettings(const CombinerSettings &src)
+    {
+        m_CombinerSettings = src.m_CombinerSettings;
+    }
+    
+    const COMBINERSETTINGSLIST *GetCombinerSettingsList() const
+    {
+        return &m_CombinerSettings;
+    }
+        
+private:
+     COMBINERSETTINGSLIST m_CombinerSettings;
+};
+
+
+const EnumMap<CombinerSettings> gCombinerSettings[] =
+{
+    // TEXTURESTAGESTATE_COLOROP
+    EnumMap<CombinerSettings>
+    ( TEXTURESTAGEOP_DISABLE,
+        CombinerSettings
+            (0, 0)
+    )
+    ( TEXTURESTAGEOP_MODULATE,
+        CombinerSettings
+            ( GL_COMBINE_RGB, GL_MODULATE)
+    )
+    ( TEXTURESTAGEOP_SELECTARG1,
+        CombinerSettings
+            ( GL_COMBINE_RGB, GL_MODULATE)
+            ( GL_SRC1_RGB, GL_CONSTANT)
+            ( GL_OPERAND1_RGB, GL_SRC_COLOR)
+            ( GL_TEXTURE_ENV_COLOR, 1.0f, 1.0f, 1.0f, 1.0f)
+    )
+    ( TEXTURESTAGEOP_SELECTARG2,
+        CombinerSettings
+            ( GL_COMBINE_RGB, GL_MODULATE)
+            ( GL_SRC0_RGB, GL_CONSTANT)
+            ( GL_OPERAND0_RGB, GL_SRC_COLOR)
+            ( GL_TEXTURE_ENV_COLOR, 1.0f, 1.0f, 1.0f, 1.0f)
+    ),
+    
+    // TEXTURESTAGESTATE_COLORARG1
+    EnumMap<CombinerSettings>
+    ( TEXTURESTAGEARG_TEXTURE,
+        CombinerSettings
+        ( GL_SRC0_RGB, GL_TEXTURE)
+        ( GL_OPERAND0_RGB, GL_SRC_COLOR)
+    )
+    ( TEXTURESTAGEARG_DIFFUSE,
+        CombinerSettings
+        ( GL_SRC0_RGB, GL_PRIMARY_COLOR)
+        ( GL_OPERAND0_RGB, GL_SRC_COLOR)
+    ),
+    
+    // TEXTURESTAGESTATE_COLORARG2
+    EnumMap<CombinerSettings>
+    ( TEXTURESTAGEARG_TEXTURE,
+        CombinerSettings
+        ( GL_SRC1_RGB, GL_TEXTURE)
+        ( GL_OPERAND1_RGB, GL_SRC_COLOR)
+    )
+    ( TEXTURESTAGEARG_DIFFUSE,
+        CombinerSettings
+        ( GL_SRC1_RGB, GL_PRIMARY_COLOR)
+        ( GL_OPERAND1_RGB, GL_SRC_COLOR)
+    ),
+
+    // TEXTURESTAGESTATE_ALPHAOP
+    EnumMap<CombinerSettings>
+    ( TEXTURESTAGEOP_DISABLE,
+        CombinerSettings
+        (0, 0)
+    )
+    ( TEXTURESTAGEOP_MODULATE,
+        CombinerSettings
+        ( GL_COMBINE_ALPHA, GL_MODULATE)
+    )
+    ( TEXTURESTAGEOP_SELECTARG1,
+        CombinerSettings
+        ( GL_COMBINE_ALPHA, GL_MODULATE)
+        ( GL_SRC1_ALPHA, GL_CONSTANT)
+        ( GL_OPERAND1_ALPHA, GL_SRC_COLOR)
+        ( GL_TEXTURE_ENV_COLOR, 1.0f, 1.0f, 1.0f, 1.0f)
+    )
+    ( TEXTURESTAGEOP_SELECTARG2,
+         CombinerSettings
+         ( GL_COMBINE_ALPHA, GL_MODULATE)
+         ( GL_SRC0_ALPHA, GL_CONSTANT)
+         ( GL_OPERAND0_ALPHA, GL_SRC_COLOR)
+         ( GL_TEXTURE_ENV_COLOR, 1.0f, 1.0f, 1.0f, 1.0f)
+     ),
+    
+    // TEXTURESTAGESTATE_ALPHAARG1
+    EnumMap<CombinerSettings>
+    ( TEXTURESTAGEARG_TEXTURE,
+        CombinerSettings
+        ( GL_SOURCE0_ALPHA, GL_TEXTURE)
+        ( GL_OPERAND0_ALPHA, GL_SRC_COLOR)
+    )
+    ( TEXTURESTAGEARG_DIFFUSE,
+        CombinerSettings
+        ( GL_SOURCE0_ALPHA, GL_PRIMARY_COLOR)
+        ( GL_OPERAND0_ALPHA, GL_SRC_COLOR)
+    ),
+    
+    // TEXTURESTAGESTATE_ALPHAARG2
+    EnumMap<CombinerSettings>
+    ( TEXTURESTAGEARG_TEXTURE,
+        CombinerSettings
+        ( GL_SOURCE1_ALPHA, GL_TEXTURE)
+        ( GL_OPERAND1_ALPHA, GL_SRC_COLOR)
+    )
+    ( TEXTURESTAGEARG_DIFFUSE,
+        CombinerSettings
+        ( GL_SOURCE1_ALPHA, GL_PRIMARY_COLOR)
+        ( GL_OPERAND1_ALPHA, GL_SRC_COLOR)
+    )
+    
+};
 
 CGLRenderer::CGLRenderer()
 {
@@ -244,7 +441,7 @@ bool CGLRenderer::Initialize( HWND window,  bool fullscreen, const int width, co
 
 		//Init max texture and statemanager
 		CHashString maxTexStagesName(_T("MAX_TEXTURE_STAGES"));
-		int MaxTextures = m_ConfigNameMap[ maxTexStagesName.GetUniqueID() ];
+		int MaxTextures = 8; //m_ConfigNameMap[ maxTexStagesName.GetUniqueID() ];
 		m_SetTextures = new IBaseTextureObject*[ MaxTextures ];
 		m_iMaxTextures = MaxTextures;
 		m_SetVertexTextures = new IBaseTextureObject*[ MaxTextures ];
@@ -264,6 +461,10 @@ bool CGLRenderer::Initialize( HWND window,  bool fullscreen, const int width, co
 		m_Height = height;
 
         // set default render states
+        
+        glFrontFace(GL_CW);
+        glDisable(GL_DEPTH_TEST);
+        glDisable(GL_CULL_FACE);
 #if 0
 		m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
 		m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);	 	
@@ -380,7 +581,9 @@ void CGLRenderer::ClearScreen( bool clearDepth, bool clearTarget )
         clearFlags |= GL_COLOR_BUFFER_BIT;
 
     glClearColor((GLfloat)m_ClearColor[1] / 255.0f, (GLfloat)m_ClearColor[2] / 255.0f, (GLfloat)m_ClearColor[3] / 255.0f, (GLfloat)m_ClearColor[0] / 255.0f);
+    CheckAndLogGLError();
     glClearDepth(1.0f);
+    CheckAndLogGLError();
 	// Clear the screen
     glClear(clearFlags);
     CheckAndLogGLError();
@@ -913,7 +1116,7 @@ void CGLRenderer::DrawOrientedBoundingBox( Vec3 &in_min, Vec3 &in_max, Matrix3x3
     SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE); 
     SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
     SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG1, TEXTURESTAGEARG_TEXTURE ); 
-    SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE); 
+    SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE);
     SetGLTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
     SetGLTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE ); 
 
@@ -1140,10 +1343,10 @@ void CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 	case PROJECTION_MATRIX:
         {
 		m_ProjectionMatrix.SetFrom4x4((float *)pMat);
-        m_ProjectionMatrix.SetTranspose();
         glMatrixMode (GL_PROJECTION);
-        glLoadMatrixf(m_ProjectionMatrix.GetMatrix());
-        
+        CheckAndLogGLError();
+        glLoadMatrixf(pMat);
+        CheckAndLogGLError();
 		break;
 		}
 	case VIEW_MATRIX:
@@ -1151,10 +1354,10 @@ void CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 		m_ModelViewMatrix.SetFrom4x4((float *)pMat);
         Matrix4x4 glModelViewMat;
         glModelViewMat = m_WorldMatrix * m_ModelViewMatrix;
-        glModelViewMat.SetTranspose();
         glMatrixMode (GL_MODELVIEW);
+        CheckAndLogGLError();
         glLoadMatrixf(glModelViewMat.GetMatrix());
-            
+        CheckAndLogGLError();
 		break;
 		}
 	case WORLD_MATRIX:
@@ -1162,10 +1365,10 @@ void CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 		m_WorldMatrix.SetFrom4x4((float *)pMat);
         Matrix4x4 glModelViewMat;
         glModelViewMat = m_WorldMatrix * m_ModelViewMatrix;
-        glModelViewMat.SetTranspose();
         glMatrixMode (GL_MODELVIEW);
+        CheckAndLogGLError();
         glLoadMatrixf(glModelViewMat.GetMatrix());
-        
+        CheckAndLogGLError();
 		break;
 		}
 	default:
@@ -1770,7 +1973,10 @@ bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 		m_SetTextures[ stage ] = texture;
 		if( texture )
 		{
+            glEnable(GL_TEXTURE_2D);
+            CheckAndLogGLError();
             glActiveTexture(GL_TEXTURE0 + stage);
+            CheckAndLogGLError();
             GLenum glTextureType = GL_TEXTURE_2D;
             switch (texture->GetTextureType())
             {
@@ -1784,10 +1990,15 @@ bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
             }
             void *apiTexture = texture->GetAPITexture();
             glBindTexture(glTextureType, *((GLuint *)(&apiTexture)));
+            CheckAndLogGLError();
 		}else
 		{
+            glEnable(GL_TEXTURE_2D);
+            CheckAndLogGLError();
             glActiveTexture(GL_TEXTURE0 + stage);
+            CheckAndLogGLError();
             glBindTexture(GL_TEXTURE_2D, 0);
+            CheckAndLogGLError();
 		}
 	}
 	return true;
@@ -1924,6 +2135,7 @@ bool CGLRenderer::Draw2DQuad( float x, float y,  float width, float height,
 							 float uEnd, float vEnd)
 {
 	
+
 	SetRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLNONE );
 	static CGLRenderer_VertexRHW	sQuad[ 4 ] = 
 	{
@@ -1982,6 +2194,9 @@ bool CGLRenderer::Draw2DQuad( float x, float y,  float width, float height,
     mat.SetTranslation(trans);				
     SetOrtho2DScreenSize();
     SetMatrix(WORLD_MATRIX, mat.m);
+    
+    CheckAndLogGLError();
+
 
     if ( GLtex )
     {
@@ -1999,10 +2214,11 @@ bool CGLRenderer::Draw2DQuad( float x, float y,  float width, float height,
     }
     else
     { 
-        SetTexture( 0, NULL ); 
-        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_SELECTARG2 ); 
-        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE ); 
-        SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
+        SetTexture( 0, NULL );
+        
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_SELECTARG1 );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_DIFFUSE );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG1 );
         SetGLTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
         SetGLTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE ); 
     }
@@ -2153,13 +2369,18 @@ void CGLRenderer::SetBlendMode( BLENDMODE mode )
     if( mode == BLEND_NORMAL )
     {
         SetGLRenderState(RENDERSTATE_SRCBLEND,RENDERSTATEPARAM_SRCALPHA);
+        CheckAndLogGLError();
         SetGLRenderState(RENDERSTATE_DESTBLEND,RENDERSTATEPARAM_INVSRCALPHA);
+        CheckAndLogGLError();
+
     }
-    else
-    if( mode == BLEND_ADDITIVE )
+    else if (mode == BLEND_ADDITIVE )
     {
         SetGLRenderState(RENDERSTATE_SRCBLEND,RENDERSTATEPARAM_SRCALPHA);
+        CheckAndLogGLError();
         SetGLRenderState(RENDERSTATE_DESTBLEND,RENDERSTATEPARAM_ONE);
+        CheckAndLogGLError();
+
     }
 }
 
@@ -2491,15 +2712,14 @@ void CGLRenderer::SetOrtho2DScreenSize(float left, float right, float bottom, fl
 		Matrix4x4 mat2;
 		if ((right == 0) || (top == 0))
 		{
-			MatrixOrthoOffCenterLH( &mat, left, (float)m_Width,  bottom, (float)m_Height, -1, 1.f );
+			MatrixOrthoOffCenterLH( &mat, left, (float)m_Width, (float)m_Height, bottom, -1, 1.f );
 		}
 		else
 		{
-			MatrixOrthoOffCenterLH( &mat, left, right,  bottom, top, -1, 1.f );
+			MatrixOrthoOffCenterLH( &mat, left, right, top, bottom, -1, 1.f );
 		}
-		mat.m[5] = -mat.m[5];
-		mat.m[14] = 1;
-        mat.SetTranspose();
+		//mat.m[5] = -mat.m[5];
+		//mat.m[14] = 1;
 		SetMatrix( PROJECTION_MATRIX, (const float *)mat.GetMatrix() );
 		mat.SetIdentity();
 		SetMatrix( VIEW_MATRIX, (const float *)mat.GetMatrix() );
@@ -2653,13 +2873,14 @@ void CGLRenderer::EnableScissorClip(bool enable)
 	
 void CGLRenderer::SetScissorRect(int x1, int y1, int x2, int y2)
 {
-
     glScissor(x1, y1, x2-x1, y2-y1);
+    CheckAndLogGLError();
 }
 
 void CGLRenderer::SetColorMask( bool r, bool g, bool b, bool a )
 {
     glColorMask(r, g, b, a);
+    CheckAndLogGLError();
 }
 
 void CGLRenderer::EnablePostProcess( bool bEnable )
@@ -2954,11 +3175,10 @@ void CGLRenderer::RegisterTextureStageEnumHashes()
 
 HRESULT CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE state, UINT value )
 {
-#if 0
 	assert( stage < MAX_BUFFERED_CHANNELS );
 	assert( state < TEXTURESTAGESTATE_COUNT );
 
-	HRESULT result = S_OK;
+	HRESULT result = GL_NO_ERROR;
 	UINT *pCurrentValue = NULL;
 	if( m_RenderContext )
 	{
@@ -2969,15 +3189,69 @@ HRESULT CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE s
 		pCurrentValue = &m_CurrentTextureStageState[stage][state];
 	}
     
+    // if we haven't cached the current Value(s)
 	if (*pCurrentValue != value)
 	{
-		result = m_pDevice->SetTextureStageState( stage, m_D3DTextureStageStateEnum[state], m_D3DTextureStageParamEnum[value] );
-		*pCurrentValue = value;
+        glActiveTexture(GL_TEXTURE0 + stage);
+        result = CheckAndLogGLError();
+        if (result == GL_NO_ERROR)
+        {
+            if (((state == TEXTURESTAGESTATE_COLOROP) || (state == TEXTURESTAGESTATE_ALPHAOP)) && (value == TEXTURESTAGEOP_DISABLE))
+            {
+                glDisable(GL_TEXTURE_2D);
+                return CheckAndLogGLError();
+            }
+            else
+            {
+                glEnable(GL_TEXTURE_2D);
+                result = CheckAndLogGLError();
+                if (result == GL_NO_ERROR)
+                {
+                    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+                    result = CheckAndLogGLError();
+                }
+            }
+
+            // grab a map of CombinerSettings from the array indexed by state
+            const EnumMap<CombinerSettings> *combMap = &gCombinerSettings[state];
+            
+            EnumMap<CombinerSettings>::const_iterator ecsIter;
+            ecsIter = combMap->find(value);
+            // make sure the value is in the map, or else internal error
+            if (ecsIter != combMap->end())
+            {
+                // grab the CombinerSettings class (with list of combiner settings)
+                const CombinerSettings *combSettings = &(ecsIter->second);
+                const COMBINERSETTINGSLIST *cslList;
+                // get the list of combiner settings to iterate through
+                cslList = combSettings->GetCombinerSettingsList();
+                COMBINERSETTINGSLIST::const_iterator cslIter;
+                for (cslIter = cslList->begin(); (cslIter != cslList->end()) && (result == GL_NO_ERROR); ++cslIter)
+                {
+                    if (cslIter->m_bIsFloat)
+                    {
+                        glTexEnvfv(GL_TEXTURE_ENV, cslIter->m_PName, cslIter->m_FValues);
+                    }
+                    else
+                    {
+                        glTexEnviv(GL_TEXTURE_ENV, cslIter->m_PName, cslIter->m_IValues);
+                    }
+                    result = CheckAndLogGLError();
+                }
+            }
+            else
+            {
+                EngineGetToolBox()->Log(LOGERROR, _T("GLRenderer: could not get find render state: %x value: %x to set!\n"), state, value);
+
+            }
+            
+            if (result == GL_NO_ERROR)
+            {
+                *pCurrentValue = value;
+            }
+        }
 	}
 	return result;
-#else
-	return false;
-#endif
 }
 
 HRESULT CGLRenderer::SetGLSamplerStageState( UINT stage, ENUMSAMPLERSTATE state, UINT value )

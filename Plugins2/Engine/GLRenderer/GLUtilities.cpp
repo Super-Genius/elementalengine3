@@ -92,6 +92,7 @@ DWORD EEGLColorBitsFromFormat( GLenum format )
 {
 	switch(format)
 	{
+		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
 		case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
 		case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
 		case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
@@ -117,6 +118,7 @@ bool EEGLIsCompressedFormat( GLenum format )
 	{
 		case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
 		case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
+		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
 		case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
 			return true;
 		default:
@@ -125,7 +127,7 @@ bool EEGLIsCompressedFormat( GLenum format )
 }
 
 const EnumMap<GLenum> textureTypes = EnumMap<GLenum>
-    ( CHashString(_T("DXT1")).GetUniqueID(), GL_COMPRESSED_RGBA_S3TC_DXT1_EXT)
+    ( CHashString(_T("DXT1")).GetUniqueID(), GL_COMPRESSED_RGB_S3TC_DXT1_EXT)
 	( CHashString(_T("DXT2")).GetUniqueID(), GL_COMPRESSED_RGBA_S3TC_DXT3_EXT)
 	( CHashString(_T("DXT3")).GetUniqueID(), GL_COMPRESSED_RGBA_S3TC_DXT3_EXT)
 	( CHashString(_T("DXT4")).GetUniqueID(), GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
@@ -180,16 +182,34 @@ GLenum EEGLFormatFromString( IHashString *hszFormat )
 
 UINT EEGLFormatPitch( GLenum format, UINT width, UINT bitdepth )
 {
-	if( format == GL_COMPRESSED_SRGB_S3TC_DXT1_EXT )
+	if ((format == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) || (format == GL_COMPRESSED_RGB_S3TC_DXT1_EXT))
 	{
 		return (( width / 4 )* 8);
 	}
-	else if( format == GL_COMPRESSED_RGBA_S3TC_DXT3_EXT || format == GL_COMPRESSED_RGBA_S3TC_DXT5_EXT )
+	else if ((format == GL_COMPRESSED_RGBA_S3TC_DXT3_EXT) || (format == GL_COMPRESSED_RGBA_S3TC_DXT5_EXT))
 	{
 		return (( width / 4 )* 16);
 	}
 	else
+    {
 		return width*(bitdepth/8);
+    }
+}
+
+UINT EEGLFormatSize( GLenum format, UINT width, UINT height, UINT bitdepth)
+{
+	if ((format == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) || (format == GL_COMPRESSED_RGB_S3TC_DXT1_EXT))
+	{
+		return (((width + 3)/ 4) * ((height + 3)/4) *  8);
+	}
+	else if ((format == GL_COMPRESSED_RGBA_S3TC_DXT3_EXT) || (format == GL_COMPRESSED_RGBA_S3TC_DXT5_EXT))
+	{
+		return (((width + 3)/ 4) * ((height + 3)/4) *  16);
+	}
+	else
+    {
+		return width*height*(bitdepth/8);
+    }
 }
 
 /*
