@@ -169,7 +169,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 	}
 
-	gRenderer = GetRendererInterface();
+	gRenderer = EEGetRendererInterface();
 
 	RECT winRect;
 	int windowWidth, windowHeight, bitsPerPixel;
@@ -185,14 +185,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	gRenderer->Initialize(hWnd, false, windowWidth, windowHeight, 24, bitsPerPixel);
 	gRenderContext = gRenderer->CreateNewContext(hWnd, windowWidth, windowHeight, 24, bitsPerPixel);
 
-	gTestTexture = LoadTexture(_T("Textures\\Forest_grass.dds"));
+	gTestTexture = EELoadTexture(_T("Textures\\Forest_grass.dds"));
 
-	if (!LoadSound(_T("Sounds\\TreehouseMusic.wav")))
+	if (!EELoadSound(_T("Sounds\\TreehouseMusic.wav")))
 	{
 		MessageBox(hWnd, _T("Unable to load ogg file for playback, check log file"), _T("Error!"), MB_OK);
 	}
 
-	if (!PlaySound(_T("Sounds\\TreehouseMusic.wav"), true, false))
+	if (!EEPlaySound(_T("Sounds\\TreehouseMusic.wav"), true, false))
 	{
 		MessageBox(hWnd, _T("Unable to play ogg file for playback, check log file"), _T("Error!"), MB_OK);
 	}

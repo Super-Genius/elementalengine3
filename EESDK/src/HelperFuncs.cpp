@@ -5,14 +5,14 @@ extern "C" {
 
 static DWORD getRIID = CHashString(_T("GetRendererInterface")).GetUniqueID();
 
-IRenderer *GetRendererInterface()
+IRenderer *EEGetRendererInterface()
 {
 	IRenderer *theRenderer = NULL;
 	EngineGetToolBox()->SendMessage(getRIID, sizeof(IRenderer *), &theRenderer);
 	return theRenderer;
 }
 
-IBaseTextureObject *CreateTexture(IHashString *Format, UINT sizeX, UINT sizeY, UINT bitDepth, RENDER_TARGET_TYPE bRenderTargetTexture,
+IBaseTextureObject *EECreateTexture(IHashString *Format, UINT sizeX, UINT sizeY, UINT bitDepth, RENDER_TARGET_TYPE bRenderTargetTexture,
 	UINT numMips, bool bAutoGenMipMaps, IHashString *Name)
 {
 	CHashString Msg_CreateTexMsg( _T("CreateTexture") );
@@ -34,7 +34,7 @@ IBaseTextureObject *CreateTexture(IHashString *Format, UINT sizeX, UINT sizeY, U
 }
 
 
-IBaseTextureObject *LoadTexture(const TCHAR *filename)
+IBaseTextureObject *EELoadTexture(const TCHAR *filename)
 {
 	if (!filename || !filename[0])
 		return NULL;
@@ -54,7 +54,7 @@ IBaseTextureObject *LoadTexture(const TCHAR *filename)
 	return NULL;
 }
 
-bool LoadSound(const TCHAR *fileName)
+bool EELoadSound(const TCHAR *fileName)
 {
 	LOADFILEEXTPARAMS lfep;
 	lfep.fileName = (TCHAR *)fileName;
@@ -69,7 +69,7 @@ bool LoadSound(const TCHAR *fileName)
 }
 
 // this plays a streaming sound
-bool PlaySound(const TCHAR *fileName, bool looping, bool autoRemove)
+bool EEPlaySound(const TCHAR *fileName, bool looping, bool autoRemove)
 {
 	PLAYSOUNDPARAMS psParams;
 	CHashString szName(fileName);
@@ -113,7 +113,7 @@ ISoundObject *LoadSound(const TCHAR *fileName)
 	return false;
 }
 
-bool PlaySound(const TCHAR *fileName)
+bool PlsaySound(const TCHAR *fileName)
 {
 	PLAYSOUNDPARAMS psParams;
 	CHashString szName(fileName);
