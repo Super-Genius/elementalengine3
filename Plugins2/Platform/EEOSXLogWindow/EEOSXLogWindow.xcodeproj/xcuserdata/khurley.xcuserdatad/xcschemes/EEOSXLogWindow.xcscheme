@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C4D4EF4179B85DB00B16769"
-               BuildableName = "EEOSXLogWindow.dylib"
+               BuildableName = "EEOSXLogWindow.dlo"
                BlueprintName = "EEOSXLogWindow"
                ReferencedContainer = "container:EEOSXLogWindow.xcodeproj">
             </BuildableReference>

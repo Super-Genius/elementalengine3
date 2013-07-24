@@ -168,7 +168,7 @@ const EnumMap<CombinerSettings> gCombinerSettings[] =
     )
     ( TEXTURESTAGEARG_DIFFUSE,
         CombinerSettings
-        ( GL_SRC0_RGB, GL_PRIMARY_COLOR)
+        ( GL_SRC0_RGB, GL_PREVIOUS)
         ( GL_OPERAND0_RGB, GL_SRC_COLOR)
     ),
     
@@ -181,7 +181,7 @@ const EnumMap<CombinerSettings> gCombinerSettings[] =
     )
     ( TEXTURESTAGEARG_DIFFUSE,
         CombinerSettings
-        ( GL_SRC1_RGB, GL_PRIMARY_COLOR)
+        ( GL_SRC1_RGB, GL_PREVIOUS)
         ( GL_OPERAND1_RGB, GL_SRC_COLOR)
     ),
 
@@ -199,14 +199,14 @@ const EnumMap<CombinerSettings> gCombinerSettings[] =
         CombinerSettings
         ( GL_COMBINE_ALPHA, GL_MODULATE)
         ( GL_SRC1_ALPHA, GL_CONSTANT)
-        ( GL_OPERAND1_ALPHA, GL_SRC_COLOR)
+        ( GL_OPERAND1_ALPHA, GL_SRC_ALPHA)
         ( GL_TEXTURE_ENV_COLOR, 1.0f, 1.0f, 1.0f, 1.0f)
     )
     ( TEXTURESTAGEOP_SELECTARG2,
          CombinerSettings
          ( GL_COMBINE_ALPHA, GL_MODULATE)
          ( GL_SRC0_ALPHA, GL_CONSTANT)
-         ( GL_OPERAND0_ALPHA, GL_SRC_COLOR)
+         ( GL_OPERAND0_ALPHA, GL_SRC_ALPHA)
          ( GL_TEXTURE_ENV_COLOR, 1.0f, 1.0f, 1.0f, 1.0f)
      ),
     
@@ -214,26 +214,26 @@ const EnumMap<CombinerSettings> gCombinerSettings[] =
     EnumMap<CombinerSettings>
     ( TEXTURESTAGEARG_TEXTURE,
         CombinerSettings
-        ( GL_SOURCE0_ALPHA, GL_TEXTURE)
-        ( GL_OPERAND0_ALPHA, GL_SRC_COLOR)
+        ( GL_SRC0_ALPHA, GL_TEXTURE)
+        ( GL_OPERAND0_ALPHA, GL_SRC_ALPHA)
     )
     ( TEXTURESTAGEARG_DIFFUSE,
         CombinerSettings
-        ( GL_SOURCE0_ALPHA, GL_PRIMARY_COLOR)
-        ( GL_OPERAND0_ALPHA, GL_SRC_COLOR)
+        ( GL_SRC0_ALPHA, GL_PREVIOUS)
+        ( GL_OPERAND0_ALPHA, GL_SRC_ALPHA)
     ),
     
     // TEXTURESTAGESTATE_ALPHAARG2
     EnumMap<CombinerSettings>
     ( TEXTURESTAGEARG_TEXTURE,
         CombinerSettings
-        ( GL_SOURCE1_ALPHA, GL_TEXTURE)
-        ( GL_OPERAND1_ALPHA, GL_SRC_COLOR)
+        ( GL_SRC1_ALPHA, GL_TEXTURE)
+        ( GL_OPERAND1_ALPHA, GL_SRC_ALPHA)
     )
     ( TEXTURESTAGEARG_DIFFUSE,
         CombinerSettings
-        ( GL_SOURCE1_ALPHA, GL_PRIMARY_COLOR)
-        ( GL_OPERAND1_ALPHA, GL_SRC_COLOR)
+        ( GL_SRC1_ALPHA, GL_PREVIOUS)
+        ( GL_OPERAND1_ALPHA, GL_SRC_ALPHA)
     )
     
 };
@@ -465,6 +465,11 @@ bool CGLRenderer::Initialize( HWND window,  bool fullscreen, const int width, co
         glFrontFace(GL_CW);
         glDisable(GL_DEPTH_TEST);
         glDisable(GL_CULL_FACE);
+        glDisable(GL_LIGHTING);
+        glDisable(GL_BLEND);
+        //glEnable(GL_BLEND);
+        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 #if 0
 		m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
 		m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);	 	
@@ -1973,9 +1978,9 @@ bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 		m_SetTextures[ stage ] = texture;
 		if( texture )
 		{
-            glEnable(GL_TEXTURE_2D);
-            CheckAndLogGLError();
             glActiveTexture(GL_TEXTURE0 + stage);
+            CheckAndLogGLError();
+            glEnable(GL_TEXTURE_2D);
             CheckAndLogGLError();
             GLenum glTextureType = GL_TEXTURE_2D;
             switch (texture->GetTextureType())
@@ -2310,27 +2315,54 @@ void CGLRenderer::DrawPrimUp ( GLenum prim, UINT numprim, void * stream, UINT st
     
     for (int i=0; i<nVerts; i++)
     {
+        
+        // all this because opengl takes primitive components in reverse order.
+        float *xyzValues = NULL;
         if (m_FVFSet & GLFVF_XYZ)
         {
-            float *fValues = (float *)stream;
-            glVertex3f( *fValues++, *fValues++, *fValues++);
-            stream = (void *)fValues;
+            xyzValues = (float *)stream;
+            stream = (void *)(xyzValues + 3);
         }
         
+        GLubyte *diffValues = NULL;
+        // color has to go first, don't ask me why?
         if (m_FVFSet & GLFVF_DIFFUSE)
         {
             DWORD *dValue = (DWORD *)stream;
             DWORD diffuseColor = *dValue++;
             stream = (void *)dValue;
-            glColor4b(((diffuseColor >> 16) & 0xff), ((diffuseColor >> 8) & 0xff), ((diffuseColor >> 0) & 0xff), ((diffuseColor >> 24) & 0xff));
+            static GLubyte diffColor[4];
+            diffColor[0] = ((diffuseColor >> 16) & 0xff);
+            diffColor[1] = ((diffuseColor >> 8) & 0xff);
+            diffColor[2] = ((diffuseColor >> 0) & 0xff);
+            diffColor[3] = ((diffuseColor >> 24) & 0xff);
+            diffValues = diffColor;
         }
-        
+
+        float *texCoords = NULL;
         if (m_FVFSet & GLFVF_TEX1)
         {
-            float *fValues = (float *)stream;
-            glTexCoord2f(*fValues++, *fValues++);
-            stream = (void *)fValues;
+            texCoords = (float *)stream;
+            stream = (void *)(texCoords + 2);
         }
+        
+        // all primitive components have to come before xyz values....
+        if (diffValues != NULL)
+        {
+            glColor4ubv(diffValues);
+        }
+        
+        if (texCoords != NULL)
+        {
+            glTexCoord2fv(texCoords);
+        }
+        
+        // this finalizes the vertex component data.
+        if (xyzValues != NULL)
+        {
+            glVertex3fv(xyzValues);
+        }
+
     }
     
     glEnd();
@@ -3190,7 +3222,7 @@ HRESULT CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE s
 	}
     
     // if we haven't cached the current Value(s)
-	if (*pCurrentValue != value)
+	//if (*pCurrentValue != value)
 	{
         glActiveTexture(GL_TEXTURE0 + stage);
         result = CheckAndLogGLError();
@@ -3199,6 +3231,7 @@ HRESULT CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE s
             if (((state == TEXTURESTAGESTATE_COLOROP) || (state == TEXTURESTAGESTATE_ALPHAOP)) && (value == TEXTURESTAGEOP_DISABLE))
             {
                 glDisable(GL_TEXTURE_2D);
+                *pCurrentValue = value;
                 return CheckAndLogGLError();
             }
             else
@@ -3228,15 +3261,28 @@ HRESULT CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE s
                 COMBINERSETTINGSLIST::const_iterator cslIter;
                 for (cslIter = cslList->begin(); (cslIter != cslList->end()) && (result == GL_NO_ERROR); ++cslIter)
                 {
+                    const COMBINERSETTING *cs = &(*cslIter);
                     if (cslIter->m_bIsFloat)
                     {
-                        glTexEnvfv(GL_TEXTURE_ENV, cslIter->m_PName, cslIter->m_FValues);
+                        glTexEnvfv(GL_TEXTURE_ENV, cs->m_PName, cs->m_FValues);
                     }
                     else
                     {
-                        glTexEnviv(GL_TEXTURE_ENV, cslIter->m_PName, cslIter->m_IValues);
+                        glTexEnviv(GL_TEXTURE_ENV, cs->m_PName, cs->m_IValues);
                     }
                     result = CheckAndLogGLError();
+                    if (result != GL_NO_ERROR)
+                    {
+                        if (cslIter->m_bIsFloat)
+                        {
+                            EngineGetToolBox()->Log(LOGERROR, _T("GLRenderer: could not get set render state: %x value: %x,pName : %x value: %x\n"), state, value, cslIter->m_PName, cslIter->m_FValues[0]);
+                        }
+                        else
+                        {
+                            EngineGetToolBox()->Log(LOGERROR, _T("GLRenderer: could not get set render state: %x value: %x,pName : %x value: %x\n"), state, value, cslIter->m_PName, cslIter->m_IValues[0]);
+                        }
+                    }
+                    
                 }
             }
             else

@@ -35,27 +35,22 @@ CHashString CTextureLoader::m_HashName(_T("CTextureLoader"));
 
 LSRC_MESSAGE CTextureLoader::m_LoadSaveRegisterData = {
 		&CTextureLoader::m_HashName,
-#if 0	// ONCE THE LOADER IS DONE.
+        // ONCE THE LOADER IS DONE.
 		"DevIL Files (*.oil)\0" "*.oil\0"
 		"Graphics Interchange Format (*.gif)\0" "*.gif\0"
 		"Half-Life Model Files (*.mdl)\0" "*.mdl\0"
 		"Homeworld Image Files (*.lif)\0" "*.lif\0"
-#endif
 		"Jpeg Files (*.jpe, *.jpg, *.jpeg)\0" "*.jpe;*.jpg;*.jpeg\0"
-#if 0
 		"Microsoft Bitmap Files (*.bmp)\0" "*.bmp\0"
 		"Microsoft Icon Files (*.ico)\0" "*.ico\0"
 		"Portable AnyMap Files (*.pbm, *.pgm, *.pnm, *.ppm)\0" "*.pbm;*.pgm;*.pnm;*.ppm\0"
 		"Portable Network Graphics Files (*.png)\0" "*.png\0"
 		"Sgi Files (*.sgi)\0" "*.bw;*.rgb;*.rgba;*.sgi\0"
-#endif
 		"Targa Files (*.tga)\0" "*.tga\0"
 		"DirectX Image Files (*.dds)\0" "*.dds\0"
-#if 0
 		"Tiff Files (*.tif)\0" "*.tif;*.tiff\0"
 		"Quake Wal Files (*.wal)\0" "*.wal\0"
 		"ZSoft Pcx Files (*.pcx)\0" "*.pcx\0"
-#endif
 		"\0\0",	
 		// save types
 		"C-Style Header (*.h)\0" "*.h\0"
