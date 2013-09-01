@@ -550,6 +550,7 @@ void* CDX9TextureObject::Read( int level, bool bForceUpdateRead )
 				if( FAILED(pDevice->CreateOffscreenPlainSurface( tDesc.Width,
 													tDesc.Height,
 													tDesc.Format,
+													
 													D3DPOOL_SYSTEMMEM,													
 													&OffSurf,
 													NULL )))
@@ -573,7 +574,7 @@ void* CDX9TextureObject::Read( int level, bool bForceUpdateRead )
 					UINT pixelsize = (GetColorDepth()/8);
 					BYTE * srcbits = (BYTE*)lockrect.pBits;
 					BYTE * destbits = (BYTE*)m_pLocalBuffer;
-					//write the texture to the buffer
+//write the texture to the buffer
 					for( UINT i = 0; i < m_Height; i++ )
 					{
 						memcpy( destbits, srcbits, m_Width*pixelsize );

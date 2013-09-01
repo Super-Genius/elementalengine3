@@ -23,6 +23,9 @@ INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 IToolBox			*gToolBox;
 DLLPRIORITYMAP		gDLLPMap;			// the plugin DLL loaded by priority
 
+// full screen mode.
+static bool fullScreen = true;
+
 HINSTANCE DX9DLL;
 IRenderer *gRenderer;
 IRenderContext *gRenderContext;
@@ -147,9 +150,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	HWND hWnd;
 
 	hInst = hInstance; // Store instance handle in our global variable
+	if (!fullScreen)
+	{
+		hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+						CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
+	}
+	else
+	{
+		hWnd = GetDesktopWindow();
+	}
 
-	hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-				CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
 
 	if (!hWnd)
 	{
@@ -174,33 +184,39 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	RECT winRect;
 	int windowWidth, windowHeight, bitsPerPixel;
 
+	HDC hdc = GetDC(NULL);
+
 	::GetClientRect(hWnd, &winRect);
 	windowWidth = winRect.right - winRect.left;
 	windowHeight = winRect.bottom - winRect.top;
-	HDC hdc = GetDC(NULL);
+
 	bitsPerPixel = GetDeviceCaps(hdc, BITSPIXEL);
 	ReleaseDC(NULL, hdc);
-
+ 
+	if (!fullScreen)
+	{
+		windowWidth = 1024;
+		windowHeight = 768;
+	}
 	// this initializes the screen
-	gRenderer->Initialize(hWnd, false, windowWidth, windowHeight, 24, bitsPerPixel);
+	gRenderer->Initialize(hWnd, fullScreen, windowWidth, windowHeight, 24, bitsPerPixel);
 	gRenderContext = gRenderer->CreateNewContext(hWnd, windowWidth, windowHeight, 24, bitsPerPixel);
 
 	gTestTexture = EELoadTexture(_T("Textures\\Forest_grass.dds"));
 
 	if (!EELoadSound(_T("Sounds\\TreehouseMusic.wav")))
 	{
-		MessageBox(hWnd, _T("Unable to load ogg file for playback, check log file"), _T("Error!"), MB_OK);
+		//MessageBox(hWnd, _T("Unable to load wav file for playback, check log file"), _T("Error!"), MB_OK);
 	}
-
-	if (!EEPlaySound(_T("Sounds\\TreehouseMusic.wav"), true, false))
+	else if (!EEPlaySound(_T("Sounds\\TreehouseMusic.wav"), true, false))
 	{
-		MessageBox(hWnd, _T("Unable to play ogg file for playback, check log file"), _T("Error!"), MB_OK);
+		//MessageBox(hWnd, _T("Unable to play ogg file for playback, check log file"), _T("Error!"), MB_OK);
 	}
 
-	// setup a time of 60 fps to process ogg vorbis sound queue/streaming sounds
-	SetTimer(hWnd, IDT_TIMER1, 1000/60, (TIMERPROC) NULL);
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
+	// setup a time of 60 fps to process ogg vorbis sound queue/streaming sounds
+	SetTimer(hWnd, IDT_TIMER1, 1000/60, (TIMERPROC) NULL);
 	return TRUE;
 }
 

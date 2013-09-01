@@ -1,6 +1,6 @@
 ///============================================================================
 /// \note   Elemental Engine
-///         Copyright (c)  2005-2008 Signature Devices, Inc.
+///         Copyright (c) 2013 Social Systems Technology, Inc.
 ///
 ///         This code is redistributable under the terms of the EE License.
 ///
@@ -8,9 +8,6 @@
 ///			merchantability or fitness for a particular purpose. See the 
 ///			EE License for more details.
 ///
-///         You should have received a copy of the EE License along with this
-///			code; If not, write to Signature Devices, Inc.,
-///			3200 Bridge Parkway Suite 102, Redwood City, CA 94086 USA.
 ///============================================================================
 
 #include "Stdafx.h"
@@ -37,7 +34,7 @@ static char THIS_FILE[] = __FILE__;
 #define MAX_CONST_REGISTER_PS_30 255
 
 #define RENDERER_DEFAULTMINZ .0f
-#define RENDERER_DEFAULTMAXZ  1.f;//10000.f
+#define RENDERER_DEFAULTMAXZ  1.f;
 
 REGISTER_COMPONENT_SINGLETON( CDX9Renderer );
 REGISTER_MESSAGE_HANDLER(GetRendererInterface, OnGetRendererInterface, CDX9Renderer);
@@ -262,9 +259,6 @@ void CDX9Renderer::OnDestroyRenderer()
 	SetVertexShader( NULL );
 	SetPixelShader( NULL );
 
-#ifdef XBOX
-	EEDX9XboxPreDestroyRenderer( m_pDevice );
-#endif
 }
 
 bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, const int height,
@@ -287,7 +281,6 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 		{
 			return false;
 		}
-#ifndef XBOX
 		if ( !fullscreen ) // If it's not in fullscreen, we fill that structure with the current display mode
 		{
 			hr = m_pD3D9->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &displayMode); // Get the current display mode on he default display adapter
@@ -297,7 +290,6 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 			displayMode.Height = height; // Set the screen height to the window height
 		}
 		else
-#endif //XBOX
 		{
 			displayMode.Width = width; // Set the screen width to the window width
 			displayMode.Height = height; // Set the screen height to the window height
@@ -333,20 +325,9 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 											D3DADAPTER_DEFAULT,	D3DDEVTYPE_HAL,//D3DDEVTYPE_REF, //D3DDEVTYPE_HAL 
 //#endif
 									window,
-#ifdef XBOX
-									D3DCREATE_BUFFER_2_FRAMES |
-#endif
 									D3DCREATE_HARDWARE_VERTEXPROCESSING,
 									&m_presentParameters, &m_pDevice ); 
-		//if some caps from the present parameters weren't valid, we can call it again with the same
-		//present parameter which would have changed in the last call to make them valid
-		//here we're using software vertex processing if required:
-//		if( hr != S_OK )
-//		{
-//			hr = m_pD3D9->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL , window,
-//									D3DCREATE_SOFTWARE_VERTEXPROCESSING, 
-//									&m_presentParameters, &m_pDevice ); 
-//		}
+
 		if ( FAILED( hr ) ) // If it failed, return failure
 		{
 			EngineGetToolBox()->Log(LOGERROR, _T("DX9Renderer: Failed to create device with resolution %dx%d!\n"), width, height);
@@ -358,6 +339,7 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 		UINT r=150, g=150, b=150, a=255;
 		SetBackgroundColor(r, g, b, a);
 		ClearScreen( true, true );
+
 
 		BuildConfigMap();
 
@@ -407,12 +389,10 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 
 		m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
 		m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);	 	
-#ifndef XBOX
 		m_pDevice->SetRenderState( D3DRS_CLIPPING,         FALSE );
 		m_pDevice->SetRenderState(D3DRS_SHADEMODE,D3DSHADE_GOURAUD );
 		m_pDevice->SetRenderState( D3DRS_AMBIENT, 0xFFFFFFFF );
 		m_pDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
-#endif //XBOX
 
 		SetD3DRenderState( RENDERSTATE_CULLMODE,         RENDERSTATEPARAM_CULLCCW  );		
 		SetD3DRenderState( RENDERSTATE_ZENABLE,         RENDERSTATEPARAM_ZTRUE  );// D3DZB_TRUE );
@@ -523,15 +503,18 @@ void CDX9Renderer::ResizeScreen( const int &width, const int &height )
 
 void CDX9Renderer::ClearScreen( bool clearDepth, bool clearTarget )
 {
-	DWORD clearFlags = 0;
-	if( clearDepth )clearFlags  |= D3DCLEAR_ZBUFFER;
-	if( clearTarget )clearFlags |= D3DCLEAR_TARGET;
-	// Clear the screen
-	SetColorMask(true, true, true, true);
-	HRESULT hr = m_pDevice->Clear( 0, NULL, clearFlags, 
-				D3DCOLOR_ARGB((int)m_ClearColor[0], (int)m_ClearColor[1], (int)m_ClearColor[2], (int)m_ClearColor[3]),
-				1.0f, 0 );
-	assert( SUCCEEDED(hr) );
+	if (m_bInitialized)
+	{
+		DWORD clearFlags = 0;
+		if( clearDepth )clearFlags  |= D3DCLEAR_ZBUFFER;
+		if( clearTarget )clearFlags |= D3DCLEAR_TARGET;
+		// Clear the screen
+		SetColorMask(true, true, true, true);
+		HRESULT hr = m_pDevice->Clear( 0, NULL, clearFlags, 
+					D3DCOLOR_ARGB((int)m_ClearColor[0], (int)m_ClearColor[1], (int)m_ClearColor[2], (int)m_ClearColor[3]),
+					1.0f, 0 );
+		assert( SUCCEEDED(hr) );
+	}
 }
 
 void CDX9Renderer::BeginScene( bool defaultBufferRender, ITextureObject *pOverrideRenderTarget )
@@ -560,110 +543,115 @@ void CDX9Renderer::BeginScene( bool defaultBufferRender, ITextureObject *pOverri
 
 void CDX9Renderer::ApplyRenderTarget( ITextureObject * tex, UINT target = 0 )
 {
-	HRESULT hr;
-	//grab current target
-	hr = m_pDevice->GetRenderTarget( target, &m_OldTargets[ target ] );
-	if (hr != D3D_OK)
+	if (m_bInitialized)
 	{
-		m_OldTargets[ target ] = NULL;
-	}
-//	assert( SUCCEEDED(hr) );
-	map< IBaseTextureObject *, LPDIRECT3DSURFACE9 >::iterator iter = m_TextureSurfs.find( tex );
-	if( iter == m_TextureSurfs.end() )
-	{
-		CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(tex);
-		if( DX9RT )
+		HRESULT hr;
+		//grab current target
+		hr = m_pDevice->GetRenderTarget( target, &m_OldTargets[ target ] );
+		if (hr != D3D_OK)
 		{
-			LPDIRECT3DSURFACE9 pSurface = DX9RT->GetRenderTargetSurface();
-			if (pSurface != NULL)
-				hr = m_pDevice->SetRenderTarget( target, pSurface );
-			m_TextureSurfs[tex] = pSurface;
+			m_OldTargets[ target ] = NULL;
 		}
-	}
-	else
-	{
-		LPDIRECT3DSURFACE9 pSurface = iter->second;
-		if (pSurface != NULL)
+	//	assert( SUCCEEDED(hr) );
+		map< IBaseTextureObject *, LPDIRECT3DSURFACE9 >::iterator iter = m_TextureSurfs.find( tex );
+		if( iter == m_TextureSurfs.end() )
 		{
-			hr = m_pDevice->SetRenderTarget( target, iter->second );
-			assert( SUCCEEDED(hr) );
+			CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(tex);
+			if( DX9RT )
+			{
+				LPDIRECT3DSURFACE9 pSurface = DX9RT->GetRenderTargetSurface();
+				if (pSurface != NULL)
+					hr = m_pDevice->SetRenderTarget( target, pSurface );
+				m_TextureSurfs[tex] = pSurface;
+			}
+		}
+		else
+		{
+			LPDIRECT3DSURFACE9 pSurface = iter->second;
+			if (pSurface != NULL)
+			{
+				hr = m_pDevice->SetRenderTarget( target, iter->second );
+				assert( SUCCEEDED(hr) );
+			}
 		}
 	}
 }
 bool CDX9Renderer::SetDepthTarget( IBaseTextureObject * texture )
 {
 	HRESULT hr;
-	//check format first
-	CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(texture);
-	if( m_pDevice &&
-		DX9RT)
+	if (m_bInitialized)
 	{
-		hr = m_pDevice->GetDepthStencilSurface( &m_BackBufferDepthSurface );
-		assert( SUCCEEDED(hr) );
-		LPDIRECT3DTEXTURE9 DepthTarget = (LPDIRECT3DTEXTURE9)DX9RT->GetAPITexture();
-		LPDIRECT3DSURFACE9 pSurface;
-		hr = DepthTarget->GetSurfaceLevel( 0 , &pSurface );
-		assert( SUCCEEDED(hr) );
-		hr = m_pDevice->SetDepthStencilSurface( pSurface );
-		assert( SUCCEEDED(hr) );
-		pSurface->Release();
-		return ( hr == D3D_OK );
-	}
-	else 
-		if ( !DX9RT )
-	{
-		//restore previous depth surface
-		if( m_BackBufferDepthSurface )
+		//check format first
+		CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(texture);
+		if( m_pDevice &&
+			DX9RT)
 		{
-
+			hr = m_pDevice->GetDepthStencilSurface( &m_BackBufferDepthSurface );
+			assert( SUCCEEDED(hr) );
+			LPDIRECT3DTEXTURE9 DepthTarget = (LPDIRECT3DTEXTURE9)DX9RT->GetAPITexture();
 			LPDIRECT3DSURFACE9 pSurface;
-			hr = m_pDevice->GetDepthStencilSurface( &pSurface );
+			hr = DepthTarget->GetSurfaceLevel( 0 , &pSurface );
 			assert( SUCCEEDED(hr) );
-			hr = m_pDevice->SetDepthStencilSurface( NULL );
-			assert( SUCCEEDED(hr) );
-			hr = D3DXLoadSurfaceFromSurface( m_BackBufferDepthSurface,
-				NULL,
-				NULL,
-				pSurface, 
-				NULL,
-				NULL,
-				D3DX_FILTER_NONE, 
-				0 ); 
+			hr = m_pDevice->SetDepthStencilSurface( pSurface );
 			assert( SUCCEEDED(hr) );
 			pSurface->Release();
-			hr = m_pDevice->SetDepthStencilSurface( m_BackBufferDepthSurface );
-			assert( SUCCEEDED(hr) );
-			m_BackBufferDepthSurface->Release();
-			m_BackBufferDepthSurface = NULL;
+			return ( hr == D3D_OK );
+		}
+		else if ( !DX9RT )
+		{
+			//restore previous depth surface
+			if( m_BackBufferDepthSurface )
+			{
+
+				LPDIRECT3DSURFACE9 pSurface;
+				hr = m_pDevice->GetDepthStencilSurface( &pSurface );
+				assert( SUCCEEDED(hr) );
+				hr = m_pDevice->SetDepthStencilSurface( NULL );
+				assert( SUCCEEDED(hr) );
+				hr = D3DXLoadSurfaceFromSurface( m_BackBufferDepthSurface,
+					NULL,
+					NULL,
+					pSurface, 
+					NULL,
+					NULL,
+					D3DX_FILTER_NONE, 
+					0 ); 
+				assert( SUCCEEDED(hr) );
+				pSurface->Release();
+				hr = m_pDevice->SetDepthStencilSurface( m_BackBufferDepthSurface );
+				assert( SUCCEEDED(hr) );
+				m_BackBufferDepthSurface->Release();
+				m_BackBufferDepthSurface = NULL;
+			}
 		}
 	}
-
 	return false;
 }
 
 bool CDX9Renderer::CopyDepthTarget( IBaseTextureObject * texture )
 {
-#ifndef XBOX
+
 	HRESULT hr;
-	//check format first
-	CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(texture);
-	if( m_pDevice &&
-		DX9RT)
+	if (m_bInitialized)
 	{
-		LPDIRECT3DSURFACE9 backBufferDepth;
-		hr = m_pDevice->GetDepthStencilSurface( &backBufferDepth );
-		assert( SUCCEEDED(hr) );
-		LPDIRECT3DTEXTURE9 DepthTarget = (LPDIRECT3DTEXTURE9)DX9RT->GetAPITexture();
-		LPDIRECT3DSURFACE9 pSurface;
-		hr = DepthTarget->GetSurfaceLevel( 0 , &pSurface );
-		assert( SUCCEEDED(hr) );
-		hr = m_pDevice->StretchRect( backBufferDepth, NULL, pSurface, NULL, D3DTEXF_NONE );
-		assert( SUCCEEDED(hr) );
-		pSurface->Release();
-		backBufferDepth->Release();
-		return ( hr == D3D_OK );
+		//check format first
+		CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(texture);
+		if (m_pDevice && DX9RT)
+		{
+			LPDIRECT3DSURFACE9 backBufferDepth;
+			hr = m_pDevice->GetDepthStencilSurface( &backBufferDepth );
+			assert( SUCCEEDED(hr) );
+			LPDIRECT3DTEXTURE9 DepthTarget = (LPDIRECT3DTEXTURE9)DX9RT->GetAPITexture();
+			LPDIRECT3DSURFACE9 pSurface;
+			hr = DepthTarget->GetSurfaceLevel( 0 , &pSurface );
+			assert( SUCCEEDED(hr) );
+			hr = m_pDevice->StretchRect( backBufferDepth, NULL, pSurface, NULL, D3DTEXF_NONE );
+			assert( SUCCEEDED(hr) );
+			pSurface->Release();
+			backBufferDepth->Release();
+			return ( hr == D3D_OK );
+		}
 	}
-#endif//XBOX
 
 	return false;
 }
@@ -693,21 +681,21 @@ void CDX9Renderer::EndScene()
 
 void CDX9Renderer::UnApplyRenderTarget( ITextureObject * tex, UINT target)
 {
-	if (m_TextureSurfs.find( tex ) == m_TextureSurfs.end())
-		return;
 
-	m_TextureSurfs.erase( tex );
+	if (m_bInitialized)
+	{
+		if (m_TextureSurfs.find( tex ) == m_TextureSurfs.end())
+			return;
 
-	CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(tex);
+		m_TextureSurfs.erase( tex );
 
-#ifdef XBOX
-	EEDX9XboxUnApplyRenderTarget( m_pDevice, (LPDIRECT3DTEXTURE9)DX9RT->GetAPITexture() );
-#endif
+		CDX9TextureObject * DX9RT = dynamic_cast< CDX9TextureObject * >(tex);
 
-	HRESULT hr = m_pDevice->SetRenderTarget( target, m_OldTargets[ target ] );
-	assert( SUCCEEDED(hr) );
+		HRESULT hr = m_pDevice->SetRenderTarget( target, m_OldTargets[ target ] );
+		assert( SUCCEEDED(hr) );
 
-	DX9RT->ReleaseRenderTargetSurface();
+		DX9RT->ReleaseRenderTargetSurface();
+	}
 }
 
 bool CDX9Renderer::RenderToContext( IRenderContext * context )
@@ -785,6 +773,11 @@ void CDX9Renderer::Draw2DMask(const float xpos, const float ypos, const float wi
 
 void CDX9Renderer::Draw2DLine(const float startX, const float startY, const float endX, const float endY, const int r, const int g, const int b, const float width)
 {
+	if (!m_bInitialized)
+	{
+		return;
+	}
+
 	static const int sizeBuffer = 2;
 	static CDX9Renderer_VertexRHW	vPoints[ sizeBuffer ];
 
@@ -835,6 +828,11 @@ void CDX9Renderer::Draw2DLine(const float startX, const float startY, const floa
 
 void CDX9Renderer::Draw3DLine(const float startX, const float startY, const float startZ, const float endX, const float endY, const float endZ, const int r, const int g, const int b, const float width, bool bOverrideTransform)
 {
+	if (!m_bInitialized)
+	{
+		return;
+	}
+
 	static Matrix4x4 matworld;
 	static const int sizeBuffer = 2;
 	static CDX9Renderer_VertexRHW	vPoints[ sizeBuffer ];
@@ -907,6 +905,11 @@ void CDX9Renderer::Draw3DLine(const float startX, const float startY, const floa
 
 void CDX9Renderer::DrawPoint(const float xpos, const float ypos, const float zpos, const int r, const int g, const int b, const float size)
 {
+	if (!m_bInitialized)
+	{
+		return;
+	}
+
 	static Matrix4x4 matworld;
 	static CDX9Renderer_VertexRHW	vPoints;
 
@@ -954,6 +957,11 @@ void CDX9Renderer::DrawBoundingBox( Vec3 &in_min, Vec3 &in_max, int colorR, int 
 	static Matrix4x4 matworld;
 	static CDX9Renderer_VertexRHW	vPoints[ sizeBuffer ];
 	
+	if (!m_bInitialized)
+	{
+		return;
+	}
+
 	PushMatrix( WORLD_MATRIX );
 	matworld.SetIdentity();
 	SetMatrix( WORLD_MATRIX, (CONST FLOAT*)matworld.GetMatrix() );
@@ -1035,7 +1043,11 @@ void CDX9Renderer::DrawOrientedBoundingBox( Vec3 &in_min, Vec3 &in_max, Matrix3x
 	static const int sizeBuffer = 24;
 	static Matrix4x4 matworld;
 	static CDX9Renderer_VertexRHW	vPoints[ sizeBuffer ];
-	
+	if (!m_bInitialized)
+	{
+		return;
+	}
+
 	PushMatrix( WORLD_MATRIX );
 	matworld.SetIdentity();
 	matworld.SetFrom3x3( in_rot.GetMatrix() );
@@ -1123,6 +1135,10 @@ void CDX9Renderer::DrawAxis( float &in_length, Matrix3x3 &in_rot, Vec3 &in_pos, 
 	static const int sizeBuffer = 6;
 	static Matrix4x4 matworld;
 	static CDX9Renderer_VertexRHW vPoints[ sizeBuffer ];
+	if (!m_bInitialized)
+	{
+		return;
+	}
 	
 	PushMatrix( WORLD_MATRIX );
 	matworld.SetIdentity();
@@ -1194,6 +1210,10 @@ void CDX9Renderer::DrawSphere( Vec3 &position, float radius, int colorR, int col
 	float a;
 	float b;
 	static Matrix4x4 matworld;
+	if (!m_bInitialized)
+	{
+		return;
+	}
 	
 	PushMatrix( WORLD_MATRIX );
 	matworld.SetIdentity();
@@ -1264,13 +1284,16 @@ void CDX9Renderer::DrawSphere( Vec3 &position, float radius, int colorR, int col
 
 void CDX9Renderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 {
+	if (!m_bInitialized)
+	{
+		return;
+	}
+
 	switch( matmode )
 	{
 	case PROJECTION_MATRIX:
 		{
-#ifndef XBOX
 		HRESULT hr = m_pDevice->SetTransform( D3DTS_PROJECTION , (D3DMATRIX*)pMat );
-#endif//XBOX
 		//don't need shader constant for htis? will we ever use this in a shader? probably right?
 		//m_pDevice->SetVertexShaderConstantF( C_WORLD_TO_SCREEN, (const float*)pMat, 4 );
 		m_ProjectionMatrix = pMat;
@@ -1283,9 +1306,7 @@ void CDX9Renderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 		}
 	case VIEW_MATRIX:
 		{
-#ifndef XBOX
 		HRESULT hr = m_pDevice->SetTransform( D3DTS_VIEW  , (D3DMATRIX*)pMat );
-#endif//XBOX
 		//shader
 		m_ModelViewMatrix = pMat;
 		D3DXMATRIX temp;
@@ -1297,9 +1318,7 @@ void CDX9Renderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )
 		}
 	case WORLD_MATRIX:
 		{
-#ifndef XBOX
 		HRESULT hr = m_pDevice->SetTransform( D3DTS_WORLD , (D3DMATRIX*)pMat );
-#endif//XBOX
 		//shader
 		m_WorldMatrix = pMat;
 		D3DXMATRIX temp;
@@ -1327,9 +1346,7 @@ void CDX9Renderer::PopMatrix( const MATRIXMODE matmode )
 			{
 				m_ProjectionMatrix = m_MatrixStack[ PROJECTION_MATRIX ].top();
 				m_MatrixStack[ PROJECTION_MATRIX ].pop();
-#ifndef XBOX
 				HRESULT hr = m_pDevice->SetTransform( D3DTS_PROJECTION , (D3DMATRIX*)((FLOAT*)m_ProjectionMatrix) );
-#endif//XBOX
 				D3DXMATRIX temp;
 				D3DXMatrixMultiply( &temp, &m_ModelViewMatrix, &m_ProjectionMatrix );
 				D3DXMatrixMultiply( &temp, &m_WorldMatrix, &temp );
@@ -1344,9 +1361,7 @@ void CDX9Renderer::PopMatrix( const MATRIXMODE matmode )
 			{
 				m_ModelViewMatrix = m_MatrixStack[ VIEW_MATRIX ].top();
 				m_MatrixStack[ VIEW_MATRIX ].pop();
-#ifndef XBOX
 				HRESULT hr = m_pDevice->SetTransform( D3DTS_VIEW  , (D3DMATRIX*)((FLOAT*)m_ModelViewMatrix) );
-#endif//XBOX
 				D3DXMATRIX temp;
 				D3DXMatrixMultiply( &temp, &m_ModelViewMatrix, &m_ProjectionMatrix );
 				D3DXMatrixMultiply( &temp, &m_WorldMatrix, &temp );
@@ -1361,9 +1376,7 @@ void CDX9Renderer::PopMatrix( const MATRIXMODE matmode )
 			{
 				m_WorldMatrix = m_MatrixStack[ WORLD_MATRIX ].top();
 				m_MatrixStack[ WORLD_MATRIX ].pop();
-#ifndef XBOX
 				HRESULT hr = m_pDevice->SetTransform( D3DTS_WORLD , (D3DMATRIX*)((FLOAT*)m_WorldMatrix) );
-#endif//XBOX
 				D3DXMATRIX temp;
 				D3DXMatrixMultiply( &temp, &m_ModelViewMatrix, &m_ProjectionMatrix );
 				D3DXMatrixMultiply( &temp, &m_WorldMatrix, &temp );
@@ -1602,7 +1615,7 @@ void CDX9Renderer::DestroyIndexBuffer( IIndexBuffer *pIndexBufferObject )
  bool CDX9Renderer::RenderVertexBuffer( IVertexBufferObject * vb,  const UINT offset, const UINT numElements,	
 	 const DRAWPRIMITIVETYPE primtype)
 {
-	if( m_pDevice )
+	if( m_bInitialized && m_pDevice )
 	{
 		CDX9VertexBufferObject * cvb = dynamic_cast< CDX9VertexBufferObject * >( vb );
 		if( !cvb )
@@ -1639,7 +1652,7 @@ void CDX9Renderer::DestroyIndexBuffer( IIndexBuffer *pIndexBufferObject )
 
 void CDX9Renderer::SetPixelShader( LPDIRECT3DPIXELSHADER9 pshader )
 {
-	if( m_pDevice )
+	if(m_bInitialized && m_pDevice )
 	{
 		//check match
 		//TODO: Broken right now because of how CDX9PixelShaders are applying
@@ -1653,7 +1666,7 @@ void CDX9Renderer::SetPixelShader( LPDIRECT3DPIXELSHADER9 pshader )
 
 void CDX9Renderer::SetVertexShader( LPDIRECT3DVERTEXSHADER9 vshader )
 {
-	if( m_pDevice )
+	if (m_bInitialized && m_pDevice )
 	{
 		//check match
 		//TODO: Broken right now because of how CDX9VertexShaders are applying
@@ -1666,7 +1679,7 @@ void CDX9Renderer::SetVertexShader( LPDIRECT3DVERTEXSHADER9 vshader )
 }
 void CDX9Renderer::SetVertexStream( UINT stream, CDX9VertexBufferObject * cvb )
 {
-	if( m_pDevice )
+	if(m_bInitialized && m_pDevice )
 	{
 		if( stream >= 0 && stream < 8 )
 		{
@@ -1690,7 +1703,7 @@ void CDX9Renderer::SetVertexStream( UINT stream, CDX9VertexBufferObject * cvb )
 
 void CDX9Renderer::SetIndices( CDX9IndexBuffer * cib )
 {
-	if( m_pDevice )
+	if (m_bInitialized && m_pDevice)
 	{
 		//check match
 		if( m_IndexStream != (BYTE*)cib )
@@ -1727,7 +1740,7 @@ void CDX9Renderer::SetTextureArray( IBaseTextureObject ** textures, const UINT n
  bool CDX9Renderer::RenderIndexBuffer( IIndexBuffer * ib, IVertexBufferObject * vb,  const UINT offset, 
 	 const UINT numElements, const DRAWPRIMITIVETYPE primtype )
 {
-    if( m_pDevice )
+    if (m_bInitialized && m_pDevice)
 	{
 		CDX9IndexBuffer * cib = dynamic_cast< CDX9IndexBuffer * >(ib);
 		CDX9VertexBufferObject * cvb = dynamic_cast< CDX9VertexBufferObject * >( vb );
@@ -1771,7 +1784,7 @@ void CDX9Renderer::SetTextureArray( IBaseTextureObject ** textures, const UINT n
 	DWORD reg;
 	float val[4];
 
-	if (m_pDevice)
+	if (m_bInitialized && m_pDevice)
 	{
 		while( !m_VSConstantsChanged.empty() )
 		{
@@ -1831,7 +1844,7 @@ bool CDX9Renderer::RenderIndexBuffer( IIndexBuffer * ib, IVertexBufferObject * v
 {
 	CDX9IndexBuffer * cib = NULL;
 	CDX9VertexBufferObject * cvb = NULL;
-    if( m_pDevice )
+    if (m_bInitialized && m_pDevice)
 	{
 		
 		//Grab index buffer interface
@@ -1898,7 +1911,7 @@ bool CDX9Renderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 	//TODO: check for redundancies here!
 	if (stage >= m_iMaxTextures)
 		return false;
-	if( texture != m_SetTextures[ stage ] )
+	if (texture != m_SetTextures[ stage ] )
 	{
 		m_SetTextures[ stage ] = texture;
 		if( texture )
@@ -1941,24 +1954,27 @@ bool CDX9Renderer::SetVertexTexture( UINT stage, IBaseTextureObject * texture )
 //must set textures before this
 bool CDX9Renderer::DrawQuad( void * verts, CHANNELDESCRIPTORLIST &channels )
 {
-	//This crap is kind of slow
-	LPDIRECT3DVERTEXDECLARATION9 vdecl = GetVertexDescription( channels, 0 );
-	if( vdecl && m_pDevice )
+	if (m_bInitialized)
 	{
-		SetIndices(NULL);
-		SetVertexStream(0, NULL);
-		SetVertexDeclaration( vdecl );
-		FlushShaderConstants();
-		//Calculate requested stride:
-		int totalstride =0;
-		//calculate strides
-		for( int i = 0; i < (int)channels.size(); i++ )
+		//This crap is kind of slow
+		LPDIRECT3DVERTEXDECLARATION9 vdecl = GetVertexDescription( channels, 0 );
+		if( vdecl && m_pDevice )
 		{
-			ChannelDesc * curStream = &channels[ i ];
-			totalstride += curStream->Stride;
+			SetIndices(NULL);
+			SetVertexStream(0, NULL);
+			SetVertexDeclaration( vdecl );
+			FlushShaderConstants();
+			//Calculate requested stride:
+			int totalstride =0;
+			//calculate strides
+			for( int i = 0; i < (int)channels.size(); i++ )
+			{
+				ChannelDesc * curStream = &channels[ i ];
+				totalstride += curStream->Stride;
+			}
+			//make sure you have shaders and textures set before this or it wont' render of course!
+			DrawPrimUp(D3DPT_TRIANGLESTRIP, 2, verts, totalstride);
 		}
-		//make sure you have shaders and textures set before this or it wont' render of course!
-		DrawPrimUp(D3DPT_TRIANGLESTRIP, 2, verts, totalstride);
 	}
 	return true;
 }
@@ -1968,81 +1984,84 @@ bool CDX9Renderer::Draw2DQuadNoTex( float x, float y,  float width, float height
 							 float uStart, float vStart, 
 							 float uEnd, float vEnd)
 {
-	SetRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLNONE );
-	static CDX9Renderer_VertexRHW	sQuad[ 4 ] = 
+	if (m_bInitialized)
 	{
-		{0.f,0.f,0.f,0xFFFFFFFF,0.f,0.f},
-		{0.f,0.f,0.f,0xFFFFFFFF,0.f,1.f},
-		{0.f,0.f,0.f,0xFFFFFFFF,1.f,0.f},
-		{0.f,0.f,0.f,0xFFFFFFFF,1.f,1.f}
-	};
-    //RHW is in screen coords
-	sQuad[ 0 ].pos[ 0 ] = -0.50000f * width;
-	sQuad[ 0 ].pos[ 1 ] = -0.50000f * height;
-	//sQuad[ 0 ].pos[ 2 ] = z;
-	sQuad[ 0 ].color = color;
 
-	sQuad[ 0 ].tu = uStart;
-	sQuad[ 0 ].tv = vStart;
-
-	sQuad[ 2 ].pos[ 0 ] = 0.50000f * width;
-	sQuad[ 2].pos[ 1 ] = -0.50000f * height;
-	//sQuad[ 2 ].pos[ 2 ] = z;
-	sQuad[ 2 ].color = color;
-
-	sQuad[ 2 ].tu = uEnd;
-	sQuad[ 2 ].tv = vStart;
-
-	sQuad[ 1 ].pos[ 0 ] = -0.50000f * width;
-	sQuad[ 1 ].pos[ 1 ] = 0.50000f * height;
-	//sQuad[ 1 ].pos[ 2 ] = z;
-	sQuad[ 1 ].color = color;
-	
-	sQuad[ 1 ].tu = uStart;
-	sQuad[ 1 ].tv = vEnd;
-
-	sQuad[ 3 ].pos[ 0 ] = 0.50000f * width;
-	sQuad[ 3  ].pos[ 1 ] = 0.50000f * height;
-	//sQuad[ 3 ].pos[ 2 ] = z;
-	sQuad[ 3 ].color = color;
-	
-	sQuad[ 3 ].tu = uEnd;
-	sQuad[ 3 ].tv = vEnd;
-
-	if( m_pDevice )
-	{
-		//set it up and render
-
-		//this function checks for redundancies
-		PushMatrix( PROJECTION_MATRIX );
-		PushMatrix( WORLD_MATRIX );
-		PushMatrix( VIEW_MATRIX );
-
-		Matrix4x4 mat;
-		MathUtil math;
-		EulerAngle rot(0.f, 0.f, angle);//math.DegToRad(angle));
-		mat.SetRotation(rot);
-		Vec3 trans(x + (0.5f * width), y + (0.5f * height), 0.f);
-        mat.SetTranslation(trans);				
-		SetOrtho2DScreenSize();
-		SetMatrix(WORLD_MATRIX, mat.m);
-		
-		SetFVF( CDX9RENDERER_2DVERTEX_FVF );
-		
+		SetRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLNONE );
+		static CDX9Renderer_VertexRHW	sQuad[ 4 ] = 
 		{
-			SetVertexStream( 0, NULL );
-			//drawprimup if for some reason the VB is not allocated
-			DrawPrimUp( D3DPT_TRIANGLESTRIP, 2, (void*)sQuad, sizeof( CDX9Renderer_VertexRHW ) );
-			
-			
-		}
-		PopMatrix( PROJECTION_MATRIX );
-		PopMatrix( WORLD_MATRIX );
-		PopMatrix( VIEW_MATRIX );
-			
-		return true;
-	}
+			{0.f,0.f,0.f,0xFFFFFFFF,0.f,0.f},
+			{0.f,0.f,0.f,0xFFFFFFFF,0.f,1.f},
+			{0.f,0.f,0.f,0xFFFFFFFF,1.f,0.f},
+			{0.f,0.f,0.f,0xFFFFFFFF,1.f,1.f}
+		};
+		//RHW is in screen coords
+		sQuad[ 0 ].pos[ 0 ] = -0.50000f * width;
+		sQuad[ 0 ].pos[ 1 ] = -0.50000f * height;
+		//sQuad[ 0 ].pos[ 2 ] = z;
+		sQuad[ 0 ].color = color;
 
+		sQuad[ 0 ].tu = uStart;
+		sQuad[ 0 ].tv = vStart;
+
+		sQuad[ 2 ].pos[ 0 ] = 0.50000f * width;
+		sQuad[ 2].pos[ 1 ] = -0.50000f * height;
+		//sQuad[ 2 ].pos[ 2 ] = z;
+		sQuad[ 2 ].color = color;
+
+		sQuad[ 2 ].tu = uEnd;
+		sQuad[ 2 ].tv = vStart;
+
+		sQuad[ 1 ].pos[ 0 ] = -0.50000f * width;
+		sQuad[ 1 ].pos[ 1 ] = 0.50000f * height;
+		//sQuad[ 1 ].pos[ 2 ] = z;
+		sQuad[ 1 ].color = color;
+	
+		sQuad[ 1 ].tu = uStart;
+		sQuad[ 1 ].tv = vEnd;
+
+		sQuad[ 3 ].pos[ 0 ] = 0.50000f * width;
+		sQuad[ 3  ].pos[ 1 ] = 0.50000f * height;
+		//sQuad[ 3 ].pos[ 2 ] = z;
+		sQuad[ 3 ].color = color;
+	
+		sQuad[ 3 ].tu = uEnd;
+		sQuad[ 3 ].tv = vEnd;
+
+		if( m_pDevice )
+		{
+			//set it up and render
+
+			//this function checks for redundancies
+			PushMatrix( PROJECTION_MATRIX );
+			PushMatrix( WORLD_MATRIX );
+			PushMatrix( VIEW_MATRIX );
+
+			Matrix4x4 mat;
+			MathUtil math;
+			EulerAngle rot(0.f, 0.f, angle);//math.DegToRad(angle));
+			mat.SetRotation(rot);
+			Vec3 trans(x + (0.5f * width), y + (0.5f * height), 0.f);
+			mat.SetTranslation(trans);				
+			SetOrtho2DScreenSize();
+			SetMatrix(WORLD_MATRIX, mat.m);
+		
+			SetFVF( CDX9RENDERER_2DVERTEX_FVF );
+		
+			{
+				SetVertexStream( 0, NULL );
+				//drawprimup if for some reason the VB is not allocated
+				DrawPrimUp( D3DPT_TRIANGLESTRIP, 2, (void*)sQuad, sizeof( CDX9Renderer_VertexRHW ) );
+			
+			
+			}
+			PopMatrix( PROJECTION_MATRIX );
+			PopMatrix( WORLD_MATRIX );
+			PopMatrix( VIEW_MATRIX );
+			
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -2052,112 +2071,110 @@ bool CDX9Renderer::Draw2DQuad( float x, float y,  float width, float height,
 							 float uStart, float vStart, 
 							 float uEnd, float vEnd)
 {
-	
-	SetRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLNONE );
-	static CDX9Renderer_VertexRHW	sQuad[ 4 ] = 
+	if (m_bInitialized)
 	{
-		{0.f,0.f,0.f,0xFFFFFFFF,0.f,0.f},
-		{0.f,0.f,0.f,0xFFFFFFFF,0.f,1.f},
-		{0.f,0.f,0.f,0xFFFFFFFF,1.f,0.f},
-		{0.f,0.f,0.f,0xFFFFFFFF,1.f,1.f}
-	};
-    //RHW is in screen coords
-	sQuad[ 0 ].pos[ 0 ] = -0.50000f * width;
-	sQuad[ 0 ].pos[ 1 ] = -0.50000f * height;
-	//sQuad[ 0 ].pos[ 2 ] = z;
-	sQuad[ 0 ].color = color;
 
-	sQuad[ 0 ].tu = uStart;
-	sQuad[ 0 ].tv = vStart;
-
-	sQuad[ 2 ].pos[ 0 ] = 0.50000f * width;
-	sQuad[ 2].pos[ 1 ] = -0.50000f * height;
-	//sQuad[ 2 ].pos[ 2 ] = z;
-	sQuad[ 2 ].color = color;
-
-	sQuad[ 2 ].tu = uEnd;
-	sQuad[ 2 ].tv = vStart;
-
-	sQuad[ 1 ].pos[ 0 ] = -0.50000f * width;
-	sQuad[ 1 ].pos[ 1 ] = 0.50000f * height;
-	//sQuad[ 1 ].pos[ 2 ] = z;
-	sQuad[ 1 ].color = color;
-	
-	sQuad[ 1 ].tu = uStart;
-	sQuad[ 1 ].tv = vEnd;
-
-	sQuad[ 3 ].pos[ 0 ] = 0.50000f * width;
-	sQuad[ 3  ].pos[ 1 ] = 0.50000f * height;
-	//sQuad[ 3 ].pos[ 2 ] = z;
-	sQuad[ 3 ].color = color;
-	
-	sQuad[ 3 ].tu = uEnd;
-	sQuad[ 3 ].tv = vEnd;
-
-	IBaseTextureObject * dx9tex = (IBaseTextureObject*)(texture);		
-	if( m_pDevice )
-	{
-		//set it up and render
-
-		//this function checks for redundancies
-		PushMatrix( PROJECTION_MATRIX );
-		PushMatrix( WORLD_MATRIX );
-		PushMatrix( VIEW_MATRIX );
-
-		Matrix4x4 mat;
-		MathUtil math;
-		EulerAngle rot(0.f, 0.f, angle);//math.DegToRad(angle));
-		mat.SetRotation(rot);
-		Vec3 trans(x + (0.5f * width), y + (0.5f * height), 0.f);
-        mat.SetTranslation(trans);				
-		SetOrtho2DScreenSize();
-		SetMatrix(WORLD_MATRIX, mat.m);
-
-		if ( dx9tex )
+		SetRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLNONE );
+		static CDX9Renderer_VertexRHW	sQuad[ 4 ] = 
 		{
-			SetTexture( 0, dx9tex );
-			SetTexture( 1, NULL );
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE);
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2);
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG1, TEXTURESTAGEARG_TEXTURE );
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE );
-			SetD3DTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
-			SetD3DTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE ); 
-		}
-		else
-		{ 
-			SetTexture( 0, NULL ); 
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_SELECTARG2 ); 
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE ); 
-			SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
-			SetD3DTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
-			SetD3DTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE ); 
-		}
-		
-		SetFVF( CDX9RENDERER_2DVERTEX_FVF );
-		
+			{0.f,0.f,0.f,0xFFFFFFFF,0.f,0.f},
+			{0.f,0.f,0.f,0xFFFFFFFF,0.f,1.f},
+			{0.f,0.f,0.f,0xFFFFFFFF,1.f,0.f},
+			{0.f,0.f,0.f,0xFFFFFFFF,1.f,1.f}
+		};
+		//RHW is in screen coords
+		sQuad[ 0 ].pos[ 0 ] = -0.50000f * width;
+		sQuad[ 0 ].pos[ 1 ] = -0.50000f * height;
+		//sQuad[ 0 ].pos[ 2 ] = z;
+		sQuad[ 0 ].color = color;
+
+		sQuad[ 0 ].tu = uStart;
+		sQuad[ 0 ].tv = vStart;
+
+		sQuad[ 2 ].pos[ 0 ] = 0.50000f * width;
+		sQuad[ 2].pos[ 1 ] = -0.50000f * height;
+		//sQuad[ 2 ].pos[ 2 ] = z;
+		sQuad[ 2 ].color = color;
+
+		sQuad[ 2 ].tu = uEnd;
+		sQuad[ 2 ].tv = vStart;
+
+		sQuad[ 1 ].pos[ 0 ] = -0.50000f * width;
+		sQuad[ 1 ].pos[ 1 ] = 0.50000f * height;
+		//sQuad[ 1 ].pos[ 2 ] = z;
+		sQuad[ 1 ].color = color;
+	
+		sQuad[ 1 ].tu = uStart;
+		sQuad[ 1 ].tv = vEnd;
+
+		sQuad[ 3 ].pos[ 0 ] = 0.50000f * width;
+		sQuad[ 3  ].pos[ 1 ] = 0.50000f * height;
+		//sQuad[ 3 ].pos[ 2 ] = z;
+		sQuad[ 3 ].color = color;
+	
+		sQuad[ 3 ].tu = uEnd;
+		sQuad[ 3 ].tv = vEnd;
+
+		IBaseTextureObject * dx9tex = (IBaseTextureObject*)(texture);		
+		if( m_pDevice )
 		{
+			//set it up and render
+
+			//this function checks for redundancies
+			PushMatrix( PROJECTION_MATRIX );
+			PushMatrix( WORLD_MATRIX );
+			PushMatrix( VIEW_MATRIX );
+
+			Matrix4x4 mat;
+			MathUtil math;
+			EulerAngle rot(0.f, 0.f, angle);//math.DegToRad(angle));
+			mat.SetRotation(rot);
+			Vec3 trans(x + (0.5f * width), y + (0.5f * height), 0.f);
+			mat.SetTranslation(trans);				
+			SetOrtho2DScreenSize();
+			SetMatrix(WORLD_MATRIX, mat.m);
+
+			if ( dx9tex )
+			{
+				SetTexture( 0, dx9tex );
+				SetTexture( 1, NULL );
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE);
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2);
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG1, TEXTURESTAGEARG_TEXTURE );
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE );
+				SetD3DTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
+				SetD3DTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE ); 
+			}
+			else
+			{ 
+				SetTexture( 0, NULL ); 
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_SELECTARG2 ); 
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE ); 
+				SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
+				SetD3DTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
+				SetD3DTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE ); 
+			}
+		
 			SetVertexStream( 0, NULL );
+			SetFVF( CDX9RENDERER_2DVERTEX_FVF );
 			//drawprimup if for some reason the VB is not allocated
 			DrawPrimUp( D3DPT_TRIANGLESTRIP, 2, (void*)sQuad, sizeof( CDX9Renderer_VertexRHW ) );
-			
-			
-		}
-		PopMatrix( PROJECTION_MATRIX );
-		PopMatrix( WORLD_MATRIX );
-		PopMatrix( VIEW_MATRIX );
-			
-		return true;
-	}
 
+			PopMatrix( PROJECTION_MATRIX );
+			PopMatrix( WORLD_MATRIX );
+			PopMatrix( VIEW_MATRIX );
+			
+			return true;
+		}
+	}
 	return false;
 }
 
 bool CDX9Renderer::DrawFullscreenQuad(float left, float right, float bottom, float top)
 {
-	if (!m_pDevice)
+	if (!m_bInitialized || !m_pDevice)
 		return false;
 
 	SetRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLNONE );
@@ -2190,8 +2207,11 @@ bool CDX9Renderer::DrawFullscreenQuad(float left, float right, float bottom, flo
 
 void CDX9Renderer::DrawPrimUp ( D3DPRIMITIVETYPE prim, UINT numprim, void * stream, UINT stride )
 {
+	if (!m_bInitialized || !m_pDevice)
+		return;
+
 	m_pDevice->DrawPrimitiveUP( prim, numprim, (void*)stream, stride );
-	//drawprim up kills this internally, must tell renderer that it is now nul
+	//drawprim up kills this internally, must tell renderer that it is now NULL
 	m_VertexDeclSet = NULL;
 	SetFVF( 0 );
 	m_VertexStreams[ 0 ] = NULL;
@@ -2199,19 +2219,25 @@ void CDX9Renderer::DrawPrimUp ( D3DPRIMITIVETYPE prim, UINT numprim, void * stre
 
 void CDX9Renderer::SetFVF( DWORD fvf )
 {
-	if( m_FVFSet != fvf )
+	if (m_bInitialized && (m_pDevice != NULL))
 	{
-		m_pDevice->SetFVF( fvf );
-		m_FVFSet = fvf;
+		if( m_FVFSet != fvf )
+		{
+			m_pDevice->SetFVF( fvf );
+			m_FVFSet = fvf;
+		}
 	}
 }
 
 void CDX9Renderer::SetVertexDeclaration( LPDIRECT3DVERTEXDECLARATION9 vertdecl )
 {
-	if( vertdecl != m_VertexDeclSet )
+	if (m_bInitialized && (m_pDevice != NULL))
 	{
-		m_VertexDeclSet = vertdecl;
-		m_pDevice->SetVertexDeclaration( vertdecl );
+		if( vertdecl != m_VertexDeclSet )
+		{
+			m_VertexDeclSet = vertdecl;
+			m_pDevice->SetVertexDeclaration( vertdecl );
+		}
 	}
 }
 
@@ -2776,14 +2802,7 @@ bool CDX9Renderer::BuildPostProcessBuffer( RENDER_TARGET_TYPE renderTargetType )
 		GetBackBufferDimensions( sizeX, sizeY );
 		createtex.sizeX = sizeX;
 		createtex.sizeY = sizeY;
-#ifdef XBOX
-		CHashString hszFormat(_T("A8B8G8R8"));
-		createtex.Format = &hszFormat;
-		createtex.bitDepth = 32;
-		createtex.bRenderTargetTexture = RENDER_TARGET_NONE;
-#else
 		createtex.bRenderTargetTexture = renderTargetType;
-#endif
 		createtex.numMips = 0;
 		createtex.bAutoGenMipMaps = true;
 		static DWORD msgHash_CreateTexture = CHashString(_T("CreateTexture")).GetUniqueID();
@@ -3040,29 +3059,30 @@ void CDX9Renderer::RegisterTextureStageEnumHashes()
 
 HRESULT CDX9Renderer::SetD3DTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE state, UINT value )
 {
-#ifndef XBOX
-	assert( stage < MAX_BUFFERED_CHANNELS );
-	assert( state < TEXTURESTAGESTATE_COUNT );
+	if (m_bInitialized)
+	{
+		assert( stage < MAX_BUFFERED_CHANNELS );
+		assert( state < TEXTURESTAGESTATE_COUNT );
 
-	HRESULT result = S_OK;
-	UINT *pCurrentValue = NULL;
-	if( m_RenderContext )
-	{
-		pCurrentValue = &m_RenderContext->m_CurrentTextureStageState[stage][state];
+		HRESULT result = S_OK;
+		UINT *pCurrentValue = NULL;
+		if( m_RenderContext )
+		{
+			pCurrentValue = &m_RenderContext->m_CurrentTextureStageState[stage][state];
+		}
+		else
+		{
+			pCurrentValue = &m_CurrentTextureStageState[stage][state];
+		}
+		if (*pCurrentValue != value)
+		{
+			result = m_pDevice->SetTextureStageState( stage, m_D3DTextureStageStateEnum[state], m_D3DTextureStageParamEnum[value] );
+			*pCurrentValue = value;
+		}
+		return result;
 	}
-	else
-	{
-		pCurrentValue = &m_CurrentTextureStageState[stage][state];
-	}
-	if (*pCurrentValue != value)
-	{
-		result = m_pDevice->SetTextureStageState( stage, m_D3DTextureStageStateEnum[state], m_D3DTextureStageParamEnum[value] );
-		*pCurrentValue = value;
-	}
-	return result;
-#else
-	return S_FALSE;
-#endif
+
+	return D3DERR_INVALIDDEVICE;
 }
 
 HRESULT CDX9Renderer::SetD3DSamplerStageState( UINT stage, ENUMSAMPLERSTATE state, UINT value )
