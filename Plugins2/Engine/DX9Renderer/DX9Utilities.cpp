@@ -240,6 +240,7 @@ HRESULT EEDX9Clear( LPDIRECT3DDEVICE9 pDevice, bool clearFlags, bool clearTarget
 HRESULT EEDX9Present( LPDIRECT3DDEVICE9 pDevice, CDX9RenderContext *pDX9Context, UINT ClearColor[4] )
 {
 	HRESULT result;
+
 	if( pDX9Context )
 	{
 		result = pDevice->Present( NULL, NULL, pDX9Context->m_hWnd, NULL );	

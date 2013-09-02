@@ -109,7 +109,7 @@ bool CDX9VertexBufferObject::Initialize( CHANNELDESCRIPTORLIST &channels, UINT n
 	}
 	if( FAILED( hr = pDevice->CreateVertexBuffer( numElements*totalstride,
 														flags, 0,
-														D3DPOOL_DEFAULT, &m_VBInterface, NULL) ) )
+														D3DPOOL_MANAGED, &m_VBInterface, NULL) ) )
 	{
 		m_VBInterface = NULL;
 		m_NumVertices = 0;

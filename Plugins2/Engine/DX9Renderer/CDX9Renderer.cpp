@@ -170,7 +170,7 @@ DWORD  CDX9Renderer::OnGetRendererInterface( DWORD size, void *params)
 }
 
 
-DWORD   CDX9Renderer::OnSetDirectories( DWORD size, void * params )
+DWORD CDX9Renderer::OnSetDirectories( DWORD size, void * params )
 {
 	SETWORKINGDIRECTORIESPARAMS * rSetDirectoriesParams;
 
@@ -372,11 +372,6 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 		m_SetTextures = new IBaseTextureObject*[ MaxTextures ];
 		m_iMaxTextures = MaxTextures;
 		m_SetVertexTextures = new IBaseTextureObject*[ MaxTextures ];
-		for( int i = 0; i < MaxTextures; i++ )
-		{
-			m_SetTextures[ i ] = NULL;
-			m_SetVertexTextures [ i ] = NULL;
-		}
 		
 		//Initialize the shader manager
 		static DWORD msgHash_InitializeShaderManager = CHashString(_T("InitializeShaderManager")).GetUniqueID();
@@ -387,38 +382,13 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 		m_Width = width;
 		m_Height = height;
 
-		m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
-		m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);	 	
-		m_pDevice->SetRenderState( D3DRS_CLIPPING,         FALSE );
-		m_pDevice->SetRenderState(D3DRS_SHADEMODE,D3DSHADE_GOURAUD );
-		m_pDevice->SetRenderState( D3DRS_AMBIENT, 0xFFFFFFFF );
-		m_pDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
-
-		SetD3DRenderState( RENDERSTATE_CULLMODE,         RENDERSTATEPARAM_CULLCCW  );		
-		SetD3DRenderState( RENDERSTATE_ZENABLE,         RENDERSTATEPARAM_ZTRUE  );// D3DZB_TRUE );
-		SetD3DRenderState( RENDERSTATE_ZWRITEENABLE,         RENDERSTATEPARAM_ZTRUE );// TRUE );
-	       
-		SetD3DRenderState( RENDERSTATE_ALPHAREF, 64 ); 
-		m_pDevice->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL ); 
-
-		SetD3DRenderState(RENDERSTATE_SRCBLEND,RENDERSTATEPARAM_SRCALPHA);
-		SetD3DRenderState(RENDERSTATE_DESTBLEND,RENDERSTATEPARAM_INVSRCALPHA);
-		SetD3DRenderState(RENDERSTATE_ALPHABLENDENABLE,RENDERSTATEPARAM_TRUE);
-
-		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE ); 
-		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
-		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
-		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
-		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE ); 
-		SetD3DSamplerStageState( 0,  SAMPLERSTATE_MINFILTER, TEXTURESTAGE_TEXF_LINEAR );
-		SetD3DSamplerStageState( 0,  SAMPLERSTATE_MAGFILTER, TEXTURESTAGE_TEXF_LINEAR );
-
 		AllocateFullscreenQuadVertexBuffer();
 
-		SetDefaultStates();
+		// device is initialized
+		m_bInitialized = true;
 		//Initialize enums for mapping hashstrings to renderstate and texture state modes and values
 		RegisterTextureStageEnumHashes();
-		m_bInitialized = true;
+		SetDefaultStates();
 
 		hr = D3DXCreateLine( m_pDevice, &m_pD3DXLine );
 
@@ -490,7 +460,7 @@ void CDX9Renderer::UsePBuffers( const int width, const int height )
 
 void CDX9Renderer::ResizeScreen( const int &width, const int &height )
 {
-	if( m_bInitialized )
+	if (m_bInitialized )
 	{
 		m_Width = width;
 		m_Height = height;
@@ -2878,10 +2848,33 @@ bool CDX9Renderer::RenderPostProcessFinal( IEffect *effect, IRenderContext *rend
 /// renders the buffer to the final screen buffer
 bool CDX9Renderer::Present( IRenderContext * rendercontext )
 {
-	if( m_pDevice )
+	HRESULT result; 
+	if (m_pDevice)
 	{
-		CDX9RenderContext * dx9context = dynamic_cast< CDX9RenderContext *>( rendercontext );
-		HRESULT result = EEDX9Present( m_pDevice, dx9context, m_ClearColor );
+		result = m_pDevice->TestCooperativeLevel();
+		switch (result)
+		{
+		case D3DERR_DEVICELOST:
+			m_bInitialized = false;
+			break;
+		case D3DERR_DEVICENOTRESET:
+			result = m_pDevice->Reset(&m_presentParameters);
+			if (result == S_OK)
+			{
+				m_bInitialized = true;
+				SetDefaultStates();
+			}
+			break;
+		case S_OK:
+			CDX9RenderContext * dx9context = dynamic_cast< CDX9RenderContext *>( rendercontext );
+			result = EEDX9Present( m_pDevice, dx9context, m_ClearColor );
+			if (result != S_OK)
+			{
+				m_bInitialized = false;
+				return false;
+			}
+			break;
+		}
 		return true;
 	}
 	return false;
@@ -2975,13 +2968,50 @@ void CDX9Renderer::SetEffect( UINT pass, IEffect * effect )
 
 void CDX9Renderer::SetDefaultStates()
 {
-	if( m_pDevice )
+	memset( m_CurrentRenderState, -1, sizeof(m_CurrentRenderState) );
+	memset( m_CurrentTextureStageState, -1, sizeof(m_CurrentTextureStageState) );
+	memset( m_CurrentSamplerState, -1, sizeof(m_CurrentSamplerState) );
+
+	if (m_bInitialized && (m_pDevice != NULL))
 	{
 		m_pDevice->SetPixelShader( NULL );
 		m_pDevice->SetVertexDeclaration( NULL );
 		m_pDevice->SetVertexShader( NULL );
 		m_pDevice->SetFVF( NULL );
+		m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
+		m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);	 	
+		m_pDevice->SetRenderState( D3DRS_CLIPPING,         FALSE );
+		m_pDevice->SetRenderState(D3DRS_SHADEMODE,D3DSHADE_GOURAUD );
+		m_pDevice->SetRenderState( D3DRS_AMBIENT, 0xFFFFFFFF );
+		m_pDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
+		m_pDevice->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL ); 
+
+		SetD3DRenderState( RENDERSTATE_CULLMODE,         RENDERSTATEPARAM_CULLCCW  );		
+		SetD3DRenderState( RENDERSTATE_ZENABLE,         RENDERSTATEPARAM_ZTRUE  );// D3DZB_TRUE );
+		SetD3DRenderState( RENDERSTATE_ZWRITEENABLE,         RENDERSTATEPARAM_ZTRUE );// TRUE );
+	       
+		SetD3DRenderState( RENDERSTATE_ALPHAREF, 64 ); 
+
+		SetD3DRenderState(RENDERSTATE_SRCBLEND,RENDERSTATEPARAM_SRCALPHA);
+		SetD3DRenderState(RENDERSTATE_DESTBLEND,RENDERSTATEPARAM_INVSRCALPHA);
+		SetD3DRenderState(RENDERSTATE_ALPHABLENDENABLE,RENDERSTATEPARAM_TRUE);
+
+		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE ); 
+		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
+		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
+		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
+		SetD3DTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE ); 
+		SetD3DSamplerStageState( 0,  SAMPLERSTATE_MINFILTER, TEXTURESTAGE_TEXF_LINEAR );
+		SetD3DSamplerStageState( 0,  SAMPLERSTATE_MAGFILTER, TEXTURESTAGE_TEXF_LINEAR );
+
+		for (UINT i = 0; i < m_iMaxTextures; i++ )
+		{
+			m_SetTextures[ i ] = NULL;
+			m_SetVertexTextures [ i ] = NULL;
+		}
 	}
+
+
 }
 
 void CDX9Renderer::RegisterTextureStageEnumHashes()
@@ -3123,6 +3153,10 @@ HRESULT CDX9Renderer::SetD3DRenderState( ENUMRENDERSTATE state, UINT value )
 		value = m_D3DRenderStateParamEnum[value];
 	}
 
+	if (!m_bInitialized || (m_pDevice == NULL))
+	{
+		return S_OK;
+	}
 	HRESULT result = S_OK;
 	UINT *pCurrentValue = NULL;
 	if( m_RenderContext )
@@ -3133,6 +3167,7 @@ HRESULT CDX9Renderer::SetD3DRenderState( ENUMRENDERSTATE state, UINT value )
 	{
 		pCurrentValue = &m_CurrentRenderState[state];
 	}
+
 	if (*pCurrentValue != value)
 	{
 		// if we're supposed to render everything in wireframe and something else wants to render solid,

@@ -149,15 +149,36 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 	HWND hWnd;
 
+	RECT winRect;
+	int windowWidth, windowHeight, bitsPerPixel;
+
+	HDC hdc = GetDC(NULL);
+
+
+
+	bitsPerPixel = GetDeviceCaps(hdc, BITSPIXEL);
+	ReleaseDC(NULL, hdc);
+
 	hInst = hInstance; // Store instance handle in our global variable
+
 	if (!fullScreen)
 	{
+		windowWidth = 1024;
+		windowHeight = 768;
+
 		hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 						CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
+
 	}
 	else
 	{
-		hWnd = GetDesktopWindow();
+		::GetClientRect(::GetDesktopWindow(), &winRect);
+		windowWidth = winRect.right - winRect.left;
+		windowHeight = winRect.bottom - winRect.top;
+
+		hWnd = CreateWindowEx(NULL,
+                          szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP, 
+						  0, 0, windowWidth, windowHeight, NULL, NULL, hInstance, NULL);
 	}
 
 
@@ -181,24 +202,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	gRenderer = EEGetRendererInterface();
 
-	RECT winRect;
-	int windowWidth, windowHeight, bitsPerPixel;
-
-	HDC hdc = GetDC(NULL);
-
-	::GetClientRect(hWnd, &winRect);
-	windowWidth = winRect.right - winRect.left;
-	windowHeight = winRect.bottom - winRect.top;
-
-	bitsPerPixel = GetDeviceCaps(hdc, BITSPIXEL);
-	ReleaseDC(NULL, hdc);
- 
-	if (!fullScreen)
-	{
-		windowWidth = 1024;
-		windowHeight = 768;
-	}
-	// this initializes the screen
+ 	// this initializes the screen
 	gRenderer->Initialize(hWnd, fullScreen, windowWidth, windowHeight, 24, bitsPerPixel);
 	gRenderContext = gRenderer->CreateNewContext(hWnd, windowWidth, windowHeight, 24, bitsPerPixel);
 

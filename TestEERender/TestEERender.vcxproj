@@ -854,6 +854,7 @@ copy %(Identity) $(TargetDir)Sounds</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">if not exist "$(TargetDir)Sounds\." mkdir "$(TargetDir)Sounds"
 copy %(Identity) $(TargetDir)Sounds</Command>
     </CustomBuild>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ReadMe.txt" />
     <None Include="small.ico" />
     <None Include="TestEERender.ico" />

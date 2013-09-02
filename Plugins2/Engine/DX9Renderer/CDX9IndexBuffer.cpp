@@ -63,7 +63,7 @@ bool CDX9IndexBuffer::Resize( UINT numElements ){
 	DWORD flags = D3DUSAGE_WRITEONLY | D3DUSAGE_DYNAMIC;
 	if( FAILED( hr = pDevice->CreateIndexBuffer( numElements*2, //TODO: make option for 32 or 16 bit indices
 														flags, D3DFMT_INDEX16,
-														D3DPOOL_DEFAULT, &m_IBInterface, NULL) ) )
+														D3DPOOL_MANAGED, &m_IBInterface, NULL) ) )
 	{
 		return false;
 	}

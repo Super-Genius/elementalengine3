@@ -326,7 +326,7 @@ bool CDX9TextureObject::MakeRenderTarget( UINT sizex, UINT sizey, UINT colordept
 									numMips, //number of mips
 									usage ,	//usage - 0 unless for render targets
 									format,
-									D3DPOOL_DEFAULT, 									
+									D3DPOOL_MANAGED, 									
 									&temptex, NULL )))
 		{
 //			DebugBreak();
@@ -477,7 +477,7 @@ void* CDX9TextureObject::Read( int level, bool bForceUpdateRead )
 				//convert format to argb first
 				LPDIRECT3DSURFACE9 tempSurf = NULL;
 				HRESULT hr = pDevice->CreateOffscreenPlainSurface( GetWidth(), GetHeight(),
-									D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &tempSurf, NULL );
+									D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &tempSurf, NULL );
 				if( hr != D3D_OK ||
 					tempSurf == NULL ||
 					Src == NULL )
