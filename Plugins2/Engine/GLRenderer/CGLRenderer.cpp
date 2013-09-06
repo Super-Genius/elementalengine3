@@ -248,6 +248,8 @@ CGLRenderer::CGLRenderer()
 	m_SetVertexTextures = NULL;
 	m_PSConstants = NULL;
 	m_VSConstants = NULL;
+    
+    m_CurrentActiveTexture = 1000000;
 
     m_RenderTarget = NULL;
 
@@ -462,44 +464,21 @@ bool CGLRenderer::Initialize( HWND window,  bool fullscreen, const int width, co
 
         // set default render states
         
-        glFrontFace(GL_CW);
+        glFrontFace(GL_CCW);
         glDisable(GL_DEPTH_TEST);
-        glDisable(GL_CULL_FACE);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
         glDisable(GL_LIGHTING);
-        glDisable(GL_BLEND);
-        //glEnable(GL_BLEND);
-        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-#if 0
-		m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
-		m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);	 	
-
-		SetGLRenderState( RENDERSTATE_CULLMODE,         RENDERSTATEPARAM_CULLCCW  );		
-		SetGLRenderState( RENDERSTATE_ZENABLE,         RENDERSTATEPARAM_ZTRUE  );// D3DZB_TRUE );
-		SetGLRenderState( RENDERSTATE_ZWRITEENABLE,         RENDERSTATEPARAM_ZTRUE );// TRUE );
-	       
-		SetGLRenderState( RENDERSTATE_ALPHAREF, 64 ); 
-		m_pDevice->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL ); 
-
-		SetGLRenderState(RENDERSTATE_SRCBLEND,RENDERSTATEPARAM_SRCALPHA);
-		SetGLRenderState(RENDERSTATE_DESTBLEND,RENDERSTATEPARAM_INVSRCALPHA);
-		SetGLRenderState(RENDERSTATE_ALPHABLENDENABLE,RENDERSTATEPARAM_TRUE);
-
-		SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE ); 
-		SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
-		SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
-		SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 ); 
-		SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE ); 
-		SetGLSamplerStageState( 0,  SAMPLERSTATE_MINFILTER, TEXTURESTAGE_TEXF_LINEAR );
-		SetGLSamplerStageState( 0,  SAMPLERSTATE_MAGFILTER, TEXTURESTAGE_TEXF_LINEAR );
-#endif
         
+		m_bInitialized = true;
 		AllocateFullscreenQuadVertexBuffer();
 
 		SetDefaultStates();
 		//Initialize enums for mapping hashstrings to renderstate and texture state modes and values
 		RegisterTextureStageEnumHashes();
-		m_bInitialized = true;
 
 		return true;
 	}
@@ -1960,12 +1939,26 @@ void CGLRenderer::UnsetTextures()
 		{
 			if (m_SetTextures[stage] != NULL)
 			{
-                glActiveTexture(GL_TEXTURE0 + stage);
+                SetActiveTexture(stage);
                 glBindTexture(GL_TEXTURE_2D, 0);
 				m_SetTextures[stage] = NULL;
 			}
 		}
 	}
+}
+
+bool CGLRenderer::SetActiveTexture(UINT stage)
+{
+
+    if (m_CurrentActiveTexture != stage)
+    {
+        m_CurrentActiveTexture = stage;
+        
+        glActiveTexture(GL_TEXTURE0 + stage);
+        return (CheckAndLogGLError() == GL_NO_ERROR);
+    }
+    
+    return true;
 }
 
 bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
@@ -1978,8 +1971,7 @@ bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 		m_SetTextures[ stage ] = texture;
 		if( texture )
 		{
-            glActiveTexture(GL_TEXTURE0 + stage);
-            CheckAndLogGLError();
+            SetActiveTexture(stage);
             glEnable(GL_TEXTURE_2D);
             CheckAndLogGLError();
             GLenum glTextureType = GL_TEXTURE_2D;
@@ -2000,8 +1992,7 @@ bool CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )
 		{
             glEnable(GL_TEXTURE_2D);
             CheckAndLogGLError();
-            glActiveTexture(GL_TEXTURE0 + stage);
-            CheckAndLogGLError();
+            SetActiveTexture(stage);
             glBindTexture(GL_TEXTURE_2D, 0);
             CheckAndLogGLError();
 		}
@@ -2210,10 +2201,10 @@ bool CGLRenderer::Draw2DQuad( float x, float y,  float width, float height,
 
         SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE);
         SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
-        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_TEXTURE );
         SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2);
         SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG1, TEXTURESTAGEARG_TEXTURE );
-        SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_TEXTURE );
         SetGLTextureStageState( 1, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_DISABLE ); 
         SetGLTextureStageState( 1, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_DISABLE );
     }
@@ -3121,15 +3112,39 @@ void CGLRenderer::SetEffect( UINT pass, IEffect * effect )
 
 void CGLRenderer::SetDefaultStates()
 {
-#if 0
-	if( m_pDevice )
-	{
-		m_pDevice->SetPixelShader( NULL );
-		m_pDevice->SetVertexDeclaration( NULL );
-		m_pDevice->SetVertexShader( NULL );
-		m_pDevice->SetFVF( NULL );
-	}
-#endif
+    
+
+    memset(m_CurrentRenderState, -1, sizeof(m_CurrentRenderState));
+    memset(m_CurrentTextureStageState, -1, sizeof(m_CurrentTextureStageState));
+    memset(m_CurrentSamplerState, -1, sizeof(m_CurrentSamplerState));
+    
+    if (m_bInitialized)
+    {
+    //m_pDevice->SetRenderState( D3DRS_ZFUNC,         D3DCMP_LESSEQUAL );
+    //m_pDevice->SetRenderState(D3DRS_STENCILENABLE,FALSE);
+    
+        SetGLRenderState( RENDERSTATE_CULLMODE, RENDERSTATEPARAM_CULLCCW);
+        SetGLRenderState( RENDERSTATE_ZENABLE, RENDERSTATEPARAM_ZTRUE  );
+        SetGLRenderState( RENDERSTATE_ZWRITEENABLE, RENDERSTATEPARAM_ZTRUE );
+    
+        SetGLRenderState( RENDERSTATE_ALPHAREF, 64 );
+        //m_pDevice->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL );
+    
+        SetGLRenderState(RENDERSTATE_SRCBLEND,RENDERSTATEPARAM_SRCALPHA);
+        SetGLRenderState(RENDERSTATE_DESTBLEND,RENDERSTATEPARAM_INVSRCALPHA);
+        SetGLRenderState(RENDERSTATE_ALPHABLENDENABLE,RENDERSTATEPARAM_TRUE);
+    
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLOROP, TEXTURESTAGEOP_MODULATE );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG1, TEXTURESTAGEARG_TEXTURE );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_COLORARG2, TEXTURESTAGEARG_DIFFUSE );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAOP, TEXTURESTAGEOP_SELECTARG2 );
+        SetGLTextureStageState( 0, TEXTURESTAGESTATE_ALPHAARG2, TEXTURESTAGEARG_DIFFUSE );
+        SetGLSamplerStageState( 0,  SAMPLERSTATE_MINFILTER, TEXTURESTAGE_TEXF_LINEAR );
+        SetGLSamplerStageState( 0,  SAMPLERSTATE_MAGFILTER, TEXTURESTAGE_TEXF_LINEAR );
+        
+        glDisable( GL_FRAGMENT_PROGRAM_ARB);
+        glDisable( GL_VERTEX_PROGRAM_ARB);
+    }
 }
 
 void CGLRenderer::RegisterTextureStageEnumHashes()
@@ -3224,27 +3239,30 @@ HRESULT CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE s
     // if we haven't cached the current Value(s)
 	//if (*pCurrentValue != value)
 	{
-        glActiveTexture(GL_TEXTURE0 + stage);
+        SetActiveTexture(stage);
         result = CheckAndLogGLError();
         if (result == GL_NO_ERROR)
         {
-            if (((state == TEXTURESTAGESTATE_COLOROP) || (state == TEXTURESTAGESTATE_ALPHAOP)) && (value == TEXTURESTAGEOP_DISABLE))
+            if ((state == TEXTURESTAGESTATE_COLOROP) || (state == TEXTURESTAGESTATE_ALPHAOP))
             {
-                glDisable(GL_TEXTURE_2D);
-                *pCurrentValue = value;
-                return CheckAndLogGLError();
-            }
-            else
-            {
-                glEnable(GL_TEXTURE_2D);
-                result = CheckAndLogGLError();
-                if (result == GL_NO_ERROR)
+                if (value == TEXTURESTAGEOP_DISABLE)
                 {
-                    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+                    glDisable(GL_TEXTURE_2D);
+                    *pCurrentValue = value;
+                    return CheckAndLogGLError();
+                }
+                else
+                {
+                    //glEnable(GL_TEXTURE_2D);
                     result = CheckAndLogGLError();
+                    if (result == GL_NO_ERROR)
+                    {
+                        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+                        result = CheckAndLogGLError();
+                    }
                 }
             }
-
+            
             // grab a map of CombinerSettings from the array indexed by state
             const EnumMap<CombinerSettings> *combMap = &gCombinerSettings[state];
             

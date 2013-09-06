@@ -75,7 +75,7 @@ void RenderScene()
     
     gRenderer->RenderToContext(gRenderContext);
     gRenderer->BeginScene(true);
-    gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xff0000ff);
+    gRenderer->Draw2DQuad(100.0f, 100.0f, 250.0f, 250.0f, NULL, 0xffff0000);
     // basic texture modulate
     gRenderer->SetMaterial(0, NULL);
     gRenderer->Draw2DQuad(350.0f, 350.0f, 250.0f, 250.0f, gTestTexture, 0xff0000ff);
@@ -137,7 +137,7 @@ int main( int argc, char * argv[] )
         glfwShowWindow(mainWindow );
     }
 
-    gRenderer = GetRendererInterface();
+    gRenderer = EEGetRendererInterface();
     
     // Make the window's context current
     glfwMakeContextCurrent(mainWindow);
@@ -147,7 +147,7 @@ int main( int argc, char * argv[] )
     
     gRenderContext = gRenderer->CreateNewContext(0, DisplayWidth, DisplayHeight, 24, bpp);
     
-    gTestTexture = LoadTexture(_T("Textures/Forest_grass.dds"));
+    gTestTexture = EELoadTexture(_T("Textures/wall_512x512.jpg"));
     
     
     // Loop until the user closes the window

@@ -206,7 +206,7 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
-		8C46B25B177F8147006FF2DB /* libElementalEngine3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libElementalEngine3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C46B25B177F8147006FF2DB /* ElementalEngine3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = ElementalEngine3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6515E5178109280056F798 /* treegems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = treegems.h; path = src/treegems.h; sourceTree = "<group>"; };
 		8CC13B8C177F842C000C2A56 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = base64.cpp; path = src/base64.cpp; sourceTree = "<group>"; };
 		8CC13B8D177F842C000C2A56 /* C2DLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = C2DLine.cpp; path = src/C2DLine.cpp; sourceTree = "<group>"; };
@@ -415,7 +415,7 @@
 		8C46B25C177F8147006FF2DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C46B25B177F8147006FF2DB /* libElementalEngine3.dylib */,
+				8C46B25B177F8147006FF2DB /* ElementalEngine3.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -761,7 +761,7 @@
 			);
 			name = ElementalEngine3;
 			productName = ElementalEngine3;
-			productReference = 8C46B25B177F8147006FF2DB /* libElementalEngine3.dylib */;
+			productReference = 8C46B25B177F8147006FF2DB /* ElementalEngine3.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -977,9 +977,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_PREFIX = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = ./;
+				INSTALL_PATH = "@executable_path";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"../EESDK/lib/OSX/$(CONFIGURATION)\"",
@@ -997,9 +998,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_PREFIX = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = ./;
+				INSTALL_PATH = "@executable_path";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"../EESDK/lib/OSX/$(CONFIGURATION)\"",

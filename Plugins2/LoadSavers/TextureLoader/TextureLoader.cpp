@@ -243,7 +243,8 @@ DWORD CTextureLoader::OnLoadTextureFile(DWORD size, void *params)
 	}
 
 	static CHashString hszFormatA32B32G32R32F(_T("A32B32G32R32F"));
-
+    static CHashString hszFormatBGRA(_T("B8G8R8A8"));
+    
 	ctp.Name = &hszFileName;
 	ctp.sizeX = theImageInfo.Width;
 	ctp.sizeY = theImageInfo.Height;
@@ -256,6 +257,7 @@ DWORD CTextureLoader::OnLoadTextureFile(DWORD size, void *params)
 	}
 	else
 	{
+        ctp.Format = &hszFormatBGRA;
 		ctp.bitDepth = theImageInfo.Bpp * 8;
 	}
 

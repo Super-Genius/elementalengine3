@@ -144,6 +144,7 @@ const EnumMap<GLenum> textureTypes = EnumMap<GLenum>
 	( CHashString(_T("X4R4G4B4")).GetUniqueID(), GL_RGB4 )
 	( CHashString(_T("A8B8G8R8")).GetUniqueID(), GL_ABGR_EXT )
 	( CHashString(_T("X8B8G8R8")).GetUniqueID(), GL_BGR )
+    ( CHashString(_T("B8G8R8A8")).GetUniqueID(), GL_BGRA )
 	( CHashString(_T("G16R16")).GetUniqueID(), GL_RG16 )
 	( CHashString(_T("A2R10G10B10")).GetUniqueID(), GL_RGB10_A2 )
 	( CHashString(_T("A16B16G16R16")).GetUniqueID(), GL_RGBA16 )

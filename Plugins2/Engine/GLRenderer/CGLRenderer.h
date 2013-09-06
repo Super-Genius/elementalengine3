@@ -435,6 +435,8 @@ private:
 	void SetTextureArray( IBaseTextureObject ** textures, const UINT numTextures );
 	void SetTextureStates( bool vertexlit );
 	void DrawPrimUp(GLenum prim, UINT numprim, void * stream, UINT stride);
+    
+    bool SetActiveTexture(UINT stage);
 
 	void FlushShaderConstants( void );
 	CHANGEDSHADERCONSTANTSTACK m_VSConstantsChanged;
@@ -527,12 +529,14 @@ private:
 	IBaseTextureObject ** m_SetVertexTextures;
 	GLenum	m_LockedRenderBufferSurface;
 	bool		RenderBufferSurfaceLocked;
-private:
+
 	//internal manager-like variables such as dynamic vertex buffers for drawing 2D elements fast
 	CGLVertexBufferObject *m_FullscreenQuadVertexBuffer;
 	BUFFERALLOCATIONSTRUCT m_FullscreenQuadVBAllocation;
 	map< IBaseTextureObject *, GLenum > m_TextureSurfs;
 	map< int, GLenum > m_OldTargets;
+    
+    UINT m_CurrentActiveTexture;
 
 public:
 	GLenum GetD3DDepthBufferFormat( UINT &depthbits );

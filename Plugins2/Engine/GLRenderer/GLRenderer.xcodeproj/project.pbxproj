@@ -30,9 +30,8 @@
 		8C236E92178608B1008EA1C7 /* GLPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E8C178608B1008EA1C7 /* GLPlatform.h */; };
 		8C236E96178608B1008EA1C7 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E90178608B1008EA1C7 /* StaticLibSymbols.h */; };
 		8C236E97178608B1008EA1C7 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C236E91178608B1008EA1C7 /* stdafx.h */; };
+		8C4602B617D50208007A20B2 /* ElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4602B517D50208007A20B2 /* ElementalEngine3.dylib */; };
 		8CDD7CE517877BB4006219B7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD7CE417877BB4006219B7 /* OpenGL.framework */; };
-		8CDD7CE717877BE2006219B7 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD7CE617877BE2006219B7 /* libEESDK.a */; };
-		8CDD7CE917877CC5006219B7 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */; };
 		8CDD7CEC17877D22006219B7 /* CGLRenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD7CEA17877D22006219B7 /* CGLRenderContext.cpp */; };
 		8CDD7CED17877D22006219B7 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDD7CEB17877D22006219B7 /* Config.h */; };
 		8CDD7CEF17877DAB006219B7 /* CGLIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD7CEE17877DAB006219B7 /* CGLIndexBuffer.cpp */; };
@@ -81,9 +80,9 @@
 		8C236E90178608B1008EA1C7 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibSymbols.h; sourceTree = "<group>"; };
 		8C236E91178608B1008EA1C7 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
 		8C236E9B178614E2008EA1C7 /* StaticLibSymbols.gen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StaticLibSymbols.gen; sourceTree = "<group>"; };
+		8C4602B517D50208007A20B2 /* ElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/ElementalEngine3.dylib; sourceTree = "<group>"; };
 		8CDD7CE417877BB4006219B7 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		8CDD7CE617877BE2006219B7 /* libEESDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEESDK.a; path = ../../../EESDK/./lib/OSX32/Release/libEESDK.a; sourceTree = "<group>"; };
-		8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX32/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
 		8CDD7CEA17877D22006219B7 /* CGLRenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLRenderContext.cpp; sourceTree = "<group>"; };
 		8CDD7CEB17877D22006219B7 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		8CDD7CEE17877DAB006219B7 /* CGLIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLIndexBuffer.cpp; sourceTree = "<group>"; };
@@ -96,9 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CDD7CE917877CC5006219B7 /* libElementalEngine3.dylib in Frameworks */,
-				8CDD7CE717877BE2006219B7 /* libEESDK.a in Frameworks */,
 				8CDD7CE517877BB4006219B7 /* OpenGL.framework in Frameworks */,
+				8C4602B617D50208007A20B2 /* ElementalEngine3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +106,7 @@
 		8C236E2C1785F6B4008EA1C7 = {
 			isa = PBXGroup;
 			children = (
-				8CDD7CE817877CC5006219B7 /* libElementalEngine3.dylib */,
+				8C4602B517D50208007A20B2 /* ElementalEngine3.dylib */,
 				8CDD7CE617877BE2006219B7 /* libEESDK.a */,
 				8CDD7CE417877BB4006219B7 /* OpenGL.framework */,
 				8C236E7F178605BD008EA1C7 /* Header */,
@@ -334,10 +332,12 @@
 					../../../EESDK/include,
 					../../../EESDK/include/OSX,
 				);
-				INSTALL_PATH = ./;
+				INSTALL_PATH = "@executable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = "../../../EESDK/Lib/OSX/$(CONFIGURATION)";
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = ../../bin/OSX;
@@ -358,10 +358,12 @@
 					../../../EESDK/include,
 					../../../EESDK/include/OSX,
 				);
-				INSTALL_PATH = ./;
+				INSTALL_PATH = "@executable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = "../../../EESDK/Lib/OSX/$(CONFIGURATION)";
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = ../../bin/OSX;

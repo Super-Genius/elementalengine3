@@ -88,7 +88,7 @@ bool CGLVertexBufferObject::Initialize( CHANNELDESCRIPTORLIST &channels, UINT nu
 		totalstride += curStream->Stride;
 	}
 
-	DWORD flags;
+	GLenum flags;
 	if( bdynamic )
 	{
 		flags = GL_DYNAMIC_DRAW_ARB;

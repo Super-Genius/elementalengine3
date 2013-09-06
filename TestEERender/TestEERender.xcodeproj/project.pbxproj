@@ -12,13 +12,13 @@
 		8C0282191788B12D00A07848 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0282181788B12D00A07848 /* OpenGL.framework */; };
 		8C02821E1788B20600A07848 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C02821C1788B1CB00A07848 /* IOKit.framework */; };
 		8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C236E411785F6B5008EA1C7 /* GLRenderer.dlo */; };
-		8C4D4F1C179B87D400B16769 /* EEOSXLogWindow.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dylib */; };
-		8C6515EA178144240056F798 /* libElementalEngine3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
+		8C4602B917D50399007A20B2 /* ElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* ElementalEngine3.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
+		8C4602BA17D50466007A20B2 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC13B7F177F8306000C2A56 /* libEESDK.a */; };
+		8C4D4F1C179B87D400B16769 /* EEOSXLogWindow.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dlo */; };
+		8C6515EA178144240056F798 /* ElementalEngine3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* ElementalEngine3.dylib */; };
 		8CAA94211789E61400ECE2F8 /* TextureLoader.dls in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CAA94061789D73F00ECE2F8 /* TextureLoader.dls */; };
 		8CAA94231789E81700ECE2F8 /* LoadSaveManager.dlo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CAA93CE1789296F00ECE2F8 /* LoadSaveManager.dlo */; };
 		8CB503121780ED91006F3E6F /* TestEERenderOSX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CB503111780ED91006F3E6F /* TestEERenderOSX.cpp */; };
-		8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */; };
-		8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC13B7F177F8306000C2A56 /* libEESDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +115,7 @@
 			dstPath = Plugins;
 			dstSubfolderSpec = 16;
 			files = (
-				8C4D4F1C179B87D400B16769 /* EEOSXLogWindow.dylib in CopyFiles */,
+				8C4D4F1C179B87D400B16769 /* EEOSXLogWindow.dlo in CopyFiles */,
 				8CAA94231789E81700ECE2F8 /* LoadSaveManager.dlo in CopyFiles */,
 				8CAA94211789E61400ECE2F8 /* TextureLoader.dls in CopyFiles */,
 				8C236E9F178615FE008EA1C7 /* GLRenderer.dlo in CopyFiles */,
@@ -128,7 +128,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				8C6515EA178144240056F798 /* libElementalEngine3.dylib in CopyFiles */,
+				8C6515EA178144240056F798 /* ElementalEngine3.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,8 +161,8 @@
 				8C0282191788B12D00A07848 /* OpenGL.framework in Frameworks */,
 				8C0282171788B11300A07848 /* Cocoa.framework in Frameworks */,
 				8C0282151788B00900A07848 /* CoreFoundation.framework in Frameworks */,
-				8CCCC5901787EA0C003C29B8 /* libEESDK.a in Frameworks */,
-				8CB50317178101AF006F3E6F /* libElementalEngine3.dylib in Frameworks */,
+				8C4602B917D50399007A20B2 /* ElementalEngine3.dylib in Frameworks */,
+				8C4602BA17D50466007A20B2 /* libEESDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +180,7 @@
 		8C46B263177F8170006FF2DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */,
+				8C46B267177F8170006FF2DB /* ElementalEngine3.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 		8C4D4F0A179B861800B16769 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dylib */,
+				8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dlo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,7 +196,6 @@
 		8CA43823177E83F900E60641 = {
 			isa = PBXGroup;
 			children = (
-				8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */,
 				8CAA94001789D73E00ECE2F8 /* TextureLoader.xcodeproj */,
 				8CAA93C91789296F00ECE2F8 /* LoadSaveManager.xcodeproj */,
 				8C02821C1788B1CB00A07848 /* IOKit.framework */,
@@ -212,6 +211,7 @@
 				8CC13B7A177F8305000C2A56 /* EESDK.xcodeproj */,
 				8C46B262177F8170006FF2DB /* ElementalEngine3.xcodeproj */,
 				8CB5030A1780ED47006F3E6F /* TestEERender */,
+				8C4D4F09179B861800B16769 /* EEOSXLogWindow.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,12 +270,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				8CB5031B1781033B006F3E6F /* PBXTargetDependency */,
+				8CB5031D1781033B006F3E6F /* PBXTargetDependency */,
 				8C4D4F1B179B87CD00B16769 /* PBXTargetDependency */,
 				8CAA94251789E84400ECE2F8 /* PBXTargetDependency */,
 				8CAA94271789E84400ECE2F8 /* PBXTargetDependency */,
 				8C236E9917861435008EA1C7 /* PBXTargetDependency */,
-				8CB5031B1781033B006F3E6F /* PBXTargetDependency */,
-				8CB5031D1781033B006F3E6F /* PBXTargetDependency */,
 			);
 			name = TestEERender;
 			productName = TestEERender;
@@ -341,17 +341,17 @@
 			remoteRef = 8C236E401785F6B5008EA1C7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8C46B267177F8170006FF2DB /* libElementalEngine3.dylib */ = {
+		8C46B267177F8170006FF2DB /* ElementalEngine3.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libElementalEngine3.dylib;
+			path = ElementalEngine3.dylib;
 			remoteRef = 8C46B266177F8170006FF2DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dylib */ = {
+		8C4D4F0E179B861900B16769 /* EEOSXLogWindow.dlo */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = EEOSXLogWindow.dylib;
+			path = EEOSXLogWindow.dlo;
 			remoteRef = 8C4D4F0D179B861900B16769 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -389,12 +389,16 @@
 				"$(SRCROOT)/../../ThirdParty/DevIL/lib/OSX/$(CONFIGURATION)/DevIL.dylib",
 				"$(SRCROOT)/../../ThirdParty/DevIL/lib/OSX/$(CONFIGURATION)/ILU.dylib",
 				"$(SRCROOT)/Forest_grass.dds",
+				"$(SRCROOT)/../EESDK/lib/OSX/$(CONFIGURATION)/ElementalEngine3.dylib",
+				"$(SRCROOT)/wall_512x512.jpg",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/LibXML++.dylib",
 				"$(BUILT_PRODUCTS_DIR)/DevIL.dylib",
 				"$(BUILT_PRODUCTS_DIR)/ILU.dylib",
 				"$(BUILT_PRODUCTS_DIR)/Textures/Forest_grass.dds",
+				"$(BUILT_PRODUCTS_DIR)/ElementalEngine3.dylib",
+				"$(BUILT_PRODUCTS_DIR)/Textures/wall_512x512.jpg",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -451,10 +455,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = YES;
-				SYMROOT = Bin/OSX32;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+				SYMROOT = Bin/OSX;
 				USER_HEADER_SEARCH_PATHS = "../EESDK/include ../EESDK/include/OSX ../../ThirdParty/GLFW/include";
 			};
 			name = Debug;
@@ -463,10 +468,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				OBJROOT = build;
-				ONLY_ACTIVE_ARCH = YES;
-				SYMROOT = Bin/OSX32;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+				SYMROOT = Bin/OSX;
 				USER_HEADER_SEARCH_PATHS = "../EESDK/include ../EESDK/include/OSX ../../ThirdParty/GLFW/include";
 			};
 			name = Release;
@@ -498,10 +504,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path @loader_path/Plugins";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"../../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)\"",
 					"../../ThirdParty/GLFW/Lib/OSX/$(CONFIGURATION)",
+					"../EESDK/lib/OSX/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
@@ -510,7 +519,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYMROOT = Bin/OSX;
-				VALID_ARCHS = "i386 X86_64";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -535,10 +544,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path @loader_path/Plugins";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"../../ThirdParty/LibXML++/lib/OSX/$(CONFIGURATION)\"",
 					"../../ThirdParty/GLFW/Lib/OSX/$(CONFIGURATION)",
+					"../EESDK/lib/OSX/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OBJROOT = build;
@@ -547,7 +559,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SYMROOT = Bin/OSX;
-				VALID_ARCHS = "i386 X86_64";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};

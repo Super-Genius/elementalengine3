@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396065200.500978"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "304"
-         endingLineNumber = "304"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
          landmarkName = "CGLRenderer::OnSetDirectories( DWORD size, void * params )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -342,11 +342,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
-         timestampString = "396139020.41195"
+         timestampString = "400138361.114252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274"
+         startingLineNumber = "276"
+         endingLineNumber = "276"
          landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -394,11 +394,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
-         timestampString = "396139020.41195"
+         timestampString = "400138361.114252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "268"
-         endingLineNumber = "268"
+         startingLineNumber = "270"
+         endingLineNumber = "270"
          landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -407,11 +407,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
-         timestampString = "396139020.41195"
+         timestampString = "400138361.114252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "262"
-         endingLineNumber = "262"
+         startingLineNumber = "264"
+         endingLineNumber = "264"
          landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -433,11 +433,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "607"
-         endingLineNumber = "607"
+         startingLineNumber = "586"
+         endingLineNumber = "586"
          landmarkName = "CGLRenderer::BeginScene( bool defaultBufferRender, ITextureObject *pOverrideRenderTarget )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -446,11 +446,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396128521.148677"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2352"
-         endingLineNumber = "2352"
+         startingLineNumber = "2343"
+         endingLineNumber = "2343"
          landmarkName = "CGLRenderer::DrawPrimUp ( GLenum prim, UINT numprim, void * stream, UINT stride )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -459,11 +459,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1369"
-         endingLineNumber = "1369"
+         startingLineNumber = "1348"
+         endingLineNumber = "1348"
          landmarkName = "CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -472,11 +472,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1378"
-         endingLineNumber = "1378"
+         startingLineNumber = "1357"
+         endingLineNumber = "1357"
          landmarkName = "CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -485,11 +485,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1389"
-         endingLineNumber = "1389"
+         startingLineNumber = "1368"
+         endingLineNumber = "1368"
          landmarkName = "CGLRenderer::SetMatrix( const MATRIXMODE matmode, const float * pMat )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -498,11 +498,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396128521.148677"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2756"
-         endingLineNumber = "2756"
+         startingLineNumber = "2747"
+         endingLineNumber = "2747"
          landmarkName = "CGLRenderer::SetOrtho2DScreenSize(float left, float right, float bottom, float top)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -511,11 +511,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2205"
-         endingLineNumber = "2205"
+         startingLineNumber = "2196"
+         endingLineNumber = "2196"
          landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -524,11 +524,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396128521.148677"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2760"
-         endingLineNumber = "2760"
+         startingLineNumber = "2751"
+         endingLineNumber = "2751"
          landmarkName = "CGLRenderer::SetOrtho2DScreenSize(float left, float right, float bottom, float top)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -537,11 +537,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2000"
-         endingLineNumber = "2000"
+         startingLineNumber = "1992"
+         endingLineNumber = "1992"
          landmarkName = "CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -550,11 +550,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1993"
-         endingLineNumber = "1993"
+         startingLineNumber = "1985"
+         endingLineNumber = "1985"
          landmarkName = "CGLRenderer::SetTexture( UINT stage, IBaseTextureObject * texture )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -563,11 +563,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396065200.500978"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "463"
-         endingLineNumber = "463"
+         startingLineNumber = "465"
+         endingLineNumber = "465"
          landmarkName = "CGLRenderer::Initialize( HWND window, bool fullscreen, const int width, const int height, const int depthbits_in, const int colorbits_in )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -628,11 +628,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
-         timestampString = "396139020.41195"
+         timestampString = "400138361.114252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "307"
-         endingLineNumber = "307"
+         startingLineNumber = "309"
+         endingLineNumber = "309"
          landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -693,11 +693,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "599"
-         endingLineNumber = "599"
+         startingLineNumber = "578"
+         endingLineNumber = "578"
          landmarkName = "CGLRenderer::BeginScene( bool defaultBufferRender, ITextureObject *pOverrideRenderTarget )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -732,11 +732,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396128521.148677"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "3257"
-         endingLineNumber = "3257"
+         startingLineNumber = "3275"
+         endingLineNumber = "3275"
          landmarkName = "CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE state, UINT value )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -745,11 +745,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125365.603179"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2224"
-         endingLineNumber = "2224"
+         startingLineNumber = "2215"
+         endingLineNumber = "2215"
          landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -823,11 +823,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396141309.061206"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "3279"
-         endingLineNumber = "3279"
+         startingLineNumber = "3297"
+         endingLineNumber = "3297"
          landmarkName = "CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE state, UINT value )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -836,7 +836,46 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125610.007843"
+         timestampString = "400136718.428752"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2213"
+         endingLineNumber = "2213"
+         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "400136718.428752"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2199"
+         endingLineNumber = "2199"
+         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "400136718.428752"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2202"
+         endingLineNumber = "2202"
+         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "2222"
@@ -849,50 +888,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125748.495722"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2208"
-         endingLineNumber = "2208"
-         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396125942.266294"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2211"
-         endingLineNumber = "2211"
-         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396126132.347946"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2231"
-         endingLineNumber = "2231"
-         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396128521.148677"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "3225"
-         endingLineNumber = "3225"
+         startingLineNumber = "3240"
+         endingLineNumber = "3240"
          landmarkName = "CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE state, UINT value )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -901,11 +901,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396128521.148677"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "2343"
-         endingLineNumber = "2343"
+         startingLineNumber = "2334"
+         endingLineNumber = "2334"
          landmarkName = "CGLRenderer::DrawPrimUp ( GLenum prim, UINT numprim, void * stream, UINT stride )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -914,11 +914,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
-         timestampString = "396139009.268991"
+         timestampString = "400138361.114252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "314"
-         endingLineNumber = "314"
+         startingLineNumber = "316"
+         endingLineNumber = "316"
          landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -953,25 +953,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/LoadSavers/TextureLoader/TextureLoader.cpp"
-         timestampString = "396139748.632057"
+         timestampString = "400138361.114252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "373"
-         endingLineNumber = "373"
+         startingLineNumber = "375"
+         endingLineNumber = "375"
          landmarkName = "CTextureLoader::OnLoadTextureFile(DWORD size, void *params)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
-         timestampString = "396141313.479456"
+         timestampString = "400136718.428752"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "3265"
-         endingLineNumber = "3265"
+         startingLineNumber = "3283"
+         endingLineNumber = "3283"
          landmarkName = "CGLRenderer::SetGLTextureStageState( UINT stage, ENUMTEXTURESTAGESTATE state, UINT value )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "400136718.428752"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2348"
+         endingLineNumber = "2348"
+         landmarkName = "CGLRenderer::DrawPrimUp ( GLenum prim, UINT numprim, void * stream, UINT stride )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Plugins2/Engine/GLRenderer/CGLRenderer.cpp"
+         timestampString = "400136718.428752"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2200"
+         endingLineNumber = "2200"
+         landmarkName = "CGLRenderer::Draw2DQuad( float x, float y, float width, float height, IBaseTextureObject * texture, DWORD color, float angle, float uStart, float vStart, float uEnd, float vEnd)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

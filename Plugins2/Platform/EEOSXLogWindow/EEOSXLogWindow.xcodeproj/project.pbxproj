@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C4602B817D50219007A20B2 /* ElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4602B717D50219007A20B2 /* ElementalEngine3.dylib */; };
 		8C4D4EF9179B85DB00B16769 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4D4EF8179B85DB00B16769 /* Cocoa.framework */; };
 		8C4D4F13179B868A00B16769 /* EEOSXLogWindowDLL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D4F11179B868A00B16769 /* EEOSXLogWindowDLL.cpp */; };
 		8C4D4F14179B868A00B16769 /* EEOSXLogWindowDLL.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F12179B868A00B16769 /* EEOSXLogWindowDLL.h */; };
@@ -18,7 +19,6 @@
 		8C4D4F27179B8AD200B16769 /* EEOSXLogWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F26179B8AD200B16769 /* EEOSXLogWindow.h */; };
 		8C4D4F29179B9D8B00B16769 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C4D4F28179B9D8B00B16769 /* stdafx.h */; };
 		8C4D4F2B179B9D9500B16769 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D4F2A179B9D9500B16769 /* stdafx.cpp */; };
-		8C4D4F2D179B9F1100B16769 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4D4F2C179B9F1100B16769 /* libElementalEngine3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -36,6 +36,7 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		8C4602B717D50219007A20B2 /* ElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/ElementalEngine3.dylib; sourceTree = "<group>"; };
 		8C4D4EF5179B85DB00B16769 /* EEOSXLogWindow.dlo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = EEOSXLogWindow.dlo; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C4D4EF8179B85DB00B16769 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C4D4EFB179B85DB00B16769 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -53,7 +54,6 @@
 		8C4D4F26179B8AD200B16769 /* EEOSXLogWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEOSXLogWindow.h; sourceTree = "<group>"; };
 		8C4D4F28179B9D8B00B16769 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
 		8C4D4F2A179B9D9500B16769 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
-		8C4D4F2C179B9F1100B16769 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C4D4F2D179B9F1100B16769 /* libElementalEngine3.dylib in Frameworks */,
 				8C4D4EF9179B85DB00B16769 /* Cocoa.framework in Frameworks */,
+				8C4602B817D50219007A20B2 /* ElementalEngine3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,7 @@
 		8C4D4EEC179B85DB00B16769 = {
 			isa = PBXGroup;
 			children = (
-				8C4D4F2C179B9F1100B16769 /* libElementalEngine3.dylib */,
+				8C4602B717D50219007A20B2 /* ElementalEngine3.dylib */,
 				8C4D4F10179B865100B16769 /* Header Files */,
 				8C4D4F0F179B864B00B16769 /* Source Files */,
 				8C4D4EFE179B85DB00B16769 /* EEOSXLogWindow */,
@@ -297,14 +297,17 @@
 					../../../EESDK/include,
 					../../../EESDK/include/OSX,
 				);
+				INSTALL_PATH = "@exectuable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
-					"\"$(SRCROOT)/../../../EESDK/Lib/OSX/Debug\"",
 				);
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ../../Bin/OSX;
 			};
 			name = Debug;
@@ -322,13 +325,16 @@
 					../../../EESDK/include,
 					../../../EESDK/include/OSX,
 				);
+				INSTALL_PATH = "@exectuable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
-					"\"$(SRCROOT)/../../../EESDK/Lib/OSX/Debug\"",
 				);
 				OBJROOT = build;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ../../Bin/OSX;
 			};
 			name = Release;

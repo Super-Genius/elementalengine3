@@ -101,7 +101,8 @@ typedef struct stat STATSTRUCT;
 
 #define CDECL __attribute__((cdecl))
 
-#define OutputDebugString(fmt, ...) syslog(LOG_DEBUG, fmt, ##__VA_ARGS__)
+#define OutputDebugString(fmt, ...) printf(fmt, ##__VA_ARGS__); \
+                                    syslog(LOG_DEBUG, fmt, ##__VA_ARGS__)
 
 #define _finite(n) finite(n)
 #define _isnan(n) isnan(n)

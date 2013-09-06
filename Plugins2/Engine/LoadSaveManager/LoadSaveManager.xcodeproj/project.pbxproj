@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C4602B417D501FC007A20B2 /* ElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4602B317D501FC007A20B2 /* ElementalEngine3.dylib */; };
 		8CAA93D5178929AA00ECE2F8 /* CLoadSaveManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA93D1178929AA00ECE2F8 /* CLoadSaveManager.cpp */; };
 		8CAA93D6178929AA00ECE2F8 /* StaticLibSymbols.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA93D2178929AA00ECE2F8 /* StaticLibSymbols.cpp */; };
 		8CAA93D7178929AA00ECE2F8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA93D4178929AA00ECE2F8 /* stdafx.cpp */; };
@@ -15,7 +16,6 @@
 		8CAA93DE178929C900ECE2F8 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA93DA178929C900ECE2F8 /* StaticLibSymbols.h */; };
 		8CAA93DF178929C900ECE2F8 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA93DB178929C900ECE2F8 /* stdafx.h */; };
 		8CAA93E1178929E700ECE2F8 /* dllInit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA93E0178929E700ECE2F8 /* dllInit.cpp */; };
-		8CAA93E517892B5900ECE2F8 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA93E317892B5900ECE2F8 /* libElementalEngine3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -34,6 +34,7 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		8C4602B317D501FC007A20B2 /* ElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/ElementalEngine3.dylib; sourceTree = "<group>"; };
 		8CAA93C2178928E400ECE2F8 /* LoadSaveManager.dlo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = LoadSaveManager.dlo; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAA93D1178929AA00ECE2F8 /* CLoadSaveManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadSaveManager.cpp; sourceTree = "<group>"; };
 		8CAA93D2178929AA00ECE2F8 /* StaticLibSymbols.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticLibSymbols.cpp; sourceTree = "<group>"; };
@@ -44,8 +45,6 @@
 		8CAA93DA178929C900ECE2F8 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibSymbols.h; sourceTree = "<group>"; };
 		8CAA93DB178929C900ECE2F8 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
 		8CAA93E0178929E700ECE2F8 /* dllInit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dllInit.cpp; sourceTree = "<group>"; };
-		8CAA93E217892B5900ECE2F8 /* libEESDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEESDK.a; path = ../../../EESDK/./lib/OSX32/Release/libEESDK.a; sourceTree = "<group>"; };
-		8CAA93E317892B5900ECE2F8 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX32/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CAA93E517892B5900ECE2F8 /* libElementalEngine3.dylib in Frameworks */,
+				8C4602B417D501FC007A20B2 /* ElementalEngine3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +62,7 @@
 		8CAA93B9178928E400ECE2F8 = {
 			isa = PBXGroup;
 			children = (
-				8CAA93E217892B5900ECE2F8 /* libEESDK.a */,
-				8CAA93E317892B5900ECE2F8 /* libElementalEngine3.dylib */,
+				8C4602B317D501FC007A20B2 /* ElementalEngine3.dylib */,
 				8CAA93D01789297F00ECE2F8 /* Header Files */,
 				8CAA93CF1789297600ECE2F8 /* Source Files */,
 				8CAA93C3178928E400ECE2F8 /* Products */,
@@ -209,10 +207,7 @@
 					../../../EESDK/include/OSX,
 					../../include,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"../../Bin/OSX/$(CONFIGURATION)",
-					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -244,10 +239,7 @@
 					../../../EESDK/include/OSX,
 					../../include,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"../../Bin/OSX/$(CONFIGURATION)",
-					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -266,16 +258,17 @@
 					_DEBUG,
 					"$(inherited)",
 				);
-				INSTALL_PATH = "";
-				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_PATH)";
+				INSTALL_PATH = "@executable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../EESDK/lib/OSX32/Release\"",
-					"\"$(SRCROOT)/../../../EESDK/Lib/OSX32/Debug\"",
+					"../../../EESDK/lib/OSX/$(CONFIGURATION)",
 				);
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ../../bin/OSX;
 			};
 			name = Debug;
@@ -289,15 +282,16 @@
 				EXECUTABLE_EXTENSION = dlo;
 				EXECUTABLE_PREFIX = "";
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
-				INSTALL_PATH = "";
-				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_PATH)";
+				INSTALL_PATH = "@executable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../EESDK/lib/OSX32/Release\"",
-					"\"$(SRCROOT)/../../../EESDK/Lib/OSX32/Debug\"",
+					"../../../EESDK/lib/OSX/$(CONFIGURATION)",
 				);
 				OBJROOT = build;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ../../bin/OSX;
 			};
 			name = Release;

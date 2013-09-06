@@ -541,7 +541,7 @@ bool CGLTextureObject::Write( void *p, int level, IHashString * informat )
         }
         else
         {
-            glTexImage2D(GL_TEXTURE_2D, level, SrcFormat, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pData);
+            glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, m_Width, m_Height, 0, SrcFormat, GL_UNSIGNED_BYTE, pData);
         }
         
         if (CheckAndLogGLError() != GL_NO_ERROR)

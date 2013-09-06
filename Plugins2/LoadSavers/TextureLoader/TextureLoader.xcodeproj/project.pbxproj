@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C4602B217D501CA007A20B2 /* ElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4602B117D501CA007A20B2 /* ElementalEngine3.dylib */; };
 		8CAA94131789D7D200ECE2F8 /* StaticLibSymbols.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA940E1789D7D200ECE2F8 /* StaticLibSymbols.cpp */; };
 		8CAA94141789D7D200ECE2F8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA94101789D7D200ECE2F8 /* stdafx.cpp */; };
 		8CAA94151789D7D200ECE2F8 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA94111789D7D200ECE2F8 /* TextureLoader.cpp */; };
@@ -14,7 +15,6 @@
 		8CAA941A1789D7E900ECE2F8 /* StaticLibSymbols.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA94171789D7E900ECE2F8 /* StaticLibSymbols.h */; };
 		8CAA941B1789D7E900ECE2F8 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA94181789D7E900ECE2F8 /* stdafx.h */; };
 		8CAA941C1789D7E900ECE2F8 /* TextureLoader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA94191789D7E900ECE2F8 /* TextureLoader.hpp */; };
-		8CAA941F1789E5E900ECE2F8 /* libElementalEngine3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA941E1789E5E900ECE2F8 /* libElementalEngine3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -33,6 +33,7 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		8C4602B117D501CA007A20B2 /* ElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/ElementalEngine3.dylib; sourceTree = "<group>"; };
 		8CAA93F91789D73D00ECE2F8 /* TextureLoader.dls */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = TextureLoader.dls; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAA940E1789D7D200ECE2F8 /* StaticLibSymbols.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticLibSymbols.cpp; sourceTree = "<group>"; };
 		8CAA940F1789D7D200ECE2F8 /* StaticLibSymbols.gen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StaticLibSymbols.gen; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 		8CAA94171789D7E900ECE2F8 /* StaticLibSymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibSymbols.h; sourceTree = "<group>"; };
 		8CAA94181789D7E900ECE2F8 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
 		8CAA94191789D7E900ECE2F8 /* TextureLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureLoader.hpp; sourceTree = "<group>"; };
-		8CAA941E1789E5E900ECE2F8 /* libElementalEngine3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libElementalEngine3.dylib; path = ../../../EESDK/Lib/OSX/Debug/libElementalEngine3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CAA941F1789E5E900ECE2F8 /* libElementalEngine3.dylib in Frameworks */,
+				8C4602B217D501CA007A20B2 /* ElementalEngine3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +60,7 @@
 		8CAA93F01789D73D00ECE2F8 = {
 			isa = PBXGroup;
 			children = (
-				8CAA941E1789E5E900ECE2F8 /* libElementalEngine3.dylib */,
+				8C4602B117D501CA007A20B2 /* ElementalEngine3.dylib */,
 				8CAA940D1789D7B600ECE2F8 /* Header Files */,
 				8CAA940C1789D7AD00ECE2F8 /* Source Files */,
 				8CAA93FA1789D73D00ECE2F8 /* Products */,
@@ -260,10 +260,11 @@
 					../../Engine/LoadSaveManager,
 					../../../../ThirdParty/DevIL/include,
 				);
-				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_PATH)";
+				INSTALL_PATH = "@executable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
+					"../../../EESDK/lib/OSX/$(CONFIGURATION)",
 				);
 				OBJROOT = build;
 				ONLY_ACTIVE_ARCH = NO;
@@ -272,6 +273,7 @@
 					"../../../../ThirdParty/DevIL/Lib/OSX/$(CONFIGURATION)/ILU.dylib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ../../Bin/OSX;
 			};
 			name = Debug;
@@ -291,10 +293,11 @@
 					../../Engine/LoadSaveManager,
 					../../../../ThirdParty/DevIL/include,
 				);
-				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_PATH)";
+				INSTALL_PATH = "@executable_path/Plugins";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"../../../EESDK/Lib/OSX/$(CONFIGURATION)",
+					"../../../EESDK/lib/OSX/$(CONFIGURATION)",
 				);
 				OBJROOT = build;
 				OTHER_LDFLAGS = (
@@ -302,6 +305,7 @@
 					"../../../../ThirdParty/DevIL/Lib/OSX/$(CONFIGURATION)/ILU.dylib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SYMROOT = ../../Bin/OSX;
 			};
 			name = Release;
