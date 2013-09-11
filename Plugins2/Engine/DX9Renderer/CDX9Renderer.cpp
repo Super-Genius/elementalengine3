@@ -325,8 +325,7 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 											D3DADAPTER_DEFAULT,	D3DDEVTYPE_HAL,//D3DDEVTYPE_REF, //D3DDEVTYPE_HAL 
 //#endif
 									window,
-									D3DCREATE_HARDWARE_VERTEXPROCESSING,
-									&m_presentParameters, &m_pDevice ); 
+									D3DCREATE_HARDWARE_VERTEXPROCESSING, &m_presentParameters, &m_pDevice ); 
 
 		if ( FAILED( hr ) ) // If it failed, return failure
 		{
@@ -2972,6 +2971,27 @@ void CDX9Renderer::SetDefaultStates()
 	memset( m_CurrentTextureStageState, -1, sizeof(m_CurrentTextureStageState) );
 	memset( m_CurrentSamplerState, -1, sizeof(m_CurrentSamplerState) );
 
+	if (m_RenderContext != NULL)
+	{
+		memset( m_RenderContext->m_CurrentRenderState, -1, sizeof(m_RenderContext->m_CurrentRenderState) );
+		memset( m_RenderContext->m_CurrentTextureStageState, -1, sizeof(m_RenderContext->m_CurrentTextureStageState) );
+		memset( m_RenderContext->m_CurrentSamplerState, -1, sizeof(m_RenderContext->m_CurrentSamplerState) );
+	}
+
+	memset( m_VertexStreams, 0, sizeof( m_VertexStreams ) );
+	memset( m_ClearColor, (UINT)150, sizeof( m_ClearColor  ) );
+	m_ClearColor[ 0 ] = 0;
+
+	m_VertexDeclSet = NULL;
+	m_FVFSet = -1;
+	m_IndexStream = NULL;
+
+	for (UINT i = 0; i < m_iMaxTextures; i++ )
+	{
+		m_SetTextures[ i ] = NULL;
+		m_SetVertexTextures [ i ] = NULL;
+	}
+
 	if (m_bInitialized && (m_pDevice != NULL))
 	{
 		m_pDevice->SetPixelShader( NULL );
@@ -3004,11 +3024,6 @@ void CDX9Renderer::SetDefaultStates()
 		SetD3DSamplerStageState( 0,  SAMPLERSTATE_MINFILTER, TEXTURESTAGE_TEXF_LINEAR );
 		SetD3DSamplerStageState( 0,  SAMPLERSTATE_MAGFILTER, TEXTURESTAGE_TEXF_LINEAR );
 
-		for (UINT i = 0; i < m_iMaxTextures; i++ )
-		{
-			m_SetTextures[ i ] = NULL;
-			m_SetVertexTextures [ i ] = NULL;
-		}
 	}
 
 

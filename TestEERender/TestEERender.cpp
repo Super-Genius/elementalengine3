@@ -163,8 +163,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	if (!fullScreen)
 	{
-		windowWidth = 1024;
-		windowHeight = 768;
+		windowWidth = 1280;
+		windowHeight = 1024;
 
 		hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 						CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
