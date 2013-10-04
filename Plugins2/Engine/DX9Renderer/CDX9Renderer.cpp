@@ -327,11 +327,16 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 									window,
 									D3DCREATE_HARDWARE_VERTEXPROCESSING, &m_presentParameters, &m_pDevice ); 
 
-		if ( FAILED( hr ) ) // If it failed, return failure
+		if ( FAILED( hr )) // if it failed try software vertex processing
 		{
-			EngineGetToolBox()->Log(LOGERROR, _T("DX9Renderer: Failed to create device with resolution %dx%d!\n"), width, height);
-			return false;
-		}		
+			hr = m_pD3D9->CreateDevice(D3DADAPTER_DEFAULT,	D3DDEVTYPE_HAL, window,
+									D3DCREATE_SOFTWARE_VERTEXPROCESSING, &m_presentParameters, &m_pDevice ); 
+			if ( FAILED( hr ) ) // If it failed, return failure
+			{
+				EngineGetToolBox()->Log(LOGERROR, _T("DX9Renderer: Failed to create device with resolution %dx%d!\n"), width, height);
+				return false;
+			}
+		}
 
 		// default clear the backbuffer to remove any noise
 		SetColorMask( true, true, true, true );
