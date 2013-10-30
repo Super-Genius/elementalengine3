@@ -441,7 +441,7 @@ private:
 	void SetIndices( CDX9IndexBuffer * cib );
 	void SetFVF( DWORD fvf );
 	void SetVertexDeclaration( LPDIRECT3DVERTEXDECLARATION9 vertdecl );
-	void BuildConfigMap();
+	bool BuildConfigMap();
 	bool BuildPostProcessBuffer( RENDER_TARGET_TYPE renderTargetType );
 	void RemovePostProcessBuffer();
 	void RegisterTextureStageEnumHashes();

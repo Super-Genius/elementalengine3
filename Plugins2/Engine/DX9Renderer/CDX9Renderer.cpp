@@ -345,7 +345,10 @@ bool CDX9Renderer::Initialize( HWND window,  bool fullscreen, const int width, c
 		ClearScreen( true, true );
 
 
-		BuildConfigMap();
+		if (!BuildConfigMap()) {
+			EngineGetToolBox()->Log(LOGERROR, _T("DX9Renderer: HW is lacking NON-PWR2 Textures\n"));
+			return false;
+		}
 
 		//Init Shader Arrays
 		CHashString maxVCs(_T("MAX_VERTEX_SHADER_CONSTANTS"));
@@ -2614,7 +2617,7 @@ IConfig *CDX9Renderer::GetConfiguration(IHashString *name)
 }
 
 // build the configuration map from DirectX
-void CDX9Renderer::BuildConfigMap()
+bool CDX9Renderer::BuildConfigMap()
 {
 	D3DCAPS9 d3dCaps;
 	HRESULT hr;
@@ -2626,6 +2629,10 @@ void CDX9Renderer::BuildConfigMap()
 		// make sure we succeeded
 		if (hr == D3D_OK)
 		{
+			if (d3dCaps.TextureCaps & D3DPTEXTURECAPS_POW2) {
+				return false;
+			}
+
 			CHashString maxTexStagesName(_T("MAX_TEXTURE_STAGES"));
 			m_ConfigNameMap[maxTexStagesName.GetUniqueID()] = d3dCaps.MaxTextureBlendStages;
 			
@@ -2639,6 +2646,7 @@ void CDX9Renderer::BuildConfigMap()
 			
 		}
 	}
+	return true;
 }
 
 void CDX9Renderer::SetLightArray( ILightObject * lights[], int numlights, ILightObject * detailLights[], 
