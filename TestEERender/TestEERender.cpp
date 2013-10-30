@@ -186,6 +186,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	{
 		return FALSE;
 	}
+
+	// make sure the "SetWindowLong" window style changes take effect
+	SetWindowPos(hWnd, NULL, 0, 0, 0, 0, 
+		SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
 	
 	gToolBox = EngineGetToolBox();
 	if (gToolBox->LoadPlugins(_T(".\\Plugins\\*.dlo"), gDLLPMap) != ERROR_SUCCESS)
